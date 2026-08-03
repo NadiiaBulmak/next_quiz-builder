@@ -4,8 +4,9 @@ import { cookies } from 'next/headers'
 import { cache } from 'react'
 import { redirect } from 'next/navigation'
 import { NAV_LINKS } from '@/constants/nav_links'
+import { SessionPayload } from '@/types/auth'
  
-const secretKey = process.env.SESSION_SECRET
+const secretKey = process.env.SESSION_SECRET!
 const encodedKey = new TextEncoder().encode(secretKey)
  
 export async function encrypt(payload: Record<string, unknown>) {
@@ -16,14 +17,15 @@ export async function encrypt(payload: Record<string, unknown>) {
     .sign(encodedKey)
 }
  
-export async function decrypt(session: string | undefined = '') {
+export async function decrypt(session: string | undefined = ''): Promise<SessionPayload | null> {
   try {
     const { payload } = await jwtVerify(session, encodedKey, {
       algorithms: ['HS256'],
     })
-    return payload
+    return payload as SessionPayload
   } catch (error) {
     console.log('Failed to verify session')
+    return null
   }
 }
 
@@ -34,7 +36,7 @@ export async function createSession(userId: string) {
     return;
   }
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-  const session = await encrypt({ userId, expiresAt })
+  const session = await encrypt({ userId, expiresAt: expiresAt.toISOString() })
   const cookieStore = await cookies()
  
   cookieStore.set('session', session, {
@@ -71,13 +73,14 @@ export async function deleteSession() {
   cookieStore.delete('session')
 }
 
-export const verifySession = cache(async () => {
-  const cookie = (await cookies()).get('session')?.value
-  const session = await decrypt(cookie)
- 
-  if (!session?.userId) {
-    redirect(NAV_LINKS.login)
-  }
- 
-  return { isAuth: true, userId: session.userId }
-})
+export const verifySession = cache(async (): Promise<SessionPayload> => {
+    const cookie = (await cookies()).get("session")?.value;
+
+    const session = await decrypt(cookie);
+
+    if (!session) {
+        redirect(NAV_LINKS.login);
+    }
+
+    return session;
+});

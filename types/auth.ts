@@ -1,3 +1,5 @@
+import { JWTPayload } from "jose";
+
 export type LoginFormDate = {
     email: string;
     password: string;
@@ -20,3 +22,8 @@ export type AuthRedirectLinkType = {
     text: string;
     boldText: string;
 };
+
+export interface SessionPayload extends JWTPayload {
+  userId: string;
+  expiresAt: string;
+}
