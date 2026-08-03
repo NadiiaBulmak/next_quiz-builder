@@ -1,5 +1,6 @@
 'use server';
 
+import { NAV_LINKS } from "@/constants/nav_links";
 import { prisma } from "@/lib/prisma";
 import { createSession } from "@/lib/sessions";
 import { FormState, SignupFormSchema } from "@/schemas/sign-up.schema"
@@ -48,5 +49,5 @@ export async function signup(_state: FormState, formData: FormData): Promise<For
     console.log(user);
 
     await createSession(user.id)
-    redirect('/dashboard')
+    redirect(NAV_LINKS.quizzes.all);
 }

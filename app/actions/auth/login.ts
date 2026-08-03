@@ -54,5 +54,5 @@ if (!isPasswordValid) {
 
     await createSession(user!.id)
 
-    redirect("/dashboard");
+    redirect("/");
 }
