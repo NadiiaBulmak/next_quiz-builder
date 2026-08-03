@@ -1,12 +1,7 @@
 "use client";
 
+import { AuthRedirectLinkType } from "@/types/props";
 import Link from "next/link";
-
-type AuthRedirectLinkType = {
-    link: string;
-    text: string;
-    boldText: string;
-};
 
 export default function AuthRedirectLink({ link, text, boldText }: AuthRedirectLinkType) {
     return (

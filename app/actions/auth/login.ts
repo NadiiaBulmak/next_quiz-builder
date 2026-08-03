@@ -1,8 +1,10 @@
 'use server';
 
 import { prisma } from "@/lib/prisma";
+import { createSession } from "@/lib/sessions";
 import { LoginFormState, LoginFormSchema } from "@/schemas/login.schema";
-import { hashPassword } from "@/utils/hashPassword.util";
+import { comparePassword } from "@/utils/hashPassword.util";
+import { redirect } from "next/navigation";
 
 export async function login(_state: LoginFormState, formData: FormData): Promise<LoginFormState> {
     const validatedFields = LoginFormSchema.safeParse({
@@ -21,20 +23,36 @@ export async function login(_state: LoginFormState, formData: FormData): Promise
     const user = await prisma.user.findUnique({
         where: {
             email,
-            passwordHash: await hashPassword(password),
         },
         select: {
             id: true,
-            email: true
+            email: true,
+            passwordHash: true,
         }
     })
-    console.log(user);
 
+    if (!user) {
     return {
-        success: true,
-        message: "Account created successfully",
-        user,
+        errors: {
+            email: ["Invalid credentials - email"],
+        },
     };
+}
 
-    // redirect("/dashboard");
+const isPasswordValid = await comparePassword(
+    password,
+    user.passwordHash
+);
+    
+if (!isPasswordValid) {
+    return {
+        errors: {
+            password: ["Invalid credentials"],
+        },
+    };
+}
+
+    await createSession(user!.id)
+
+    redirect("/dashboard");
 }

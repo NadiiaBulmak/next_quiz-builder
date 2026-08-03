@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { createSession } from "@/lib/sessions";
 import { FormState, SignupFormSchema } from "@/schemas/sign-up.schema"
 import { hashPassword } from "@/utils/hashPassword.util";
+import { redirect } from "next/navigation";
 
 export async function signup(_state: FormState, formData: FormData): Promise<FormState> {
     const validatedFields = SignupFormSchema.safeParse({
@@ -19,6 +20,7 @@ export async function signup(_state: FormState, formData: FormData): Promise<For
     }
 
     const { name, email, password } = validatedFields.data;
+    console.log(name, email, password);
 
     const existingUser = await prisma.user.findUnique({
         where: {
@@ -46,10 +48,5 @@ export async function signup(_state: FormState, formData: FormData): Promise<For
     console.log(user);
 
     await createSession(user.id)
-
-    return {
-        success: true,
-        message: "Account created successfully",
-        user,
-    };
+    redirect('/dashboard')
 }

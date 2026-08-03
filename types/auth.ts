@@ -14,3 +14,9 @@ export type AuthFormSectionProps = {
   subheading: string;
   children: React.ReactNode;
 };
+
+export type AuthRedirectLinkType = {
+    link: string;
+    text: string;
+    boldText: string;
+};

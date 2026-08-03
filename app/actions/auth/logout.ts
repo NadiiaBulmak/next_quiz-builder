@@ -1,7 +1,8 @@
+import { NAV_LINKS } from "@/constants/nav_links";
 import { deleteSession } from "@/lib/sessions"
-import { redirect } from "next/dist/server/api-utils"
+import { redirect } from "next/navigation";
 
 export async function logout() {
   await deleteSession()
-//   redirect('/login')
+  redirect(NAV_LINKS.login)
 }

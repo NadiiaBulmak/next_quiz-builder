@@ -1,6 +1,5 @@
 import { AuthFormSectionProps } from "@/types/auth";
 import SectionTopContent from "./SectionTopContent";
-import { CONTENT } from "@/constants/content";
 
 export default function AuthFormSection({heading, subheading, children}: AuthFormSectionProps) {
     return (

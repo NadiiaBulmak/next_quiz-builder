@@ -1,5 +1,6 @@
-import { signup } from "@/app/actions/auth/signUp";
-import { initialState, loginInitialState } from "@/constants/initialFormState";
+'use client'
+
+import { loginInitialState } from "@/constants/initialFormState";
 import { useActionState } from "react";
 import AuthRedirectLink from "./UI/AuthRedirect";
 import { NAV_LINKS } from "@/constants/nav_links";
@@ -11,7 +12,6 @@ import GoogleShubmitButton from "./GoogleSubmitButton";
 export default function LoginForm() {
    const [state, action, isPending] = useActionState(login, loginInitialState)    
     return (
-
         <div className="flex w-full max-w-full flex-col gap-2">
                 <form action={action} className="flex w-full max-w-full flex-col gap-8">
                     <div className="flex flex-col gap-3">
