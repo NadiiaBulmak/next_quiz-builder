@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser } from "@/services/auth";
 
 export default async function AllQuizzes() {
   const user = await getCurrentUser();

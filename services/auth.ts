@@ -1,6 +1,6 @@
 import { verifySession } from "./sessions";
 import { NAV_LINKS } from "@/constants/nav_links";
-import { getUserById } from "@/lib/user";
+import { getUserById } from "@/services/user.service";
 import { redirect } from "next/navigation";
 import { cache } from "react";
 

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { useIsActiveLink } from "@/lib/useIsActiveLink";
+import { useIsActiveLink } from "@/hooks/useIsActiveLink";
 import { SidebarLinkType } from "@/types/props";
 import { useState } from "react";
 

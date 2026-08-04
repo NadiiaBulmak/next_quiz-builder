@@ -2,7 +2,7 @@
 
 import { NAV_LINKS } from "@/constants/nav_links";
 import { prisma } from "@/lib/prisma";
-import { createSession } from "@/lib/sessions";
+import { createSession } from "@/services/sessions";
 import { FormState, SignupFormSchema } from "@/schemas/sign-up.schema"
 import { hashPassword } from "@/utils/hashPassword.util";
 import { redirect } from "next/navigation";

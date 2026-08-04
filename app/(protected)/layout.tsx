@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser } from "@/services/auth";
 import Sidebar from "@/components/shared/SideBar";
 import TopBar from "@/components/shared/TopBar";
 import MobileTopBar from "@/components/shared/MobileTopBar";

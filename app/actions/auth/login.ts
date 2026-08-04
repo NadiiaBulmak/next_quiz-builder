@@ -1,7 +1,7 @@
 'use server';
 
 import { prisma } from "@/lib/prisma";
-import { createSession } from "@/lib/sessions";
+import { createSession } from "@/services/sessions";
 import { LoginFormState, LoginFormSchema } from "@/schemas/login.schema";
 import { comparePassword } from "@/utils/hashPassword.util";
 import { redirect } from "next/navigation";

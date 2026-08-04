@@ -1,5 +1,5 @@
 'use client';
-import { getNavTitle } from "@/lib/getNavTitle";
+import { getNavTitle } from "@/utils/getNavTitle";
 
 export default function TopBar() {
     const { label, description } = getNavTitle();
