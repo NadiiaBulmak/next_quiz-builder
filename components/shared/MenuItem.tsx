@@ -5,7 +5,7 @@ import { useIsActiveLink } from "@/hooks/useIsActiveLink";
 import { SidebarLinkType } from "@/types/props";
 import { useState } from "react";
 
-export default function MenuItem({ label, href, description, icon: Icon, iconVisible, labelVisible, opened }: SidebarLinkType & { opened: boolean }) {
+export default function MenuItem({ label, href, description, icon: Icon, iconVisible, labelVisible, opened = false }: SidebarLinkType) {
     const [active, setActive] = useState(false);
     const activeLink = useIsActiveLink(href);
     return (

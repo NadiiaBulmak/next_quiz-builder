@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BOTTOM_SIDEBAR_LINK } from "@/constants/sidebar_links";
 import { SidebarBottomType } from "@/types/props";
 
-export default function SidebarBottom({ name, email, opened }: SidebarBottomType) {
+export default function SidebarBottom({ name, email, opened = true }: SidebarBottomType) {
     return (
         <Link href={BOTTOM_SIDEBAR_LINK.href} className="flex w-full py-3 gap-3 cursor-pointer items-center">
             <div className="flex-shrink-0 w-10 h-10 rounded-full bg-lime-300 flex items-center justify-center text-invert font-bold">

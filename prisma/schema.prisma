@@ -2,7 +2,6 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 // Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../lib/generated/prisma"
@@ -17,6 +16,7 @@ model User {
   name         String?
   email        String   @unique
   passwordHash String
+  image        String?
 
   quizzes      Quiz[]
 
@@ -25,35 +25,81 @@ model User {
 }
 
 model Quiz {
-  id          String     @id @default(cuid())
-  title       String     
-  description String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  id              String   @id @default(cuid())
+  title           String
+  description     String?
 
-  authorId    String
-  author      User     @relation(fields: [authorId], references: [id])
+  imageUrl        String?
+  isPublished     Boolean  @default(false)
+  isPublic        Boolean  @default(true)
+  estimatedTime   Int?
 
-  questions   Question[]
+  authorId        String
+  author          User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  difficultyId    String
+  difficulty      Difficulty @relation(fields: [difficultyId], references: [id])
+
+  categories      Category[]
+
+  questions       Question[]
+  results         Result[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Question {
-  id        String   @id @default(cuid())
-  text      String
+  id          String   @id @default(cuid())
+  text        String
+  order       Int
 
-  quizId    String
-  quiz      Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quizId      String
+  quiz        Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
 
-  answers   Answer[]
+  answers     Answer[]
 
-  createdAt DateTime @default(now())
+  createdAt   DateTime @default(now())
 }
 
 model Answer {
-  id         String   @id @default(cuid())
-  text       String
-  isCorrect  Boolean
+  id          String   @id @default(cuid())
+  text        String
+  isCorrect   Boolean
+  order       Int
 
-  questionId String
-  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  questionId  String
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+
+  quizzes     Quiz[]
+}
+
+model Difficulty {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+
+  quizzes     Quiz[]
+}
+
+model Result {
+  id               String   @id @default(cuid())
+
+  name             String?
+  email            String
+
+  score            Int
+  correctAnswers   Int
+  totalQuestions   Int
+
+  quizId           String
+  quiz             Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  finishedAt       DateTime @default(now())
 }

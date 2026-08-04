@@ -1,5 +1,6 @@
 'use server';
 
+import { NAV_LINKS } from "@/constants/nav_links";
 import { prisma } from "@/lib/prisma";
 import { createSession } from "@/services/sessions";
 import { LoginFormState, LoginFormSchema } from "@/schemas/login.schema";
@@ -12,13 +13,15 @@ export async function login(_state: LoginFormState, formData: FormData): Promise
         password: formData.get("password"),
     });
 
+    
     if (!validatedFields.success) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
         }
     }
-
+    
     const { email, password } = validatedFields.data;
+    console.log('validated', email, password)
 
     const user = await prisma.user.findUnique({
         where: {
@@ -30,6 +33,8 @@ export async function login(_state: LoginFormState, formData: FormData): Promise
             passwordHash: true,
         }
     })
+
+    console.log(user)
 
     if (!user) {
     return {
@@ -43,6 +48,8 @@ const isPasswordValid = await comparePassword(
     password,
     user.passwordHash
 );
+
+console.log(isPasswordValid)
     
 if (!isPasswordValid) {
     return {
@@ -54,5 +61,8 @@ if (!isPasswordValid) {
 
     await createSession(user!.id)
 
-    redirect("/");
+    console.log('time to redirect')
+
+
+    redirect(NAV_LINKS.quizzes.all);
 }

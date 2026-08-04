@@ -3,15 +3,15 @@
 import { LogoType } from "@/types/props";
 import Image from "next/image";
 
-export default function Logo({ opened, setOpened }: LogoType) {
+export default function Logo({ opened = true, setOpened }: LogoType) {
   const handleClick = () => {
     if (!setOpened) return;
-    setOpened(!opened);
+    setOpened((prev) => !prev);
   };
 
   return (
     <div
-      className="flex lg:min-h-18 items-center p-2 px-3 border-b border-gray-300"
+      className="flex lg:min-h-18 items-center p-2 px-3 border-b border-gray-300 cursor-pointer"
       onClick={handleClick}
     >
       {opened ? (

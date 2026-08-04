@@ -3,7 +3,7 @@ export const NAV_LINKS = {
     login: "/login",
     sign_in: "/signUp",
     
-    dashboard: "/dashboard",
+    // dashboard: "/dashboard",
     quizzes: {
         all: "/quizzes/all",
         my: "/quizzes/my",
