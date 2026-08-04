@@ -1,3 +1,11 @@
+export enum Difficulty {
+    Beginner = 'Beginner',
+    Elementary = 'Elementary',
+    Intermediate = 'Intermediate',
+    Advanced = 'Advanced',
+    Mixed = 'Mixed',
+}
+
 export type AnswerInput = {
     text: string;
     isCorrect: boolean;
@@ -14,10 +22,10 @@ export type CreateQuizInput = {
     title: string;
     description?: string;
 
-    categoryId: string;
-    difficultyId: string;
+    categories?: string[];
+    difficulty: Difficulty;
 
-    imgUrl?: string;
+    imageUrl?: string;
     isPublished?: boolean;
     isPublic?: boolean;
     estimatedTime?: number;
@@ -26,3 +34,10 @@ export type CreateQuizInput = {
 
     questions: QuestionInput[];
 };
+
+export type QuizFilters = {
+    category?: string[];
+    difficulty?: string;
+};
+
+export type QuizSort = Record<string, "asc" | "desc">;

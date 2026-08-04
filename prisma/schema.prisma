@@ -25,51 +25,63 @@ model User {
 }
 
 model Quiz {
-  id              String   @id @default(cuid())
-  title           String
-  description     String?
+  id            String   @id @default(cuid())
+  title         String
+  description   String?
 
-  imageUrl        String?
-  isPublished     Boolean  @default(false)
-  isPublic        Boolean  @default(true)
-  estimatedTime   Int?
+  imageUrl      String?
+  isPublished   Boolean  @default(false)
+  isPublic      Boolean  @default(false)
+  estimatedTime Int?
 
-  authorId        String
-  author          User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId      String
+  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  categories    Category[]
+  difficultyId  String
+  difficulty    Difficulty  @relation(fields: [difficultyId], references: [id], onDelete: Restrict)
 
-  difficultyId    String
-  difficulty      Difficulty @relation(fields: [difficultyId], references: [id])
+  questions     Question[]
+  results       Result[]
 
-  categories      Category[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-  questions       Question[]
-  results         Result[]
-
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  @@index([authorId])
+  @@index([difficultyId])
+  @@index([isPublished, isPublic])
 }
 
 model Question {
-  id          String   @id @default(cuid())
-  text        String
-  order       Int
+  id        String   @id @default(cuid())
+  text      String
+  order     Int
 
-  quizId      String
-  quiz        Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quizId    String
+  quiz      Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
 
-  answers     Answer[]
+  answers   Answer[]
 
-  createdAt   DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([quizId])
+  @@index([order])
 }
 
 model Answer {
-  id          String   @id @default(cuid())
-  text        String
-  isCorrect   Boolean
-  order       Int
+  id         String   @id @default(cuid())
+  text       String
+  isCorrect  Boolean
+  order      Int
 
-  questionId  String
-  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([questionId])
+  @@index([order])
 }
 
 model Category {
@@ -86,6 +98,9 @@ model Difficulty {
   slug        String   @unique
 
   quizzes     Quiz[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Result {
