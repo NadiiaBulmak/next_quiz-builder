@@ -63,3 +63,25 @@ export type QuizListType = {
 };
 
 export type ShowAllQuizType = { showAllQuiz: boolean };
+
+export type LabelInputAreaType = {
+  label: string;
+  children: React.ReactNode;
+};
+
+export type AnswerType = {
+  text: string;
+  isCorrect: boolean;
+  order: number;
+};
+
+export type QuestionType = {
+  text: string;
+  order: number;
+  answers: AnswerType[];
+};
+
+export type QuestionControlSectionType = {
+  onAddQuestion: () => void;
+  questions: QuestionType[];
+}

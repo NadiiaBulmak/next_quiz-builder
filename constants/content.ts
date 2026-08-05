@@ -170,5 +170,41 @@ export const CONTENT = {
     //         'Move your cursor and see focus in motion.'
     //     ]
     // }
-
+    create: {
+        base: {
+            title: {
+                label: 'Quiz Title',
+                placeholder: 'Enter quiz title'
+            },
+            description: {
+                label: 'Description',
+                placeholder: 'Add a short description...'
+            },
+            difficulty: {
+                label: 'Difficulty',
+                placeholder: 'Select difficulty'
+            },
+            category: {
+                label: 'Category',
+            }
+        },
+        questions: {
+            title: "Questions",
+            subtitle: "questions added",
+            item: "Question",
+            q_text: 'Question text',
+            q_text_placeholder: 'Enter question text',
+            a_options: "Answer options",
+            a_options_placeholder: "Enter answer options",
+            explanation: "Explanation(optional)",
+            explanation_placeholder: "Enter explanation(optional)",
+            options_empty_text: 'Add more than 1 option'
+        },
+        buttons: {
+            add_question:  'Add Question',
+            add_option:  'Add Option',
+            save: 'Save Quiz',
+            collapse: 'Collapse all'
+        }
+    }
 }
