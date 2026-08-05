@@ -6,6 +6,10 @@ export enum Difficulty {
     Mixed = 'Mixed',
 }
 
+export type BadgePropsType = {
+    difficultyName: Difficulty | string;
+}
+
 export type AnswerInput = {
     text: string;
     isCorrect: boolean;
@@ -41,3 +45,28 @@ export type QuizFilters = {
 };
 
 export type QuizSort = Record<string, "asc" | "desc">;
+
+export type QuizListItemType = {
+    id: string;
+    title: string;
+    description: string | null;
+    isPublished: boolean;
+    isPublic: boolean;
+    author: {
+        name: string | null;
+        image: string | null;
+    };
+    categories: {
+        id: string;
+        name: string;
+        slug: string;
+    }[];
+    difficulty: {
+        id: string;
+        name: string;
+    };
+    updatedAt: Date;
+    _count: {
+        questions: number;
+    };
+};

@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { CreateQuizInput, QuizFilters, QuizSort } from "@/types/quiz";
 import { getOrCreateCategories } from "./category.service";
+import { getCurrentUser } from "./auth";
 
 
 export async function getAllQuizzes(
@@ -42,6 +43,7 @@ export async function getAllQuizzes(
             description: true,
             isPublic: true,
             isPublished: true,
+            updatedAt: true,
 
             author: {
                 select: {
@@ -52,6 +54,67 @@ export async function getAllQuizzes(
 
             difficulty: true,
             categories: true,
+            _count: {
+                select: {
+                    questions: true
+                }
+            }
+        },
+    });
+}
+
+export async function getAllMyQuizzes(extended: boolean = false, results: boolean = false) {
+    const {id: userId } = await getCurrentUser();
+    const countSelection = !extended || !results ? {
+        _count: {
+            select: {
+                ...(extended ? {} : { questions: true }),
+                ...(results ? {} : { results: true }),
+            }
+        }
+    } : {};
+
+    return prisma.quiz.findMany({
+        where: {
+            authorId: userId,
+        },
+        select: {
+            id: true,
+            title: true,
+            description: true,
+            isPublic: true,
+            isPublished: true,
+            difficulty: true,
+            categories: true,
+            createdAt: true,
+            updatedAt: true,
+            author: true,
+            ...(extended ? {
+                questions: {
+                    select: {
+                        id: true,
+                        text: true,
+                        answers: {
+                            select: {
+                                id: true,
+                                text: true,
+                                isCorrect: true,
+                            }
+                        }
+                    }
+                }
+            } : {}),
+            ...(results ? {
+                results: {
+                    select: {
+                        id: true,
+                        userId: true,
+                        score: true,
+                        createdAt: true,
+                    }
+                }
+            } : {}),
+            ...countSelection,
         },
     });
 }
