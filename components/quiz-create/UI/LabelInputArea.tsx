@@ -1,5 +1,5 @@
 import { LabelInputAreaType } from '@/types/props';
-import { Label } from '../ui/label';
+import { Label } from '../../ui/label';
 
 export const LabelInputArea = ({ label, children }: LabelInputAreaType) => {
   return (

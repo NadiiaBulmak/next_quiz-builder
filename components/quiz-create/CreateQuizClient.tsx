@@ -1,15 +1,20 @@
 'use client';
 
-import { QuestionsSection } from '@/components/quiz-create/QuestionsSection';
-import { QuizBaseInputSection } from '@/components/quiz-create/QuizBaseInputSection';
+// import { login } from '@/app/actions/auth/login';
+import { QuestionsSection } from '@/components/quiz-create/Question/QuestionsSection';
+import { QuizBaseInputSection } from '@/components/quiz-create/BaseInfo/QuizBaseInputSection';
 import {
   defaultQuestion,
   initialQuestions,
+  quizInitialState,
 } from '@/constants/initialFormState';
 import { AnswerType, CreateQuizClientProps, QuestionType } from '@/types/props';
-import { useState } from 'react';
+import { useActionState, useState } from 'react';
+import { postQuiz } from '@/app/actions/quiz/postQuiz';
 
 export const CreateQuizClient = ({ categories }: CreateQuizClientProps) => {
+  const [state, action] = useActionState(postQuiz, quizInitialState);
+
   const withAnswerIds = (answers: AnswerType[]) =>
     answers.map((answer) => ({
       ...answer,
@@ -95,7 +100,43 @@ export const CreateQuizClient = ({ categories }: CreateQuizClientProps) => {
   };
 
   return (
-    <div className="flex-1 min-h-screen bg-white px-6 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 md:gap-3 lg:gap-6 w-full">
+    <form
+      action={action}
+      className="flex-1 min-h-screen bg-white px-6 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 md:gap-3 lg:gap-6 w-full"
+    >
+      <input type="hidden" name="questions" value={JSON.stringify(questions)} />
+
+      <div className="col-span-full flex flex-col gap-3">
+        {state?.errors && (
+          <div className="rounded-md border border-red-300 bg-red-50 p-4 text-sm text-red-700">
+            <p className="font-medium">Please fix the following:</p>
+            <ul className="mt-2 list-disc pl-5 space-y-1">
+              {state.errors.title?.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+              {state.errors.description?.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+              {state.errors.categories?.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+              {state.errors.difficulty?.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+              {state.errors.questions?.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {state?.message && state.success && (
+          <div className="rounded-md border border-emerald-300 bg-emerald-50 p-4 text-sm text-emerald-800">
+            {state.message}
+          </div>
+        )}
+      </div>
+
       <QuizBaseInputSection
         categories={categories}
         onAddQuestion={addNewQuestion}
@@ -109,6 +150,6 @@ export const CreateQuizClient = ({ categories }: CreateQuizClientProps) => {
         onUpdateQuestionText={updateQuestionText}
         onUpdateQuestionAnswers={updateQuestionAnswers}
       />
-    </div>
+    </form>
   );
 };

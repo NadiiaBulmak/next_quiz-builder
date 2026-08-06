@@ -1,26 +1,31 @@
 'use client';
 
 import { CONTENT } from '@/constants/content';
-import { LabelInputArea } from './LabelInputArea';
-import AutoResizeTextarea from './AutoResizeTextarea';
+import { LabelInputArea } from '../UI/LabelInputArea';
+import AutoResizeTextarea from '../UI/AutoResizeTextarea';
 import DifficultySelect from './DifficultySelect';
 import { QuestionControlSection } from './QuestionControlSection';
 import { QuizBaseInputSectionProps } from '@/types/props';
 import CategorySelectClient from './CategorySelectClient';
 
-export const QuizBaseInputSection = ({ onAddQuestion, categories }: QuizBaseInputSectionProps) => {
+export const QuizBaseInputSection = ({
+  onAddQuestion,
+  categories,
+}: QuizBaseInputSectionProps) => {
   return (
     <div className="w-full flex flex-col gap-3 order-first">
       <LabelInputArea label={CONTENT.create.base.title.label}>
         <AutoResizeTextarea
+          name="title"
           placeholder={CONTENT.create.base.title.placeholder}
-          initValue=''
+          initValue=""
         />
       </LabelInputArea>
       <LabelInputArea label={CONTENT.create.base.description.label}>
         <AutoResizeTextarea
+          name="description"
           placeholder={CONTENT.create.base.description.placeholder}
-          initValue=''
+          initValue=""
         />
       </LabelInputArea>
       <DifficultySelect />

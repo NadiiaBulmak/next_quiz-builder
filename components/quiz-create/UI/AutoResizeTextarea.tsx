@@ -1,9 +1,10 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { Textarea } from '../ui/textarea';
+import { Textarea } from '../../ui/textarea';
 import type { AutoResizeTextareaProps } from '@/types/props';
 
 export default function AutoResizeTextarea({
+  name,
   placeholder,
   initValue = '',
   value,
@@ -30,6 +31,7 @@ export default function AutoResizeTextarea({
 
   return (
     <Textarea
+      name={name}
       placeholder={placeholder}
       ref={textareaRef}
       rows={1}

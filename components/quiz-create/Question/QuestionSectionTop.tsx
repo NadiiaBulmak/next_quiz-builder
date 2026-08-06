@@ -3,12 +3,7 @@ import {
   QuestionControlSectionType,
   QuestionSectionTopProps,
 } from '@/types/props';
-import {
-  ChevronDown,
-  ChevronUp,
-  GripVertical,
-  Trash2,
-} from 'lucide-react';
+import { ChevronDown, ChevronUp, GripVertical, Trash2 } from 'lucide-react';
 
 export const QuestionSectionTop = ({
   order,
@@ -34,13 +29,18 @@ export const QuestionSectionTop = ({
       </div>
       <div className="flex items-center gap-3">
         <button
+          type="button"
           onClick={() => deleteQuestion(order!)}
           className="cursor-pointer"
         >
           <Trash2 width={16} height={16} />
         </button>
 
-        <button onClick={switchExtended} className="cursor-pointer">
+        <button
+          type="button"
+          onClick={switchExtended}
+          className="cursor-pointer"
+        >
           {extended ? (
             <ChevronUp width={20} height={20} />
           ) : (

@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 import { CONTENT } from '@/constants/content';
 import { Plus } from 'lucide-react';
 import { AnswerOptionsProps, AnswerType } from '@/types/props';

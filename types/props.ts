@@ -127,7 +127,6 @@ export type QuestionSectionTopProps = {
   setExtended: Dispatch<SetStateAction<boolean>>;
 };
 
-
 export type AnswerOptionItemProps = AnswerType & {
   index?: number;
   draggable?: boolean;
@@ -140,6 +139,7 @@ export type AnswerOptionItemProps = AnswerType & {
 };
 
 export type AutoResizeTextareaProps = {
+  name?: string;
   placeholder: string;
   initValue?: string;
   value?: string;

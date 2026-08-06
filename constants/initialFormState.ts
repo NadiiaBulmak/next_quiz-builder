@@ -1,4 +1,5 @@
 import { LoginFormState } from '@/schemas/login.schema';
+import { QuizFormState } from '@/schemas/quiz.schema';
 import { FormState } from '@/schemas/sign-up.schema';
 import { AnswerType, QuestionType } from '@/types/props';
 
@@ -8,6 +9,11 @@ export const initialState: FormState = {
 };
 
 export const loginInitialState: LoginFormState = {
+  errors: undefined,
+  user: undefined,
+};
+
+export const quizInitialState: QuizFormState = {
   errors: undefined,
   user: undefined,
 };
@@ -35,12 +41,12 @@ export const initialQuestions: QuestionType[] = [
   {
     text: '',
     order: 1,
-    answers: initAnswerOptions
+    answers: initAnswerOptions,
   },
 ];
 
 export const defaultQuestion: QuestionType = {
   text: '',
   order: 1,
-  answers: initAnswerOptions
+  answers: initAnswerOptions,
 };

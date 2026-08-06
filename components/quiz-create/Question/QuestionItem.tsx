@@ -1,8 +1,8 @@
 'use client';
 import { CONTENT } from '@/constants/content';
-import AutoResizeTextarea from './AutoResizeTextarea';
-import { LabelInputArea } from './LabelInputArea';
-import { AnswerOptions } from './AnswerOptions';
+import AutoResizeTextarea from '../UI/AutoResizeTextarea';
+import { LabelInputArea } from '../UI/LabelInputArea';
+import { AnswerOptions } from '../Options/AnswerOptions';
 import { QuestionControlSectionType, QuestionType } from '@/types/props';
 import { QuestionSectionTop } from './QuestionSectionTop';
 import { useState } from 'react';

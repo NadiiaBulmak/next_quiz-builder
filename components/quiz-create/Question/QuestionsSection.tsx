@@ -11,7 +11,7 @@ export const QuestionsSection = ({
   onUpdateQuestionAnswers,
 }: Omit<QuestionControlSectionType, 'onAddQuestion'>) => {
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4 col-span-full md:col-span-1 md:col-start-2 md:row-start-1">
       <QuestionList
         questions={questions}
         onDeleteQuestion={onDeleteQuestion}

@@ -3,10 +3,12 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
-import { LabelInputArea } from './LabelInputArea';
+import { LabelInputArea } from '../UI/LabelInputArea';
 import type { Category, CategorySelectClientProps } from '@/types/props';
 
-export default function CategorySelectClient({ categories }: CategorySelectClientProps) {
+export default function CategorySelectClient({
+  categories,
+}: CategorySelectClientProps) {
   const [selected, setSelected] = useState<Category[]>([]);
   const [search, setSearch] = useState('');
 
@@ -41,6 +43,12 @@ export default function CategorySelectClient({ categories }: CategorySelectClien
 
   return (
     <LabelInputArea label={CONTENT.create.base.category.label}>
+      <input
+        type="hidden"
+        name="categories"
+        value={JSON.stringify(selected.map((item) => item.name))}
+      />
+
       <div
         className="
         min-h-11
@@ -134,7 +142,7 @@ export default function CategorySelectClient({ categories }: CategorySelectClien
                 text-left
               "
             >
-              Create "{search}"
+              Create &quot;{search}&quot;
             </button>
           )}
         </div>

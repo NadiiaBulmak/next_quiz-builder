@@ -31,7 +31,7 @@ model Quiz {
 
   imageUrl      String?
   isPublished   Boolean  @default(false)
-  isPublic      Boolean  @default(false)
+  isPublic      Boolean?  @default(false)
   estimatedTime Int?
 
   authorId      String

@@ -2,7 +2,7 @@
 
 import { AnswerOptionItemProps } from '@/types/props';
 import { CircleCheck, CircleX, GripVertical, X } from 'lucide-react';
-import { Input } from '../ui/input';
+import { Input } from '../../ui/input';
 import { ChangeEvent } from 'react';
 
 export const AnswerOptionItem = ({

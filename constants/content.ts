@@ -203,7 +203,8 @@ export const CONTENT = {
         buttons: {
             add_question:  'Add Question',
             add_option:  'Add Option',
-            save: 'Save Quiz',
+            save: 'Publish Quiz',
+            draft: 'Save Draft',
             collapse: 'Collapse all'
         }
     }
