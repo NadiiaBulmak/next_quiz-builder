@@ -1,6 +1,15 @@
 import { LucideIcon } from 'lucide-react';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, DragEvent } from 'react';
 import { Difficulty } from './quiz';
+
+export type Category = {
+  id: string;
+  name: string;
+};
+
+export type CategorySelectClientProps = {
+  categories: Category[];
+};
 
 export type AuthRedirectLinkType = {
   link: string;
@@ -70,12 +79,14 @@ export type LabelInputAreaType = {
 };
 
 export type AnswerType = {
+  id?: string;
   text: string;
   isCorrect: boolean;
   order: number;
 };
 
 export type QuestionType = {
+  id?: string;
   text: string;
   order: number;
   answers: AnswerType[];
@@ -83,5 +94,76 @@ export type QuestionType = {
 
 export type QuestionControlSectionType = {
   onAddQuestion: () => void;
+  onDeleteQuestion: (order: number) => void;
+  onReorderQuestions: (fromIndex: number, toIndex: number) => void;
+  onUpdateQuestionText?: (
+    questionId: string | undefined,
+    order: number,
+    text: string,
+  ) => void;
+  onUpdateQuestionAnswers?: (
+    questionId: string | undefined,
+    order: number,
+    answers: AnswerType[],
+  ) => void;
   questions: QuestionType[];
-}
+};
+
+export type CreateQuizClientProps = {
+  categories: Category[];
+};
+
+export type QuestionItemProps = {
+  question: QuestionType;
+};
+
+export type AnswerOptionsProps = {
+  answers: AnswerType[];
+  onChangeAnswers: (answers: AnswerType[]) => void;
+};
+export type QuestionSectionTopProps = {
+  order: number;
+  extended: boolean;
+  setExtended: Dispatch<SetStateAction<boolean>>;
+};
+
+
+export type AnswerOptionItemProps = AnswerType & {
+  index?: number;
+  draggable?: boolean;
+  onDragStart?: (e: DragEvent<HTMLDivElement>) => void;
+  onDragEnter?: (e: DragEvent<HTMLDivElement>) => void;
+  onDragOver?: (e: DragEvent<HTMLDivElement>) => void;
+  onDrop?: (e: DragEvent<HTMLDivElement>) => void;
+  onDelete?: (order: number) => void;
+  onChange?: (option: AnswerType) => void;
+};
+
+export type AutoResizeTextareaProps = {
+  placeholder: string;
+  initValue?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
+};
+
+export type QuestionItemDragProps = {
+  draggable?: boolean;
+  onDragStart?: (e: DragEvent<HTMLDivElement>) => void;
+  onDragEnter?: (e: DragEvent<HTMLDivElement>) => void;
+  onDragOver?: (e: DragEvent<HTMLDivElement>) => void;
+  onDrop?: (e: DragEvent<HTMLDivElement>) => void;
+  onUpdateQuestionText?: (
+    questionId: string | undefined,
+    order: number,
+    text: string,
+  ) => void;
+  onUpdateQuestionAnswers?: (
+    questionId: string | undefined,
+    order: number,
+    answers: QuestionType['answers'],
+  ) => void;
+};
+
+export type QuizBaseInputSectionProps = Partial<QuestionControlSectionType> & {
+  categories: Category[];
+};

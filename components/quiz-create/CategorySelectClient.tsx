@@ -4,17 +4,9 @@ import { useState } from 'react';
 import { X } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
 import { LabelInputArea } from './LabelInputArea';
+import type { Category, CategorySelectClientProps } from '@/types/props';
 
-export type Category = {
-  id: string;
-  name: string;
-};
-
-export type Props = {
-  categories: Category[];
-};
-
-export default function CategorySelectClient({ categories }: Props) {
+export default function CategorySelectClient({ categories }: CategorySelectClientProps) {
   const [selected, setSelected] = useState<Category[]>([]);
   const [search, setSearch] = useState('');
 

@@ -1,18 +1,24 @@
 'use client';
 
-import { useState } from 'react';
-import { AnswerOptionItem } from './AnswerOptionItem';
-import { QuestionSectionMain } from './QuestionSectionMain';
-import { QuestionSectionTop } from './QuestionSectionTop';
-import { AnswerType, QuestionControlSectionType } from '@/types/props';
+import { QuestionList } from './QuestionList';
+import { QuestionControlSectionType } from '@/types/props';
 
 export const QuestionsSection = ({
   questions,
-}: Partial<QuestionControlSectionType>) => {
+  onDeleteQuestion,
+  onReorderQuestions,
+  onUpdateQuestionText,
+  onUpdateQuestionAnswers,
+}: Omit<QuestionControlSectionType, 'onAddQuestion'>) => {
   return (
     <div className="w-full flex flex-col gap-4">
-      <QuestionSectionTop />
-      <QuestionSectionMain />
+      <QuestionList
+        questions={questions}
+        onDeleteQuestion={onDeleteQuestion}
+        onReorderQuestions={onReorderQuestions}
+        onUpdateQuestionText={onUpdateQuestionText}
+        onUpdateQuestionAnswers={onUpdateQuestionAnswers}
+      />
     </div>
   );
 };

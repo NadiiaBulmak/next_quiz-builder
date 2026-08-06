@@ -1,36 +1,26 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { Button } from '../ui/button';
 import { CONTENT } from '@/constants/content';
-import { CircleCheck, CircleX, Plus } from 'lucide-react';
-import { Input } from '../ui/input';
-import { AnswerType } from '@/types/props';
+import { Plus } from 'lucide-react';
+import { AnswerOptionsProps, AnswerType } from '@/types/props';
+import { defaultAnswerOption } from '@/constants/initialFormState';
 import { AnswerOptionItem } from './AnswerOptionItem';
 
-export const initAnswerOptions: AnswerType[] = [
-  {
-    text: '1',
-    isCorrect: true,
-    order: 1,
-  },
-  {
-    text: '2',
-    isCorrect: false,
-    order: 2,
-  },
-];
-
-export const defaultAnswerOption = {
-  text: '',
-  isCorrect: false,
-  order: 1,
-};
-
-export const AnswerOptions = () => {
-  const [options, setOptions] = useState<AnswerType[] | []>(initAnswerOptions);
+export const AnswerOptions = ({
+  answers,
+  onChangeAnswers,
+}: AnswerOptionsProps) => {
+  const options = answers;
   const dragItem = useRef<number | null>(null);
   const dragOverItem = useRef<number | null>(null);
+
+  const rewriteOrder = (items: AnswerType[]) =>
+    items.map((opt, i) => ({ ...opt, order: i + 1 }));
+
+  const commitOptions = (items: AnswerType[]) =>
+    onChangeAnswers(rewriteOrder(items));
 
   const handleSort = () => {
     if (dragItem.current === null || dragOverItem.current === null) return;
@@ -39,23 +29,33 @@ export const AnswerOptions = () => {
     _options.splice(dragOverItem.current, 0, draggedItemContent);
     dragItem.current = null;
     dragOverItem.current = null;
-    // update order indexes so keys remain stable if using order in key
-    const updated = _options.map((opt, i) => ({ ...opt, order: i + 1 }));
-    setOptions(updated);
+    commitOptions(_options);
   };
 
   const addNewOption = () =>
-    setOptions((prev) => [
-      ...prev,
-      { ...defaultAnswerOption, order: prev.length + 1 },
+    commitOptions([
+      ...options,
+      {
+        ...defaultAnswerOption,
+        id: crypto.randomUUID(),
+        order: options.length + 1,
+      },
     ]);
 
   const deleteOption = (order: number) =>
-    setOptions((prev) =>
-      prev
-        .filter((p) => p.order !== order)
-        .map((a, index) => ({ ...a, order: index + 1 })),
-    );
+    commitOptions(options.filter((p) => p.order !== order));
+
+  const updateOption = (updatedOption: AnswerType) => {
+    const updated = options.map((option) => {
+      if (updatedOption.id && option.id) {
+        return option.id === updatedOption.id ? updatedOption : option;
+      }
+
+      return option.order === updatedOption.order ? updatedOption : option;
+    });
+
+    onChangeAnswers(updated);
+  };
 
   return (
     <div className="flex flex-col gap-3">
@@ -63,7 +63,7 @@ export const AnswerOptions = () => {
         <>
           {options.map((o, idx) => (
             <AnswerOptionItem
-              key={`${o.order}-${o.text}`}
+              key={o.id ?? `${o.order}-${idx}`}
               index={idx}
               {...o}
               draggable
@@ -77,6 +77,7 @@ export const AnswerOptions = () => {
               onDragOver={(e) => e.preventDefault()}
               onDrop={handleSort}
               onDelete={deleteOption}
+              onChange={updateOption}
             />
           ))}
         </>

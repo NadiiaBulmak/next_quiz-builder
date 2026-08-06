@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-
 import {
   Select,
   SelectContent,
@@ -9,7 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-
 import { Difficulty } from '@/types/quiz';
 import { CONTENT } from '@/constants/content';
 import { LabelInputArea } from './LabelInputArea';

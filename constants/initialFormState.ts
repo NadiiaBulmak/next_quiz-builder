@@ -1,6 +1,6 @@
 import { LoginFormState } from '@/schemas/login.schema';
 import { FormState } from '@/schemas/sign-up.schema';
-import { QuestionType } from '@/types/props';
+import { AnswerType, QuestionType } from '@/types/props';
 
 export const initialState: FormState = {
   errors: undefined,
@@ -12,38 +12,35 @@ export const loginInitialState: LoginFormState = {
   user: undefined,
 };
 
-export const defaultQuestion: QuestionType = {
+export const initAnswerOptions: AnswerType[] = [
+  {
+    text: '1',
+    isCorrect: true,
+    order: 1,
+  },
+  {
+    text: '2',
+    isCorrect: false,
+    order: 2,
+  },
+];
+
+export const defaultAnswerOption = {
   text: '',
+  isCorrect: false,
   order: 1,
-  answers: [
-    {
-      text: '1',
-      isCorrect: true,
-      order: 1,
-    },
-    {
-      text: '2',
-      isCorrect: false,
-      order: 2,
-    },
-  ],
 };
 
 export const initialQuestions: QuestionType[] = [
   {
     text: '',
     order: 1,
-    answers: [
-      {
-        text: '1',
-        isCorrect: true,
-        order: 1,
-      },
-      {
-        text: '2',
-        isCorrect: false,
-        order: 2,
-      },
-    ],
+    answers: initAnswerOptions
   },
 ];
+
+export const defaultQuestion: QuestionType = {
+  text: '',
+  order: 1,
+  answers: initAnswerOptions
+};

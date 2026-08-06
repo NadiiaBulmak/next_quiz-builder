@@ -1,21 +1,12 @@
 'use client';
 
-import { AnswerType } from '@/types/props';
+import { AnswerOptionItemProps } from '@/types/props';
 import { CircleCheck, CircleX, GripVertical, X } from 'lucide-react';
 import { Input } from '../ui/input';
-import { useState, ChangeEvent, DragEvent } from 'react';
-
-type Props = AnswerType & {
-  index?: number;
-  draggable?: boolean;
-  onDragStart?: (e: DragEvent<HTMLDivElement>) => void;
-  onDragEnter?: (e: DragEvent<HTMLDivElement>) => void;
-  onDragOver?: (e: DragEvent<HTMLDivElement>) => void;
-  onDrop?: (e: DragEvent<HTMLDivElement>) => void;
-  onDelete?: (order: number) => void;
-};
+import { ChangeEvent } from 'react';
 
 export const AnswerOptionItem = ({
+  id,
   order,
   text,
   isCorrect,
@@ -25,13 +16,11 @@ export const AnswerOptionItem = ({
   onDragOver,
   onDrop,
   onDelete,
-}: Props) => {
-  const [optionOrder, setOptionOrder] = useState<number>(order);
-  const [optionText, setOptionText] = useState<string>(text);
-  const [optionIsCorrect, setOptionIsCorrect] = useState<boolean>(isCorrect);
+  onChange,
+}: AnswerOptionItemProps) => {
   return (
     <div
-      className={`order-${optionOrder} flex items-center gap-2`}
+      className={`order-${order} flex items-center gap-2`}
       draggable={draggable}
       onDragStart={onDragStart}
       onDragEnter={onDragEnter}
@@ -39,10 +28,10 @@ export const AnswerOptionItem = ({
       onDrop={onDrop}
     >
       <div
-        onClick={() => setOptionIsCorrect((prev) => !prev)}
+        onClick={() => onChange?.({ id, order, text, isCorrect: !isCorrect })}
         className="cursor-pointer"
       >
-        {optionIsCorrect ? (
+        {isCorrect ? (
           <CircleCheck width={20} height={20} />
         ) : (
           <CircleX width={20} height={20} />
@@ -51,9 +40,9 @@ export const AnswerOptionItem = ({
       <div className="relative w-full flex items-center gap-3">
         <Input
           className=""
-          value={optionText}
+          value={text}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setOptionText(e.target.value)
+            onChange?.({ id, order, text: e.target.value, isCorrect })
           }
         />
         <X
