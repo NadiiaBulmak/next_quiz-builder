@@ -172,6 +172,10 @@ export const CONTENT = {
     // }
     create: {
         base: {
+            section_title: 'Basic Information',
+            question_section_title: 'Questions',
+            question_section_subtitle: 'questions added',
+            question_tips: 'Drag questions to reorder them. ',
             title: {
                 label: 'Quiz Title',
                 placeholder: 'Enter quiz title'

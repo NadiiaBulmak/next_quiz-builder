@@ -32,26 +32,26 @@ export const AnswerOptionItem = ({
         className="cursor-pointer"
       >
         {isCorrect ? (
-          <CircleCheck width={20} height={20} />
+          <CircleCheck width={20} height={20} className='text-lime-500' />
         ) : (
           <CircleX width={20} height={20} />
         )}
       </div>
       <div className="relative w-full flex items-center gap-3">
         <Input
-          className=""
+          className="rounded-sm"
           value={text}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange?.({ id, order, text: e.target.value, isCorrect })
           }
         />
         <X
-          className="mt-auto mb-auto cursor-pointer"
-          width={24}
-          height={24}
+          className="mt-auto mb-auto cursor-pointer p-2 rounded-sm border hover:bg-gray-100 h-full"
+          width={36}
+          height={36}
           onClick={() => onDelete?.(order)}
         />
-        <GripVertical />
+        <GripVertical className='cursor-pointer hover:text-lime-500' />
       </div>
     </div>
   );

@@ -20,14 +20,14 @@ export default function DifficultySelect() {
       <Select value={difficulty} onValueChange={setDifficulty}>
         <SelectTrigger
           id="difficulty"
-          className="w-full border-1 p-2 text-sm rounded-md"
+          className="w-full border p-2 text-sm rounded-md border-gray-300 focus:border-lime-500 focus:ring-lime-500 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <SelectValue
             placeholder={CONTENT.create.base.difficulty.placeholder}
           />
         </SelectTrigger>
 
-        <SelectContent side="bottom" align="start" alignItemWithTrigger={false}>
+        <SelectContent side="bottom" align="start" alignItemWithTrigger={false} className="border-1 border-lime-500">
           {Object.values(Difficulty).map((d) => (
             <SelectItem
               key={d}

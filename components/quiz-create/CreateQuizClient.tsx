@@ -11,6 +11,8 @@ import {
 import { AnswerType, CreateQuizClientProps, QuestionType } from '@/types/props';
 import { useActionState, useState } from 'react';
 import { postQuiz } from '@/app/actions/quiz/postQuiz';
+import { TipSection } from '../shared/TipSection';
+import { CONTENT } from '@/constants/content';
 
 export const CreateQuizClient = ({ categories }: CreateQuizClientProps) => {
   const [state, action] = useActionState(postQuiz, quizInitialState);
@@ -102,11 +104,20 @@ export const CreateQuizClient = ({ categories }: CreateQuizClientProps) => {
   return (
     <form
       action={action}
-      className="flex-1 min-h-screen bg-white px-6 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 md:gap-3 lg:gap-6 w-full"
+      className="flex-1 min-h-screen  flex-1
+  min-h-screen
+  bg-gray-50
+  px-3 md:px-6
+  py-3 md:py-6
+  grid
+  grid-cols-1
+  md:grid-cols-[4fr_6fr]
+  md:gap-3
+  w-full mb-20 lg:mb-0"
     >
       <input type="hidden" name="questions" value={JSON.stringify(questions)} />
 
-      <div className="col-span-full flex flex-col gap-3">
+      {/* <div className="col-span-full flex flex-col gap-3">
         {state?.errors && (
           <div className="rounded-md border border-red-300 bg-red-50 p-4 text-sm text-red-700">
             <p className="font-medium">Please fix the following:</p>
@@ -135,7 +146,7 @@ export const CreateQuizClient = ({ categories }: CreateQuizClientProps) => {
             {state.message}
           </div>
         )}
-      </div>
+      </div> */}
 
       <QuizBaseInputSection
         categories={categories}
@@ -143,13 +154,16 @@ export const CreateQuizClient = ({ categories }: CreateQuizClientProps) => {
         onDeleteQuestion={deleteQuestion}
         questions={questions}
       />
-      <QuestionsSection
-        questions={questions}
-        onDeleteQuestion={deleteQuestion}
-        onReorderQuestions={reorderQuestions}
-        onUpdateQuestionText={updateQuestionText}
-        onUpdateQuestionAnswers={updateQuestionAnswers}
-      />
+      <div>
+        <QuestionsSection
+          questions={questions}
+          onDeleteQuestion={deleteQuestion}
+          onReorderQuestions={reorderQuestions}
+          onUpdateQuestionText={updateQuestionText}
+          onUpdateQuestionAnswers={updateQuestionAnswers}
+        />
+        <TipSection content={CONTENT.create.base.question_tips} />
+      </div>
     </form>
   );
 };

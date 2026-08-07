@@ -31,9 +31,9 @@ export const QuestionSectionTop = ({
         <button
           type="button"
           onClick={() => deleteQuestion(order!)}
-          className="cursor-pointer"
+          className="cursor-pointer p-2 rounded-sm border hover:bg-gray-100"
         >
-          <Trash2 width={16} height={16} />
+          <Trash2 width={16} height={16} className='text-red-500' />
         </button>
 
         <button

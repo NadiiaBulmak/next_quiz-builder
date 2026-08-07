@@ -86,11 +86,11 @@ export const AnswerOptions = ({
       )}
 
       <Button
-        className="w-full rounded-sm py-4 border-lime-300 flex gap-1 order-last"
+        className="cursor-pointer bg-lime-100 w-full flex items-center rounded-sm py-4 border-lime-500 border border-dashed flex gap-1 order-last text-lime-500 justify-center items-center"
         variant="outline"
         onClick={addNewOption}
       >
-        <Plus />
+        <Plus className="w-4 h-4 text-lime-500" />
         {CONTENT.create.buttons.add_option}
       </Button>
     </div>

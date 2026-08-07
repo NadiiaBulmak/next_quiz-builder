@@ -41,6 +41,13 @@ export default function CategorySelectClient({
     addCategory(newCategory);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      createCategory();
+    }
+  };
+
   return (
     <LabelInputArea label={CONTENT.create.base.category.label}>
       <input
@@ -60,6 +67,9 @@ export default function CategorySelectClient({
         flex
         flex-wrap
         gap-2
+        hover:border-lime-500
+        focus-within:border-lime-500
+        focus-within:ring-lime-500
       "
       >
         {selected.map((category) => (
@@ -88,11 +98,6 @@ export default function CategorySelectClient({
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              createCategory();
-            }
-          }}
           placeholder="Add category..."
           className="
             flex-1
