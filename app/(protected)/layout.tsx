@@ -16,7 +16,7 @@ export default async function ProtectedLayout({
             <Sidebar {...user} />
             <main className="flex-1 flex flex-col min-h-screen">
                 <MobileTopBar />
-                <TopBar />
+                <TopBar {...user} />
             {/* <main className="flex-1 p-4"> */}
                 {children}
                 <MobileMenu />

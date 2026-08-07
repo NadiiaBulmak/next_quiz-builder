@@ -1,7 +1,8 @@
 'use client';
 
-import { LogoType } from "@/types/props";
-import Image from "next/image";
+import { LogoType } from '@/types/props';
+import { ChevronsRight, ChevronsLeft } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Logo({ opened = true, setOpened }: LogoType) {
   const handleClick = () => {
@@ -11,7 +12,7 @@ export default function Logo({ opened = true, setOpened }: LogoType) {
 
   return (
     <div
-      className="flex lg:min-h-18 items-center p-2 px-3 border-b border-gray-300 cursor-pointer"
+      className="flex lg:min-h-18 items-center p-2 px-3 border-b border-gray-300 cursor-pointer relative z-20 hover:border-lime-500 transition-all duration-300 overflow-visible relative"
       onClick={handleClick}
     >
       {opened ? (
@@ -33,6 +34,7 @@ export default function Logo({ opened = true, setOpened }: LogoType) {
           priority
         />
       )}
+
     </div>
   );
 }
