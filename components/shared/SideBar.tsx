@@ -12,31 +12,14 @@ export default function SideBar({ name, email }: User) {
 
   return (
     <div
-      className={`hidden lg:flex flex-col sticky top-0 gap-4 h-screen bg-white px-4 shadow-lg border-r border-gray-300 overflow-y-hidden overflow-x-visible transition-[max-width] duration-300 ease-in-out relative ${opened ? 'w-[15rem]' : 'w-[5rem]'}`}
+      className={`hidden lg:flex flex-col sticky top-0 gap-4 h-screen bg-white px-4 shadow-lg border-r border-gray-300 overflow-visible transition-[max-width] duration-300 ease-in-out relative ${opened ? 'w-[15rem]' : 'w-[5rem]'}`}
     >
       <div className="flex-1 flex flex-col gap-4 min-w-0 relative">
         <Logo opened={opened} setOpened={setOpened} />
         <SidebarMenu opened={opened} />
       </div>
-  {/* <button
-    onClick={() => setOpened((prev) => !prev)}
-    className="
-      absolute
-      top-8
-      left-full
-      -translate-x-1/2
-      z-50
-      h-8
-      w-8
-      rounded-full
-      border
-      bg-white
-      shadow
-    "
-  >
-    {opened ? <ChevronsLeft /> : <ChevronsRight />}
-  </button> */}
-      
+
+
       {/* <SidebarBottom name={name} email={email} opened={opened} /> */}
     </div>
   );
