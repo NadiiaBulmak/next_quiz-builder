@@ -11,5 +11,8 @@ export const NAV_LINKS = {
         results: "/quizzes/results",
     },
     settings: "/settings",
+    preview: "/preview",
+    edit: "/edit",
+    // logout: "/logout",
     
 }

@@ -1,6 +1,6 @@
 import { LucideIcon } from 'lucide-react';
 import { Dispatch, SetStateAction, DragEvent } from 'react';
-import { Difficulty } from './quiz';
+import { Difficulty, Quiz } from './quiz';
 
 export type Category = {
   id: string;
@@ -9,6 +9,7 @@ export type Category = {
 
 export type CategorySelectClientProps = {
   categories: Category[];
+  initialSelectedNames?: string[];
 };
 
 export type AuthRedirectLinkType = {
@@ -38,6 +39,11 @@ export type SidebarLinkType = {
   iconVisible?: boolean;
   labelVisible?: boolean;
 } & SidebarMenuType;
+
+export type TitleContentType = Pick<
+  SidebarLinkType,
+  'href' | 'label' | 'description'
+>;
 
 export type LogoType = SidebarMenuType & {
   setOpened?: Dispatch<SetStateAction<boolean>>;
@@ -111,6 +117,7 @@ export type QuestionControlSectionType = {
 
 export type CreateQuizClientProps = {
   categories: Category[];
+  quiz?: Quiz;
 };
 
 export type QuestionItemProps = {
@@ -166,4 +173,9 @@ export type QuestionItemDragProps = {
 
 export type QuizBaseInputSectionProps = Partial<QuestionControlSectionType> & {
   categories: Category[];
+  initialTitle?: string;
+  initialDescription?: string;
+  initialDifficulty?: string;
+  initialSelectedCategories?: string[];
+  isEditMode?: boolean;
 };

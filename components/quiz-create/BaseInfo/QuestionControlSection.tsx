@@ -5,7 +5,8 @@ import { FolderOpen, Plus, Send } from 'lucide-react';
 
 export const QuestionControlSection = ({
   onAddQuestion,
-}: Partial<QuestionControlSectionType>) => {
+  isEditMode = false,
+}: Partial<QuestionControlSectionType> & { isEditMode?: boolean }) => {
   return (
     <div className="w-full flex flex-col gap-3">
       <Button
@@ -17,24 +18,38 @@ export const QuestionControlSection = ({
         <Plus className="w-4 h-4 text-lime-500" />
         {CONTENT.create.buttons.add_question}
       </Button>
-      <Button
-        type="submit"
-        name="intent"
-        value="save"
-        className="w-full rounded-sm py-4 cursor-pointer"
-      >
-        <Send className="w-4 h-4 text-lime-500" />
-        {CONTENT.create.buttons.save}
-      </Button>
-      <Button
-        type="submit"
-        name="intent"
-        value="draft"
-        className="w-full rounded-sm py-4 bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer"
-      >
-        <FolderOpen className="w-4 h-4" />
-        {CONTENT.create.buttons.draft}
-      </Button>
+      {isEditMode ? (
+        <Button
+          type="submit"
+          name="intent"
+          value="patch"
+          className="w-full rounded-sm py-4 cursor-pointer"
+        >
+          <Send className="w-4 h-4 text-lime-500" />
+          {CONTENT.create.buttons.patch}
+        </Button>
+      ) : (
+        <>
+          <Button
+            type="submit"
+            name="intent"
+            value="save"
+            className="w-full rounded-sm py-4 cursor-pointer"
+          >
+            <Send className="w-4 h-4 text-lime-500" />
+            {CONTENT.create.buttons.save}
+          </Button>
+          <Button
+            type="submit"
+            name="intent"
+            value="draft"
+            className="w-full rounded-sm py-4 bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer"
+          >
+            <FolderOpen className="w-4 h-4" />
+            {CONTENT.create.buttons.draft}
+          </Button>
+        </>
+      )}
     </div>
   );
 };

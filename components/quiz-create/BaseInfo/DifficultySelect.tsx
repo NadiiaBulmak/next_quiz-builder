@@ -12,8 +12,14 @@ import { Difficulty } from '@/types/quiz';
 import { CONTENT } from '@/constants/content';
 import { LabelInputArea } from '../UI/LabelInputArea';
 
-export default function DifficultySelect() {
-  const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
+type DifficultySelectProps = {
+  initialValue?: string;
+};
+
+export default function DifficultySelect({
+  initialValue = '',
+}: DifficultySelectProps) {
+  const [difficulty, setDifficulty] = useState(initialValue);
 
   return (
     <LabelInputArea label={CONTENT.create.base.difficulty.label}>
@@ -27,7 +33,12 @@ export default function DifficultySelect() {
           />
         </SelectTrigger>
 
-        <SelectContent side="bottom" align="start" alignItemWithTrigger={false} className="border-1 border-lime-500">
+        <SelectContent
+          side="bottom"
+          align="start"
+          alignItemWithTrigger={false}
+          className="border-1 border-lime-500"
+        >
           {Object.values(Difficulty).map((d) => (
             <SelectItem
               key={d}

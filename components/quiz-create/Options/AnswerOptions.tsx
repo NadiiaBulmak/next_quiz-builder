@@ -86,6 +86,7 @@ export const AnswerOptions = ({
       )}
 
       <Button
+        type="button"
         className="cursor-pointer bg-lime-100 w-full flex items-center rounded-sm py-4 border-lime-500 border border-dashed flex gap-1 order-last text-lime-500 justify-center items-center"
         variant="outline"
         onClick={addNewOption}

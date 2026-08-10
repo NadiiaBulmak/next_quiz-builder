@@ -39,6 +39,9 @@ export async function getAllQuizzes(
           name: filters.difficulty,
         },
       }),
+      ...(filters.isPublished !== undefined && {
+        isPublished: filters.isPublished,
+      }),
     },
 
     orderBy: sort,
@@ -72,11 +75,15 @@ export async function getAllQuizzes(
 export async function getAllMyQuizzes(
   extended: boolean = false,
   results: boolean = false,
+  filters: QuizFilters = {},
 ): Promise<QuizListItemType[]> {
   const { id: userId } = await getCurrentUser();
   const quizzes = await prisma.quiz.findMany({
     where: {
       authorId: userId,
+      ...(filters.isPublished !== undefined && {
+        isPublished: filters.isPublished,
+      }),
     },
     select: {
       id: true,
@@ -109,6 +116,7 @@ export async function getAllMyQuizzes(
                     id: true,
                     text: true,
                     isCorrect: true,
+                    order: true,
                   },
                 },
               },
@@ -137,6 +145,7 @@ export async function getQuizByUserId(
   userId: string,
   extended: boolean = false,
   results: boolean = false,
+  filters: QuizFilters = {},
 ) {
   const countSelection =
     !extended || !results
@@ -153,6 +162,9 @@ export async function getQuizByUserId(
   return prisma.quiz.findMany({
     where: {
       authorId: userId,
+      ...(filters.isPublished !== undefined && {
+        isPublished: filters.isPublished,
+      }),
     },
     select: {
       id: true,
@@ -175,6 +187,7 @@ export async function getQuizByUserId(
                     id: true,
                     text: true,
                     isCorrect: true,
+                    order: true,
                   },
                 },
               },
@@ -202,6 +215,7 @@ export async function getQuizById(
   quizId: string,
   extended: boolean = false,
   results: boolean = false,
+  filters: QuizFilters = {},
 ) {
   const countSelection =
     !extended || !results
@@ -218,6 +232,9 @@ export async function getQuizById(
   return prisma.quiz.findUnique({
     where: {
       id: quizId,
+      ...(filters.isPublished !== undefined && {
+        isPublished: filters.isPublished,
+      }),
     },
     select: {
       id: true,
@@ -240,6 +257,7 @@ export async function getQuizById(
                     id: true,
                     text: true,
                     isCorrect: true,
+                    order: true,
                   },
                 },
               },
@@ -397,5 +415,80 @@ export async function updateQuiz(id: string, data: Partial<CreateQuizInput>) {
 }
 
 export async function deleteQuiz(id: string) {
-  return await prisma.quiz.delete({ where: { id } });
+  await prisma.quiz.delete({ where: { id } });
+}
+
+export async function duplicateQuiz(id: string) {
+  const originalQuiz = await prisma.quiz.findUnique({
+  where: { id },
+  include: {
+    difficulty: true,
+    categories: true,
+    questions: {
+      include: {
+        answers: true,
+      },
+      orderBy: { order: 'asc' },
+    },
+  },
+});
+
+  if (!originalQuiz) {
+    throw new Error('Quiz not found');
+  }
+
+  const { id: userId } = await getCurrentUser();
+
+  const duplicatedQuiz = await prisma.quiz.create({
+    data: {
+      title: `${originalQuiz.title} (copy)`,
+      description: originalQuiz.description,
+      isPublic: originalQuiz.isPublic,
+      isPublished: false,
+      author: {
+        connect: { id: userId },
+      },
+      difficulty: {
+        connect: { id: originalQuiz.difficulty.id },
+      },
+      categories: {
+        connect: originalQuiz.categories.map((c) => ({ id: c.id })),
+      },
+      questions: {
+        create: (originalQuiz.questions ?? []).map((q) => ({
+          text: q.text,
+          order: q.order,
+          answers: {
+            create: (q.answers ?? []).map((a) => ({
+              text: a.text,
+              isCorrect: a.isCorrect,
+              order: a.order,
+            })),
+          },
+        })),
+      },
+    },
+  });
+
+  return duplicatedQuiz;
+}
+
+export async function switchIsPublished(quizId: string, isPublished: boolean) {
+  const quiz = await prisma.quiz.findUnique({
+    where: { id: quizId },
+    select: { isPublished: true },
+  });
+
+  if (!quiz) {
+    throw new Error('Quiz not found');
+  }
+
+  if (quiz.isPublished === isPublished) {
+    return quiz;
+  }
+
+  return prisma.quiz.update({
+    where: { id: quizId },
+    data: { isPublished },
+  });
 }

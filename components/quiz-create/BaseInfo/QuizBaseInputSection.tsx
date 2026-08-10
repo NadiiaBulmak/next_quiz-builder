@@ -11,27 +11,38 @@ import CategorySelectClient from './CategorySelectClient';
 export const QuizBaseInputSection = ({
   onAddQuestion,
   categories,
+  initialTitle = '',
+  initialDescription = '',
+  initialDifficulty = '',
+  initialSelectedCategories = [],
+  isEditMode = false,
 }: QuizBaseInputSectionProps) => {
   return (
-    <div className="w-full flex flex-col gap-6 order-first bg-white p-6 rounded-md shadow-sm border border-gray-200 md:order-none">
+    <div className="w-full flex flex-col gap-6 order-first bg-white p-6 rounded-md shadow-sm border border-gray-200 md:order-none h-fit">
       <SectionTitle title={CONTENT.create.base.section_title} />
       <LabelInputArea label={CONTENT.create.base.title.label}>
         <AutoResizeTextarea
           name="title"
           placeholder={CONTENT.create.base.title.placeholder}
-          initValue=""
+          initValue={initialTitle}
         />
       </LabelInputArea>
       <LabelInputArea label={CONTENT.create.base.description.label}>
         <AutoResizeTextarea
           name="description"
           placeholder={CONTENT.create.base.description.placeholder}
-          initValue=""
+          initValue={initialDescription}
         />
       </LabelInputArea>
-      <DifficultySelect />
-      <CategorySelectClient categories={categories} />
-      <QuestionControlSection onAddQuestion={onAddQuestion} />
+      <DifficultySelect initialValue={initialDifficulty} />
+      <CategorySelectClient
+        categories={categories}
+        initialSelectedNames={initialSelectedCategories}
+      />
+      <QuestionControlSection
+        onAddQuestion={onAddQuestion}
+        isEditMode={isEditMode}
+      />
     </div>
   );
 };

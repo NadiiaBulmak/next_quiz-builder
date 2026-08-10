@@ -8,8 +8,17 @@ import type { Category, CategorySelectClientProps } from '@/types/props';
 
 export default function CategorySelectClient({
   categories,
+  initialSelectedNames = [],
 }: CategorySelectClientProps) {
-  const [selected, setSelected] = useState<Category[]>([]);
+  const [selected, setSelected] = useState<Category[]>(() =>
+    initialSelectedNames.map(
+      (name) =>
+        categories.find((category) => category.name === name) ?? {
+          id: crypto.randomUUID(),
+          name,
+        },
+    ),
+  );
   const [search, setSearch] = useState('');
 
   const filteredCategories = categories.filter(

@@ -5,7 +5,9 @@ import type { QuizListItemType } from '@/types/quiz';
 
 export default async function QuizList({ listType }: QuizListType) {
   const quizzes =
-    listType === ListType.all ? await getAllQuizzes() : await getAllMyQuizzes();
+    listType === ListType.all
+      ? await getAllQuizzes(null, { isPublished: true })
+      : await getAllMyQuizzes();
   const typedQuizzes = quizzes as QuizListItemType[];
   console.log(typedQuizzes);
   return (

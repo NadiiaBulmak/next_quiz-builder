@@ -3,7 +3,7 @@
 import { User } from '@/types/user';
 import Logo from './Logo';
 import SidebarMenu from './SidebarMenu';
-import SidebarBottom from './SidebarBottom';
+import SidebarBottom from './UserDropdown';
 import { useState } from 'react';
 import { ChevronsRight, ChevronsLeft } from 'lucide-react';
 
@@ -18,7 +18,6 @@ export default function SideBar({ name, email }: User) {
         <Logo opened={opened} setOpened={setOpened} />
         <SidebarMenu opened={opened} />
       </div>
-
 
       {/* <SidebarBottom name={name} email={email} opened={opened} /> */}
     </div>

@@ -208,6 +208,7 @@ export const CONTENT = {
             add_question:  'Add Question',
             add_option:  'Add Option',
             save: 'Publish Quiz',
+            patch: 'Update Quiz',
             draft: 'Save Draft',
             collapse: 'Collapse all'
         }

@@ -2,7 +2,7 @@
 
 import { NAV_LINKS } from '@/constants/nav_links';
 import { getCurrentUser } from '@/services/auth';
-import { createQuiz } from '@/services/quizz.service';
+import { createQuiz, updateQuiz } from '@/services/quizz.service';
 import { QuizFormSchema, type QuizFormState } from '@/schemas/quiz.schema';
 import type { CreateQuizInput, Difficulty } from '@/types/quiz';
 import { parseJsonField } from '@/utils/parseJsonField.util';
@@ -13,10 +13,12 @@ export async function postQuiz(
   formData: FormData,
 ): Promise<QuizFormState> {
   const intent = formData.get('intent');
-  const submitIntent = intent === 'draft' ? 'draft' : 'save';
+  const submitIntent =
+    intent === 'draft' ? 'draft' : intent === 'patch' ? 'patch' : 'save';
   const title = formData.get('title');
   const description = formData.get('description');
   const difficulty = formData.get('difficulty');
+  const quizId = formData.get('quizId');
   const categories = parseJsonField<string[]>(formData.get('categories')) ?? [];
   const questions =
     parseJsonField<CreateQuizInput['questions']>(formData.get('questions')) ??
@@ -46,18 +48,43 @@ export async function postQuiz(
   try {
     const currentUser = await getCurrentUser();
 
-    await createQuiz({
+    const quizPayload = {
       title: validatedFields.data.title,
       description: validatedFields.data.description,
       categories: validatedFields.data.categories,
       difficulty: validatedFields.data.difficulty as Difficulty,
       questions: validatedFields.data.questions,
       authorId: currentUser.id,
-      isPublished: submitIntent === 'save',
-    });
+    } satisfies CreateQuizInput;
+
+    if (submitIntent === 'patch') {
+      if (typeof quizId !== 'string' || !quizId) {
+        return {
+          message: 'Quiz id is required for update.',
+          user: validatedFields.data,
+        };
+      }
+
+      await updateQuiz(quizId, quizPayload);
+    } else {
+      await createQuiz({
+        ...quizPayload,
+        isPublished: submitIntent === 'save',
+      });
+    }
   } catch {
+    console.log({
+      message:
+        submitIntent === 'patch'
+          ? 'Failed to update quiz. Please try again.'
+          : 'Failed to create quiz. Please try again.',
+      user: validatedFields.data,
+    });
     return {
-      message: 'Failed to create quiz. Please try again.',
+      message:
+        submitIntent === 'patch'
+          ? 'Failed to update quiz. Please try again.'
+          : 'Failed to create quiz. Please try again.',
       user: validatedFields.data,
     };
   }

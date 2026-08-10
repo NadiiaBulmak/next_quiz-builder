@@ -1,10 +1,11 @@
 'use client';
 
 import { SIDEBAR_LINKS } from "@/constants/sidebar_links";
-import { SidebarLinkType } from "@/types/props";
+import { TITLE_CONTENT } from "@/constants/title_content";
+import { SidebarLinkType, TitleContentType } from "@/types/props";
 import { usePathname } from "next/navigation";
 
 export const getNavTitle = (): SidebarLinkType => {
     const pathname = usePathname();
-    return SIDEBAR_LINKS.find((link: SidebarLinkType) => pathname === link.href) ?? ({} as SidebarLinkType);
+    return TITLE_CONTENT.find((link: TitleContentType[number]) => pathname.includes(link.href)) ?? ({} as SidebarLinkType);
 }

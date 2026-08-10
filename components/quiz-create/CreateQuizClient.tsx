@@ -14,8 +14,48 @@ import { postQuiz } from '@/app/actions/quiz/postQuiz';
 import { TipSection } from '../shared/TipSection';
 import { CONTENT } from '@/constants/content';
 
-export const CreateQuizClient = ({ categories }: CreateQuizClientProps) => {
-  const [state, action] = useActionState(postQuiz, quizInitialState);
+export const CreateQuizClient = ({
+  categories,
+  quiz,
+}: CreateQuizClientProps) => {
+  const editCategories =
+    quiz?.categories?.map((category) => category.name) ?? [];
+
+  const normalizeQuestionOrder = (items: QuestionType[]) =>
+    [...items]
+      .sort((left, right) => left.order - right.order)
+      .map((question, index) => ({
+        ...question,
+        order: index + 1,
+      }));
+
+  const editQuestions = normalizeQuestionOrder(
+    quiz?.questions?.map((question) => ({
+      ...question,
+      id: question.id ?? crypto.randomUUID(),
+      answers: (question.answers ?? []).map((answer, index) => ({
+        id: answer.id ?? crypto.randomUUID(),
+        text: answer.text,
+        isCorrect: answer.isCorrect,
+        order: answer.order ?? index + 1,
+      })),
+    })) ?? [],
+  );
+
+  const initialState = quiz
+    ? {
+        ...quizInitialState,
+        user: {
+          title: quiz.title ?? '',
+          description: quiz.description ?? '',
+          categories: editCategories,
+          difficulty: quiz.difficulty?.name ?? '',
+          questions: editQuestions,
+        },
+      }
+    : quizInitialState;
+
+  const [state, action] = useActionState(postQuiz, initialState);
 
   const withAnswerIds = (answers: AnswerType[]) =>
     answers.map((answer) => ({
@@ -31,7 +71,9 @@ export const CreateQuizClient = ({ categories }: CreateQuizClientProps) => {
     }));
 
   const [questions, setQuestions] = useState<QuestionType[]>(() =>
-    withQuestionIds(initialQuestions),
+    quiz
+      ? withQuestionIds(normalizeQuestionOrder(editQuestions))
+      : withQuestionIds(normalizeQuestionOrder(initialQuestions)),
   );
 
   const addNewQuestion = () =>
@@ -104,17 +146,9 @@ export const CreateQuizClient = ({ categories }: CreateQuizClientProps) => {
   return (
     <form
       action={action}
-      className="flex-1 min-h-screen  flex-1
-  min-h-screen
-  bg-gray-50
-  px-3 md:px-6
-  py-3 md:py-6
-  grid
-  grid-cols-1
-  md:grid-cols-[4fr_6fr]
-  md:gap-3
-  w-full mb-20 lg:mb-0"
+      className="flex-1 min-h-screen  flex-1 min-h-screen bg-gray-50 px-3 md:px-6 py-3 md:py-6 grid grid-cols-1 md:grid-cols-[4fr_6fr] md:gap-3 w-full mb-20 lg:mb-0"
     >
+      <input type="hidden" name="quizId" value={quiz?.id ?? ''} />
       <input type="hidden" name="questions" value={JSON.stringify(questions)} />
 
       {/* <div className="col-span-full flex flex-col gap-3">
@@ -150,6 +184,11 @@ export const CreateQuizClient = ({ categories }: CreateQuizClientProps) => {
 
       <QuizBaseInputSection
         categories={categories}
+        initialTitle={initialState.user?.title}
+        initialDescription={initialState.user?.description}
+        initialDifficulty={initialState.user?.difficulty}
+        initialSelectedCategories={editCategories}
+        isEditMode={Boolean(quiz)}
         onAddQuestion={addNewQuestion}
         onDeleteQuestion={deleteQuestion}
         questions={questions}

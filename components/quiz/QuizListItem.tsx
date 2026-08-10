@@ -16,10 +16,12 @@ export default function QuizListItem({
         <QuizListItemTopContent
           difficultyName={difficultyName}
           showAllQuiz={showAllQuiz}
+          id={quiz.id}
+          isPublished={quiz.isPublished}
         />
-        <QuizListItemMainContent {...quiz} />
+        <QuizListItemMainContent showAllQuiz={showAllQuiz} {...quiz} />
       </div>
-      <QuizListItemBottomContent  showAllQuiz={showAllQuiz} />
+      <QuizListItemBottomContent  showAllQuiz={showAllQuiz} id={quiz.id} />
     </div>
   );
 }

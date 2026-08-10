@@ -1,15 +1,16 @@
 'use client';
 import { getNavTitle } from '@/utils/getNavTitle';
-import SidebarBottom from './SidebarBottom';
+import UserDropdown from './UserDropdown';
+import { User } from '@/lib/generated/prisma/browser';
 
 export default function TopBar({
   name,
   email,
   opened = true,
-}: {
-  name: string;
-  email: string;
+  userMenuVisible = true,
+}: Pick<User, 'name' | 'email'> & {
   opened?: boolean;
+  userMenuVisible?: boolean;
 }) {
   const { label, description } = getNavTitle();
   return (
@@ -18,7 +19,9 @@ export default function TopBar({
         <h1 className="text-lg font-bold">{label}</h1>
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
-      <SidebarBottom name={name} email={email} opened={opened} />
+      {userMenuVisible && (
+        <UserDropdown name={name} email={email} opened={opened} />
+      )}
     </div>
   );
 }
