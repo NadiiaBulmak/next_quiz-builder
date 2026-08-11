@@ -9,6 +9,6 @@ export default defineConfig({
   },
 
   datasource: {
-    url: env("DATABASE_URL"),
+    url: env("DB_POSTGRES_URL"),
   },
 });
