@@ -31,4 +31,9 @@ export const TITLE_CONTENT: TitleContentType[] = [
     label: 'Settings',
     description: 'Manage your account settings',
   },
+  {
+    href: '/preview',
+    label: 'Preview',
+    description: 'Preview a quiz',
+  },
 ];

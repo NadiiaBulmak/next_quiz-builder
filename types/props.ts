@@ -1,6 +1,6 @@
 import { LucideIcon } from 'lucide-react';
 import { Dispatch, SetStateAction, DragEvent } from 'react';
-import { Difficulty, Quiz } from './quiz';
+import { AnswerInput, Difficulty, Quiz } from './quiz';
 
 export type Category = {
   id: string;
@@ -178,4 +178,15 @@ export type QuizBaseInputSectionProps = Partial<QuestionControlSectionType> & {
   initialDifficulty?: string;
   initialSelectedCategories?: string[];
   isEditMode?: boolean;
+};
+
+
+export type Question = {
+  id: string;
+  text: string;
+  order: number;
+  quizId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  answers: AnswerInput[];
 };

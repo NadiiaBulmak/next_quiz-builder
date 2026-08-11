@@ -4,6 +4,7 @@ import {
   Plus,
   BarChart3,
   Settings,
+  ListCheck,
 } from "lucide-react";
 import { SidebarLinkType } from "@/types/props";
 
@@ -20,7 +21,7 @@ export const SIDEBAR_LINKS: SidebarLinkType[] = [
     href: "/quizzes/my",
     label: "My Quizzes",
     description: "View quizzes you've created",
-    icon: User,
+    icon: ListCheck,
     iconVisible: true,
     labelVisible: true,
   },

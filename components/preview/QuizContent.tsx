@@ -1,18 +1,37 @@
 'use client';
 
-import { QuestionInput } from "@/types/quiz";
+import type { Question } from '@/types/props';
+import { useState } from 'react';
+import { Button } from '../ui/button';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { QuizQuestion } from './QuizQuestion';
+import { TipSection } from '../shared/TipSection';
+import { QuizControlSection } from './QuizControlSection';
+import { QuizContentBottom } from './QuizContentBottom';
 
-export const QuizContent = ({
-  questions,
-}: {
-  questions: QuestionInput[];
-}) => {
-  return <div className="max-w-1/2 w-full m-auto bg-white border border-gray-200 shadow-md">
-    {questions.map((question, index) => (
-      <div key={index} className="p-4 border-b border-gray-200">
-        <h3 className="text-lg font-semibold mb-2">{`Question ${index + 1}`}</h3>
-        <p className="text-gray-700 mb-2">{question.text}</p>
-    </div>
-  ))}
-  </div>;
+export const QuizContent = ({ questions }: { questions: Question[] }) => {
+  const [question, SetQuestion] = useState(questions[0]);
+  const [index, setindex] = useState(0);
+  const handlePrevious = () => {
+    setindex((prev) => prev - 1);
+    SetQuestion(questions[index - 1]);
+  };
+  const handleNext = () => {
+    setindex((prev) => prev + 1);
+    SetQuestion(questions[index + 1]);
+  };
+  const disabledPrevious = index === 0;
+  const disabledNext = index === questions.length - 1;
+  return (
+    <>
+      <QuizControlSection
+        handlePrevious={handlePrevious}
+        handleNext={handleNext}
+        disabledPrevious={disabledPrevious}
+        disabledNext={disabledNext}
+      />
+      <QuizQuestion question={question} index={index} />
+      <QuizContentBottom />
+    </>
+  );
 };

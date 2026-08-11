@@ -193,7 +193,7 @@ export const CreateQuizClient = ({
         onDeleteQuestion={deleteQuestion}
         questions={questions}
       />
-      <div>
+      <div className="flex flex-col gap-3">
         <QuestionsSection
           questions={questions}
           onDeleteQuestion={deleteQuestion}
