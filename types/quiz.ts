@@ -72,7 +72,7 @@ export type QuizListItemType = {
   title: string;
   description: string | null;
   isPublished: boolean;
-  isPublic: boolean;
+  isPublic: boolean | null;
   author: {
     name: string | null;
     image: string | null;
@@ -97,7 +97,7 @@ export type Quiz = {
   title: string;
   description: string | null;
   isPublished: boolean;
-  isPublic: boolean;
+  isPublic: boolean | null;
   createdAt: Date;
   updatedAt: Date;
   categories: {
