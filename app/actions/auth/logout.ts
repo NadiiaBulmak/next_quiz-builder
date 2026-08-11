@@ -1,10 +1,12 @@
 'use server';
 
-import { NAV_LINKS } from '@/constants/nav_links';
 import { deleteSession } from '@/services/sessions';
-import { redirect } from 'next/navigation';
 
-export async function logout() {
+export async function logout(_state: unknown, _formData: FormData) {
   await deleteSession();
-  redirect(NAV_LINKS.login);
+
+  return {
+    success: true,
+    message: 'Logged out successfully.',
+  };
 }

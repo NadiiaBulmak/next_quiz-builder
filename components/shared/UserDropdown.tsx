@@ -1,6 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { SidebarBottomType } from '@/types/props';
 import { ChevronDown, ChevronUp, Dot, Settings, LogOut } from 'lucide-react';
 import {
@@ -11,6 +12,7 @@ import {
 } from '../ui/dropdown-menu';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { logout } from '@/app/actions/auth/logout';
+import { useActionState } from 'react';
 
 export default function UserDropdown({
   name,
@@ -18,6 +20,18 @@ export default function UserDropdown({
   opened = false,
 }: SidebarBottomType & { email?: string }) {
   const [openedState, setOpenedState] = useState(opened);
+  const router = useRouter();
+  const [state, action, isPending] = useActionState(logout, {
+    success: false,
+    message: '',
+  });
+
+  useEffect(() => {
+    if (state?.success) {
+      router.push(NAV_LINKS.login);
+    }
+  }, [router, state?.success]);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -59,12 +73,17 @@ export default function UserDropdown({
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="text-base p-2 cursor-pointer">
-          <form action={logout} className="w-full">
+          <form action={action} className="w-full">
             <button
               type="submit"
-              className="w-full flex items-center"
+              disabled={isPending}
+              className="w-full flex items-center disabled:opacity-50"
             >
-              <LogOut className="mr-2 text-red-700 hover:text-red-500" width={24} height={24} />
+              <LogOut
+                className="mr-2 text-red-700 hover:text-red-500"
+                width={24}
+                height={24}
+              />
               Log Out
             </button>
           </form>

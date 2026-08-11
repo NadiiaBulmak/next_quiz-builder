@@ -128,9 +128,12 @@ export async function getAllMyQuizzes(
             results: {
               select: {
                 id: true,
-                userId: true,
+                name: true,
+                email: true,
                 score: true,
-                createdAt: true,
+                correctAnswers: true,
+                totalQuestions: true,
+                finishedAt: true,
               },
             },
           }
@@ -199,9 +202,12 @@ export async function getQuizByUserId(
             results: {
               select: {
                 id: true,
-                userId: true,
+                name: true,
+                email: true,
                 score: true,
-                createdAt: true,
+                correctAnswers: true,
+                totalQuestions: true,
+                finishedAt: true,
               },
             },
           }
@@ -269,9 +275,12 @@ export async function getQuizById(
             results: {
               select: {
                 id: true,
-                userId: true,
+                name: true,
+                email: true,
                 score: true,
-                createdAt: true,
+                correctAnswers: true,
+                totalQuestions: true,
+                finishedAt: true,
               },
             },
           }
@@ -420,18 +429,18 @@ export async function deleteQuiz(id: string) {
 
 export async function duplicateQuiz(id: string) {
   const originalQuiz = await prisma.quiz.findUnique({
-  where: { id },
-  include: {
-    difficulty: true,
-    categories: true,
-    questions: {
-      include: {
-        answers: true,
+    where: { id },
+    include: {
+      difficulty: true,
+      categories: true,
+      questions: {
+        include: {
+          answers: true,
+        },
+        orderBy: { order: 'asc' },
       },
-      orderBy: { order: 'asc' },
     },
-  },
-});
+  });
 
   if (!originalQuiz) {
     throw new Error('Quiz not found');

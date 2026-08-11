@@ -98,6 +98,21 @@ export type QuestionType = {
   answers: AnswerType[];
 };
 
+export type QuizForEditor = Pick<
+  Quiz,
+  | 'id'
+  | 'title'
+  | 'description'
+  | 'isPublished'
+  | 'isPublic'
+  | 'createdAt'
+  | 'updatedAt'
+> & {
+  categories?: Quiz['categories'];
+  difficulty?: Quiz['difficulty'];
+  questions?: Quiz['questions'];
+};
+
 export type QuestionControlSectionType = {
   onAddQuestion: () => void;
   onDeleteQuestion: (order: number) => void;
@@ -117,7 +132,7 @@ export type QuestionControlSectionType = {
 
 export type CreateQuizClientProps = {
   categories: Category[];
-  quiz?: Quiz;
+  quiz?: QuizForEditor;
 };
 
 export type QuestionItemProps = {
@@ -180,7 +195,6 @@ export type QuizBaseInputSectionProps = Partial<QuestionControlSectionType> & {
   isEditMode?: boolean;
 };
 
-
 export type Question = {
   id: string;
   text: string;
@@ -189,4 +203,10 @@ export type Question = {
   createdAt: Date;
   updatedAt: Date;
   answers: AnswerInput[];
+};
+
+export type PreviewTopBarProps = {
+  title?: string | null;
+  description?: string | null;
+  questionCount: number;
 };

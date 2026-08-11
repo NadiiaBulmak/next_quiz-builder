@@ -23,7 +23,10 @@ export default function DifficultySelect({
 
   return (
     <LabelInputArea label={CONTENT.create.base.difficulty.label}>
-      <Select value={difficulty} onValueChange={setDifficulty}>
+      <Select
+        value={difficulty}
+        onValueChange={(value) => setDifficulty(value ?? '')}
+      >
         <SelectTrigger
           id="difficulty"
           className="w-full border p-2 text-sm rounded-md border-gray-300 focus:border-lime-500 focus:ring-lime-500 disabled:cursor-not-allowed disabled:opacity-50"

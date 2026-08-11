@@ -1,6 +1,6 @@
 import PreviewTopBar from '@/components/preview/PreviewTopBar';
 import { QuizContent } from '@/components/preview/QuizContent';
-import type { Question } from '@/types/props';
+import type { Question, QuizForEditor } from '@/types/props';
 import { getQuizById } from '@/services/quizz.service';
 
 export default async function PreviewPage({
@@ -15,14 +15,16 @@ export default async function PreviewPage({
     return <div>Quiz not found</div>;
   }
 
-  const { questions, ...quiz } = quizData;
-  const questionsWithAnswers: Question[] = questions.map((question) => ({
-    ...question,
-    answers:
-      'answers' in question && Array.isArray(question.answers)
-        ? question.answers
-        : [],
-  }));
+  const quiz: QuizForEditor = quizData;
+  const questionsWithAnswers: Question[] = (quiz.questions ?? []).map(
+    (question) => ({
+      ...question,
+      answers:
+        'answers' in question && Array.isArray(question.answers)
+          ? question.answers
+          : [],
+    }),
+  );
 
   return (
     <div className="">
