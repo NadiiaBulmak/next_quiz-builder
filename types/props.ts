@@ -113,6 +113,21 @@ export type QuizForEditor = Pick<
   questions?: Quiz['questions'];
 };
 
+export type QuizForEditor = Pick<
+  Quiz,
+  | 'id'
+  | 'title'
+  | 'description'
+  | 'isPublished'
+  | 'isPublic'
+  | 'createdAt'
+  | 'updatedAt'
+> & {
+  categories?: Quiz['categories'];
+  difficulty?: Quiz['difficulty'];
+  questions?: Quiz['questions'];
+};
+
 export type QuestionControlSectionType = {
   onAddQuestion: () => void;
   onDeleteQuestion: (order: number) => void;
@@ -132,6 +147,7 @@ export type QuestionControlSectionType = {
 
 export type CreateQuizClientProps = {
   categories: Category[];
+  quiz?: QuizForEditor;
   quiz?: QuizForEditor;
 };
 
