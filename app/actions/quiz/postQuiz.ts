@@ -6,7 +6,6 @@ import { createQuiz, updateQuiz } from '@/services/quizz.service';
 import { QuizFormSchema, type QuizFormState } from '@/schemas/quiz.schema';
 import type { CreateQuizInput, Difficulty } from '@/types/quiz';
 import { parseJsonField } from '@/utils/parseJsonField.util';
-import { redirect } from 'next/navigation';
 
 export async function postQuiz(
   _state: QuizFormState,
@@ -88,8 +87,6 @@ export async function postQuiz(
       user: validatedFields.data,
     };
   }
-
-  redirect(NAV_LINKS.quizzes.my);
 
   return {
     success: true,

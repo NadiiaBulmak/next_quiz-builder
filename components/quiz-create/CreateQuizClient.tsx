@@ -9,10 +9,12 @@ import {
   quizInitialState,
 } from '@/constants/initialFormState';
 import { AnswerType, CreateQuizClientProps, QuestionType } from '@/types/props';
-import { useActionState, useState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { postQuiz } from '@/app/actions/quiz/postQuiz';
 import { TipSection } from '../shared/TipSection';
 import { CONTENT } from '@/constants/content';
+import { NAV_LINKS } from '@/constants/nav_links';
 
 export const CreateQuizClient = ({
   categories,
@@ -56,6 +58,13 @@ export const CreateQuizClient = ({
     : quizInitialState;
 
   const [state, action] = useActionState(postQuiz, initialState);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state?.success) {
+      router.push(NAV_LINKS.quizzes.my);
+    }
+  }, [router, state?.success]);
 
   const withAnswerIds = (answers: AnswerType[]) =>
     answers.map((answer) => ({
