@@ -114,7 +114,6 @@ export type Quiz = {
   };
   questions: QuizQuestion[];
   results: {
-    quizId: string;
     id: string;
     name: string | null;
     email: string;
