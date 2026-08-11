@@ -1,3 +1,5 @@
+import { CheckCircle, ExternalLink } from "lucide-react";
+
 export const CONTENT = {
     auth: {
         login: {
@@ -211,6 +213,46 @@ export const CONTENT = {
             patch: 'Update Quiz',
             draft: 'Save Draft',
             collapse: 'Collapse all'
+        }
+    },
+    shared_quiz: {
+        cta: {
+            title: 'Create your own quiz',
+            product: 'QuizFlow',
+            icon: ExternalLink
+        },
+        top: {
+            Questions: 'Questions',
+            Question: 'Question',
+            of: 'of',
+            Quiz_Progress: 'Quiz Progress',
+            Categories: 'Categories',
+            Difficulty: 'Difficulty',
+            Description: 'Description',
+        },
+        progress: {
+            Answered: 'Answered',
+            Current: 'Current',
+            Unanswered: 'Unanswered',
+
+        },
+        tips: {
+            about: 'About this quiz',
+            items: ['This quiz is created by a QuizFlow user.','Want to create your own quiz like this?',],
+            button: {
+                text: 'Create your own quiz',
+                icon: ExternalLink
+            }
+        },
+        registration_not_required: {
+            icon: CheckCircle,
+            title: 'No registration required',
+            description: 'You can take this quiz without registering.  You can close this page after submitting your answers.'
+        },
+        buttons: {
+            submit: 'Submit Answers',
+            next: 'Next Question',  
+            previous: 'Previous Question'
         }
     }
 }

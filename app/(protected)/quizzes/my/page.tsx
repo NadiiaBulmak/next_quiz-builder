@@ -1,7 +1,7 @@
-import FilterZone from "@/components/quiz/FilterZone";
-import QuizList from "@/components/quiz/QuizList";
-import { getCurrentUser } from "@/services/auth";
-import { ListType } from "@/types/props";
+import FilterZone from '@/components/quiz/FilterZone';
+import QuizList from '@/components/quiz/QuizList';
+import { getCurrentUser } from '@/services/auth';
+import { ListType } from '@/types/props';
 
 export default async function AllQuizzes() {
   const quizzes = await getCurrentUser();

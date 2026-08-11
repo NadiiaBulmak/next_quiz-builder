@@ -1,6 +1,6 @@
-import PreviewTopBar from '@/components/preview/PreviewTopBar';
-import { QuizContent } from '@/components/preview/QuizContent';
 import { getQuizById } from '@/services/quizz.service';
+import SharedQuizContent from '@/components/shared-quiz/SharedQuizContent';
+import { SharedQuizTopContent } from '@/components/shared-quiz/SharedQuizTopContent';
 
 export default async function PreviewPage({
   params,
@@ -15,9 +15,11 @@ export default async function PreviewPage({
   }
 
   return (
-    <div className="">
-      <PreviewTopBar questionCount={quiz._count.questions} {...quiz} />
-      {/* <QuizContent {...quiz} /> */}
+    <div className="flex flex-col max-w-[85rem] mx-auto w-full">
+      {/* <PreviewTopBar questionCount={quiz.questions.length} {...quiz} /> */}
+      <SharedQuizTopContent />
+      {quiz ? <SharedQuizContent {...quiz} /> : <div>Quiz not found</div>}
+      
     </div>
   );
 }
