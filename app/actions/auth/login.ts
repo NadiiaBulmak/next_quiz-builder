@@ -41,6 +41,14 @@ export async function login(
       };
     }
 
+    if (!user.passwordHash) {
+      return {
+        errors: {
+          email: ['Use Google sign in for this account or reset your password.'],
+        },
+      };
+    }
+
     const isPasswordValid = await comparePassword(password, user.passwordHash);
 
     if (!isPasswordValid) {

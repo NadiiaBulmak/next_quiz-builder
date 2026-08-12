@@ -1,18 +1,23 @@
 'use client';
-
-import { loginInitialState } from '@/constants/initialFormState';
+import { useSearchParams } from 'next/navigation';
+import { resetPasswordInitialState } from '@/constants/initialFormState';
 import { useActionState } from 'react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import AuthRedirectLink from './UI/AuthRedirect';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
-import AuthFormDivider from './UI/AuthFormDivider';
-import { login } from '@/app/actions/auth/login';
-import GoogleShubmitButton from './GoogleSubmitButton';
+import { resetPassword } from '@/app/actions/auth/resetPassword';
 
-export default function LoginForm() {
-  const [state, action, isPending] = useActionState(login, loginInitialState);
+export default function ResetPasswordForm() {
+  const searchParams = useSearchParams();
+
+  const token = searchParams.get('token');
+
+  const [state, action, isPending] = useActionState(
+    resetPassword,
+    resetPasswordInitialState,
+  );
   const router = useRouter();
 
   useEffect(() => {
@@ -24,25 +29,9 @@ export default function LoginForm() {
   return (
     <div className="flex w-full max-w-full flex-col gap-2">
       <form action={action} className="flex w-full max-w-full flex-col gap-8">
+        <input type="hidden" name="token" value={token ?? ''} />
+
         <div className="flex flex-col gap-3">
-          <div className="flex flex-col gap-1">
-            <label
-              htmlFor="email"
-              className="block text-xs font-medium text-gray-700"
-            >
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autoComplete="true"
-              placeholder="Enter your email"
-              className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
-            />
-          </div>
-          {state?.errors?.email && <p>{state.errors.email}</p>}
           <div className="flex flex-col gap-1">
             <label
               htmlFor="password"
@@ -59,11 +48,45 @@ export default function LoginForm() {
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
           </div>
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor="confirm-password"
+              className="block text-xs font-medium text-gray-700"
+            >
+              Confirm Password
+            </label>
+            <input
+              id="confirm-password"
+              name="confirmPassword"
+              type="password"
+              required
+              placeholder="Create a password"
+              className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
+            />
+          </div>
+          {state?.errors?.token && (
+            <div>
+              <ul>
+                {state.errors.token.map((error) => (
+                  <li key={error}>- {error}</li>
+                ))}
+              </ul>
+            </div>
+          )}
           {state?.errors?.password && (
             <div>
               <p>Password must:</p>
               <ul>
                 {state.errors.password.map((error) => (
+                  <li key={error}>- {error}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {state?.errors?.confirmPassword && (
+            <div>
+              <ul>
+                {state.errors.confirmPassword.map((error) => (
                   <li key={error}>- {error}</li>
                 ))}
               </ul>
@@ -76,23 +99,15 @@ export default function LoginForm() {
           disabled={isPending}
           className="hover:shadow-md w-full rounded-md border-1 border-gray-300 bg-lime-300 px-4 py-2 text-xs font-medium text-black focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isPending ? 'Submitting...' : 'Login'}
+          {isPending ? 'Submitting...' : 'Change password'}
         </button>
       </form>
-      <div className="flex flex-col gap-2">
-        <AuthFormDivider />
-        <GoogleShubmitButton />
-      </div>
 
-      <div className="flex flex-col lg:flex-row gap-2 justify-between items-center mt-4">
+      <div className="flex flex-col lg:flex-row gap-2 justify-center items-center mt-4">
         <AuthRedirectLink
-          link={NAV_LINKS.sign_in}
-          text={CONTENT.auth.to_signUp.text}
-          boldText={CONTENT.auth.to_signUp.boldtext}
-        />
-        <AuthRedirectLink
-          link={NAV_LINKS.forgot_password}
-          text={CONTENT.auth.forgot_password.header}
+          link={NAV_LINKS.login}
+          text={CONTENT.auth.back_to_logIn.text}
+          boldText={CONTENT.auth.back_to_logIn.boldtext}
         />
       </div>
     </div>

@@ -15,7 +15,7 @@ export type CategorySelectClientProps = {
 export type AuthRedirectLinkType = {
   link: string;
   text: string;
-  boldText: string;
+  boldText?: string;
 };
 export type SectionTopContentType = { heading: string; subheading: string };
 export type SecondaryButtonType = {

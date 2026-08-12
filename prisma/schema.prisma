@@ -12,39 +12,42 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(cuid())
+  id           String  @id @default(cuid())
   name         String?
-  email        String   @unique
-  passwordHash String
+  email        String  @unique
+  passwordHash String?
+  googleId     String? @unique
   image        String?
 
-  quizzes      Quiz[]
+  quizzes Quiz[]
 
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  resetToken ResetToken?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Quiz {
-  id            String   @id @default(cuid())
-  title         String
-  description   String?
+  id          String  @id @default(cuid())
+  title       String
+  description String?
 
   imageUrl      String?
   isPublished   Boolean  @default(false)
-  isPublic      Boolean?  @default(false)
+  isPublic      Boolean? @default(false)
   estimatedTime Int?
 
-  authorId      String
-  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  categories    Category[]
-  difficultyId  String
-  difficulty    Difficulty  @relation(fields: [difficultyId], references: [id], onDelete: Restrict)
+  authorId     String
+  author       User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  categories   Category[]
+  difficultyId String
+  difficulty   Difficulty @relation(fields: [difficultyId], references: [id], onDelete: Restrict)
 
-  questions     Question[]
-  results       Result[]
+  questions Question[]
+  results   Result[]
 
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([authorId])
   @@index([difficultyId])
@@ -52,14 +55,14 @@ model Quiz {
 }
 
 model Question {
-  id        String   @id @default(cuid())
-  text      String
-  order     Int
+  id    String @id @default(cuid())
+  text  String
+  order Int
 
-  quizId    String
-  quiz      Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quizId String
+  quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
 
-  answers   Answer[]
+  answers Answer[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -69,52 +72,62 @@ model Question {
 }
 
 model Answer {
-  id         String   @id @default(cuid())
-  text       String
-  isCorrect  Boolean
-  order      Int
+  id        String  @id @default(cuid())
+  text      String
+  isCorrect Boolean
+  order     Int
 
   questionId String
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([questionId])
   @@index([order])
 }
 
 model Category {
-  id          String   @id @default(cuid())
-  name        String   @unique
-  slug        String   @unique
+  id   String @id @default(cuid())
+  name String @unique
+  slug String @unique
 
-  quizzes     Quiz[]
+  quizzes Quiz[]
 }
 
 model Difficulty {
-  id          String   @id @default(cuid())
-  name        String   @unique
-  slug        String   @unique
+  id   String @id @default(cuid())
+  name String @unique
+  slug String @unique
 
-  quizzes     Quiz[]
+  quizzes Quiz[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Result {
-  id               String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  name             String?
-  email            String
+  name  String?
+  email String
 
-  score            Int
-  correctAnswers   Int
-  totalQuestions   Int
+  score          Int
+  correctAnswers Int
+  totalQuestions Int
 
-  quizId           String
-  quiz             Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quizId String
+  quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
 
-  finishedAt       DateTime @default(now())
+  finishedAt DateTime @default(now())
+}
+
+model ResetToken {
+  id        String    @id @default(cuid())
+  userId    String    @unique
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+  usedAt    DateTime?
 }

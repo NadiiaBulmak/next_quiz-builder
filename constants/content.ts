@@ -11,6 +11,18 @@ export const CONTENT = {
             header: "Create an account",
             subheader: "Join QuizBuilder today and start building engaging quizzes in just a few clicks.",
         },
+        forgot_password: {
+            header: "Forgot your password?",
+            subheader: "Enter your email address below and we'll send you a link to reset your password.",
+        },
+        forgot_password_sent: {
+            header: "Reset email sent",
+            subheader: "We just sent you an email with instructions to reset your password. Please check your inbox and follow the link provided.",
+        },
+        reset_password: {
+            header: "Reset password",
+            subheader: "Create a new password for your account. Make sure to choose a strong and secure password.",
+        },
 
         to_signUp: {
             text: "Don’t have an account?",
@@ -18,6 +30,10 @@ export const CONTENT = {
         },
         to_logIn: {
             text: "Already have an account?",
+            boldtext: "Log in"
+        },
+        back_to_logIn: {
+            text: "Get back to",
             boldtext: "Log in"
         },
         form: {

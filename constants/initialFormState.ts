@@ -1,5 +1,6 @@
 import { LoginFormState } from '@/schemas/login.schema';
 import { QuizFormState } from '@/schemas/quiz.schema';
+import { ResetFormState } from '@/schemas/reset_password.schema';
 import { FormState } from '@/schemas/sign-up.schema';
 import { AnswerType, QuestionType } from '@/types/props';
 
@@ -9,6 +10,15 @@ export const initialState: FormState = {
 };
 
 export const loginInitialState: LoginFormState = {
+  errors: undefined,
+  user: undefined,
+};
+
+export const forgotPasswordInitialState: LoginFormState = {
+  errors: undefined,
+  user: undefined,
+};
+export const resetPasswordInitialState: ResetFormState = {
   errors: undefined,
   user: undefined,
 };
