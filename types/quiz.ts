@@ -112,7 +112,7 @@ export type Quiz = {
     name: string;
     slug: string;
   };
-  questions: QuizQuestion[];
+  questions: QuizQuestion[] | [];
   results: {
     id: string;
     name: string | null;

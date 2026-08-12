@@ -1,5 +1,5 @@
 import AuthHeader from "@/components/auth/UI/AuthHeader";
-import RightsReserved from "@/components/auth/UI/RigthsReversed";
+import RightsReserved from "@/components/shared/RightsReserved";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 

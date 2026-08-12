@@ -19,8 +19,8 @@ export default function SideBarLogo({ opened = true, setOpened }: LogoType) {
         <Image
           src="/logo.webp"
           alt="Quiz Flow logo"
-          width={180}
-          height={72}
+          width={150}
+          height={52}
           className="h-auto w-auto max-h-14"
           priority
         />

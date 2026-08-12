@@ -1,30 +1,42 @@
 'use client';
 
-import { Quiz, QuizAnswer } from '@/types/quiz';
-import { Circle, CircleCheck } from 'lucide-react';
-import { useState } from 'react';
+import { QuizAnswer } from '@/types/quiz';
 import { QuestionAnswerItem } from './QuestionAnswerItem';
 
-export const QuestionAnswerList = ({ answers }: { answers: QuizAnswer[] }) => {
-  const [selectedAnswerId, setSelectedAnswerId] = useState<string[]>([]);
-  const handleAnswerSelect = (answerId: string) => {
-    setSelectedAnswerId((prevSelectedAnswerId) => {
-      if (prevSelectedAnswerId.includes(answerId)) {
-        return prevSelectedAnswerId.filter((id) => id !== answerId);
-      } else {
-        return [...prevSelectedAnswerId, answerId];
-      }
-    });
+export const QuestionAnswerList = ({
+  answers,
+  questionId,
+  selectedAnswerIds,
+  handleAnswerSelect,
+}: {
+  answers: QuizAnswer[];
+  questionId: string;
+  selectedAnswerIds: string[];
+  handleAnswerSelect: (questionId: string, selectedAnswerIds: string[]) => void;
+}) => {
+  const handleLocalAnswerSelect = (answerId: string) => {
+    const nextSelectedAnswerIds = selectedAnswerIds.includes(answerId)
+      ? selectedAnswerIds.filter((id) => id !== answerId)
+      : [...selectedAnswerIds, answerId];
+
+    if (questionId) {
+      handleAnswerSelect(questionId, nextSelectedAnswerIds);
+    }
   };
 
   const isAnswerSelected = (answerId: string) => {
-    return selectedAnswerId.includes(answerId);
+    return selectedAnswerIds.includes(answerId);
   };
 
   return (
     <div className="flex flex-col gap-2">
       {answers.map((answer) => (
-        <QuestionAnswerItem answer={answer} key={answer.id} isAnswerSelected={isAnswerSelected(answer.id)} handleAnswerSelect={handleAnswerSelect} />
+        <QuestionAnswerItem
+          answer={answer}
+          key={answer.id}
+          isAnswerSelected={isAnswerSelected(answer.id)}
+          handleAnswerSelect={handleLocalAnswerSelect}
+        />
       ))}
     </div>
   );

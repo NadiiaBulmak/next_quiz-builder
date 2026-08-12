@@ -11,7 +11,7 @@ export const QuizInfo = ({ title, description, difficulty, categories }: Pick<Qu
       <div>
         <h1 className="text-2xl font-bold">{title}</h1>
         <p className="text-gray-500 text-sm">{description}</p>
-        <div className="flex gap-3 text-sm mt-4 ">
+        <div className="flex gap-3 text-sm mt-4 flex-col lg:flex-row">
           <div className="flex items-center gap-1">
             <span className="text-gray-500">Difficulty:</span>
             <span className="font-bold">{difficulty.name}</span>

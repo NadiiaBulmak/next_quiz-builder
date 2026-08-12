@@ -3,6 +3,7 @@ import Sidebar from '@/components/shared/SideBar';
 import PreviewTopBar from '@/components/preview/PreviewTopBar';
 import MobileTopBar from '@/components/shared/MobileTopBar';
 import MobileMenu from '@/components/shared/MobileMenu';
+import { Footer } from '@/components/shared/Footer/Footer';
 
 export default async function PreviewLayout({
   children,
@@ -12,8 +13,9 @@ export default async function PreviewLayout({
   // const user = await getCurrentUser();
 
   return (
-    <div className="flex flex-col md:flex-row bg-stone-100">
+    <div className="flex flex-col bg-stone-100">
       <main className="flex-1 flex flex-col min-h-screen">{children}</main>
+      <Footer />
     </div>
   );
 }

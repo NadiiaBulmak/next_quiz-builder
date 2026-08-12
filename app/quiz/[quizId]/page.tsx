@@ -19,7 +19,6 @@ export default async function PreviewPage({
       {/* <PreviewTopBar questionCount={quiz.questions.length} {...quiz} /> */}
       <SharedQuizTopContent />
       {quiz ? <SharedQuizContent {...quiz} /> : <div>Quiz not found</div>}
-      
     </div>
   );
 }

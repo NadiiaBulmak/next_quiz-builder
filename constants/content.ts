@@ -71,9 +71,14 @@ export const CONTENT = {
     },
     footer: {
         subtitle: 'The easiest way to create interactive quizzes and surveys.',
-        rightsReserved: '© Quiz Flow. All rights reserved.',
+        rightsReserved: 'Quiz Flow. All rights reserved.',
         email: 'quizflow@email.com',
-        tagline: 'Simple to build. Easy to share.',
+        mailto: 'mailto:quizflow@email.com',
+                // subtitle: 'Create, share and take quizzes in a modern and simple way.',
+        // rightsReserved: '© Quiz Flow. All rights reserved.',
+        withLove: 'Made with ❤️ by QuizFlow ',
+        // email: 'support@quizflow.com',
+        tagline: 'Simple to build.\n Easy to share.',
         recommendations: {
             title: 'Questions or Feedback?',
             email: 'nbulmak@gmail.com',
@@ -238,9 +243,9 @@ export const CONTENT = {
         },
         tips: {
             about: 'About this quiz',
-            items: ['This quiz is created by a QuizFlow user.','Want to create your own quiz like this?',],
+            tips: ['This quiz is created by a QuizFlow user.','Want to create your own quiz like this?',],
             button: {
-                text: 'Create your own quiz',
+                text: 'Create Your Quiz',
                 icon: ExternalLink
             }
         },
@@ -254,5 +259,5 @@ export const CONTENT = {
             next: 'Next Question',  
             previous: 'Previous Question'
         }
-    }
+    },
 }
