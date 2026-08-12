@@ -272,6 +272,102 @@ export const CONTENT = {
       description: 'Join thousands of creators who are already using QuizFlow.',
       button: 'Get Started Free',
     },
+    value_proposition: {
+      title_prefix: 'Everything you need to',
+      title_highlight: 'create, share and understand',
+      title_suffix: 'quizzes.',
+      items: [
+        {
+          title: 'Create',
+          description: 'Build a quiz without complicated tools.',
+        },
+        {
+          title: 'Share',
+          description: 'Send one simple link to your audience.',
+        },
+        {
+          title: 'Understand',
+          description: 'See how people performed.',
+        },
+      ],
+    },
+    trust_section: {
+      subtitle: 'Built for creators, educators and teams',
+      title: 'Everything stays simple from creation to results.',
+      items: ['Free to start', 'Easy sharing', 'Built for teams'],
+    },
+    use_cases: {
+      eyebrow: 'Use cases',
+      title_line_one: 'One quiz builder.',
+      title_line_two: 'Many ways to use it.',
+      items: [
+        {
+          title: 'For educators',
+          description: 'Create knowledge checks and interactive lessons.',
+        },
+        {
+          title: 'For creators',
+          description: 'Engage your audience with fun quizzes.',
+        },
+        {
+          title: 'For marketers',
+          description: 'Create interactive content and collect responses.',
+        },
+        {
+          title: 'For teams',
+          description: 'Create training and internal knowledge checks.',
+        },
+      ],
+    },
+    analytics_showcase: {
+      eyebrow: 'Results & insights',
+      title_line_one: "Don't just create quizzes.",
+      title_highlight: 'Learn from them.',
+      description:
+        'Understand responses, completion rates and scores with\nsimple, useful insights.',
+      insights: [
+        {
+          title: 'Total Responses',
+          value: '128',
+        },
+        {
+          title: 'Completion Rate',
+          value: '86%',
+        },
+        {
+          title: 'Average Score',
+          value: '78%',
+        },
+      ],
+      preview: {
+        title: 'JavaScript Fundamentals',
+        subtitle: 'Quiz performance',
+        stats: [
+          {
+            label: 'Responses',
+            value: '128',
+          },
+          {
+            label: 'Completion',
+            value: '86%',
+          },
+          {
+            label: 'Avg. score',
+            value: '78%',
+          },
+        ],
+        chart_title: 'Responses over time',
+        chart_range: 'Last 7 days',
+      },
+    },
+    final_cta: {
+      eyebrow: 'Get started',
+      title: 'Ready to create your first quiz?',
+      description: 'Start creating in minutes. No complicated setup required.',
+      button: 'Get Started Free',
+      reassurance_free: 'Free to start',
+      reassurance_no_card: 'No credit card required',
+    },
     preview: {
       logo_suffix: 'Flow',
       question_label: 'Questions',

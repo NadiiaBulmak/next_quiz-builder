@@ -19,7 +19,7 @@ import { CONTENT } from '@/constants/content';
 
 export const CTA = () => {
   return (
-    <section className="px-6 pb-20">
+    <section className="px-6 pb-20 scroll-mt-24">
       <div className="mx-auto flex max-w-[1120px] flex-col items-center justify-between gap-6 rounded-xl border border-lime-200 bg-lime-50/70 p-6 md:flex-row md:px-8">
         <div className="flex items-center gap-5">
           <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-lime-500 text-white shadow-sm">

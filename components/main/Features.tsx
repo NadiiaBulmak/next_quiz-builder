@@ -4,7 +4,7 @@ import { CONTENT } from '@/constants/content';
 
 export const Features = () => {
   return (
-    <section id="features" className="px-6 py-10">
+    <section id="features" className="px-6 py-10 scroll-mt-24">
       <div className="mx-auto max-w-[1120px]">
         <SectionHeading
           eyebrow={CONTENT.main.features.eyebrow}
