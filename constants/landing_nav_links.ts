@@ -1,34 +1,34 @@
-import { CONTENT } from "./content";
+import { CONTENT } from './content';
 
 export const LANDING_NAV_LINKS = [
   {
-    title: 'Product',
+    title: CONTENT.navigation.landing.product,
     links: [
       {
-        name: 'Features',
+        name: CONTENT.navigation.landing.features,
         href: '/#features',
       },
       {
-        name: 'Quiz Examples',
+        name: CONTENT.navigation.landing.quiz_examples,
         href: '/#quiz_examples',
       },
     ],
   },
   {
-    title: 'Legal',
+    title: CONTENT.navigation.landing.legal,
     links: [
       {
-        name: 'Privacy Policy',
+        name: CONTENT.navigation.landing.privacy_policy,
         href: '/privacy_policy',
       },
       {
-        name: 'Terms of Service',
+        name: CONTENT.navigation.landing.terms_of_service,
         href: '/terms_of_service',
       },
     ],
   },
   {
-    title: 'Contact Us',
+    title: CONTENT.navigation.landing.contact_us,
     links: [
       {
         name: CONTENT.footer.email,
@@ -37,4 +37,3 @@ export const LANDING_NAV_LINKS = [
     ],
   },
 ];
-

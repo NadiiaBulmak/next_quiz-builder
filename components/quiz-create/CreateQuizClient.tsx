@@ -159,38 +159,6 @@ export const CreateQuizClient = ({
     >
       <input type="hidden" name="quizId" value={quiz?.id ?? ''} />
       <input type="hidden" name="questions" value={JSON.stringify(questions)} />
-
-      {/* <div className="col-span-full flex flex-col gap-3">
-        {state?.errors && (
-          <div className="rounded-md border border-red-300 bg-red-50 p-4 text-sm text-red-700">
-            <p className="font-medium">Please fix the following:</p>
-            <ul className="mt-2 list-disc pl-5 space-y-1">
-              {state.errors.title?.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-              {state.errors.description?.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-              {state.errors.categories?.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-              {state.errors.difficulty?.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-              {state.errors.questions?.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {state?.message && state.success && (
-          <div className="rounded-md border border-emerald-300 bg-emerald-50 p-4 text-sm text-emerald-800">
-            {state.message}
-          </div>
-        )}
-      </div> */}
-
       <QuizBaseInputSection
         categories={categories}
         initialTitle={initialState.user?.title}

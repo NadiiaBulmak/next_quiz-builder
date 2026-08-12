@@ -1,13 +1,14 @@
-import { steps } from "@/constants/steps";
-import { SectionHeading } from "./SectionHeading";
+import { steps } from '@/constants/steps';
+import { SectionHeading } from './SectionHeading';
+import { CONTENT } from '@/constants/content';
 
 export const HowItWorks = () => {
   return (
     <section id="how-it-works" className="px-6 py-20">
       <div className="mx-auto max-w-[900px]">
         <SectionHeading
-          eyebrow="How It Works"
-          title="Create and share your quiz in 3 simple steps"
+          eyebrow={CONTENT.main.how_it_works.eyebrow}
+          title={CONTENT.main.how_it_works.title}
         />
 
         <div className="relative grid gap-10 md:grid-cols-3">
@@ -44,4 +45,4 @@ export const HowItWorks = () => {
       </div>
     </section>
   );
-}
+};

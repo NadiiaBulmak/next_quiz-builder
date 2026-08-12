@@ -11,13 +11,10 @@ export default function ForgotPasswordSendPage() {
         subheading={CONTENT.auth.forgot_password_sent.subheader}
       >
         <div className="flex w-full flex-col gap-2">
-
           <div className="flex flex-col gap-3 w-full p-6 rounded-lg bg-gray-100 border-0.5 border-gray-300">
-
-          <p className="text-sm text-gray-500">
-            If an account with that email exists, a password reset link has been
-            sent to your email.
-          </p>
+            <p className="text-sm text-gray-500">
+              {CONTENT.auth.form.forgot_password_notice}
+            </p>
           </div>
 
           <div className="flex flex-col lg:flex-row gap-2 justify-center items-center mt-4 underline underline-offset-4">

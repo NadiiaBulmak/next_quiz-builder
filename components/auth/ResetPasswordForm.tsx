@@ -37,14 +37,14 @@ export default function ResetPasswordForm() {
               htmlFor="password"
               className="block text-xs font-medium text-gray-700"
             >
-              Password
+              {CONTENT.auth.form.password.label}
             </label>
             <input
               id="password"
               name="password"
               type="password"
               required
-              placeholder="Create a password"
+              placeholder={CONTENT.auth.form.password.placeholder}
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
           </div>
@@ -53,14 +53,14 @@ export default function ResetPasswordForm() {
               htmlFor="confirm-password"
               className="block text-xs font-medium text-gray-700"
             >
-              Confirm Password
+              {CONTENT.auth.form.confirmPassword.label}
             </label>
             <input
               id="confirm-password"
               name="confirmPassword"
               type="password"
               required
-              placeholder="Create a password"
+              placeholder={CONTENT.auth.form.confirmPassword.placeholder}
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
           </div>
@@ -75,7 +75,7 @@ export default function ResetPasswordForm() {
           )}
           {state?.errors?.password && (
             <div>
-              <p>Password must:</p>
+              <p>{CONTENT.auth.form.password_must}</p>
               <ul>
                 {state.errors.password.map((error) => (
                   <li key={error}>- {error}</li>
@@ -99,7 +99,9 @@ export default function ResetPasswordForm() {
           disabled={isPending}
           className="hover:shadow-md w-full rounded-md border-1 border-gray-300 bg-lime-300 px-4 py-2 text-xs font-medium text-black focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isPending ? 'Submitting...' : 'Change password'}
+          {isPending
+            ? CONTENT.common.submitting
+            : CONTENT.auth.form.actions.change_password}
         </button>
       </form>
 

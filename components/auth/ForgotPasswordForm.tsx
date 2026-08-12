@@ -15,7 +15,7 @@ export default function ForgotPasswordForm() {
     forgotPasswordInitialState,
   );
 
-    const router = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     if (state?.success) {
@@ -32,7 +32,7 @@ export default function ForgotPasswordForm() {
               htmlFor="email"
               className="block text-xs font-medium text-gray-700"
             >
-              Email
+              {CONTENT.auth.form.email.label}
             </label>
             <input
               id="email"
@@ -40,7 +40,7 @@ export default function ForgotPasswordForm() {
               type="email"
               required
               autoComplete="true"
-              placeholder="Enter your email"
+              placeholder={CONTENT.auth.form.email.placeholder}
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
           </div>
@@ -52,7 +52,9 @@ export default function ForgotPasswordForm() {
           disabled={isPending}
           className="hover:shadow-md w-full rounded-md border-1 border-gray-300 bg-lime-300 px-4 py-2 text-xs font-medium text-black focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isPending ? 'Submitting...' : 'Send Reset Link'}
+          {isPending
+            ? CONTENT.common.submitting
+            : CONTENT.auth.form.actions.send_reset_link}
         </button>
       </form>
 

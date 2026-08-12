@@ -1,13 +1,14 @@
-import { features } from "@/constants/features";
-import { SectionHeading } from "./SectionHeading";
+import { features } from '@/constants/features';
+import { SectionHeading } from './SectionHeading';
+import { CONTENT } from '@/constants/content';
 
 export const Features = () => {
   return (
     <section id="features" className="px-6 py-10">
       <div className="mx-auto max-w-[1120px]">
         <SectionHeading
-          eyebrow="Features"
-          title="Everything you need to create amazing quizzes"
+          eyebrow={CONTENT.main.features.eyebrow}
+          title={CONTENT.main.features.title}
         />
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -37,4 +38,4 @@ export const Features = () => {
       </div>
     </section>
   );
-}
+};

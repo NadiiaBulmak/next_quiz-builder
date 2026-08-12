@@ -5,7 +5,7 @@ export const QuizProgress = ({
   isQuestionAnswered,
   isCurrentQuestion,
 }: {
-  questions: any[];
+  questions: { id: string }[];
   isQuestionAnswered: (questionId: string) => boolean;
   isCurrentQuestion: (questionId: string) => boolean;
 }) => {

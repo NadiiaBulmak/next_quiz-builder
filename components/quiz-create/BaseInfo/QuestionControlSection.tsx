@@ -1,4 +1,5 @@
 import { CONTENT } from '@/constants/content';
+import { QUIZ_INTENTS } from '@/constants/quiz';
 import { Button } from '../../ui/button';
 import { QuestionControlSectionType } from '@/types/props';
 import { FolderOpen, Plus, Send } from 'lucide-react';
@@ -22,7 +23,7 @@ export const QuestionControlSection = ({
         <Button
           type="submit"
           name="intent"
-          value="patch"
+          value={QUIZ_INTENTS.PATCH}
           className="w-full rounded-sm py-4 cursor-pointer"
         >
           <Send className="w-4 h-4 text-lime-500" />
@@ -33,7 +34,7 @@ export const QuestionControlSection = ({
           <Button
             type="submit"
             name="intent"
-            value="save"
+            value={QUIZ_INTENTS.SAVE}
             className="w-full rounded-sm py-4 cursor-pointer"
           >
             <Send className="w-4 h-4 text-lime-500" />
@@ -42,7 +43,7 @@ export const QuestionControlSection = ({
           <Button
             type="submit"
             name="intent"
-            value="draft"
+            value={QUIZ_INTENTS.DRAFT}
             className="w-full rounded-sm py-4 bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer"
           >
             <FolderOpen className="w-4 h-4" />

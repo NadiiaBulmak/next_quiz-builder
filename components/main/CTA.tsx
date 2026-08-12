@@ -13,7 +13,9 @@ import {
   Sparkles,
   Trophy,
   Users,
-} from "lucide-react";
+} from 'lucide-react';
+import { ROUTES } from '@/constants/routes';
+import { CONTENT } from '@/constants/content';
 
 export const CTA = () => {
   return (
@@ -26,23 +28,23 @@ export const CTA = () => {
 
           <div>
             <h3 className="text-base font-bold text-slate-900">
-              Ready to create your first quiz?
+              {CONTENT.main.cta.title}
             </h3>
 
             <p className="mt-1 text-xs text-slate-600">
-              Join thousands of creators who are already using QuizFlow.
+              {CONTENT.main.cta.description}
             </p>
           </div>
         </div>
 
         <a
-          href="/register"
+          href={ROUTES.REGISTER}
           className="inline-flex shrink-0 items-center gap-4 rounded-lg bg-black px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_0_2px_#c9f13c] transition hover:bg-slate-900"
         >
-          Get Started Free
+          {CONTENT.main.cta.button}
           <ArrowRight size={17} />
         </a>
       </div>
     </section>
   );
-}
+};

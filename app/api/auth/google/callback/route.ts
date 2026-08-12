@@ -1,29 +1,31 @@
+import { AUTH } from '@/constants/auth';
+import { API_ENDPOINTS } from '@/constants/api';
+import { NAV_LINKS } from '@/constants/nav_links';
 import { prisma } from '@/lib/prisma';
 import { NextResponse, NextRequest } from 'next/server';
 import { client } from '@/lib/google';
 import { createSession } from '@/services/sessions';
-import { NAV_LINKS } from '@/constants/nav_links';
 
 export async function GET(request: NextRequest) {
-  const code = request.nextUrl.searchParams.get('code');
+  const code = request.nextUrl.searchParams.get(AUTH.GOOGLE_OAUTH.CODE_PARAM);
 
   if (!code) {
-    return NextResponse.redirect(
-      new URL('/login?error=google_auth_failed', request.url),
+    const loginErrorUrl = new URL(NAV_LINKS.login, request.url);
+    loginErrorUrl.searchParams.set(
+      AUTH.GOOGLE_OAUTH.ERROR_PARAM,
+      AUTH.GOOGLE_AUTH_ERROR,
     );
+    return NextResponse.redirect(loginErrorUrl);
   }
 
   try {
     const { tokens } = await client.getToken(code);
 
-    const response = await fetch(
-      'https://www.googleapis.com/oauth2/v3/userinfo',
-      {
-        headers: {
-          Authorization: `Bearer ${tokens.access_token}`,
-        },
+    const response = await fetch(API_ENDPOINTS.GOOGLE_USER_INFO, {
+      headers: {
+        Authorization: `Bearer ${tokens.access_token}`,
       },
-    );
+    });
 
     if (!response.ok) {
       throw new Error('Failed to fetch Google user profile');
@@ -80,8 +82,12 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Google authentication failed:', error);
 
-    return NextResponse.redirect(
-      new URL('/login?error=google_auth_failed', request.url),
+    const loginErrorUrl = new URL(NAV_LINKS.login, request.url);
+    loginErrorUrl.searchParams.set(
+      AUTH.GOOGLE_OAUTH.ERROR_PARAM,
+      AUTH.GOOGLE_AUTH_ERROR,
     );
+
+    return NextResponse.redirect(loginErrorUrl);
   }
 }

@@ -1,4 +1,6 @@
-import Logo from "@/components/shared/Logo";
+import Logo from '@/components/shared/Logo';
+import { ROUTES } from '@/constants/routes';
+import { CONTENT } from '@/constants/content';
 
 export const Navbar = () => {
   return (
@@ -11,44 +13,44 @@ export const Navbar = () => {
             href="#features"
             className="text-sm font-medium text-slate-800 transition hover:text-lime-600"
           >
-            Features
+            {CONTENT.navigation.main.features}
           </a>
           <a
             href="#how-it-works"
             className="text-sm font-medium text-slate-800 transition hover:text-lime-600"
           >
-            How It Works
+            {CONTENT.navigation.main.how_it_works}
           </a>
           <a
             href="#examples"
             className="text-sm font-medium text-slate-800 transition hover:text-lime-600"
           >
-            Examples
+            {CONTENT.navigation.main.examples}
           </a>
           <a
             href="#pricing"
             className="text-sm font-medium text-slate-800 transition hover:text-lime-600"
           >
-            Pricing
+            {CONTENT.navigation.main.pricing}
           </a>
         </nav>
 
         <div className="flex items-center gap-6">
           <a
-            href="/login"
+            href={ROUTES.LOGIN}
             className="hidden text-sm font-medium text-slate-700 transition hover:text-black sm:block"
           >
-            Log in
+            {CONTENT.navigation.main.login}
           </a>
 
           <a
-            href="/register"
+            href={ROUTES.REGISTER}
             className="rounded-lg bg-black px-5 py-3 text-sm font-semibold text-white shadow-[0_0_0_2px_#d9ff48] transition hover:bg-slate-900"
           >
-            Get Started Free
+            {CONTENT.navigation.main.get_started_free}
           </a>
         </div>
       </div>
     </header>
   );
-}
+};

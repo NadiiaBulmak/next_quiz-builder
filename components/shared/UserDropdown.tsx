@@ -13,6 +13,7 @@ import {
 import { NAV_LINKS } from '@/constants/nav_links';
 import { logout } from '@/app/actions/auth/logout';
 import { useActionState } from 'react';
+import { CONTENT } from '@/constants/content';
 
 export default function UserDropdown({
   name,
@@ -69,7 +70,7 @@ export default function UserDropdown({
             className="w-full h-full flex items-center gap-1"
           >
             <Settings className="mr-2" width={24} height={24} />
-            Settings
+            {CONTENT.shared.user_menu.settings}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="text-base p-2 cursor-pointer">
@@ -84,7 +85,7 @@ export default function UserDropdown({
                 width={24}
                 height={24}
               />
-              Log Out
+              {CONTENT.shared.user_menu.log_out}
             </button>
           </form>
         </DropdownMenuItem>

@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma';
 import { createSession } from '@/services/sessions';
 import { FormState, SignupFormSchema } from '@/schemas/sign-up.schema';
 import { hashPassword } from '@/utils/hashPassword.util';
+import { CONTENT } from '@/constants/content';
 
 export async function signup(
   _state: FormState,
@@ -35,7 +36,7 @@ export async function signup(
 
     if (existingUser) {
       return {
-        message: 'User already exists',
+        message: CONTENT.auth.messages.user_already_exists,
       };
     }
 
@@ -54,12 +55,12 @@ export async function signup(
 
     return {
       success: true,
-      message: 'Account created successfully.',
+      message: CONTENT.auth.messages.account_created_successfully,
     };
   } catch (error) {
     console.error('Signup failed:', error);
     return {
-      message: 'Unable to create account right now. Please try again.',
+      message: CONTENT.auth.messages.unable_create_account,
     };
   }
 }

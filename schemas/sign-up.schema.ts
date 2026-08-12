@@ -1,18 +1,16 @@
-import * as z from 'zod'
+import * as z from 'zod';
+import { CONTENT } from '@/constants/content';
 
 export const SignupFormSchema = z.object({
-  name: z
-    .string()
-    .min(2, { error: 'Name must be at least 2 characters long.' })
-    .trim(),
-  email: z.email({ error: 'Please enter a valid email.' }).trim(),
+  name: z.string().min(2, { error: CONTENT.auth.validation.name_min }).trim(),
+  email: z.email({ error: CONTENT.auth.validation.email_invalid }).trim(),
   password: z
     .string()
-    .min(8, { error: 'Be at least 8 characters long' })
-    .regex(/[a-zA-Z]/, { error: 'Contain at least one letter.' })
-    .regex(/[0-9]/, { error: 'Contain at least one number.' })
+    .min(8, { error: CONTENT.auth.validation.password_min })
+    .regex(/[a-zA-Z]/, { error: CONTENT.auth.validation.password_letter })
+    .regex(/[0-9]/, { error: CONTENT.auth.validation.password_number })
     .regex(/[^a-zA-Z0-9]/, {
-      error: 'Contain at least one special character.',
+      error: CONTENT.auth.validation.password_special,
     })
     .trim(),
 });

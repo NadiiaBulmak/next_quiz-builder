@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { CONTENT } from "@/constants/content";
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { CONTENT } from '@/constants/content';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const containerVariants = {
   hidden: {
     opacity: 0,
     y: 20,
-    filter: "blur(8px)",
+    filter: 'blur(8px)',
   },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
+    filter: 'blur(0px)',
     transition: {
       duration: 0.6,
       ease: [0.22, 1, 0.36, 1] as const,
@@ -23,7 +23,7 @@ const containerVariants = {
   exit: {
     opacity: 0,
     y: -20,
-    filter: "blur(8px)",
+    filter: 'blur(8px)',
     transition: {
       duration: 0.35,
       ease: [0.22, 1, 0.36, 1] as const,
@@ -51,8 +51,13 @@ export default function AuthContentSection() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentItem((prev) => (prev + 1) % CONTENT.auth.contentSectionSlider.length);
-      console.log("Current item updated to:", (currentItem + 1) % CONTENT.auth.contentSectionSlider.length);
+      setCurrentItem(
+        (prev) => (prev + 1) % CONTENT.auth.contentSectionSlider.length,
+      );
+      console.log(
+        'Current item updated to:',
+        (currentItem + 1) % CONTENT.auth.contentSectionSlider.length,
+      );
     }, 5000);
 
     return () => clearInterval(interval);
@@ -76,8 +81,9 @@ export default function AuthContentSection() {
               <motion.h1
                 key={header}
                 variants={itemVariants}
-                className={`text-2xl font-medium md:text-3xl lg:text-4xl ${index === 2 ? "text-lime-300" : "text-white"
-                  }`}
+                className={`text-2xl font-medium md:text-3xl lg:text-4xl ${
+                  index === 2 ? 'text-lime-300' : 'text-white'
+                }`}
               >
                 {header}
               </motion.h1>
@@ -105,7 +111,7 @@ export default function AuthContentSection() {
           <button
             key={index}
             onClick={() => setCurrentItem(index)}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={CONTENT.auth.a11y.go_to_slide(index + 1)}
             className="flex h-4 w-4 items-center justify-center"
           >
             <motion.div
@@ -114,12 +120,13 @@ export default function AuthContentSection() {
                 opacity: currentItem === index ? 1 : 0.35,
               }}
               transition={{
-                type: "spring",
+                type: 'spring',
                 stiffness: 450,
                 damping: 25,
               }}
-              className={`h-2.5 w-2.5 rounded-full ${currentItem === index ? "bg-lime-300" : "bg-zinc-500"
-                }`}
+              className={`h-2.5 w-2.5 rounded-full ${
+                currentItem === index ? 'bg-lime-300' : 'bg-zinc-500'
+              }`}
             />
           </button>
         ))}

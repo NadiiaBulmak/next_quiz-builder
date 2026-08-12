@@ -2,8 +2,7 @@
 import { PreviewTopBarProps } from '@/types/props';
 import { Button } from '../ui/button';
 import { ArrowLeft } from 'lucide-react';
-
-
+import { CONTENT } from '@/constants/content';
 
 export default function PreviewTopBar({
   title,
@@ -31,10 +30,10 @@ export default function PreviewTopBar({
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
       <div className="text-sm text-muted-foreground">
-        {questionCount} Questions
+        {CONTENT.preview.question_count(questionCount)}
       </div>
       <div className="text-sm text-muted-foreground">
-        {questionCount} Questions
+        {CONTENT.preview.question_count(questionCount)}
       </div>
       {/* <SidebarBottom name={name} email={email} opened={opened} /> */}
     </div>

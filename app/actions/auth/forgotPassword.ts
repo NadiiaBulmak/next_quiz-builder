@@ -1,9 +1,13 @@
 'use server';
 
 import { prisma } from '@/lib/prisma';
-import { ForgotPasswordFormState, ForgotPasswordFormSchema } from '@/schemas/forgot_password.schema';
+import {
+  ForgotPasswordFormState,
+  ForgotPasswordFormSchema,
+} from '@/schemas/forgot_password.schema';
 import { createResetToken } from '@/services/forgot_password';
 import { buildEmailContent, sendMail } from '@/services/sendEmail';
+import { CONTENT } from '@/constants/content';
 
 export async function forgotPassword(
   _state: ForgotPasswordFormState,
@@ -34,7 +38,7 @@ export async function forgotPassword(
     if (!user) {
       return {
         errors: {
-          email: ['It seems like there is no account associated with this email address.'],
+          email: [CONTENT.auth.messages.no_account_for_email],
         },
       };
     }
@@ -48,12 +52,12 @@ export async function forgotPassword(
 
     return {
       success: true,
-      message: 'Password reset instructions sent successfully.',
+      message: CONTENT.auth.messages.password_reset_instructions_sent,
     };
   } catch (error) {
     console.error('Forgot password failed:', error);
     return {
-      message: 'Unable to process your request right now. Please try again.',
+      message: CONTENT.auth.messages.unable_process_request,
     };
   }
 }

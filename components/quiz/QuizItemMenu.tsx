@@ -20,6 +20,7 @@ import {
   duplicateQuizAction,
 } from '../../app/actions/quiz/quizItemActions';
 import { switchIsPublishedAction } from '../../app/actions/quiz/quizItemActions';
+import { CONTENT } from '@/constants/content';
 
 export const QuizItemMenu = ({
   id,
@@ -61,7 +62,9 @@ export const QuizItemMenu = ({
           ) : (
             <SquircleDashed width={24} height={24} />
           )}
-          {isPublished ? 'Make it draft' : 'Make it published'}
+          {isPublished
+            ? CONTENT.quiz_list.menu.make_draft
+            : CONTENT.quiz_list.menu.make_published}
         </DropdownMenuItem>
 
         <DropdownMenuItem
@@ -69,7 +72,7 @@ export const QuizItemMenu = ({
           className="cursor-pointer flex items-center gap-2 p-2 hover:bg-gray-100"
         >
           <CopyPlus width={24} height={24} />
-          Duplicate
+          {CONTENT.quiz_list.menu.duplicate}
         </DropdownMenuItem>
 
         <DropdownMenuItem
@@ -78,7 +81,7 @@ export const QuizItemMenu = ({
           className="cursor-pointer flex items-center gap-2 p-2 hover:bg-gray-100"
         >
           <Trash2 width={24} height={24} />
-          Delete
+          {CONTENT.quiz_list.menu.delete}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

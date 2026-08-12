@@ -1,5 +1,6 @@
 import { Button } from '../ui/button';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { CONTENT } from '@/constants/content';
 
 export const QuizControlSection = ({
   handlePrevious,
@@ -20,14 +21,14 @@ export const QuizControlSection = ({
         className={`flex items-center gap-2 cursor-pointer ${disabledPrevious ? 'opacity-0 cursor-not-allowed' : ''}`}
       >
         <ArrowLeft />
-        Previous
+        {CONTENT.preview.previous}
       </Button>
       <Button
         disabled={disabledNext}
         onClick={handleNext}
         className={`flex items-center gap-2 cursor-pointer ${disabledNext ? 'opacity-0 cursor-not-allowed' : ''}`}
       >
-        Next <ArrowRight />
+        {CONTENT.preview.next} <ArrowRight />
       </Button>
     </div>
   );

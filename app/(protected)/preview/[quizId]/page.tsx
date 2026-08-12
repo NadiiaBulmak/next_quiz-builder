@@ -2,6 +2,7 @@ import PreviewTopBar from '@/components/preview/PreviewTopBar';
 import { QuizContent } from '@/components/preview/QuizContent';
 import type { Question, QuizForEditor } from '@/types/props';
 import { getQuizById } from '@/services/quizz.service';
+import { CONTENT } from '@/constants/content';
 
 export default async function PreviewPage({
   params,
@@ -12,7 +13,7 @@ export default async function PreviewPage({
   const quizData = await getQuizById(quizId, true, false);
 
   if (!quizData) {
-    return <div>Quiz not found</div>;
+    return <div>{CONTENT.common.quiz_not_found}</div>;
   }
 
   const quiz: QuizForEditor = quizData;

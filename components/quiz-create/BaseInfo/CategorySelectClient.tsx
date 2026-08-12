@@ -107,7 +107,7 @@ export default function CategorySelectClient({
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Add category..."
+          placeholder={CONTENT.create.base.category.placeholder}
           className="
             flex-1
             min-w-32
@@ -156,7 +156,7 @@ export default function CategorySelectClient({
                 text-left
               "
             >
-              Create &quot;{search}&quot;
+              {CONTENT.create.base.category.create_new(search)}
             </button>
           )}
         </div>

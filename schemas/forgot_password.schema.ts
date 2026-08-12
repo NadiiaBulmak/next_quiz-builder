@@ -1,7 +1,11 @@
-import * as z from 'zod'
+import * as z from 'zod';
+import { CONTENT } from '@/constants/content';
 
 export const ForgotPasswordFormSchema = z.object({
-  email: z.string().email({ error: 'Please enter a valid email.' }).trim(),
+  email: z
+    .string()
+    .email({ error: CONTENT.auth.validation.email_invalid })
+    .trim(),
 });
 
 export type ForgotPasswordFormState = {

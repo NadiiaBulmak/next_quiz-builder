@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma';
 import { createSession } from '@/services/sessions';
 import { LoginFormState, LoginFormSchema } from '@/schemas/login.schema';
 import { comparePassword } from '@/utils/hashPassword.util';
+import { CONTENT } from '@/constants/content';
 
 export async function login(
   _state: LoginFormState,
@@ -36,7 +37,7 @@ export async function login(
     if (!user) {
       return {
         errors: {
-          email: ['Invalid credentials'],
+          email: [CONTENT.auth.messages.invalid_credentials],
         },
       };
     }
@@ -44,7 +45,7 @@ export async function login(
     if (!user.passwordHash) {
       return {
         errors: {
-          email: ['Use Google sign in for this account or reset your password.'],
+          email: [CONTENT.auth.messages.use_google_or_reset_password],
         },
       };
     }
@@ -54,7 +55,7 @@ export async function login(
     if (!isPasswordValid) {
       return {
         errors: {
-          password: ['Invalid credentials'],
+          password: [CONTENT.auth.messages.invalid_credentials],
         },
       };
     }
@@ -63,12 +64,12 @@ export async function login(
 
     return {
       success: true,
-      message: 'Signed in successfully.',
+      message: CONTENT.auth.messages.signed_in_successfully,
     };
   } catch (error) {
     console.error('Login failed:', error);
     return {
-      message: 'Unable to sign in right now. Please try again.',
+      message: CONTENT.auth.messages.unable_sign_in,
     };
   }
 }

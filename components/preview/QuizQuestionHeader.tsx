@@ -1,3 +1,5 @@
+import { CONTENT } from '@/constants/content';
+
 export const QuizQuestionHeader = ({
   text,
   index,
@@ -7,7 +9,9 @@ export const QuizQuestionHeader = ({
 }) => {
   return (
     <div className="border-b-1 py-1">
-      <h3 className="text-lg font-semibold mb-2">{`Question ${index + 1}`}</h3>
+      <h3 className="text-lg font-semibold mb-2">
+        {CONTENT.preview.question_title(index + 1)}
+      </h3>
       <p className="text-gray-700 mb-2">{text}</p>
     </div>
   );

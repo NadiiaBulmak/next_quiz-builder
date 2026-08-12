@@ -1,21 +1,25 @@
 import * as z from 'zod';
+import { CONTENT } from '@/constants/content';
 
 export const ResetFormSchema = z
   .object({
-    token: z.string().min(1, { error: 'Reset token is required.' }).trim(),
+    token: z
+      .string()
+      .min(1, { error: CONTENT.auth.validation.reset_token_required })
+      .trim(),
     password: z
       .string()
-      .min(8, { error: 'Be at least 8 characters long' })
-      .regex(/[a-zA-Z]/, { error: 'Contain at least one letter.' })
-      .regex(/[0-9]/, { error: 'Contain at least one number.' })
+      .min(8, { error: CONTENT.auth.validation.password_min })
+      .regex(/[a-zA-Z]/, { error: CONTENT.auth.validation.password_letter })
+      .regex(/[0-9]/, { error: CONTENT.auth.validation.password_number })
       .regex(/[^a-zA-Z0-9]/, {
-        error: 'Contain at least one special character.',
+        error: CONTENT.auth.validation.password_special,
       })
       .trim(),
     confirmPassword: z.string().trim(),
   })
   .refine((data) => data.confirmPassword === data.password, {
-    message: 'Passwords do not match',
+    message: CONTENT.auth.validation.passwords_do_not_match,
     path: ['confirmPassword'],
   });
 

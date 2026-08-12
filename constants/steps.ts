@@ -13,25 +13,26 @@ import {
   Sparkles,
   Trophy,
   Users,
-} from "lucide-react";
+} from 'lucide-react';
+import { CONTENT } from '@/constants/content';
 
 export const steps = [
   {
-    number: "1",
+    number: CONTENT.main.how_it_works.steps[0].number,
     icon: Edit3,
-    title: "Create",
-    description: "Build your quiz with questions and answer options.",
+    title: CONTENT.main.how_it_works.steps[0].title,
+    description: CONTENT.main.how_it_works.steps[0].description,
   },
   {
-    number: "2",
+    number: CONTENT.main.how_it_works.steps[1].number,
     icon: Share2,
-    title: "Share",
-    description: "Publish and get your unique quiz link.",
+    title: CONTENT.main.how_it_works.steps[1].title,
+    description: CONTENT.main.how_it_works.steps[1].description,
   },
   {
-    number: "3",
+    number: CONTENT.main.how_it_works.steps[2].number,
     icon: Users,
-    title: "Get Results",
-    description: "People take your quiz and you see the results.",
+    title: CONTENT.main.how_it_works.steps[2].title,
+    description: CONTENT.main.how_it_works.steps[2].description,
   },
 ];

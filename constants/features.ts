@@ -13,31 +13,28 @@ import {
   Sparkles,
   Trophy,
   Users,
-} from "lucide-react";
+} from 'lucide-react';
+import { CONTENT } from '@/constants/content';
 
 export const features = [
   {
     icon: Edit3,
-    title: "Easy Quiz Builder",
-    description:
-      "Create quizzes with multiple choice questions in a clean and intuitive interface.",
+    title: CONTENT.main.features.items[0].title,
+    description: CONTENT.main.features.items[0].description,
   },
   {
     icon: Share2,
-    title: "Share Instantly",
-    description:
-      "Get a public link and share your quiz anywhere. No login required for takers.",
+    title: CONTENT.main.features.items[1].title,
+    description: CONTENT.main.features.items[1].description,
   },
   {
     icon: Lightbulb,
-    title: "Engaging Experience",
-    description:
-      "Beautiful, mobile-friendly quiz experience that keeps your audience engaged.",
+    title: CONTENT.main.features.items[2].title,
+    description: CONTENT.main.features.items[2].description,
   },
   {
     icon: BarChart3,
-    title: "View Results",
-    description:
-      "See how your quiz is performing with insights and detailed results.",
+    title: CONTENT.main.features.items[3].title,
+    description: CONTENT.main.features.items[3].description,
   },
 ];

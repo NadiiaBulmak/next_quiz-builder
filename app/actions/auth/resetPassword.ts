@@ -8,6 +8,7 @@ import {
 } from '@/schemas/reset_password.schema';
 import { createSession } from '@/services/sessions';
 import { hashPassword } from '@/utils/hashPassword.util';
+import { CONTENT } from '@/constants/content';
 
 export async function resetPassword(
   _state: ResetFormState,
@@ -45,7 +46,7 @@ export async function resetPassword(
     if (!resetToken || resetToken.usedAt || resetToken.expiresAt < new Date()) {
       return {
         errors: {
-          token: ['Reset link is invalid or has expired.'],
+          token: [CONTENT.auth.messages.reset_link_invalid_or_expired],
         },
       };
     }
@@ -75,12 +76,12 @@ export async function resetPassword(
 
     return {
       success: true,
-      message: 'Password updated successfully.',
+      message: CONTENT.auth.messages.password_updated_successfully,
     };
   } catch (error) {
     console.error('Password reset failed:', error);
     return {
-      message: 'Unable to reset password right now. Please try again.',
+      message: CONTENT.auth.messages.unable_reset_password,
     };
   }
 }
