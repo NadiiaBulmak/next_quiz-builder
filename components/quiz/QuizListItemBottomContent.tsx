@@ -21,13 +21,19 @@ export const QuizListItemBottomContent = ({
   };
 
   return (
-    <div className="flex justify-between">
-      {showAllQuiz && (
-        <Button className="bg-lime-300 p-2 rounded-md font-semibold w-fit text-black px-3 hover:bg-lime-100 hover:border-1 hover:border-lime-300 cursor-pointer">
-          Start Quiz
-        </Button>
-      )}
-      {!showAllQuiz && (
+    <div className="flex gap-2 w-full">
+      {showAllQuiz ? (
+        <Link
+          href={`${NAV_LINKS.quiz}/${id}`}
+          className="w-full"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button className="w-full rounded-md border border-black bg-black px-3 py-2 font-semibold text-white cursor-pointer transition-all duration-150 hover:bg-black hover:border-lime-500 hover:shadow-[0_0_0_2px_rgba(132,204,22,0.25)]">
+            Start Quiz
+          </Button>
+        </Link>
+      ) : (
         <div className="flex gap-2 w-full">
           <Link href={`${NAV_LINKS.edit}/${id}`} className="max-w-1/2 w-full">
             <Button className="bg-white border-gray-500 p-2 rounded-md font-semibold text-black px-3 hover:bg-gray-100 cursor-pointer w-full">
@@ -42,19 +48,19 @@ export const QuizListItemBottomContent = ({
               Preview
             </Button>
           </Link>
-
-          <Button
-            className="rounded-md border border-black bg-black px-3 py-2 font-semibold text-white cursor-pointer transition-all duration-150 hover:bg-black hover:border-lime-500 hover:shadow-[0_0_0_2px_rgba(132,204,22,0.25)]"
-            onClick={handleCopyLink}
-          >
-            {!copied ? (
-              <LinkIcon width={24} height={24} />
-            ) : (
-              <CheckCheck width={24} height={24} />
-            )}
-          </Button>
         </div>
       )}
+
+      <Button
+        className="rounded-md border border-black bg-black px-3 py-2 font-semibold text-white cursor-pointer transition-all duration-150 hover:bg-black hover:border-lime-500 hover:shadow-[0_0_0_2px_rgba(132,204,22,0.25)]"
+        onClick={handleCopyLink}
+      >
+        {!copied ? (
+          <LinkIcon width={24} height={24} />
+        ) : (
+          <CheckCheck width={24} height={24} />
+        )}
+      </Button>
     </div>
   );
 };

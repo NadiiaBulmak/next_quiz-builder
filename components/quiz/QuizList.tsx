@@ -8,8 +8,8 @@ export default async function QuizList({ listType }: QuizListType) {
     listType === ListType.all
       ? await getAllQuizzes(null, { isPublished: true })
       : await getAllMyQuizzes();
-  const typedQuizzes = quizzes as QuizListItemType[];
-  console.log(typedQuizzes);
+  // const typedQuizzes = quizzes as QuizListItemType[];
+  // console.log(typedQuizzes);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
       {quizzes.map((q) => (

@@ -4,7 +4,7 @@ export const NAV_LINKS = {
     sign_in: "/signUp",
     forgot_password: "/forgot_password",
     forgot_password_sent: "/forgot_password_sent",
-    
+    quiz: "/quiz",
     // dashboard: "/dashboard",
     quizzes: {
         all: "/quizzes/all",
