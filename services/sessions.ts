@@ -82,13 +82,16 @@ export async function deleteSession() {
   cookieStore.delete(AUTH.SESSION_COOKIE);
 }
 
-export const verifySession = cache(async (): Promise<SessionPayload> => {
+export const verifySession = cache(async (withoutRedirect = false ): Promise<SessionPayload> => {
   const cookie = (await cookies()).get(AUTH.SESSION_COOKIE)?.value;
 
   const session = await decrypt(cookie);
 
   if (!session) {
-    redirect(NAV_LINKS.login);
+    if (withoutRedirect) {
+      return null as unknown as SessionPayload;
+    }
+      redirect(NAV_LINKS.login);
   }
 
   const expiresAt = session.exp! * 1000;

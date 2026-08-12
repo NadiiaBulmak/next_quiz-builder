@@ -3,7 +3,7 @@ import { ROUTES } from '@/constants/routes';
 import { verifySession } from '@/services/sessions';
 
 export async function Navbar() {
-  const session = await verifySession();
+  const session = await verifySession(true);
   const userId = session?.userId;
 
   // const user =
