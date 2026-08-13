@@ -1,4 +1,4 @@
-import { List } from 'lucide-react';
+import { Gauge, List, ListTree } from 'lucide-react';
 
 import { Quiz } from '@/types/quiz';
 import { CONTENT } from '@/constants/content';
@@ -10,7 +10,7 @@ export const QuizInfo = ({
   categories,
 }: Pick<Quiz, 'title' | 'description' | 'difficulty' | 'categories'>) => {
   return (
-    <div className="flex flex gap-4">
+    <div className="flex flex-col lg:flex-row gap-4">
       <div className="bg-gray-500 rounded-md text-white w-12 h-12 flex items-center justify-center mt-1 bg-lime-200">
         <List className="text-green-800" />
       </div>
@@ -18,17 +18,19 @@ export const QuizInfo = ({
         <h1 className="text-2xl font-bold">{title}</h1>
         <p className="text-gray-500 text-sm">{description}</p>
         <div className="flex gap-3 text-sm mt-4 flex-col lg:flex-row">
-          <div className="flex items-center gap-1">
-            <span className="text-gray-500">
+          <div className="flex items-center gap-3">
+            {/* <span className="text-gray-500">
               {CONTENT.shared_quiz.labels.difficulty}
-            </span>
-            <span className="font-bold">{difficulty.name}</span>
+            </span> */}
+            <Gauge className="text-gray-500" width={16} height={16} strokeWidth={2} />
+            <span className="font-medium">{difficulty.name}</span>
           </div>
-          <div className="flex items-center gap-1">
-            <span className="text-gray-500">
+          <div className="flex items-center gap-3">
+            {/* <span className="text-gray-500">
               {CONTENT.shared_quiz.labels.categories}
-            </span>
-            <span className="font-bold">
+            </span> */}
+            <ListTree className="text-gray-500" width={16} height={16} strokeWidth={2} />
+            <span className="font-medium">
               {categories?.map((category) => category.name).join(', ')}
             </span>
           </div>

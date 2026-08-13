@@ -27,16 +27,23 @@ export const AnswerOptionItem = ({
       onDragOver={onDragOver}
       onDrop={onDrop}
     >
-      <div
-        onClick={() => onChange?.({ id, order, text, isCorrect: !isCorrect })}
+      <button
+        type="button"
+        onClick={() => {
+          if (!isCorrect) {
+            onChange?.({ id, order, text, isCorrect: true });
+          }
+        }}
         className="cursor-pointer"
+        aria-label={isCorrect ? 'Correct answer' : 'Mark as correct answer'}
+        aria-pressed={isCorrect}
       >
         {isCorrect ? (
-          <CircleCheck width={20} height={20} className='text-lime-500' />
+          <CircleCheck width={20} height={20} className="text-lime-500" />
         ) : (
           <CircleX width={20} height={20} />
         )}
-      </div>
+      </button>
       <div className="relative w-full flex items-center gap-3">
         <Input
           className="rounded-sm"
@@ -51,7 +58,7 @@ export const AnswerOptionItem = ({
           height={36}
           onClick={() => onDelete?.(order)}
         />
-        <GripVertical className='cursor-pointer hover:text-lime-500' />
+        <GripVertical className="cursor-pointer hover:text-lime-500" />
       </div>
     </div>
   );

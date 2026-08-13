@@ -1,12 +1,13 @@
 export const ROUTES = {
   HOME: '/',
   LOGIN: '/login',
-  REGISTER: '/register',
+  REGISTER: '/signUp',
   SIGN_UP: '/signUp',
   FORGOT_PASSWORD: '/forgot_password',
   FORGOT_PASSWORD_SENT: '/forgot_password_sent',
   RESET_PASSWORD: '/reset-password',
   QUIZ: '/quiz',
+  QUIZ_RESULT: '/quiz_result',
   QUIZZES: {
     ALL: '/quizzes/all',
     MY: '/quizzes/my',

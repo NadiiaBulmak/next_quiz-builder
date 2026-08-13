@@ -210,3 +210,24 @@ export type PreviewTopBarProps = {
   description?: string | null;
   questionCount: number;
 };
+
+export type QuizResultContentProps = Pick<
+  Quiz,
+  'title' | 'description' | 'questions' | 'difficulty' | 'categories'
+> & {
+  resultId: string;
+  recipient: {
+    email: string;
+    name: string | null;
+  };
+  score: number;
+  correctAnswers: number;
+  totalQuestions: number;
+  answers: {
+    id: string;
+    questionText: string;
+    answerText: string;
+    isCorrect: boolean;
+  }[];
+  finishedAt: Date;
+};

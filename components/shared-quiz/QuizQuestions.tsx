@@ -1,13 +1,13 @@
 'use client';
 
 import { Quiz } from '@/types/quiz';
-import { ArrowRight, Circle, CircleCheck, ArrowLeft } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from '../ui/button';
 import { CONTENT } from '@/constants/content';
 import { QuestionAnswerList } from './QuestionAnswerList';
 
 export const QuizQuestions = ({
+  isPending,
   currentQuestionIndex,
   handlePreviousQuestion,
   handleNextQuestion,
@@ -21,6 +21,7 @@ export const QuizQuestions = ({
   // isQuestionAnswered,
   isQuizCompleted,
 }: {
+  isPending: boolean;
   currentQuestionIndex: number;
   handlePreviousQuestion: () => void;
   handleNextQuestion: () => void;
@@ -52,6 +53,7 @@ export const QuizQuestions = ({
 
       <div className="flex justify-between flex-col lg:flex-row gap-4 mt-4">
         <Button
+          type="button"
           className="cursor-pointer self-end w-fit p-3 lg:p-5 text-lime-300 flex items-center gap-2 rounded-md text-xs lg:text-sm w-full md:w-fit"
           onClick={handlePreviousQuestion}
           disabled={disabledPrevious}
@@ -60,6 +62,7 @@ export const QuizQuestions = ({
           {CONTENT.shared_quiz.buttons.previous}
         </Button>
         <Button
+          type="button"
           className="cursor-pointer self-end w-fit p-3 lg:p-5 text-lime-300 flex items-center gap-2 rounded-md text-xs lg:text-sm w-full md:w-fit"
           onClick={handleNextQuestion}
           disabled={disabledNext}
@@ -71,9 +74,9 @@ export const QuizQuestions = ({
           type="submit"
           className={`self-end w-fit p-3 lg:p-5 bg-black hover:bg-lime-900 cursor-pointer border-lime-500 text-white shadow-[0_0_0_3px_rgba(132,204,22,0.15)]  flex items-center gap-2 rounded-md text-xs lg:text-sm w-full md:w-fit ${isQuizCompleted ? 'animate-pulse animate-bounce' : 'opacity-50 cursor-not-allowed'}`}
           onClick={handleNextQuestion}
-          disabled={!isQuizCompleted}
+          disabled={isPending || !isQuizCompleted}
         >
-          {CONTENT.shared_quiz.buttons.submit}
+          {isPending ? CONTENT.shared_quiz.buttons.submit : CONTENT.shared_quiz.buttons.submit}
         </Button>
       </div>
     </div>

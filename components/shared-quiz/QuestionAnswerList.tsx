@@ -15,12 +15,8 @@ export const QuestionAnswerList = ({
   handleAnswerSelect: (questionId: string, selectedAnswerIds: string[]) => void;
 }) => {
   const handleLocalAnswerSelect = (answerId: string) => {
-    const nextSelectedAnswerIds = selectedAnswerIds.includes(answerId)
-      ? selectedAnswerIds.filter((id) => id !== answerId)
-      : [...selectedAnswerIds, answerId];
-
     if (questionId) {
-      handleAnswerSelect(questionId, nextSelectedAnswerIds);
+      handleAnswerSelect(questionId, [answerId]);
     }
   };
 

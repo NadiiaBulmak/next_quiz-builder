@@ -37,3 +37,18 @@ export const LANDING_NAV_LINKS = [
     ],
   },
 ];
+
+export const TOP_NAV_LINKS = [
+  {
+    name: CONTENT.main.navbar.features,
+    href: '/#features',
+  },
+  {
+    name: CONTENT.main.navbar.how_it_works,
+    href: '/#how-it-works',
+  },
+  {
+    name: CONTENT.main.navbar.examples,
+    href: '/#examples',
+  },
+];

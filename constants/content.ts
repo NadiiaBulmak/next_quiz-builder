@@ -207,6 +207,14 @@ export const CONTENT = {
     },
   },
   main: {
+    navbar: {
+      to_dashboard: 'Go to Dashboard',
+      to_login: 'Log in',
+      to_register: 'Get Started Free',
+      features: 'Features',
+      how_it_works: 'How It Works',
+      examples: 'Examples',
+    },
     hero: {
       badge: 'Create. Share. Engage.',
       title_prefix: 'Create beautiful',
@@ -473,6 +481,35 @@ export const CONTENT = {
     submit: 'Submit',
     submit_disabled_tip: 'Submit button is disabled due to preview mode',
     question_title: (index: number) => `Question ${index}`,
+  },
+  quiz_result: {
+    summary: {
+      title: 'Quiz completed',
+      description: "Here's how you performed",
+      score: 'Score',
+      correct_answers: 'Correct answers',
+      incorrect_answers: 'Incorrect answers',
+      questions: 'Questions',
+      completed: 'Completed',
+    },
+    review: {
+      title: 'Review your answers',
+      description: 'Check your answers and see what you got right.',
+      question_count: (count: number) => `${count} questions`,
+      your_answer: 'Your answer',
+      correct: 'Correct',
+      incorrect: 'Incorrect',
+    },
+    details: {
+      result_id: 'Result ID:',
+      finished_at: 'Finished at',
+    },
+    cta: {
+      title: 'Want to try another quiz?',
+      description: 'Test your knowledge with another QuizFlow quiz.',
+      browse_quizzes: 'Browse quizzes',
+      retake_quiz: 'Retake quiz',
+    },
   },
   shared: {
     logo_alt: 'Quiz Flow logo',

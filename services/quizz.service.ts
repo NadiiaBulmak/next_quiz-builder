@@ -1,3 +1,5 @@
+'use server';
+
 import { prisma } from '@/lib/prisma';
 import {
   CreateQuizInput,
@@ -290,9 +292,35 @@ export async function getQuizById(
   });
 }
 
+export const getQuizForResult = async (quizId: string) => {
+  return prisma.quiz.findFirst({
+    where: {
+      id: quizId,
+      isPublished: true,
+      isPublic: true,
+    },
+    select: {
+      id: true,
+      questions: {
+        select: {
+          id: true,
+          text: true,
+          answers: {
+            select: {
+              id: true,
+              text: true,
+              isCorrect: true,
+            },
+          },
+        },
+      },
+    },
+  });
+};
+
 export async function createQuiz(data: CreateQuizInput) {
   const isPublished = data.isPublished ?? false;
-  const isPublic = isPublished ? (data.isPublic ?? false) : false;
+  const isPublic = isPublished ? (data.isPublic ?? true) : false;
 
   if (!data.title.trim()) {
     throw new Error('Quiz title is required.');
@@ -370,7 +398,7 @@ export async function updateQuiz(id: string, data: Partial<CreateQuizInput>) {
   }
   if (data.isPublished !== undefined) {
     updateData.isPublished = data.isPublished;
-    updateData.isPublic = data.isPublished ? (data.isPublic ?? false) : false;
+    updateData.isPublic = data.isPublished ? (data.isPublic ?? true) : false;
   } else if (data.isPublic !== undefined) {
     updateData.isPublic = data.isPublic;
   }
@@ -498,6 +526,9 @@ export async function switchIsPublished(quizId: string, isPublished: boolean) {
 
   return prisma.quiz.update({
     where: { id: quizId },
-    data: { isPublished },
+    data: {
+      isPublished,
+      isPublic: isPublished,
+    },
   });
 }

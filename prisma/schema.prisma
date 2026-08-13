@@ -54,39 +54,6 @@ model Quiz {
   @@index([isPublished, isPublic])
 }
 
-model Question {
-  id    String @id @default(cuid())
-  text  String
-  order Int
-
-  quizId String
-  quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
-
-  answers Answer[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([quizId])
-  @@index([order])
-}
-
-model Answer {
-  id        String  @id @default(cuid())
-  text      String
-  isCorrect Boolean
-  order     Int
-
-  questionId String
-  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([questionId])
-  @@index([order])
-}
-
 model Category {
   id   String @id @default(cuid())
   name String @unique
@@ -106,6 +73,43 @@ model Difficulty {
   updatedAt DateTime @updatedAt
 }
 
+model Question {
+  id    String @id @default(cuid())
+  text  String
+  order Int
+
+  quizId String
+  quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  answers       Answer[]
+  resultAnswers AnswerResult[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([quizId])
+  @@index([order])
+}
+
+model Answer {
+  id        String  @id @default(cuid())
+  text      String
+  // A partial unique index in the corresponding migration permits one true value per question.
+  isCorrect Boolean
+  order     Int
+
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  resultAnswers AnswerResult[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([questionId])
+  @@index([order])
+}
+
 model Result {
   id String @id @default(cuid())
 
@@ -119,7 +123,27 @@ model Result {
   quizId String
   quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
 
+  answers AnswerResult[]
+
   finishedAt DateTime @default(now())
+}
+
+model AnswerResult {
+  id String @id @default(cuid())
+
+  resultId String
+  result   Result @relation(fields: [resultId], references: [id], onDelete: Cascade)
+
+  questionId String?
+  question   Question? @relation(fields: [questionId], references: [id], onDelete: SetNull)
+
+  answerId String?
+  answer   Answer? @relation(fields: [answerId], references: [id], onDelete: SetNull)
+
+  questionText String
+  answerText   String
+
+  isCorrect Boolean
 }
 
 model ResetToken {

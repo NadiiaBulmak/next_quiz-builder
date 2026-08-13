@@ -1,10 +1,16 @@
 import { LoginFormState } from '@/schemas/login.schema';
 import { QuizFormState } from '@/schemas/quiz.schema';
+import { QuizResultFormState } from '@/schemas/quiz_result.schema';
 import { ResetFormState } from '@/schemas/reset_password.schema';
 import { FormState } from '@/schemas/sign-up.schema';
 import { AnswerType, QuestionType } from '@/types/props';
 
 export const initialState: FormState = {
+  errors: undefined,
+  user: undefined,
+};
+
+export const quizResultInitialState: QuizResultFormState = {
   errors: undefined,
   user: undefined,
 };

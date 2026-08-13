@@ -48,10 +48,20 @@ export const AnswerOptions = ({
   const updateOption = (updatedOption: AnswerType) => {
     const updated = options.map((option) => {
       if (updatedOption.id && option.id) {
-        return option.id === updatedOption.id ? updatedOption : option;
+        if (option.id === updatedOption.id) {
+          return updatedOption;
+        }
+
+        return updatedOption.isCorrect
+          ? { ...option, isCorrect: false }
+          : option;
       }
 
-      return option.order === updatedOption.order ? updatedOption : option;
+      if (option.order === updatedOption.order) {
+        return updatedOption;
+      }
+
+      return updatedOption.isCorrect ? { ...option, isCorrect: false } : option;
     });
 
     onChangeAnswers(updated);

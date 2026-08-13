@@ -25,6 +25,10 @@
     "/^node -e \"require\\('dotenv/config'\\); const \\{ Client \\} = require\\('pg'\\); \\(async\\(\\)=>\\{ const c=new Client\\(\\{ connectionString: process\\.env\\.DB_POSTGRES_URL \\}\\); try \\{ await c\\.connect\\(\\); const r=await c\\.query\\('select 1 as ok'\\); console\\.log\\('pg-connect-ok', r\\.rows\\[0\\]\\); \\} catch\\(e\\)\\{ console\\.error\\('pg-connect-fail', \\{ code:e\\.code, message:e\\.message, address:e\\.address, port:e\\.port \\}\\); \\} finally \\{ await c\\.end\\(\\)\\.catch\\(\\(\\)=>\\{\\}\\); \\} \\}\\)\\(\\);\"$/": {
       "approve": true,
       "matchCommandLine": true
+    },
+    "/^npx eslint components/shared-quiz/SharedQuizContent\\.tsx components/shared-quiz/QuizQuestions\\.tsx components/shared-quiz/QuestionAnswerList\\.tsx schemas/quiz_result\\.schema\\.ts services/quizz\\.service\\.ts services/result/calculateResult\\.ts; npx tsc --noEmit$/": {
+      "approve": true,
+      "matchCommandLine": true
     }
   }
 }

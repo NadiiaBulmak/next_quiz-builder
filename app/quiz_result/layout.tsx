@@ -4,6 +4,7 @@ import PreviewTopBar from '@/components/preview/PreviewTopBar';
 import MobileTopBar from '@/components/shared/MobileTopBar';
 import MobileMenu from '@/components/shared/MobileMenu';
 import { Footer } from '@/components/shared/Footer/Footer';
+import { SharedQuizTopContent } from '@/components/shared-quiz/SharedQuizTopContent';
 
 export default async function PreviewLayout({
   children,
@@ -13,7 +14,7 @@ export default async function PreviewLayout({
   // const user = await getCurrentUser();
 
   return (
-    <div className="flex flex-col bg-stone-50">
+    <div className="flex flex-col bg-stone-50">    
       <main className="flex-1 flex flex-col min-h-screen">{children}</main>
       <Footer />
     </div>

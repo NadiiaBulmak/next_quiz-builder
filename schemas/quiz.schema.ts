@@ -22,7 +22,11 @@ const QuizQuestionSchema = z
     }),
   })
   .superRefine((question, ctx) => {
-    if (!question.answers.some((answer) => answer.isCorrect)) {
+    const correctAnswerCount = question.answers.filter(
+      (answer) => answer.isCorrect,
+    ).length;
+
+    if (correctAnswerCount !== 1) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: CONTENT.create.validation.one_correct_answer,

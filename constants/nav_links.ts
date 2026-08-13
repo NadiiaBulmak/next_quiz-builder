@@ -7,6 +7,7 @@ export const NAV_LINKS = {
   forgot_password: ROUTES.FORGOT_PASSWORD,
   forgot_password_sent: ROUTES.FORGOT_PASSWORD_SENT,
   quiz: ROUTES.QUIZ,
+  quiz_result: ROUTES.QUIZ_RESULT,
   quizzes: {
     all: ROUTES.QUIZZES.ALL,
     my: ROUTES.QUIZZES.MY,
