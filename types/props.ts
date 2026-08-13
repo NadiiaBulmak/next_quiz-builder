@@ -231,3 +231,31 @@ export type QuizResultContentProps = Pick<
   }[];
   finishedAt: Date;
 };
+
+export type QuizResultOverview = {
+  id: string;
+  title: string;
+  description: string | null;
+
+  categories: {
+    name: string;
+  }[];
+
+  difficulty: {
+    name: string;
+  };
+
+  results: {
+    id: string;
+    score: number;
+  }[];
+
+  _count: {
+    questions: number;
+    results: number;
+  };
+
+  totalParticipants: number;
+  questionsCount: number;
+  averageScore: number;
+};

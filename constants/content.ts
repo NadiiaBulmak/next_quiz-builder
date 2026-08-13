@@ -171,7 +171,7 @@ export const CONTENT = {
       create_quiz: 'Create Quiz',
       create_quiz_description: 'Start a new quiz',
       results: 'Results',
-      results_description: 'View quiz results',
+      results_description: 'Overview of quizzes you created and their results',
       settings: 'Settings',
       settings_description: 'Manage your account settings',
       edit_quiz: 'Edit Quiz',
@@ -570,6 +570,19 @@ export const CONTENT = {
       submit: 'Submit Answers',
       next: 'Next Question',
       previous: 'Previous Question',
+    },
+  },
+  results: {
+    buttons: {
+      view_results: 'View Results',
+    },
+    analytics: {
+      title: 'Quiz analytics',
+      description: 'Track performance and participation across your quizzes.',
+    },
+    overview: {
+      title: 'Your quizzes',
+      description: 'Detailed performance overview',
     },
   },
 };
