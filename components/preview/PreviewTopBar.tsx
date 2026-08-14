@@ -20,17 +20,9 @@ export default function PreviewTopBar({
           <ArrowLeft />
         </Button>
       )}
-      {!showBackButton && (
-        <Button onClick={handleBackClick}>
-          <ArrowLeft />
-        </Button>
-      )}
       <div className="flex flex-col gap-0 ml-3">
         <h1 className="text-lg font-bold">{title}</h1>
         <p className="text-sm text-muted-foreground">{description}</p>
-      </div>
-      <div className="text-sm text-muted-foreground">
-        {CONTENT.preview.question_count(questionCount)}
       </div>
       <div className="text-sm text-muted-foreground">
         {CONTENT.preview.question_count(questionCount)}

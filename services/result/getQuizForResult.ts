@@ -118,13 +118,6 @@ export const getQuizzesStatistics = async (
           },
         },
 
-        results: {
-          select: {
-            id: true,
-            score: true,
-          },
-        },
-
         _count: {
           select: {
             results: true,
@@ -143,6 +136,21 @@ export const getQuizzesStatistics = async (
     }),
   ]);
 
+  const quizAverageScores = await prisma.result.groupBy({
+    by: ['quizId'],
+    where: {
+      quizId: {
+        in: statistics.map((quiz) => quiz.id),
+      },
+    },
+    _avg: {
+      score: true,
+    },
+  });
+  const averageScoreByQuizId = new Map(
+    quizAverageScores.map((result) => [result.quizId, result._avg.score]),
+  );
+
   const totalPages = Math.ceil(totalQuizzes / RESULTS_PAGE_SIZE);
   const currentPage = Math.min(Math.max(page, 1), totalPages || 1);
 
@@ -157,10 +165,7 @@ export const getQuizzesStatistics = async (
       questionsCount: quiz._count.questions,
       averageScore:
         quiz._count.results > 0
-          ? Math.round(
-              quiz.results.reduce((total, result) => total + result.score, 0) /
-                quiz._count.results,
-            )
+          ? Math.round(averageScoreByQuizId.get(quiz.id) || 0)
           : 0,
     })),
     totalParticipants: participantStats._count,
@@ -178,42 +183,41 @@ export const getQuizStatisticById = async (
   totalParticipants: number;
   averageScore: number;
 }> => {
-  const quiz = await prisma.quiz.findUnique({
-    where: {
-      id: quizId,
-    },
-    select: {
-      id: true,
-      title: true,
-      description: true,
+  const [quiz, resultStats] = await Promise.all([
+    prisma.quiz.findUnique({
+      where: {
+        id: quizId,
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
 
-      categories: {
-        select: {
-          name: true,
+        categories: {
+          select: {
+            name: true,
+          },
+        },
+
+        difficulty: {
+          select: {
+            name: true,
+          },
+        },
+
+        _count: {
+          select: {
+            results: true,
+            questions: true,
+          },
         },
       },
-
-      difficulty: {
-        select: {
-          name: true,
-        },
-      },
-
-      results: {
-        select: {
-          id: true,
-          score: true,
-        },
-      },
-
-      _count: {
-        select: {
-          results: true,
-          questions: true,
-        },
-      },
-    },
-  });
+    }),
+    prisma.result.aggregate({
+      where: { quizId },
+      _avg: { score: true },
+    }),
+  ]);
 
   if (!quiz) {
     throw new Error('Quiz not found');
@@ -222,12 +226,7 @@ export const getQuizStatisticById = async (
   const totalParticipants = quiz._count.results;
 
   const averageScore =
-    totalParticipants > 0
-      ? Math.round(
-          quiz.results.reduce((sum, result) => sum + result.score, 0) /
-            totalParticipants,
-        )
-      : 0;
+    totalParticipants > 0 ? Math.round(resultStats._avg.score || 0) : 0;
 
   return {
     quiz: {

@@ -49,9 +49,9 @@ model Quiz {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([authorId])
+  @@index([authorId, isPublished])
   @@index([difficultyId])
-  @@index([isPublished, isPublic])
+  @@index([isPublished])
 }
 
 model Category {
@@ -87,8 +87,7 @@ model Question {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([quizId])
-  @@index([order])
+  @@index([quizId, order])
 }
 
 model Answer {
@@ -107,7 +106,6 @@ model Answer {
   updatedAt DateTime @updatedAt
 
   @@index([questionId])
-  @@index([order])
 }
 
 model Result {
@@ -126,6 +124,8 @@ model Result {
   answers AnswerResult[]
 
   finishedAt DateTime @default(now())
+
+  @@index([quizId, finishedAt])
 }
 
 model AnswerResult {
@@ -144,6 +144,10 @@ model AnswerResult {
   answerText   String
 
   isCorrect Boolean
+
+  @@index([resultId])
+  @@index([questionId])
+  @@index([answerId])
 }
 
 model ResetToken {

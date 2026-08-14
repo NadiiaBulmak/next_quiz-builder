@@ -428,38 +428,24 @@ export async function createQuiz(data: CreateQuizInput) {
       estimatedTime: data.estimatedTime,
       authorId: data.authorId,
       difficultyId: difficulty.id,
+      categories: {
+        connect: categories.map((category) => ({ id: category.id })),
+      },
+      questions: {
+        create: data.questions.map((question) => ({
+          text: question.text,
+          order: question.order,
+          answers: {
+            create: question.answers.map((answer) => ({
+              text: answer.text,
+              isCorrect: answer.isCorrect,
+              order: answer.order,
+            })),
+          },
+        })),
+      },
     },
   });
-
-  for (const category of categories) {
-    await prisma.quiz.update({
-      where: { id: quiz.id },
-      data: {
-        categories: {
-          connect: { id: category.id },
-        },
-      },
-    });
-  }
-
-  for (const questionInput of data.questions) {
-    const question = await prisma.question.create({
-      data: {
-        text: questionInput.text,
-        order: questionInput.order,
-        quizId: quiz.id,
-      },
-    });
-
-    await prisma.answer.createMany({
-      data: questionInput.answers.map((answer) => ({
-        text: answer.text,
-        isCorrect: answer.isCorrect,
-        order: answer.order,
-        questionId: question.id,
-      })),
-    });
-  }
 
   return quiz;
 }

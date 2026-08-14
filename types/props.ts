@@ -246,11 +246,6 @@ export type QuizResultOverview = {
     name: string;
   };
 
-  results: {
-    id: string;
-    score: number;
-  }[];
-
   _count: {
     questions: number;
     results: number;

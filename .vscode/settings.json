@@ -37,6 +37,10 @@
     "/^npx eslint services/quizz\\.service\\.ts components/quiz/QuizList\\.tsx components/shared/Pagination\\.tsx \"app/\\(protected\\)/quizzes/all/page\\.tsx\" \"app/\\(protected\\)/quizzes/my/page\\.tsx\"$/": {
       "approve": true,
       "matchCommandLine": true
+    },
+    "/^npx prisma migrate dev --create-only --name optimize_query_indexes$/": {
+      "approve": true,
+      "matchCommandLine": true
     }
   }
 }
