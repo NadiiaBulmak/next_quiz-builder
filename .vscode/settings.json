@@ -29,6 +29,14 @@
     "/^npx eslint components/shared-quiz/SharedQuizContent\\.tsx components/shared-quiz/QuizQuestions\\.tsx components/shared-quiz/QuestionAnswerList\\.tsx schemas/quiz_result\\.schema\\.ts services/quizz\\.service\\.ts services/result/calculateResult\\.ts; npx tsc --noEmit$/": {
       "approve": true,
       "matchCommandLine": true
+    },
+    "/^npx tsc --noEmit$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^npx eslint services/quizz\\.service\\.ts components/quiz/QuizList\\.tsx components/shared/Pagination\\.tsx \"app/\\(protected\\)/quizzes/all/page\\.tsx\" \"app/\\(protected\\)/quizzes/my/page\\.tsx\"$/": {
+      "approve": true,
+      "matchCommandLine": true
     }
   }
 }

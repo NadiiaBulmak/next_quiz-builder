@@ -1,14 +1,19 @@
 import { AnalyticsHeader } from '@/components/results/AnalyticsHeader';
-import { ResultStatsList } from '@/components/results/ResultStats';
+import { ResultStatsList } from '@/components/results/Stats/ResultStats';
 import { ResultsList } from '@/components/results/ResultsList';
 import { QuizCountBadge } from '@/components/results/QuizCountBadge';
 import { CONTENT } from '@/constants/content';
 import { getCurrentUser } from '@/services/auth';
 import { getQuizzesStatistics } from '@/services/result/getQuizForResult';
 
-export default async function ResultsQuizzes() {
+export default async function ResultsQuizzes({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
   const user = await getCurrentUser();
-  const results = await getQuizzesStatistics(user?.id || '');
+  const { page } = await searchParams;
+  const results = await getQuizzesStatistics(user?.id || '', Number(page) || 1);
 
   return (
     <div className="min-h-screen flex-1 bg-zinc-50 px-3 py-4 md:px-6 md:py-6  mb-20 lg:mb-0">
@@ -27,11 +32,14 @@ export default async function ResultsQuizzes() {
               description={CONTENT.results.overview.description}
             />
             <QuizCountBadge total={results.totalQuizzes} />
-
           </div>
 
           {results.totalQuizzes > 0 && (
-            <ResultsList quizzes={results.quizzes} />
+            <ResultsList
+              quizzes={results.quizzes}
+              currentPage={results.currentPage}
+              totalPages={results.totalPages}
+            />
           )}
         </section>
       </div>

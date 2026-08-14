@@ -10,7 +10,7 @@ export function Metric({
   icon?: LucideIcon;
 }) {
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-1 w-fit">
       {Icon && (
         <Icon width={16} height={16} className="text-stone-500" />
       )}

@@ -259,3 +259,23 @@ export type QuizResultOverview = {
   questionsCount: number;
   averageScore: number;
 };
+
+export type QuizResultDetail = {
+  id: string;
+  name: string | null;
+  email: string;
+  score: number;
+  correctAnswers: number;
+  totalQuestions: number;
+  finishedAt: Date;
+  answers: {
+    id: string;
+    questionText: string;
+    answerText: string;
+    isCorrect: boolean;
+  }[];
+  quiz: {
+    categories: { name: string }[];
+    difficulty: { name: string };
+  };
+};

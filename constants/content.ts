@@ -575,14 +575,41 @@ export const CONTENT = {
   results: {
     buttons: {
       view_results: 'View Results',
+      back_to_results: 'Back to Results',
+      view_answers: 'View Answers',
+      hide_answers: 'Hide Answers',
     },
     analytics: {
       title: 'Quiz analytics',
       description: 'Track performance and participation across your quizzes.',
     },
+    analyticsPerQuiz: {
+      title: 'Quiz analytics per quiz',
+      description: 'Track performance and participation across your quizzes.',
+    },
     overview: {
       title: 'Your quizzes',
       description: 'Detailed performance overview',
+    },
+    score: {
+      title: 'Average score',
+      description: 'Across all quizzes',
+    },
+    details: {
+      title: 'Participant results',
+      description: 'Individual attempts for this quiz',
+      empty: 'No one has completed this quiz yet.',
+      table: {
+        name: 'Name',
+        email: 'Email',
+        score: 'Score',
+        correctAnswers: 'Correct answers',
+        finishedAt: 'Finished at',
+        action: 'Action',
+      },
+      anonymous: 'Anonymous',
+      view_answers: 'View answers',
+      hide_answers: 'Hide answers',
     },
   },
 };

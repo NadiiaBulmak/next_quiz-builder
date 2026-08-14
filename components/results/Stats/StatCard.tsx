@@ -2,15 +2,18 @@ export const StatCard = ({
   label,
   value,
   description,
+  icon: Icon,
 }: {
   label: string;
   value: number | string;
   description: string;
+  icon: React.ComponentType<{ className?: string }>;
 }) => (
   <div className="rounded-xl border border-stone-200 bg-white p-5 shadow-sm">
     <p className="text-sm font-medium text-stone-500">{label}</p>
 
-    <div className="mt-2 flex items-end justify-between gap-3">
+    <div className="mt-2 flex items-center justify-start gap-3">
+      <Icon className="h-6 w-6 text-stone-400" />
       <p className="text-3xl font-semibold tracking-tight text-stone-900">
         {value}
       </p>

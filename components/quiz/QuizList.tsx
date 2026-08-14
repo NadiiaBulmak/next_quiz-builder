@@ -1,20 +1,31 @@
-import { getAllMyQuizzes, getAllQuizzes } from '@/services/quizz.service';
+import {
+  getAllMyQuizzesPaginated,
+  getAllQuizzesPaginated,
+} from '@/services/quizz.service';
 import QuizListItem from './QuizListItem';
 import { ListType, QuizListType } from '@/types/props';
-import type { QuizListItemType } from '@/types/quiz';
+import { Pagination } from '@/components/shared/Pagination';
 
-export default async function QuizList({ listType }: QuizListType) {
-  const quizzes =
+export default async function QuizList({
+  listType,
+  page = 1,
+}: QuizListType & { page?: number }) {
+  const result =
     listType === ListType.all
-      ? await getAllQuizzes(null, { isPublished: true })
-      : await getAllMyQuizzes();
-  // const typedQuizzes = quizzes as QuizListItemType[];
-  // console.log(typedQuizzes);
+      ? await getAllQuizzesPaginated(null, { isPublished: true }, {}, page)
+      : await getAllMyQuizzesPaginated({}, page);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
-      {quizzes.map((q) => (
-        <QuizListItem key={q.id} {...q} listType={listType} />
-      ))}
+    <div className="flex w-full flex-col gap-4">
+      <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+        {result.quizzes.map((q) => (
+          <QuizListItem key={q.id} {...q} listType={listType} />
+        ))}
+      </div>
+      <Pagination
+        currentPage={result.currentPage}
+        totalPages={result.totalPages}
+      />
     </div>
   );
 }

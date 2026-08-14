@@ -10,10 +10,18 @@ import {
 import { getOrCreateCategories } from './category.service';
 import { getCurrentUser } from './auth';
 
+const QUIZ_PAGE_SIZE = 6;
+
+type QuizPagination = {
+  page: number;
+  pageSize?: number;
+};
+
 export async function getAllQuizzes(
   query: string | null = null,
   filters: QuizFilters = {},
   sort: QuizSort = {},
+  pagination?: QuizPagination,
 ): Promise<QuizListItemType[]> {
   return prisma.quiz.findMany({
     where: {
@@ -47,6 +55,12 @@ export async function getAllQuizzes(
     },
 
     orderBy: sort,
+    ...(pagination && {
+      skip:
+        (Math.max(pagination.page, 1) - 1) *
+        (pagination.pageSize || QUIZ_PAGE_SIZE),
+      take: pagination.pageSize || QUIZ_PAGE_SIZE,
+    }),
 
     select: {
       id: true,
@@ -74,10 +88,45 @@ export async function getAllQuizzes(
   });
 }
 
+export async function getAllQuizzesPaginated(
+  query: string | null = null,
+  filters: QuizFilters = {},
+  sort: QuizSort = {},
+  page = 1,
+) {
+  const where = {
+    ...(query && {
+      title: {
+        contains: query,
+        mode: 'insensitive' as const,
+      },
+    }),
+    ...(filters.category?.length
+      ? { categories: { some: { slug: { in: filters.category } } } }
+      : {}),
+    ...(filters.difficulty && {
+      difficulty: { name: filters.difficulty },
+    }),
+    ...(filters.isPublished !== undefined && {
+      isPublished: filters.isPublished,
+    }),
+  };
+  const totalQuizzes = await prisma.quiz.count({ where });
+  const totalPages = Math.ceil(totalQuizzes / QUIZ_PAGE_SIZE);
+  const currentPage = Math.min(Math.max(page, 1), totalPages || 1);
+
+  const quizzes = await getAllQuizzes(query, filters, sort, {
+    page: currentPage,
+  });
+
+  return { quizzes, totalPages, currentPage };
+}
+
 export async function getAllMyQuizzes(
   extended: boolean = false,
   results: boolean = false,
   filters: QuizFilters = {},
+  pagination?: QuizPagination,
 ): Promise<QuizListItemType[]> {
   const { id: userId } = await getCurrentUser();
   const quizzes = await prisma.quiz.findMany({
@@ -87,6 +136,12 @@ export async function getAllMyQuizzes(
         isPublished: filters.isPublished,
       }),
     },
+    ...(pagination && {
+      skip:
+        (Math.max(pagination.page, 1) - 1) *
+        (pagination.pageSize || QUIZ_PAGE_SIZE),
+      take: pagination.pageSize || QUIZ_PAGE_SIZE,
+    }),
     select: {
       id: true,
       title: true,
@@ -144,6 +199,27 @@ export async function getAllMyQuizzes(
   });
 
   return quizzes as unknown as QuizListItemType[];
+}
+
+export async function getAllMyQuizzesPaginated(
+  filters: QuizFilters = {},
+  page = 1,
+) {
+  const { id: userId } = await getCurrentUser();
+  const where = {
+    authorId: userId,
+    ...(filters.isPublished !== undefined && {
+      isPublished: filters.isPublished,
+    }),
+  };
+  const totalQuizzes = await prisma.quiz.count({ where });
+  const totalPages = Math.ceil(totalQuizzes / QUIZ_PAGE_SIZE);
+  const currentPage = Math.min(Math.max(page, 1), totalPages || 1);
+  const quizzes = await getAllMyQuizzes(false, false, filters, {
+    page: currentPage,
+  });
+
+  return { quizzes, totalPages, currentPage };
 }
 
 export async function getQuizByUserId(
