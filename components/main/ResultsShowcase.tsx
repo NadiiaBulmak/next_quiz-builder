@@ -94,7 +94,7 @@ function ResultPreview() {
 
           <div className="ml-3 flex h-6 flex-1 items-center rounded-md bg-black/30 px-3">
             <span className="truncate text-[9px] text-slate-500">
-              quiz-builder.com/quiz_result/cmssrif0b0001a4irep233dhm
+              quiz-builder.com/quiz_result/{process.env.RESULT_PREVIEW_ID}
             </span>
           </div>
         </div>
@@ -102,7 +102,7 @@ function ResultPreview() {
         {/* Iframe */}
         <div className=" h-[520px] bg-white">
           <iframe
-            src="/quiz_result/cmssrif0b0001a4irep233dhm"
+            src={`/quiz_result/${process.env.RESULT_PREVIEW_ID}`}
             title="Quiz result preview"
             className="h-full w-full border-0"
           />
