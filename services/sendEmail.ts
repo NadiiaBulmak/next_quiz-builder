@@ -1,5 +1,9 @@
 import nodemailer from 'nodemailer';
 import type { Options } from 'nodemailer/lib/mailer';
+import path from 'path';
+
+const LOGO_CID = 'quizflow-logo';
+
 export const buildEmailContent = (token: string): string => {
   const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${token}`;
 
@@ -65,7 +69,7 @@ export const buildEmailContent = (token: string): string => {
               "
             >
               <img
-                src="${process.env.NEXT_PUBLIC_APP_URL}/logo.webp"
+                src="cid:${LOGO_CID}"
                 alt="Quiz Builder"
                 width="150"
                 style="
@@ -337,6 +341,14 @@ export async function sendMail({
     to,
     subject: 'QuizFlow - reset your password',
     html: content,
+    attachments: [
+      {
+        filename: 'logo.png',
+        path: path.join(process.cwd(), 'public', 'logo.png'),
+        cid: LOGO_CID,
+        contentType: 'image/png',
+      },
+    ],
   };
 
   try {
