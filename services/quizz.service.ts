@@ -119,7 +119,7 @@ export async function getAllQuizzesPaginated(
     page: currentPage,
   });
 
-  return { quizzes, totalPages, currentPage };
+  return { quizzes, totalPages, currentPage, totalQuizzes };
 }
 
 export async function getAllMyQuizzes(
@@ -127,11 +127,18 @@ export async function getAllMyQuizzes(
   results: boolean = false,
   filters: QuizFilters = {},
   pagination?: QuizPagination,
+  searchQuery: string | null = null,
 ): Promise<QuizListItemType[]> {
   const { id: userId } = await getCurrentUser();
   const quizzes = await prisma.quiz.findMany({
     where: {
       authorId: userId,
+      ...(searchQuery?.trim() && {
+        title: {
+          contains: searchQuery.trim(),
+          mode: 'insensitive' as const,
+        },
+      }),
       ...(filters.isPublished !== undefined && {
         isPublished: filters.isPublished,
       }),
@@ -202,12 +209,20 @@ export async function getAllMyQuizzes(
 }
 
 export async function getAllMyQuizzesPaginated(
+  searchQuery: string | null = null,
   filters: QuizFilters = {},
   page = 1,
 ) {
   const { id: userId } = await getCurrentUser();
+  const normalizedSearchQuery = searchQuery?.trim() || null;
   const where = {
     authorId: userId,
+    ...(normalizedSearchQuery && {
+      title: {
+        contains: normalizedSearchQuery,
+        mode: 'insensitive' as const,
+      },
+    }),
     ...(filters.isPublished !== undefined && {
       isPublished: filters.isPublished,
     }),
@@ -215,11 +230,15 @@ export async function getAllMyQuizzesPaginated(
   const totalQuizzes = await prisma.quiz.count({ where });
   const totalPages = Math.ceil(totalQuizzes / QUIZ_PAGE_SIZE);
   const currentPage = Math.min(Math.max(page, 1), totalPages || 1);
-  const quizzes = await getAllMyQuizzes(false, false, filters, {
-    page: currentPage,
-  });
+  const quizzes = await getAllMyQuizzes(
+    false,
+    false,
+    filters,
+    { page: currentPage },
+    normalizedSearchQuery,
+  );
 
-  return { quizzes, totalPages, currentPage };
+  return { quizzes, totalQuizzes, totalPages, currentPage };
 }
 
 export async function getQuizByUserId(

@@ -27,7 +27,9 @@ export const Pagination = ({
       return;
     }
 
-    router.push(`?page=${page}`);
+    const params = new URLSearchParams(window.location.search);
+    params.set('page', String(page));
+    router.push(`?${params.toString()}`);
   };
 
   return (
