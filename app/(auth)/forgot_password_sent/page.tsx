@@ -1,31 +1,57 @@
+import { CheckCircle2, Mail } from 'lucide-react';
+
 import AuthFormSection from '@/components/auth/UI/AuthFormSection';
+import AuthRedirectLink from '@/components/auth/UI/AuthRedirect';
 import { CONTENT } from '@/constants/content';
 import { NAV_LINKS } from '@/constants/nav_links';
-import AuthRedirectLink from '@/components/auth/UI/AuthRedirect';
 
 export default function ForgotPasswordSendPage() {
   return (
-    <div className="flex w-full gap-3 px-4 md:px-8 flex-1 flex-col md:flex-row h-auto md:h-screen  max-w-[85rem] mx-auto">
-      <AuthFormSection
-        heading={CONTENT.auth.forgot_password_sent.header}
-        subheading={CONTENT.auth.forgot_password_sent.subheader}
-      >
-        <div className="flex w-full flex-col gap-2">
-          <div className="flex flex-col gap-3 w-full p-6 rounded-lg bg-gray-100 border-0.5 border-gray-300">
-            <p className="text-sm text-gray-500">
-              {CONTENT.auth.form.forgot_password_notice}
-            </p>
-          </div>
+    <div className="flex h-full w-full flex-col px-4 md:px-8 flex-1">
+      <div className="mx-auto flex w-full max-w-[85rem] flex-1 items-center justify-center">
+        <AuthFormSection
+          heading={CONTENT.auth.forgot_password_sent.header}
+          subheading={CONTENT.auth.forgot_password_sent.subheader}
+        >
+          <div className="flex w-full flex-col items-center">
+            {/* Confirmation icon */}
+            {/* <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-lime-100">
+              <CheckCircle2
+                className="h-8 w-8 text-lime-600"
+                strokeWidth={2}
+              />
+            </div> */}
 
-          <div className="flex flex-col lg:flex-row gap-2 justify-center items-center mt-4 underline underline-offset-4">
-            <AuthRedirectLink
-              link={NAV_LINKS.login}
-              text={CONTENT.auth.back_to_logIn.text}
-              boldText={CONTENT.auth.back_to_logIn.boldtext}
-            />
+            {/* Email notice */}
+            <div className="w-full rounded-2xl border border-stone-200 bg-stone-50 p-5">
+              <div className="flex gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white shadow-sm">
+                  <Mail className="h-5 w-5 text-stone-600" />
+                </div>
+
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-stone-900">
+                    Check your inbox
+                  </p>
+
+                  <p className="mt-1 text-sm leading-6 text-stone-500">
+                    {CONTENT.auth.form.forgot_password_notice}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Login link */}
+            <div className="mt-7">
+              <AuthRedirectLink
+                link={NAV_LINKS.login}
+                text={CONTENT.auth.back_to_logIn.text}
+                boldText={CONTENT.auth.back_to_logIn.boldtext}
+              />
+            </div>
           </div>
-        </div>
-      </AuthFormSection>
+        </AuthFormSection>
+      </div>
     </div>
   );
 }

@@ -19,6 +19,7 @@ import { NAV_LINKS } from '@/constants/nav_links';
 export const CreateQuizClient = ({
   categories,
   quiz,
+  previewMode = false,
 }: CreateQuizClientProps) => {
   const editCategories =
     quiz?.categories?.map((category) => category.name) ?? [];
@@ -151,35 +152,49 @@ export const CreateQuizClient = ({
       }),
     );
   };
+  console.log(previewMode, 'previewMode');
 
   return (
-    <form
-      action={action}
-      className="flex-1 min-h-screen  flex-1 min-h-screen bg-gray-50 px-3 md:px-6 py-3 md:py-6 grid grid-cols-1 md:grid-cols-[4fr_6fr] md:gap-3 w-full mb-20 lg:mb-0"
-    >
-      <input type="hidden" name="quizId" value={quiz?.id ?? ''} />
-      <input type="hidden" name="questions" value={JSON.stringify(questions)} />
-      <QuizBaseInputSection
-        categories={categories}
-        initialTitle={initialState.user?.title}
-        initialDescription={initialState.user?.description}
-        initialDifficulty={initialState.user?.difficulty}
-        initialSelectedCategories={editCategories}
-        isEditMode={Boolean(quiz)}
-        onAddQuestion={addNewQuestion}
-        onDeleteQuestion={deleteQuestion}
-        questions={questions}
-      />
-      <div className="flex flex-col gap-3">
-        <QuestionsSection
-          questions={questions}
-          onDeleteQuestion={deleteQuestion}
-          onReorderQuestions={reorderQuestions}
-          onUpdateQuestionText={updateQuestionText}
-          onUpdateQuestionAnswers={updateQuestionAnswers}
+    <>
+      <form
+        action={previewMode ? undefined : action}
+        className="flex-1 min-h-screen  flex-1 min-h-screen bg-gray-50 px-3 md:px-6 py-3 md:py-6 grid grid-cols-1 md:grid-cols-[4fr_6fr] md:gap-3 w-full mb-20 lg:mb-0"
+      >
+        {previewMode && (
+          <div className="mb-3 md:mb-0 order-first md:order-last">
+            <TipSection content="Form is not active due to preview mode" />
+          </div>
+        )}
+        <input type="hidden" name="quizId" value={quiz?.id ?? ''} />
+        <input
+          type="hidden"
+          name="questions"
+          value={JSON.stringify(questions)}
         />
-        <TipSection content={CONTENT.create.base.question_tips} />
-      </div>
-    </form>
+        <QuizBaseInputSection
+          categories={categories}
+          initialTitle={initialState.user?.title}
+          initialDescription={initialState.user?.description}
+          initialDifficulty={initialState.user?.difficulty}
+          initialSelectedCategories={editCategories}
+          isEditMode={Boolean(quiz)}
+          onAddQuestion={addNewQuestion}
+          onDeleteQuestion={deleteQuestion}
+          questions={questions}
+        />
+        <div className="flex flex-col gap-3">
+          <QuestionsSection
+            questions={questions}
+            onDeleteQuestion={deleteQuestion}
+            onReorderQuestions={reorderQuestions}
+            onUpdateQuestionText={updateQuestionText}
+            onUpdateQuestionAnswers={updateQuestionAnswers}
+          />
+          {!previewMode && (
+            <TipSection content={CONTENT.create.base.question_tips} />
+          )}
+        </div>
+      </form>
+    </>
   );
 };

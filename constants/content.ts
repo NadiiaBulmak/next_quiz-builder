@@ -327,46 +327,29 @@ export const CONTENT = {
         },
       ],
     },
-    analytics_showcase: {
-      eyebrow: 'Results & insights',
-      title_line_one: "Don't just create quizzes.",
-      title_highlight: 'Learn from them.',
+    results_showcase: {
+      eyebrow: 'CLEAN RESULTS',
+
+      title_line_one: 'They take the quiz.',
+      title_highlight: 'They see the results.',
+
       description:
-        'Understand responses, completion rates and scores with\nsimple, useful insights.',
-      insights: [
+        'Give everyone a clear, simple result page the moment they finish your quiz.',
+
+      features: [
         {
-          title: 'Total Responses',
-          value: '128',
+          title: 'Instant results',
+          description: 'See the final score as soon as the quiz is completed.',
         },
         {
-          title: 'Completion Rate',
-          value: '86%',
+          title: 'Clear feedback',
+          description: 'Review answers and see what was right or wrong.',
         },
         {
-          title: 'Average Score',
-          value: '78%',
+          title: 'Simple by design',
+          description: 'A clean result experience with nothing unnecessary.',
         },
       ],
-      preview: {
-        title: 'JavaScript Fundamentals',
-        subtitle: 'Quiz performance',
-        stats: [
-          {
-            label: 'Responses',
-            value: '128',
-          },
-          {
-            label: 'Completion',
-            value: '86%',
-          },
-          {
-            label: 'Avg. score',
-            value: '78%',
-          },
-        ],
-        chart_title: 'Responses over time',
-        chart_range: 'Last 7 days',
-      },
     },
     final_cta: {
       eyebrow: 'Get started',

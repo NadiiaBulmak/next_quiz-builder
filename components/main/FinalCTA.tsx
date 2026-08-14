@@ -1,4 +1,5 @@
 import { ArrowRight, Check } from 'lucide-react';
+import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 import { CONTENT } from '@/constants/content';
 
@@ -25,7 +26,7 @@ export function FinalCTA() {
               </p>
             </div>
             <div>
-            <a
+            <Link
               href={ROUTES.REGISTER}
               className=" hover:animate-bounce group inline-flex items-center gap-3 rounded-lg bg-black px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_0_2px_#c9f13c] transition hover:-translate-y-0.5 hover:bg-slate-900"
             >
@@ -34,7 +35,7 @@ export function FinalCTA() {
                 size={17}
                 className="transition-transform group-hover:translate-x-1"
               />
-            </a>
+            </Link>
               <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
                 <Reassurance>
                   <Check />

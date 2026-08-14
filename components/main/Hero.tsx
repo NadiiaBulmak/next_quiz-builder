@@ -10,6 +10,7 @@ import { ROUTES } from '@/constants/routes';
 import { CONTENT } from '@/constants/content';
 
 import { QuizPreview } from './QuizPreview';
+import Link from 'next/link';
 
 export function Hero() {
   return (
@@ -38,7 +39,7 @@ export function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
-            <a
+            <Link
               href={ROUTES.REGISTER}
               className=" hover:animate-bounce group inline-flex items-center gap-3 rounded-lg bg-black px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_0_2px_#c9f13c] transition hover:-translate-y-0.5 hover:bg-slate-900"
             >
@@ -47,9 +48,9 @@ export function Hero() {
                 size={17}
                 className="transition-transform group-hover:translate-x-1"
               />
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="#demo"
               className="hover:animate-bounce inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:border-slate-500"
             >
@@ -58,7 +59,7 @@ export function Hero() {
                 className="fill-lime-500 text-lime-500 "
               />
               Try a Demo Quiz
-            </a>
+            </Link>
           </div>
 
           <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3">
@@ -95,8 +96,8 @@ function Reassurance({
   return (
     <div className="flex items-center gap-1.5 text-xs text-slate-500">
       <span className="[&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:text-lime-500">
-        {children}
       </span>
+        {children}
     </div>
   );
 }

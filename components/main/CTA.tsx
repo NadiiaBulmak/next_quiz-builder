@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
   ArrowRight,
   BarChart3,
@@ -37,13 +38,13 @@ export const CTA = () => {
           </div>
         </div>
 
-        <a
+        <Link
           href={ROUTES.REGISTER}
           className="inline-flex shrink-0 items-center gap-4 rounded-lg bg-black px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_0_2px_#c9f13c] transition hover:bg-slate-900"
         >
           {CONTENT.main.cta.button}
           <ArrowRight size={17} />
-        </a>
+        </Link>
       </div>
     </section>
   );

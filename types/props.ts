@@ -133,6 +133,7 @@ export type QuestionControlSectionType = {
 export type CreateQuizClientProps = {
   categories: Category[];
   quiz?: QuizForEditor;
+  previewMode?: boolean;
 };
 
 export type QuestionItemProps = {

@@ -4,7 +4,7 @@ import { Hero } from '@/components/main/Hero';
 import { ValueProposition } from '@/components/main/ValueProposition';
 import { TrustSection } from '@/components/main/TrustSection';
 import { UseCases } from '@/components/main/UseCases';
-import { AnalyticsShowcase } from '@/components/main/AnalyticsShowcase';
+import { ResultsShowcase } from '@/components/main/ResultsShowcase';
 import { FinalCTA } from '@/components/main/FinalCTA';
 import { HowItWorks } from '@/components/main/HowItWorks';
 import { verifySession } from '@/services/sessions';
@@ -22,7 +22,7 @@ export default async function Home() {
         <HowItWorks />
         <TrustSection />
         <UseCases />
-        <AnalyticsShowcase />
+        <ResultsShowcase />
         <FinalCTA />
       </main>
 
