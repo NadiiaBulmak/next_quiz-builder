@@ -1,9 +1,9 @@
 import { getQuizById } from '@/services/quizz.service';
 import SharedQuizContent from '@/components/shared-quiz/SharedQuizContent';
 import { SharedQuizTopContent } from '@/components/shared-quiz/SharedQuizTopContent';
-import { CONTENT } from '@/constants/content';
 import { verifySession } from '@/services/sessions';
 import { getUserById } from '@/services/user.service';
+import { notFound } from 'next/navigation';
 
 export default async function PreviewPage({
   params,
@@ -17,16 +17,14 @@ export default async function PreviewPage({
   const isAvailableForResponses =
     quiz?.isPublished === true && quiz.isPublic === true;
 
+  if (!quiz || !isAvailableForResponses) {
+    notFound();
+  }
+
   return (
     <div className="flex flex-col max-w-[85rem] mx-auto w-full">
       <SharedQuizTopContent />
-      {quiz && isAvailableForResponses ? (
-        <>
-          <SharedQuizContent {...quiz} recipient={recipient} />
-        </>
-      ) : (
-        <div>{CONTENT.common.quiz_not_found}</div>
-      )}
+      <SharedQuizContent {...quiz} recipient={recipient} />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { AnalyticsHeader } from '@/components/results/AnalyticsHeader';
 import { ResultStatsList } from '@/components/results/Stats/ResultStats';
 import { ResultsList } from '@/components/results/ResultsList';
 import { QuizCountBadge } from '@/components/results/QuizCountBadge';
+import { NoResultsYet } from '@/components/results/NoResultsYet';
 import { CONTENT } from '@/constants/content';
 import { getCurrentUser } from '@/services/auth';
 import { getQuizzesStatistics } from '@/services/result/getQuizForResult';
@@ -34,12 +35,14 @@ export default async function ResultsQuizzes({
             <QuizCountBadge total={results.totalQuizzes} />
           </div>
 
-          {results.totalQuizzes > 0 && (
+          {results.totalQuizzes > 0 ? (
             <ResultsList
               quizzes={results.quizzes}
               currentPage={results.currentPage}
               totalPages={results.totalPages}
             />
+          ) : (
+            <NoResultsYet />
           )}
         </section>
       </div>

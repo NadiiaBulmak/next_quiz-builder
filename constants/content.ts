@@ -17,6 +17,25 @@ export const CONTENT = {
     feedback: {
       google_sign_in_failed: 'Google sign-in failed. Please try again.',
     },
+    error: {
+      title: 'Something went wrong',
+      description:
+        'An unexpected error occurred while loading this page. Please try again.',
+      retry: 'Try again',
+      back_home: 'Back to home',
+    },
+    not_found: {
+      title: 'Page not found',
+      description:
+        "The page you're looking for doesn't exist or has been moved.",
+      back_home: 'Back to home',
+    },
+    quiz_not_found_description:
+      "This quiz doesn't exist, was removed, or isn't available anymore.",
+    result_not_found: 'Result not found',
+    result_not_found_description:
+      "This result doesn't exist, was removed, or isn't available anymore.",
+    back_to_dashboard: 'Back to dashboard',
   },
   metadata: {
     root: {

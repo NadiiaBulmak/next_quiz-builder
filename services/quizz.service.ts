@@ -94,10 +94,15 @@ export async function getAllQuizzesPaginated(
   sort: QuizSort = {},
   page = 1,
 ) {
+    const normalizedSearchQuery = query?.trim() || null;
   const where = {
-    ...(query && {
+    ...(normalizedSearchQuery && {
       title: {
-        contains: query,
+        contains: normalizedSearchQuery,
+        mode: 'insensitive' as const,
+      },
+      description: {
+        contains: normalizedSearchQuery,
         mode: 'insensitive' as const,
       },
     }),
@@ -115,7 +120,7 @@ export async function getAllQuizzesPaginated(
   const totalPages = Math.ceil(totalQuizzes / QUIZ_PAGE_SIZE);
   const currentPage = Math.min(Math.max(page, 1), totalPages || 1);
 
-  const quizzes = await getAllQuizzes(query, filters, sort, {
+  const quizzes = await getAllQuizzes(normalizedSearchQuery, filters, sort, {
     page: currentPage,
   });
 
@@ -235,6 +240,10 @@ export async function getAllMyQuizzesPaginated(
     authorId: userId,
     ...(normalizedSearchQuery && {
       title: {
+        contains: normalizedSearchQuery,
+        mode: 'insensitive' as const,
+      },
+      description: {
         contains: normalizedSearchQuery,
         mode: 'insensitive' as const,
       },
