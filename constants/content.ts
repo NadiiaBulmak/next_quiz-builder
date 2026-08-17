@@ -727,4 +727,114 @@ export const CONTENT = {
         'Unable to update your name right now. Please try again.',
     },
   },
+  privacy_policy: {
+    title: 'Privacy Policy',
+    subtitle: 'Legal',
+    last_updated: 'Last updated: August 17, 2026',
+    sections: [
+      {
+        title: '1. Introduction',
+        content:
+          'QuizFlow respects your privacy and is committed to protecting your personal information. This Privacy Policy explains what information we collect, how we use it, and how we protect it when you use the QuizFlow platform.',
+      },
+      {
+        title: '2. Information We Collect',
+        content:
+          'We may collect information you provide when creating or using an account, creating quizzes, or interacting with the platform. This may include your name, email address, quiz content, and quiz responses.',
+      },
+      {
+        title: '3. How We Use Your Information',
+        content:
+          'We use the information we collect to provide and maintain QuizFlow, manage accounts and quizzes, process quiz responses, communicate with users when necessary, and improve the functionality and reliability of the platform.',
+      },
+      {
+        title: '4. Data Security',
+        content:
+          'We take reasonable technical and organizational measures to protect your information from unauthorized access, alteration, disclosure, or destruction. However, no method of storing or transmitting information can be guaranteed to be completely secure.',
+      },
+      {
+        title: '5. Data Retention',
+        content:
+          'We retain personal information only for as long as reasonably necessary to provide the service, maintain your account, fulfill legitimate business purposes, or comply with applicable legal obligations.',
+      },
+      {
+        title: '6. Your Rights',
+        content:
+          'Depending on your location, you may have the right to access, correct, or delete your personal information. You may also have the right to object to certain processing of your information or request restrictions on how your data is used.',
+      },
+      {
+        title: '7. Changes to This Privacy Policy',
+        content:
+          'We may update this Privacy Policy from time to time to reflect changes to the service or applicable requirements. Any updates will be reflected on this page together with the revised date.',
+      },
+      {
+        title: '8. Contact Us',
+        content:
+          'If you have questions, concerns, or requests regarding this Privacy Policy, please contact us at nbulmak@gmail.com.',
+      },
+    ],
+    back_to_home: '← Back to QuizFlow',
+    footer: {
+      terms_of_service: 'Terms of Service',
+      privacy_policy: 'Privacy Policy',
+    },
+  },
+
+  terms_of_service: {
+    title: 'Terms of Service',
+    subtitle: 'Legal',
+    back_to_home: '← Back to QuizFlow',
+    last_updated: 'Last updated: August 17, 2026',
+    sections: [
+      {
+        title: '1. Acceptance of Terms',
+        content:
+          'By accessing or using QuizFlow, you agree to these Terms of Service. If you do not agree with these terms, please do not use the service.',
+      },
+      {
+        title: '2. Use of the Service',
+        content:
+          'QuizFlow provides tools for creating, sharing, and managing quizzes. You agree to use the service only for lawful purposes and in accordance with these Terms of Service.',
+      },
+      {
+        title: '3. User Accounts',
+        content:
+          'You are responsible for maintaining the confidentiality of your account credentials and for all activity performed through your account. You should notify us if you believe your account has been accessed without authorization.',
+      },
+      {
+        title: '4. User Content',
+        content:
+          'You are responsible for the content you create, upload, or share through QuizFlow. You agree not to use the service to create or distribute content that violates applicable laws or the rights of others.',
+      },
+      {
+        title: '5. Service Availability',
+        content:
+          'We may modify, suspend, or discontinue parts of the service when necessary. We do not guarantee that QuizFlow will always be available, uninterrupted, or completely free of errors.',
+      },
+      {
+        title: '6. Intellectual Property',
+        content:
+          'QuizFlow and its original features, design, functionality, and content are owned by their respective rights holders and are protected by applicable intellectual property laws. You retain responsibility for the content you create and submit through the service.',
+      },
+      {
+        title: '7. Limitation of Liability',
+        content:
+          'To the extent permitted by applicable law, QuizFlow shall not be liable for indirect, incidental, special, or consequential damages arising from or related to your use of the service.',
+      },
+      {
+        title: '8. Changes to These Terms',
+        content:
+          'We may update these Terms of Service from time to time. When changes are made, the updated version will be published on this page. Your continued use of QuizFlow after the changes take effect constitutes acceptance of the updated terms.',
+      },
+      {
+        title: '9. Contact Us',
+        content:
+          'If you have questions or concerns about these Terms of Service, please contact us at nbulmak@gmail.com.',
+      },
+    ],
+    footer: {
+      terms_of_service: 'Terms of Service',
+      privacy_policy: 'Privacy Policy',
+    },
+  },
 };
