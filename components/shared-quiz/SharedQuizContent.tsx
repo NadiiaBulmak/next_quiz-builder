@@ -41,7 +41,6 @@ export const SharedQuizContent = ({
 
   useEffect(() => {
     if (state?.success) {
-      console.log('Quiz completed successfully. User ID:', state.user?.id);
       router.push(NAV_LINKS.quiz_result + `/${state.user?.id}`);
     }
   }, [router, state?.success, state?.user?.id]);

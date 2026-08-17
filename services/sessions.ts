@@ -28,7 +28,6 @@ export async function decrypt(
     });
     return payload as SessionPayload;
   } catch (error) {
-    console.log('Failed to verify session');
     return null;
   }
 }
@@ -37,7 +36,6 @@ export async function createSession(userId: string) {
   const sessionExists = (await cookies()).get(AUTH.SESSION_COOKIE)?.value;
   if (sessionExists) {
     await deleteSession();
-    console.log('session exist, delete');
     // return;
   }
   const expiresAt = new Date(

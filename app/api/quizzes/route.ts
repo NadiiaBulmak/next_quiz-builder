@@ -9,8 +9,6 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    console.log(body);
-
     if (!body || typeof body !== 'object' || Array.isArray(body)) {
       return Response.json(
         { error: CONTENT.api.invalid_quiz_payload },

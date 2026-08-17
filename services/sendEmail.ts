@@ -326,7 +326,6 @@ export async function sendMail({
   content: string;
 }): Promise<void> {
   // 2. Configure the SMTP transporter
-  console.log(process.env.EMAIL_USER);
   const transporter = nodemailer.createTransport({
     service: process.env.EMAIL_HOST,
     auth: {
@@ -354,8 +353,6 @@ export async function sendMail({
   try {
     // 4. Send the email and capture the response
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully!');
-    console.log('Message ID:', info.messageId);
   } catch (error) {
     console.error('Error sending email:', error);
   }

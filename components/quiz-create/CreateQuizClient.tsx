@@ -154,7 +154,6 @@ export const CreateQuizClient = ({
       }),
     );
   };
-  console.log(previewMode, 'previewMode');
 
   return (
     <>
