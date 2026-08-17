@@ -14,9 +14,11 @@ export default async function ProtectedLayout({
   return (
     <div className="flex flex-col md:flex-row bg-stone-100">
       <Sidebar {...user} />
-      <main className="flex-1 flex flex-col min-h-screen transition-[padding-left] duration-300 ease-in-out lg:pl-[var(--sidebar-width)]">
-        <MobileTopBar {...user} className='flex lg:hidden'/>
-        <TopBar {...user} className='hidden lg:flex'/>
+      <main
+        className="flex min-h-screen min-w-0 flex-1 flex-col lg:pl-[var(--sidebar-width)] transition-[padding-left] duration-300 ease-in-out"
+      >
+        <MobileTopBar {...user} className="flex lg:hidden" />
+        <TopBar {...user} className="hidden lg:flex" />
         {/* <main className="flex-1 p-4"> */}
         {children}
         <MobileMenu />
