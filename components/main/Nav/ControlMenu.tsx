@@ -54,7 +54,7 @@ export const ControlMenu = ({
           <div className="hidden lg:flex gap-8 w-full items-center justify-center">
             <Link
               href={ROUTES.LOGIN}
-              className="flex justify-center w-full text-sm font-bold text-slate-900 transition-all duration-300 hover:underline hover:underline-offset-4 lg:w-fit"
+              className="flex justify-center w-full text-sm font-bold text-slate-900 hover:underline hover:underline-offset-4 lg:w-fit transition-all duration-300"
             >
               {CONTENT.main.navbar.to_login}
             </Link>

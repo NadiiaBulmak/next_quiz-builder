@@ -19,7 +19,6 @@ export default async function ProtectedLayout({
       >
         <MobileTopBar {...user} className="flex lg:hidden" />
         <TopBar {...user} className="hidden lg:flex" />
-        {/* <main className="flex-1 p-4"> */}
         {children}
         <MobileMenu />
       </main>

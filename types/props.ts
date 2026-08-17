@@ -405,3 +405,7 @@ export type StatusMessageAction =
   description: string;
   actions?: StatusMessageAction[];
 };
+
+export type ResultPreviewProps = {
+  id: string;
+};

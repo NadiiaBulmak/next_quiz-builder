@@ -1,11 +1,11 @@
 'use client';
-import { MobileMenu } from './MobileMenu';
+import { MobileMenu } from './Nav/MobileMenu';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 import { CONTENT } from '@/constants/content';
 import Logo from '@/components/shared/Logo';
-import { NavMenu } from './NavMenu';
-import { ControlMenu } from './ControlMenu';
+import { NavMenu } from './Nav/NavMenu';
+import { ControlMenu } from './Nav/ControlMenu';
 import { verifySession } from '@/services/sessions';
 import { useState } from 'react';
 import type { NavbarProps } from '@/types/props';

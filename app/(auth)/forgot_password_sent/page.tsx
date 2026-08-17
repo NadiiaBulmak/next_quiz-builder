@@ -14,15 +14,6 @@ export default function ForgotPasswordSendPage() {
           subheading={CONTENT.auth.forgot_password_sent.subheader}
         >
           <div className="flex w-full flex-col items-center">
-            {/* Confirmation icon */}
-            {/* <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-lime-100">
-              <CheckCircle2
-                className="h-8 w-8 text-lime-600"
-                strokeWidth={2}
-              />
-            </div> */}
-
-            {/* Email notice */}
             <div className="w-full rounded-2xl border border-stone-200 bg-stone-50 p-5">
               <div className="flex gap-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white shadow-sm">

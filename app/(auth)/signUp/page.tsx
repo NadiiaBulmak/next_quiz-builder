@@ -1,8 +1,5 @@
 'use client'
 
-import { useActionState } from "react";
-import { signup } from "../../actions/auth/signUp";
-import { FormState } from "@/schemas/sign-up.schema";
 import AuthContentSection from "@/components/auth/UI/AuthContentSection";
 import AuthFormSection from "@/components/auth/UI/AuthFormSection";
 import { CONTENT } from "@/constants/content";
