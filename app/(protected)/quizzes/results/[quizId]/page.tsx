@@ -8,6 +8,9 @@ import {
   getQuizStatisticById,
   getResultDetailsByQuizId,
 } from '@/services/result/getQuizForResult';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = CONTENT.metadata.quizzes.resultDetails;
 
 export default async function ResultPerQuiz({
   params,

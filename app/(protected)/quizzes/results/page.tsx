@@ -6,6 +6,9 @@ import { NoResultsYet } from '@/components/results/NoResultsYet';
 import { CONTENT } from '@/constants/content';
 import { getCurrentUser } from '@/services/auth';
 import { getQuizzesStatistics } from '@/services/result/getQuizForResult';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = CONTENT.metadata.quizzes.results;
 
 export default async function ResultsQuizzes({
   searchParams,

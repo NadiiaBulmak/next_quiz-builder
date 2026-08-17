@@ -4,12 +4,13 @@ import { SharedQuizTopContent } from '@/components/shared-quiz/SharedQuizTopCont
 import { verifySession } from '@/services/sessions';
 import { getUserById } from '@/services/user.service';
 import { notFound } from 'next/navigation';
+import { CONTENT } from '@/constants/content';
+import type { Metadata } from 'next';
+import type { QuizPageProps } from '@/types/props';
 
-export default async function PreviewPage({
-  params,
-}: {
-  params: Promise<{ quizId: string }>;
-}) {
+export const metadata: Metadata = CONTENT.metadata.quiz.take;
+
+export default async function PreviewPage({ params }: QuizPageProps) {
   const { quizId } = await params;
   const quiz = await getQuizById(quizId, true, false);
   const session = await verifySession(true);

@@ -409,3 +409,11 @@ export type StatusMessageAction =
 export type ResultPreviewProps = {
   id: string;
 };
+
+export type QuizPageProps = {
+  params: Promise<{ quizId: string }>;
+};
+
+export type ResultPageProps = {
+  params: Promise<{ resultId: string }>;
+};

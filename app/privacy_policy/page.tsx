@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import { CONTENT } from '@/constants/content';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = CONTENT.metadata.legal.privacy;
 
 export default function PrivacyPolicyPage() {
   const content = CONTENT.privacy_policy;
@@ -25,9 +28,7 @@ export default function PrivacyPolicyPage() {
             {content.title}
           </h1>
 
-          <p className="mt-4 text-sm text-stone-500">
-            {content.last_updated}
-          </p>
+          <p className="mt-4 text-sm text-stone-500">{content.last_updated}</p>
         </header>
 
         <div className="space-y-10 text-[15px] leading-7 text-stone-600">
@@ -51,10 +52,7 @@ export default function PrivacyPolicyPage() {
               {content.footer.terms_of_service}
             </Link>
 
-            <Link
-              href="/privacy_policy"
-              className="font-medium text-stone-900"
-            >
+            <Link href="/privacy_policy" className="font-medium text-stone-900">
               {content.footer.privacy_policy}
             </Link>
           </div>

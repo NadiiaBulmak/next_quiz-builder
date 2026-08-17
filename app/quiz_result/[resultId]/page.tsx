@@ -2,12 +2,13 @@ import { SharedQuizTopContent } from '@/components/shared-quiz/SharedQuizTopCont
 import { QuizResultContent } from '@/components/quiz-result/QuizResultContent';
 import { getResult } from '@/services/result/getQuizForResult';
 import { notFound } from 'next/navigation';
+import { CONTENT } from '@/constants/content';
+import type { Metadata } from 'next';
+import type { ResultPageProps } from '@/types/props';
 
-export default async function ResultPage({
-  params,
-}: {
-  params: Promise<{ resultId: string }>;
-}) {
+export const metadata: Metadata = CONTENT.metadata.quiz.result;
+
+export default async function ResultPage({ params }: ResultPageProps) {
   const { resultId } = await params;
   const result = await getResult(resultId);
 

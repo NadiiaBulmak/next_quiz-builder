@@ -4,6 +4,10 @@ import { QuizList } from '@/components/quiz/QuizList';
 import { getCurrentUser } from '@/services/auth';
 import { getCathegories } from '@/services/category.service';
 import { ListType, sortType } from '@/types/props';
+import { CONTENT } from '@/constants/content';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = CONTENT.metadata.quizzes.all;
 
 export default async function AllQuizzes({
   searchParams,

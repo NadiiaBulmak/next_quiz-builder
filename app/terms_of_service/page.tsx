@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import { CONTENT } from '@/constants/content';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = CONTENT.metadata.legal.terms;
 
 export default function TermsOfServicePage() {
   const content = CONTENT.terms_of_service;
@@ -25,9 +28,7 @@ export default function TermsOfServicePage() {
             {content.title}
           </h1>
 
-          <p className="mt-4 text-sm text-stone-500">
-            {content.last_updated}
-          </p>
+          <p className="mt-4 text-sm text-stone-500">{content.last_updated}</p>
         </header>
 
         <div className="space-y-10 text-[15px] leading-7 text-stone-600">

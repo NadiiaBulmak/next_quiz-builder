@@ -1,3 +1,4 @@
+'use client';
 import { signup } from '@/app/actions/auth/signUp';
 import { initialState } from '@/constants/initialFormState';
 import { useActionState } from 'react';
