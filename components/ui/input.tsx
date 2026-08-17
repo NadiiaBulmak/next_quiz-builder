@@ -3,7 +3,7 @@ import { Input as InputPrimitive } from "@base-ui/react/input"
 
 import { cn } from "@/utils/utils"
 
-export const Input = ({ className, type, ...props }: React.ComponentProps<"input">) => {
+function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
     <InputPrimitive
       type={type}
@@ -15,6 +15,6 @@ export const Input = ({ className, type, ...props }: React.ComponentProps<"input
       {...props}
     />
   )
-};
+}
 
 export { Input }

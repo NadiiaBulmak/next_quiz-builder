@@ -5,7 +5,7 @@ import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox"
 import { cn } from "@/utils/utils"
 import { CheckIcon } from "lucide-react"
 
-export const Checkbox = ({ className, ...props }: CheckboxPrimitive.Root.Props) => {
+function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
@@ -24,6 +24,6 @@ export const Checkbox = ({ className, ...props }: CheckboxPrimitive.Root.Props) 
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   )
-};
+}
 
 export { Checkbox }
