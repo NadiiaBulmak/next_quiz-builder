@@ -149,3 +149,7 @@ html {
     display: none; /* Chrome, Safari, and Opera */
   }
 }
+
+:root {
+  --sidebar-width: 15rem;
+}

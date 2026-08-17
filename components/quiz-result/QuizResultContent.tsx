@@ -6,7 +6,7 @@ import { AdsTips } from '../shared-quiz/AdsTips';
 import { ResultSummary } from './ResultSummary/ResultSummary';
 import { ResultDetails } from './ResultSummary/ResultDetails';
 
-export default function QuizResultContent({
+export const QuizResultContent = ({
   resultId,
   title,
   description,
@@ -18,7 +18,7 @@ export default function QuizResultContent({
   totalQuestions,
   answers,
   finishedAt,
-}: QuizResultContentProps) {
+}: QuizResultContentProps) => {
   const incorrectAnswers = totalQuestions - correctAnswers;
 
   return (
@@ -89,4 +89,4 @@ export default function QuizResultContent({
       </div>
     </div>
   );
-}
+};

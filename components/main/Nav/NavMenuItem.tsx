@@ -6,7 +6,7 @@ export const NavMenuItem = ({ href, name, isMobileNav }: NavMenuItemProps) => {
     <Link
       key={name}
       href={href}
-      className={`text-center w-fit font-medium text-slate-600 transition-all duration-200 hover:text-black ${isMobileNav ? 'text-2xl p-10' : 'text-sm'}`}
+      className={`text-center w-fit font-medium text-slate-600 hover:text-black hover:underline hover:underline-offset-4 transition-all duration-300 ${isMobileNav ? 'text-2xl p-10' : 'text-sm'}`}
     >
       {name}
     </Link>

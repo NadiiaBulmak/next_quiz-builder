@@ -1,7 +1,7 @@
 import { CONTENT } from '@/constants/content';
 import { LANDING_STEPS, LANDING_STEP_ICONS } from '@/constants/steps';
 
-export function HowItWorks() {
+export const HowItWorks = () => {
   return (
     <section
       id="how-it-works"
@@ -46,4 +46,4 @@ export function HowItWorks() {
       </div>
     </section>
   );
-}
+};

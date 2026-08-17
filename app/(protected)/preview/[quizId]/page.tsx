@@ -1,8 +1,12 @@
-import PreviewTopBar from '@/components/preview/PreviewTopBar';
+import { PreviewTopBar } from '@/components/preview/PreviewTopBar';
 import { QuizContent } from '@/components/preview/QuizContent';
 import type { Question, QuizForEditor } from '@/types/props';
 import { getQuizById } from '@/services/quizz.service';
+import { notFound } from 'next/navigation';
 import { CONTENT } from '@/constants/content';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = CONTENT.metadata.quiz.preview;
 
 export default async function PreviewPage({
   params,
@@ -13,7 +17,7 @@ export default async function PreviewPage({
   const quizData = await getQuizById(quizId, true, false);
 
   if (!quizData) {
-    return <div>{CONTENT.common.quiz_not_found}</div>;
+    notFound();
   }
 
   const quiz: QuizForEditor = quizData;

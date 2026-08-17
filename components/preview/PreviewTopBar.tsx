@@ -4,11 +4,11 @@ import { Button } from '../ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
 
-export default function PreviewTopBar({
+export const PreviewTopBar = ({
   title,
   description,
   questionCount,
-}: PreviewTopBarProps) {
+}: PreviewTopBarProps) => {
   const pathname = window.location.pathname;
   const showBackButton = pathname.includes('/quiz/');
   const handleBackClick = () => window.history.back();
@@ -30,4 +30,4 @@ export default function PreviewTopBar({
       {/* <SidebarBottom name={name} email={email} opened={opened} /> */}
     </div>
   );
-}
+};

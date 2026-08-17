@@ -1,15 +1,16 @@
 import { getQuizById } from '@/services/quizz.service';
-import SharedQuizContent from '@/components/shared-quiz/SharedQuizContent';
+import { SharedQuizContent } from '@/components/shared-quiz/SharedQuizContent';
 import { SharedQuizTopContent } from '@/components/shared-quiz/SharedQuizTopContent';
-import { CONTENT } from '@/constants/content';
 import { verifySession } from '@/services/sessions';
 import { getUserById } from '@/services/user.service';
+import { notFound } from 'next/navigation';
+import { CONTENT } from '@/constants/content';
+import type { Metadata } from 'next';
+import type { QuizPageProps } from '@/types/props';
 
-export default async function PreviewPage({
-  params,
-}: {
-  params: Promise<{ quizId: string }>;
-}) {
+export const metadata: Metadata = CONTENT.metadata.quiz.take;
+
+export default async function PreviewPage({ params }: QuizPageProps) {
   const { quizId } = await params;
   const quiz = await getQuizById(quizId, true, false);
   const session = await verifySession(true);
@@ -17,16 +18,14 @@ export default async function PreviewPage({
   const isAvailableForResponses =
     quiz?.isPublished === true && quiz.isPublic === true;
 
+  if (!quiz || !isAvailableForResponses) {
+    notFound();
+  }
+
   return (
     <div className="flex flex-col max-w-[85rem] mx-auto w-full">
       <SharedQuizTopContent />
-      {quiz && isAvailableForResponses ? (
-        <>
-          <SharedQuizContent {...quiz} recipient={recipient} />
-        </>
-      ) : (
-        <div>{CONTENT.common.quiz_not_found}</div>
-      )}
+      <SharedQuizContent {...quiz} recipient={recipient} />
     </div>
   );
 }

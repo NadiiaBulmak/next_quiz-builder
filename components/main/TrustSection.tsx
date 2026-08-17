@@ -1,8 +1,9 @@
 import { CheckCircle2, Users, Link2 } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
 import type { TrustItemProps } from '@/types/props';
+import { TrustItem } from "./TrustItem";
 
-export function TrustSection() {
+export const TrustSection = () => {
   return (
     <section className="px-6 scroll-mt-24">
       <div className="mx-auto flex max-w-[1120px] flex-col gap-8 rounded-2xl border border-slate-200 bg-white p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] md:flex-row md:items-center md:justify-between md:px-10">
@@ -35,14 +36,4 @@ export function TrustSection() {
       </div>
     </section>
   );
-}
-
-function TrustItem({ icon, title }: TrustItemProps) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-lime-500 [&>svg]:h-5 [&>svg]:w-5">{icon}</span>
-
-      <span className="text-sm font-semibold">{title}</span>
-    </div>
-  );
-}
+};

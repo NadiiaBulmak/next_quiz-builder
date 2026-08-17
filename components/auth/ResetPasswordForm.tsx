@@ -4,14 +4,14 @@ import { resetPasswordInitialState } from '@/constants/initialFormState';
 import { useActionState } from 'react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import AuthRedirectLink from './UI/AuthRedirect';
+import { AuthRedirectLink } from './UI/AuthRedirect';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
 import { resetPassword } from '@/app/actions/auth/resetPassword';
 import { ActionToast, FieldError } from '@/components/shared/FormFeedback';
 import { AuthFormField, PasswordResetFormField } from '@/constants/formFields';
 
-export default function ResetPasswordForm() {
+export const ResetPasswordForm = () => {
   const searchParams = useSearchParams();
 
   const token = searchParams.get(PasswordResetFormField.TOKEN);
@@ -112,4 +112,4 @@ export default function ResetPasswordForm() {
       </div>
     </div>
   );
-}
+};

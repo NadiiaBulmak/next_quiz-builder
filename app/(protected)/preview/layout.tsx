@@ -1,8 +1,8 @@
 import { getCurrentUser } from '@/services/auth';
-import Sidebar from '@/components/shared/SideBar';
-import PreviewTopBar from '@/components/preview/PreviewTopBar';
-import MobileTopBar from '@/components/shared/MobileTopBar';
-import MobileMenu from '@/components/shared/MobileMenu';
+import { SideBar as Sidebar } from '@/components/shared/SideBar';
+import { PreviewTopBar } from '@/components/preview/PreviewTopBar';
+import { MobileTopBar } from '@/components/shared/MobileTopBar';
+import { MobileMenu } from '@/components/shared/MobileMenu';
 
 export default async function PreviewLayout({
   children,

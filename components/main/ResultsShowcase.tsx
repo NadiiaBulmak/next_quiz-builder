@@ -1,7 +1,9 @@
 import { CheckCircle2, Eye, Sparkles } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
+import { ResultPreview } from './ResultPreview';
+import { Feature } from "./Feature";
 
-export function ResultsShowcase() {
+export const ResultsShowcase = () => {
   const { results_showcase } = CONTENT.main;
 
   return (
@@ -48,64 +50,9 @@ export function ResultsShowcase() {
           </div>
 
           {/* Result preview */}
-          <ResultPreview />
+          <ResultPreview id={results_showcase.id} />
         </div>
       </div>
     </section>
   );
-}
-
-function Feature({
-  icon,
-  title,
-  description,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="flex gap-3 border-b border-white/10 pb-4 last:border-b-0">
-      <span className="mt-0.5 shrink-0 text-lime-400 [&>svg]:h-4 [&>svg]:w-4">
-        {icon}
-      </span>
-
-      <div>
-        <p className="text-sm font-medium text-white">{title}</p>
-
-        <p className="mt-1 text-xs leading-5 text-slate-500">{description}</p>
-      </div>
-    </div>
-  );
-}
-
-function ResultPreview() {
-  return (
-    <div className="relative">
-      {/* Browser window */}
-      <div className="overflow-hidden rounded-xl border border-white/10 bg-white/[0.06] shadow-2xl">
-        {/* Browser header */}
-        <div className="flex h-10 items-center gap-1.5 border-b border-white/10 bg-white/[0.04] px-4">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-
-          <div className="ml-3 flex h-6 flex-1 items-center rounded-md bg-black/30 px-3">
-            <span className="truncate text-[9px] text-slate-500">
-              quiz-builder.com/quiz_result/{process.env.RESULT_PREVIEW_ID}
-            </span>
-          </div>
-        </div>
-
-        {/* Iframe */}
-        <div className=" h-[520px] bg-white">
-          <iframe
-            src={`/quiz_result/${process.env.RESULT_PREVIEW_ID}`}
-            title={CONTENT.main.preview_titles.quiz_result}
-            className="h-full w-full border-0"
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
+};

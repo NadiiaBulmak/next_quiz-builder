@@ -2,16 +2,14 @@ import { ArrowRight, Check, Play, ShieldCheck, Sparkles } from 'lucide-react';
 
 import { ROUTES } from '@/constants/routes';
 import { CONTENT } from '@/constants/content';
-import type { ReassuranceProps } from '@/types/props';
-
+import { Reassurance } from './HeroSection/Reassurance';
 import { QuizPreview } from './QuizPreview';
 import Link from 'next/link';
 
-export function Hero() {
+export const Hero = () => {
   return (
     <section className="overflow-hidden px-6 py-7 lg:py-10 w-full scroll-mt-24">
       <div className="mx-auto grid max-w-[1200px] items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
-        {/* Content */}
 
         <div className="relative z-10">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-lime-200 px-3 py-1.5 text-xs font-semibold text-green-700 flex">
@@ -43,14 +41,6 @@ export function Hero() {
                 className="transition-transform group-hover:translate-x-1"
               />
             </Link>
-
-            <Link
-              href="#demo"
-              className="hover:animate-bounce inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:border-slate-500"
-            >
-              <Play size={14} className="fill-lime-500 text-lime-500 " />
-              {CONTENT.main.hero.demo_quiz}
-            </Link>
           </div>
 
           <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3">
@@ -77,13 +67,5 @@ export function Hero() {
       </div>
     </section>
   );
-}
+};
 
-function Reassurance({ children }: ReassuranceProps) {
-  return (
-    <div className="flex items-center gap-1.5 text-xs text-slate-500">
-      <span className="[&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:text-lime-500"></span>
-      {children}
-    </div>
-  );
-}

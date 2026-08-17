@@ -2,7 +2,7 @@ import { ControlMenu } from './ControlMenu';
 // Correct the file name to MobileMenuTopBar.tsx
 
 // Correct the file name to MobileMenuTopBar.tsx
-import Logo from '@/components/shared/Logo';
+import { Logo } from '@/components/shared/Logo';
 
 export const MobileTopBar = ({
   toggleMobileMenu,

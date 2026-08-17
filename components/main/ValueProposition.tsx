@@ -1,7 +1,7 @@
 import { CONTENT } from '@/constants/content';
 import { LANDING_VALUES } from '@/constants/landing';
 
-export function ValueProposition() {
+export const ValueProposition = () => {
   return (
     <section className="px-6 scroll-mt-24" id="features">
       <div className="mx-auto max-w-[1000px]">
@@ -40,4 +40,4 @@ export function ValueProposition() {
       </div>
     </section>
   );
-}
+};

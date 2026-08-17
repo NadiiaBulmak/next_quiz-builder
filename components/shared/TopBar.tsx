@@ -1,13 +1,13 @@
 'use client';
 // import { usePathname } from 'next/navigation';
-import UserDropdown from './UserDropdown';
+import { UserDropdown } from './UserDropdown';
 import { User } from '@/lib/generated/prisma/browser';
 import { useNavTitle } from '@/utils/getNavTitle';
 import { BackButton } from './BackButton';
 import { usePathname } from 'next/navigation';
 import { CONTENT } from '@/constants/content';
 
-export default function TopBar({
+export const TopBar = ({
   name,
   email,
   opened = true,
@@ -19,7 +19,7 @@ export default function TopBar({
   userMenuVisible?: boolean;
   className?: string;
   previewMode?: boolean;
-}) {
+}) => {
   const { label, description } = useNavTitle();
   const pathname = usePathname();
   const isDetailedPage =
@@ -66,4 +66,4 @@ export default function TopBar({
       )}
     </div>
   );
-}
+};

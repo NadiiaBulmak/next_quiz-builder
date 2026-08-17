@@ -1,6 +1,6 @@
 'use client';
 import { CONTENT } from '@/constants/content';
-import AutoResizeTextarea from '../UI/AutoResizeTextarea';
+import { AutoResizeTextarea } from '../UI/AutoResizeTextarea';
 import { LabelInputArea } from '../UI/LabelInputArea';
 import { AnswerOptions } from '../Options/AnswerOptions';
 import { QuestionControlSectionType, QuestionType } from '@/types/props';

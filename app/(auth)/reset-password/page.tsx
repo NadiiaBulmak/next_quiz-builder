@@ -1,7 +1,10 @@
-import AuthFormSection from '@/components/auth/UI/AuthFormSection';
+import { AuthFormSection } from '@/components/auth/UI/AuthFormSection';
 import { CONTENT } from '@/constants/content';
-import ResetPasswordForm from '@/components/auth/ResetPasswordForm';
+import { ResetPasswordForm } from '@/components/auth/ResetPasswordForm';
 import { Suspense } from 'react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = CONTENT.metadata.auth.resetPassword;
 
 export default function ResetPasswordPage() {
   return (

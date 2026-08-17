@@ -10,10 +10,12 @@
 !.yarn/releases
 !.yarn/versions
 
+.github/
 .continue/
 
 # testing
 /coverage
+scripts/
 
 # next.js
 /.next/

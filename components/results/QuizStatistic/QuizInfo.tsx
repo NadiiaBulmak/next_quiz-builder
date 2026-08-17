@@ -1,4 +1,4 @@
-import Badge from '@/components/quiz/Badge';
+import { Badge } from '@/components/quiz/Badge';
 import type { QuizResultOverviewProps } from '@/types/props';
 
 export const QuizInfo = ({ quiz }: QuizResultOverviewProps) => {

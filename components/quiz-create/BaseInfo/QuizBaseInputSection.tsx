@@ -2,11 +2,11 @@
 import { SectionTitle } from '@/components/shared/SectionTitle';
 import { CONTENT } from '@/constants/content';
 import { LabelInputArea } from '../UI/LabelInputArea';
-import AutoResizeTextarea from '../UI/AutoResizeTextarea';
-import DifficultySelect from './DifficultySelect';
+import { AutoResizeTextarea } from '../UI/AutoResizeTextarea';
+import { DifficultySelect } from './DifficultySelect';
 import { QuestionControlSection } from './QuestionControlSection';
 import { QuizBaseInputSectionProps } from '@/types/props';
-import CategorySelectClient from './CategorySelectClient';
+import { CategorySelectClient } from './CategorySelectClient';
 import { FieldError } from '@/components/shared/FormFeedback';
 import { QuizFormField } from '@/constants/formFields';
 

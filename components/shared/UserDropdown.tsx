@@ -16,12 +16,12 @@ import { useActionState } from 'react';
 import { CONTENT } from '@/constants/content';
 import { ActionToast } from './FormFeedback';
 
-export default function UserDropdown({
+export const UserDropdown = ({
   name,
   email,
   opened = false,
   className = '',
-}: SidebarBottomType & { email?: string; className?: string }) {
+}: SidebarBottomType & { email?: string; className?: string }) => {
   const [openedState, setOpenedState] = useState(opened);
   const router = useRouter();
   const [state, action, isPending] = useActionState(logout, {
@@ -97,4 +97,4 @@ export default function UserDropdown({
       </DropdownMenu>
     </div>
   );
-}
+};

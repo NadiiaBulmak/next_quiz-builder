@@ -4,11 +4,11 @@ import { QuizListItemTopContent } from './QuizListItemTopContent';
 import { QuizListItemMainContent } from './QuizListItemMainContent';
 import { QuizListItemBottomContent } from './QuizListItemBottomContent';
 
-export default function QuizListItem({
+export const QuizListItem = ({
   listType,
   difficulty: { name: difficultyName },
   ...quiz
-}: QuizListItemType & Partial<QuizListType>) {
+}: QuizListItemType & Partial<QuizListType>) => {
   const showAllQuiz = listType === ListType.all;
   return (
     <div className="flex flex-col gap-4 bg-white shadow-md w-full rounded-md p-4 justify-between">
@@ -24,4 +24,4 @@ export default function QuizListItem({
       <QuizListItemBottomContent  showAllQuiz={showAllQuiz} id={quiz.id} />
     </div>
   );
-}
+};

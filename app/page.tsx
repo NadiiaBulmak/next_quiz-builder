@@ -1,5 +1,5 @@
 import { Footer } from '@/components/shared/Footer/Footer';
-import { Navbar } from '@/components/main/Nav/Navbar';
+import { Navbar } from '@/components/main/Navbar';
 import { Hero } from '@/components/main/Hero';
 import { ValueProposition } from '@/components/main/ValueProposition';
 import { TrustSection } from '@/components/main/TrustSection';
@@ -10,7 +10,7 @@ import { HowItWorks } from '@/components/main/HowItWorks';
 import { verifySession } from '@/services/sessions';
 
 export default async function Home() {
-    const session = await verifySession(true);
+  const session = await verifySession(true);
   const userId = session?.userId;
   return (
     <div className="min-h-screen bg-white text-slate-950">

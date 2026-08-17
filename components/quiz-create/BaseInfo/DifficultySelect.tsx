@@ -15,10 +15,10 @@ import { LabelInputArea } from '../UI/LabelInputArea';
 import type { DifficultySelectProps } from '@/types/props';
 import { QuizFormField } from '@/constants/formFields';
 
-export default function DifficultySelect({
+export const DifficultySelect = ({
   initialValue = '',
   error,
-}: DifficultySelectProps) {
+}: DifficultySelectProps) => {
   const [difficulty, setDifficulty] = useState(initialValue);
 
   return (
@@ -66,4 +66,4 @@ export default function DifficultySelect({
       </p>
     </LabelInputArea>
   );
-}
+};

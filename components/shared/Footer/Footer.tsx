@@ -1,6 +1,6 @@
 import { CONTENT } from '@/constants/content';
-import Logo from '../Logo';
-import RightsReserved from '../RightsReserved';
+import { Logo } from '../Logo';
+import { RightsReserved } from '../RightsReserved';
 import { FooterNav } from './FooterNav';
 
 export const Footer = () => {

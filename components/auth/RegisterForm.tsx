@@ -1,17 +1,18 @@
+'use client';
 import { signup } from '@/app/actions/auth/signUp';
 import { initialState } from '@/constants/initialFormState';
 import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import AuthRedirectLink from './UI/AuthRedirect';
+import { AuthRedirectLink } from './UI/AuthRedirect';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
-import GoogleSubmitButton from './GoogleSubmitButton';
-import AuthFormDivider from './UI/AuthFormDivider';
+import { GoogleSubmitButton } from './GoogleSubmitButton';
+import { AuthFormDivider } from './UI/AuthFormDivider';
 import { ActionToast, FieldError } from '@/components/shared/FormFeedback';
 import { AuthFormField } from '@/constants/formFields';
 
-export default function SignUp() {
+export const SignUp = () => {
   const [state, action, isPending] = useActionState(signup, initialState);
   const router = useRouter();
 
@@ -121,4 +122,4 @@ export default function SignUp() {
       />
     </div>
   );
-}
+};

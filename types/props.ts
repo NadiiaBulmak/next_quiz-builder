@@ -393,3 +393,27 @@ export type QuizResultDetail = {
     difficulty: { name: string };
   };
 };
+
+
+export type StatusMessageAction =
+  | { type: 'link'; href: string; label: string }
+  | { type: 'button'; onClick: () => void; label: string };
+
+  export type StatusMessageProps = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  actions?: StatusMessageAction[];
+};
+
+export type ResultPreviewProps = {
+  id: string;
+};
+
+export type QuizPageProps = {
+  params: Promise<{ quizId: string }>;
+};
+
+export type ResultPageProps = {
+  params: Promise<{ resultId: string }>;
+};

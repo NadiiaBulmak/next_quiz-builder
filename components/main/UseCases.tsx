@@ -1,7 +1,7 @@
 import { CONTENT } from '@/constants/content';
 import { LANDING_USE_CASES } from '@/constants/landing';
 
-export function UseCases() {
+export const UseCases = () => {
   return (
     <section id="examples" className="px-6 scroll-mt-24">
       <div className="mx-auto max-w-[1120px]">
@@ -42,4 +42,4 @@ export function UseCases() {
       </div>
     </section>
   );
-}
+};

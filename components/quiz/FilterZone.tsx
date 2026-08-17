@@ -9,9 +9,9 @@ import { CONTENT } from '@/constants/content';
 import { useFilterModal } from './FilterModalContext';
 import type { FilterZoneProps } from '@/types/props';
 
-export default function FilterZone({
+export const FilterZone = ({
   initialSearchQuery = '',
-}: FilterZoneProps) {
+}: FilterZoneProps) => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
   const { setIsOpen, isOpen } = useFilterModal();
@@ -60,4 +60,4 @@ export default function FilterZone({
       </div>
     </form>
   );
-}
+};
