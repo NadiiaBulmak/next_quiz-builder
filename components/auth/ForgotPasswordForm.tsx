@@ -4,14 +4,14 @@ import { useActionState } from 'react';
 import { forgotPasswordInitialState } from '@/constants/initialFormState';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import AuthRedirectLink from './UI/AuthRedirect';
+import { AuthRedirectLink } from './UI/AuthRedirect';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
 import { forgotPassword } from '@/app/actions/auth/forgotPassword';
 import { ActionToast, FieldError } from '@/components/shared/FormFeedback';
 import { AuthFormField } from '@/constants/formFields';
 
-export default function ForgotPasswordForm() {
+export const ForgotPasswordForm = () => {
   const [state, action, isPending] = useActionState(
     forgotPassword,
     forgotPasswordInitialState,
@@ -75,4 +75,4 @@ export default function ForgotPasswordForm() {
       </div>
     </div>
   );
-}
+};

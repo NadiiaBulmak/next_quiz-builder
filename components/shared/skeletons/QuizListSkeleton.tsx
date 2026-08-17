@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/shared/Skeleton';
 
-function QuizCardSkeleton() {
+const QuizCardSkeleton = () => {
   return (
     <div
       className="flex flex-col gap-4 bg-white shadow-md w-full rounded-md p-4 justify-between"
@@ -27,7 +27,7 @@ function QuizCardSkeleton() {
       </div>
     </div>
   );
-}
+};
 
 export function QuizListSkeleton({ count = 6 }: { count?: number }) {
   return (

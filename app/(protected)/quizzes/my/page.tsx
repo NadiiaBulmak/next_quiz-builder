@@ -1,6 +1,6 @@
 import { QuizzesContent } from '@/components/quiz-list/QuizzesContent';
 import { FilterModal } from '@/components/quiz/FilterModal';
-import QuizList from '@/components/quiz/QuizList';
+import { QuizList } from '@/components/quiz/QuizList';
 import { getCurrentUser } from '@/services/auth';
 import { ListType, sortType } from '@/types/props';
 import { getCathegories } from '@/services/category.service';

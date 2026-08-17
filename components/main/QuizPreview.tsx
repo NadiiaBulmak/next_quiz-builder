@@ -3,8 +3,9 @@
 import { BarChart3, Settings2, Share2 } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
 import { useState } from 'react';
+import { FloatingLabel } from "./FloatingLabel";
 
-export function QuizPreview() {
+export const QuizPreview = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
@@ -52,23 +53,4 @@ export function QuizPreview() {
       </FloatingLabel>
     </div>
   );
-}
-
-function FloatingLabel({
-  children,
-  icon,
-  className,
-}: {
-  children: React.ReactNode;
-  icon: React.ReactNode;
-  className: string;
-}) {
-  return (
-    <div
-      className={`absolute hidden items-center gap-2 rounded-xl border border-lime-100 bg-white px-4 py-3 text-xs font-semibold shadow-lg lg:flex ${className}`}
-    >
-      <span className="text-lime-500">{icon}</span>
-      {children}
-    </div>
-  );
-}
+};

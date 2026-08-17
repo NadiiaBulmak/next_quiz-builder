@@ -1,7 +1,7 @@
-import AuthFormSection from "@/components/auth/UI/AuthFormSection";
-import LoginForm from "@/components/auth/LoginForm";
+import { AuthFormSection } from "@/components/auth/UI/AuthFormSection";
+import { LoginForm } from "@/components/auth/LoginForm";
 import { CONTENT } from "@/constants/content";
-import AuthContentSection from "@/components/auth/UI/AuthContentSection";
+import { AuthContentSection } from "@/components/auth/UI/AuthContentSection";
 
 export default function Home() {
     return (

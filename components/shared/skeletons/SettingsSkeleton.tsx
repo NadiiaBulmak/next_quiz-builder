@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/shared/Skeleton';
 
-export function SettingsSkeleton() {
+export const SettingsSkeleton = () => {
   return (
     <div className="max-h-screen flex-1 bg-zinc-50 px-3 py-4 mb-20 lg:mb-0 md:px-6 md:py-6">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
@@ -37,4 +37,4 @@ export function SettingsSkeleton() {
       </div>
     </div>
   );
-}
+};

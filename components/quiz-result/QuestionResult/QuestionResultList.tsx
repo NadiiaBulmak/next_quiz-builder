@@ -1,7 +1,7 @@
 import { QuestionResult } from './QuestionResult';
 import type { QuestionResultListProps } from '@/types/props';
 
-export function QuestionResultList({ answers }: QuestionResultListProps) {
+export const QuestionResultList = ({ answers }: QuestionResultListProps) => {
   return (
     <div className="flex flex-col gap-3">
       {answers.map((answer, index) => (
@@ -15,4 +15,4 @@ export function QuestionResultList({ answers }: QuestionResultListProps) {
       ))}
     </div>
   );
-}
+};

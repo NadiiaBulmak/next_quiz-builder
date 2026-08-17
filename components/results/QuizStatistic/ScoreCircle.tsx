@@ -1,6 +1,6 @@
 import type { ScoreCircleProps } from '@/types/props';
 
-export function ScoreCircle({ score }: ScoreCircleProps) {
+export const ScoreCircle = ({ score }: ScoreCircleProps) => {
   const radius = 27;
   const circumference = 2 * Math.PI * radius;
   const normalizedScore = Math.min(Math.max(score, 0), 100);
@@ -38,4 +38,4 @@ export function ScoreCircle({ score }: ScoreCircleProps) {
       </span>
     </div>
   );
-}
+};

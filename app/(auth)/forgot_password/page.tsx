@@ -1,6 +1,6 @@
-import AuthFormSection from "@/components/auth/UI/AuthFormSection";
+import { AuthFormSection } from "@/components/auth/UI/AuthFormSection";
 import { CONTENT } from "@/constants/content";
-import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
+import { ForgotPasswordForm } from "@/components/auth/ForgotPasswordForm";
 
 export default function ForgotPasswordPage() {
     return (

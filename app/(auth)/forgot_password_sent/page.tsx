@@ -1,7 +1,7 @@
 import { CheckCircle2, Mail } from 'lucide-react';
 
-import AuthFormSection from '@/components/auth/UI/AuthFormSection';
-import AuthRedirectLink from '@/components/auth/UI/AuthRedirect';
+import { AuthFormSection } from '@/components/auth/UI/AuthFormSection';
+import { AuthRedirectLink } from '@/components/auth/UI/AuthRedirect';
 import { CONTENT } from '@/constants/content';
 import { NAV_LINKS } from '@/constants/nav_links';
 

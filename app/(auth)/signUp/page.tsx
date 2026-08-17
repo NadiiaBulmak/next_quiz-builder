@@ -1,9 +1,9 @@
 'use client'
 
-import AuthContentSection from "@/components/auth/UI/AuthContentSection";
-import AuthFormSection from "@/components/auth/UI/AuthFormSection";
+import { AuthContentSection } from "@/components/auth/UI/AuthContentSection";
+import { AuthFormSection } from "@/components/auth/UI/AuthFormSection";
 import { CONTENT } from "@/constants/content";
-import RegisterForm from "@/components/auth/RegisterForm";
+import { SignUp as RegisterForm } from "@/components/auth/RegisterForm";
 
 export default function SignUp() {
     return (

@@ -8,11 +8,11 @@ import type { Category, CategorySelectClientProps } from '@/types/props';
 import { FieldError } from '@/components/shared/FormFeedback';
 import { QuizFormField } from '@/constants/formFields';
 
-export default function CategorySelectClient({
+export const CategorySelectClient = ({
   categories,
   initialSelectedNames = [],
   error,
-}: CategorySelectClientProps) {
+}: CategorySelectClientProps) => {
   const [selected, setSelected] = useState<Category[]>(() =>
     initialSelectedNames.map(
       (name) =>
@@ -170,4 +170,4 @@ export default function CategorySelectClient({
       <FieldError id="categories-error" errors={error} />
     </LabelInputArea>
   );
-}
+};

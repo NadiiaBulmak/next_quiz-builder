@@ -7,7 +7,7 @@ import { CONTENT } from '@/constants/content';
 import Link from 'next/link';
 import { ROUTES } from '@/constants';
 
-export default function Logo() {
+export const Logo = () => {
   return (
     <div className="flex items-center cursor-pointer relative z-20 transition-all duration-300 overflow-visible relative transition-all duration-300 ease-in-out">
       <Link href={ROUTES.HOME} className="flex items-center gap-2 transition-all duration-300">
@@ -22,4 +22,4 @@ export default function Logo() {
       </Link>
     </div>
   );
-}
+};

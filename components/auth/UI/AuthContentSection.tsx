@@ -46,7 +46,7 @@ const itemVariants = {
   },
 };
 
-export default function AuthContentSection() {
+export const AuthContentSection = () => {
   const [currentItem, setCurrentItem] = useState(0);
 
   useEffect(() => {
@@ -133,4 +133,4 @@ export default function AuthContentSection() {
       </div>
     </div>
   );
-}
+};

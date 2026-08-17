@@ -4,7 +4,7 @@ import { CONTENT } from "@/constants/content";
 import { useState } from "react";
 import type { ResultPreviewProps } from '@/types/props';
 
-export function ResultPreview({id}: ResultPreviewProps) {
+export const ResultPreview = ({id}: ResultPreviewProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
@@ -42,4 +42,4 @@ export function ResultPreview({id}: ResultPreviewProps) {
       </div>
     </div>
   );
-}
+};

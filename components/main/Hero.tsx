@@ -6,7 +6,7 @@ import { Reassurance } from './HeroSection/Reassurance';
 import { QuizPreview } from './QuizPreview';
 import Link from 'next/link';
 
-export function Hero() {
+export const Hero = () => {
   return (
     <section className="overflow-hidden px-6 py-7 lg:py-10 w-full scroll-mt-24">
       <div className="mx-auto grid max-w-[1200px] items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
@@ -67,5 +67,5 @@ export function Hero() {
       </div>
     </section>
   );
-}
+};
 

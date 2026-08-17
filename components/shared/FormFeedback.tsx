@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 import { CONTENT } from '@/constants/content';
 import type { ActionToastProps, FieldErrorProps } from '@/types/props';
 
-export function FieldError({ id, errors }: FieldErrorProps) {
+export const FieldError = ({ id, errors }: FieldErrorProps) => {
   if (!errors?.length) return null;
 
   return (
@@ -13,7 +13,7 @@ export function FieldError({ id, errors }: FieldErrorProps) {
       {errors.join(' ')}
     </p>
   );
-}
+};
 
 export function ActionToast({ state }: ActionToastProps) {
   useEffect(() => {

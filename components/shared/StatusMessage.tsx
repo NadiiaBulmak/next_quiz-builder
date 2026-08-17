@@ -3,12 +3,12 @@ import type { LucideIcon } from 'lucide-react';
 import { Button } from '../ui/button';
 import { StatusMessageProps } from '@/types/props';
 
-export function StatusMessage({
+export const StatusMessage = ({
   icon: Icon,
   title,
   description,
   actions,
-}: StatusMessageProps) {
+}: StatusMessageProps) => {
   return (
     <div className="flex min-h-[50vh] w-full items-center justify-center px-6 py-12">
       <div className="flex w-full max-w-md flex-col items-center rounded-2xl border border-stone-200 bg-white px-8 py-10 text-center shadow-sm">
@@ -61,4 +61,4 @@ export function StatusMessage({
       </div>
     </div>
   );
-}
+};

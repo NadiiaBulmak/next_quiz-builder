@@ -3,7 +3,7 @@ import {
   getAllMyQuizzesPaginated,
   getAllQuizzesPaginated,
 } from '@/services/quizz.service';
-import QuizListItem from './QuizListItem';
+import { QuizListItem } from './QuizListItem';
 import { ListType, QuizListType, sortType } from '@/types/props';
 import { Pagination } from '@/components/shared/Pagination';
 import { CONTENT } from '@/constants/content';
@@ -25,13 +25,13 @@ function getOrderBy(sort?: sortType): QuizSort {
   }
 }
 
-export default async function QuizList({
+export const QuizList = async ({
   listType,
   page = 1,
   searchQuery = '',
   filter,
   sort,
-}: QuizListType & { page?: number; searchQuery?: string }) {
+}: QuizListType & { page?: number; searchQuery?: string }) => {
   const result =
     listType === ListType.all
       ? await getAllQuizzesPaginated(
@@ -114,4 +114,4 @@ export default async function QuizList({
       </div>
     </div>
   );
-}
+};

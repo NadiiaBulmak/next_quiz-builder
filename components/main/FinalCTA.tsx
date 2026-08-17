@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 import { CONTENT } from '@/constants/content';
 import type { ReassuranceProps } from '@/types/props';
+import { Reassurance } from "./Reassurance";
 
-export function FinalCTA() {
+export const FinalCTA = () => {
   return (
     <section className="px-6 pb-20 w-full scroll-mt-24">
       <div className="relative mx-auto max-w-[1120px] overflow-hidden rounded-2xl border border-lime-200 bg-lime-100 px-7 py-14 md:px-12">
@@ -53,12 +54,4 @@ export function FinalCTA() {
       </div>
     </section>
   );
-}
-
-function Reassurance({ children }: ReassuranceProps) {
-  return (
-    <span className="flex items-center gap-1.5 text-xs text-slate-600 [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:text-lime-700">
-      {children}
-    </span>
-  );
-}
+};

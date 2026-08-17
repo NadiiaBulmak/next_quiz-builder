@@ -1,7 +1,7 @@
 import { Check, X } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
 
-export function QuestionResult({
+export const QuestionResult = ({
   index,
   question,
   answer,
@@ -11,7 +11,7 @@ export function QuestionResult({
   question: string;
   answer: string;
   isCorrect: boolean;
-}) {
+}) => {
   return (
     <div
       className={`rounded-xl border p-5 ${
@@ -68,4 +68,4 @@ export function QuestionResult({
       </div>
     </div>
   );
-}
+};

@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/shared/Skeleton';
 
-export function QuizPreviewSkeleton() {
+export const QuizPreviewSkeleton = () => {
   return (
     <div>
       <div className="flex items-center justify-between bg-white dark:bg-black p-4 py-3 border-b border-gray-300 dark:border-gray-700">
@@ -29,4 +29,4 @@ export function QuizPreviewSkeleton() {
       </div>
     </div>
   );
-}
+};

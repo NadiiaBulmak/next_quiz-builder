@@ -1,4 +1,4 @@
-import Logo from '../shared/Logo';
+import { Logo } from '../shared/Logo';
 import Link from 'next/link';
 import { CONTENT } from '@/constants/content';
 import { NAV_LINKS } from '@/constants/nav_links';

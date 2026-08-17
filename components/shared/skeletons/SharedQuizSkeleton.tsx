@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/shared/Skeleton';
 
-function SharedQuizTopContentSkeleton() {
+const SharedQuizTopContentSkeleton = () => {
   return (
     <div className="flex flex-col flex-wrap items-center justify-between gap-4 w-full px-6 md:px-8 lg:px-20 py-6 pb-0">
       <div className="flex w-full items-center justify-between">
@@ -9,7 +9,7 @@ function SharedQuizTopContentSkeleton() {
       </div>
     </div>
   );
-}
+};
 
 export function SharedQuizSkeleton() {
   return (

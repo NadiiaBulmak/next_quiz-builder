@@ -1,5 +1,5 @@
 import { getQuizById } from '@/services/quizz.service';
-import SharedQuizContent from '@/components/shared-quiz/SharedQuizContent';
+import { SharedQuizContent } from '@/components/shared-quiz/SharedQuizContent';
 import { SharedQuizTopContent } from '@/components/shared-quiz/SharedQuizTopContent';
 import { verifySession } from '@/services/sessions';
 import { getUserById } from '@/services/user.service';

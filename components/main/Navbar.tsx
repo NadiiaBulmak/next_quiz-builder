@@ -3,14 +3,14 @@ import { MobileMenu } from './Nav/MobileMenu';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 import { CONTENT } from '@/constants/content';
-import Logo from '@/components/shared/Logo';
+import { Logo } from '@/components/shared/Logo';
 import { NavMenu } from './Nav/NavMenu';
 import { ControlMenu } from './Nav/ControlMenu';
 import { verifySession } from '@/services/sessions';
 import { useState } from 'react';
 import type { NavbarProps } from '@/types/props';
 
-export function Navbar({ userId }: NavbarProps) {
+export const Navbar = ({ userId }: NavbarProps) => {
   const [mobileMenuOpened, setMobileMenuOpened] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -37,4 +37,4 @@ export function Navbar({ userId }: NavbarProps) {
       {/* )} */}
     </>
   );
-}
+};

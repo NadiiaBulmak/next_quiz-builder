@@ -11,7 +11,7 @@ import type { UserSettingsFormProps } from '@/types/props';
 import { defaultNameState, defaultResetState } from '@/constants/defaultStates';
 import { AuthFormField } from '@/constants/formFields';
 
-export default function UserSettingsForm({ user }: UserSettingsFormProps) {
+export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
   const [nameState, nameAction, isNamePending] = useActionState(
     updateUserName,
     defaultNameState,
@@ -120,4 +120,4 @@ export default function UserSettingsForm({ user }: UserSettingsFormProps) {
       </div>
     </div>
   );
-}
+};

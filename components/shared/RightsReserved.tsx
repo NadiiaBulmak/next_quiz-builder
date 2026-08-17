@@ -1,7 +1,7 @@
 import { CONTENT } from '@/constants/content';
 import type { RightsReservedProps } from '@/types/props';
 
-export default function RightsReserved({ centered }: RightsReservedProps) {
+export const RightsReserved = ({ centered }: RightsReservedProps) => {
   return (
     <div
       className={`
@@ -21,4 +21,4 @@ export default function RightsReserved({ centered }: RightsReservedProps) {
       <p>{CONTENT.footer.withLove}</p>
     </div>
   );
-}
+};

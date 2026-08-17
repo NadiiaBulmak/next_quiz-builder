@@ -1,4 +1,4 @@
-import PreviewTopBar from '@/components/preview/PreviewTopBar';
+import { PreviewTopBar } from '@/components/preview/PreviewTopBar';
 import { QuizContent } from '@/components/preview/QuizContent';
 import type { Question, QuizForEditor } from '@/types/props';
 import { getQuizById } from '@/services/quizz.service';

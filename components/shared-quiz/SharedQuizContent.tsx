@@ -19,7 +19,7 @@ import {
   QuizQuestionField,
 } from '@/constants/formFields';
 
-export default function SharedQuizContent({
+export const SharedQuizContent = ({
   id,
   title,
   description,
@@ -32,7 +32,7 @@ export default function SharedQuizContent({
     email: string;
     name: string | null;
   } | null;
-}) {
+}) => {
   const [state, action, isPending] = useActionState(
     quizResult,
     quizResultInitialState,
@@ -169,4 +169,4 @@ export default function SharedQuizContent({
       </form>
     </div>
   );
-}
+};

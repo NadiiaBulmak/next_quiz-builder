@@ -4,7 +4,7 @@ import * as React from "react"
 
 import { cn } from "@/utils/utils"
 
-function Label({ className, ...props }: React.ComponentProps<"label">) {
+export const Label = ({ className, ...props }: React.ComponentProps<"label">) => {
   return (
     <label
       data-slot="label"
@@ -15,6 +15,6 @@ function Label({ className, ...props }: React.ComponentProps<"label">) {
       {...props}
     />
   )
-}
+};
 
 export { Label }

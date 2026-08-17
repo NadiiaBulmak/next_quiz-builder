@@ -1,5 +1,5 @@
 'use client';
-import FilterZone from '@/components/quiz/FilterZone';
+import { FilterZone } from '@/components/quiz/FilterZone';
 import { FilterModalProvider } from '@/components/quiz/FilterModalContext';
 
 export const QuizzesContent = ({

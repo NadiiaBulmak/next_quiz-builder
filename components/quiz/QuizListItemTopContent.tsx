@@ -1,5 +1,5 @@
 import { BadgePropsType } from '@/types/quiz';
-import Badge from './Badge';
+import { Badge } from './Badge';
 import { QuizItemMenu } from './QuizItemMenu';
 import { ShowAllQuizType } from '@/types/props';
 

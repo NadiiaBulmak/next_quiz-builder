@@ -5,7 +5,7 @@ import { ChevronsRight, ChevronsLeft } from 'lucide-react';
 import Image from 'next/image';
 import { CONTENT } from '@/constants/content';
 
-export default function SideBarLogo({ opened = true, setOpened }: LogoType) {
+export const SideBarLogo = ({ opened = true, setOpened }: LogoType) => {
   const handleClick = () => {
     if (!setOpened) return;
     setOpened((prev) => !prev);
@@ -41,4 +41,4 @@ export default function SideBarLogo({ opened = true, setOpened }: LogoType) {
       </button>
     </div>
   );
-}
+};

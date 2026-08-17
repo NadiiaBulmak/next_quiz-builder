@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/shared/Skeleton';
 
-function QuestionCardSkeleton() {
+const QuestionCardSkeleton = () => {
   return (
     <div className="flex flex-col gap-3 rounded-md border border-gray-200 p-4">
       <Skeleton className="h-4 w-1/3" />
@@ -12,7 +12,7 @@ function QuestionCardSkeleton() {
       </div>
     </div>
   );
-}
+};
 
 export function QuizFormSkeleton() {
   return (

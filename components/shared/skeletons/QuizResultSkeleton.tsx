@@ -1,13 +1,13 @@
 import { Skeleton } from '@/components/shared/Skeleton';
 
-function SharedQuizTopContentSkeleton() {
+const SharedQuizTopContentSkeleton = () => {
   return (
     <div className="flex w-full items-center justify-between px-6 md:px-8 lg:px-20 py-6 pb-0">
       <Skeleton className="h-8 w-28" />
       <Skeleton className="h-9 w-32 rounded-lg" />
     </div>
   );
-}
+};
 
 export function QuizResultSkeleton() {
   return (

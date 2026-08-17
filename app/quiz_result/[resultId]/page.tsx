@@ -1,5 +1,5 @@
 import { SharedQuizTopContent } from '@/components/shared-quiz/SharedQuizTopContent';
-import QuizResultContent from '@/components/quiz-result/QuizResultContent';
+import { QuizResultContent } from '@/components/quiz-result/QuizResultContent';
 import { getResult } from '@/services/result/getQuizForResult';
 import { notFound } from 'next/navigation';
 

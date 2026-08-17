@@ -2,7 +2,7 @@ import { API_ROUTES } from '@/constants/api';
 import Image from 'next/image';
 import { CONTENT } from '@/constants/content';
 
-export default function GoogleSubmitButton() {
+export const GoogleSubmitButton = () => {
   return (
     <button
       type="button"
@@ -18,4 +18,4 @@ export default function GoogleSubmitButton() {
       {CONTENT.auth.form.actions.continue_with_google}
     </button>
   );
-}
+};

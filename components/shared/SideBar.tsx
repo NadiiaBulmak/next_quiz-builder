@@ -1,11 +1,11 @@
 'use client';
 
 import { User } from '@/types/user';
-import SidebarMenu from './SidebarMenu';
+import { SidebarMenu } from './SidebarMenu';
 import { useEffect, useState } from 'react';
-import SideBarLogo from './SidebarLogo';
+import { SideBarLogo } from './SidebarLogo';
 
-export default function SideBar({ name, email }: User) {
+export const SideBar = ({ name, email }: User) => {
   const [opened, setOpened] = useState(true);
 
   useEffect(() => {
@@ -39,4 +39,4 @@ export default function SideBar({ name, email }: User) {
       </div>
     </aside>
   );
-}
+};

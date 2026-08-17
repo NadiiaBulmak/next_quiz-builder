@@ -1,9 +1,9 @@
-import Logo from './Logo';
+import { Logo } from './Logo';
 import { CONTENT } from '@/constants/content';
-import UserDropdown from './UserDropdown';
+import { UserDropdown } from './UserDropdown';
 import { User } from '@/lib/generated/prisma/browser';
 
-export default function MobileTopBar({
+export const MobileTopBar = ({
   name,
   email,
   opened = true,
@@ -15,7 +15,7 @@ export default function MobileTopBar({
   userMenuVisible?: boolean;
   className?: string;
   previewMode?: boolean;
-}) {
+}) => {
   if (previewMode) {}
   
   return previewMode ? (
@@ -43,4 +43,4 @@ export default function MobileTopBar({
       )}
     </div>
   );
-}
+};

@@ -4,12 +4,12 @@ import { loginInitialState } from '@/constants/initialFormState';
 import { useActionState } from 'react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import AuthRedirectLink from './UI/AuthRedirect';
+import { AuthRedirectLink } from './UI/AuthRedirect';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
-import AuthFormDivider from './UI/AuthFormDivider';
+import { AuthFormDivider } from './UI/AuthFormDivider';
 import { login } from '@/app/actions/auth/login';
-import GoogleShubmitButton from './GoogleSubmitButton';
+import { GoogleSubmitButton as GoogleShubmitButton } from './GoogleSubmitButton';
 import {
   ActionToast,
   FieldError,
@@ -17,7 +17,7 @@ import {
 } from '@/components/shared/FormFeedback';
 import { AuthFormField } from '@/constants/formFields';
 
-export default function LoginForm() {
+export const LoginForm = () => {
   const [state, action, isPending] = useActionState(login, loginInitialState);
   const router = useRouter();
 
@@ -109,4 +109,4 @@ export default function LoginForm() {
       </div>
     </div>
   );
-}
+};
