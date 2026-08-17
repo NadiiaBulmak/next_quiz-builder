@@ -565,7 +565,29 @@ export async function updateQuiz(id: string, data: Partial<CreateQuizInput>) {
 }
 
 export async function deleteQuiz(id: string) {
-  await prisma.quiz.delete({ where: { id } });
+  await prisma.$transaction(async (transaction) => {
+    const quiz = await transaction.quiz.findUnique({
+      where: { id },
+      select: {
+        categories: {
+          select: { id: true },
+        },
+      },
+    });
+
+    if (!quiz) {
+      throw new Error('Quiz not found');
+    }
+
+    await transaction.quiz.delete({ where: { id } });
+
+    await transaction.category.deleteMany({
+      where: {
+        id: { in: quiz.categories.map((category) => category.id) },
+        quizzes: { none: {} },
+      },
+    });
+  });
 }
 
 export async function duplicateQuiz(id: string) {
