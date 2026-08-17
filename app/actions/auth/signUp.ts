@@ -5,15 +5,16 @@ import { createSession } from '@/services/sessions';
 import { FormState, SignupFormSchema } from '@/schemas/sign-up.schema';
 import { hashPassword } from '@/utils/hashPassword.util';
 import { CONTENT } from '@/constants/content';
+import { AuthFormField } from '@/constants/formFields';
 
 export async function signup(
   _state: FormState,
   formData: FormData,
 ): Promise<FormState> {
   const validatedFields = SignupFormSchema.safeParse({
-    name: formData.get('name'),
-    email: formData.get('email'),
-    password: formData.get('password'),
+    [AuthFormField.NAME]: formData.get(AuthFormField.NAME),
+    [AuthFormField.EMAIL]: formData.get(AuthFormField.EMAIL),
+    [AuthFormField.PASSWORD]: formData.get(AuthFormField.PASSWORD),
   });
 
   if (!validatedFields.success) {

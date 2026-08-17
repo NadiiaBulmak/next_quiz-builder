@@ -76,7 +76,9 @@ export const QuizQuestions = ({
           onClick={handleNextQuestion}
           disabled={isPending || !isQuizCompleted}
         >
-          {isPending ? CONTENT.shared_quiz.buttons.submit : CONTENT.shared_quiz.buttons.submit}
+          {isPending
+            ? CONTENT.common.submitting
+            : CONTENT.shared_quiz.buttons.submit}
         </Button>
       </div>
     </div>

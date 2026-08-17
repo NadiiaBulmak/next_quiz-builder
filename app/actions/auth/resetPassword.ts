@@ -9,15 +9,18 @@ import {
 import { createSession } from '@/services/sessions';
 import { hashPassword } from '@/utils/hashPassword.util';
 import { CONTENT } from '@/constants/content';
+import { AuthFormField, PasswordResetFormField } from '@/constants/formFields';
 
 export async function resetPassword(
   _state: ResetFormState,
   formData: FormData,
 ): Promise<ResetFormState> {
   const validatedFields = ResetFormSchema.safeParse({
-    token: formData.get('token'),
-    password: formData.get('password'),
-    confirmPassword: formData.get('confirmPassword'),
+    [PasswordResetFormField.TOKEN]: formData.get(PasswordResetFormField.TOKEN),
+    [AuthFormField.PASSWORD]: formData.get(AuthFormField.PASSWORD),
+    [PasswordResetFormField.CONFIRM_PASSWORD]: formData.get(
+      PasswordResetFormField.CONFIRM_PASSWORD,
+    ),
   });
 
   if (!validatedFields.success) {
@@ -46,7 +49,9 @@ export async function resetPassword(
     if (!resetToken || resetToken.usedAt || resetToken.expiresAt < new Date()) {
       return {
         errors: {
-          token: [CONTENT.auth.messages.reset_link_invalid_or_expired],
+          [PasswordResetFormField.TOKEN]: [
+            CONTENT.auth.messages.reset_link_invalid_or_expired,
+          ],
         },
       };
     }

@@ -2,8 +2,9 @@
 import { useState } from 'react';
 import { Button } from '../ui/button';
 import { CheckCheck, Link as LinkIcon } from 'lucide-react';
+import type { CopyPreviewLinkButtonProps } from '@/types/props';
 
-export const CopyPreviewLinkButton = ({ id }: { id: string }) => {
+export const CopyPreviewLinkButton = ({ id }: CopyPreviewLinkButtonProps) => {
   const [copied, setCopied] = useState(false);
   const handleCopyLink = () => {
     navigator.clipboard.writeText(`${window.location.origin}/quiz/${id}`);

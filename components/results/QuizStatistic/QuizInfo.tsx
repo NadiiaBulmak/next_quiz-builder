@@ -1,7 +1,7 @@
 import Badge from '@/components/quiz/Badge';
-import type { QuizResultOverview } from '@/types/props';
+import type { QuizResultOverviewProps } from '@/types/props';
 
-export const QuizInfo = ({ quiz }: { quiz: QuizResultOverview }) => {
+export const QuizInfo = ({ quiz }: QuizResultOverviewProps) => {
   const { title, difficulty, categories, description } = quiz;
   const safeCategories = categories ?? [];
 

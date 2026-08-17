@@ -1,13 +1,7 @@
-import { AnswerInput } from '@/types/quiz';
 import { Circle } from 'lucide-react';
+import type { QuizAnswerItemProps } from '@/types/props';
 
-export const QuizAnswerItem = ({
-  text,
-  index,
-}: {
-  text: string;
-  index: number;
-}) => {
+export const QuizAnswerItem = ({ text, index }: QuizAnswerItemProps) => {
   return (
     <div
       key={index}

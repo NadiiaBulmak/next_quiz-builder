@@ -1,17 +1,18 @@
 import * as z from 'zod';
 import { CONTENT } from '@/constants/content';
+import { AuthFormField } from '@/constants/formFields';
 
 export const ForgotPasswordFormSchema = z.object({
-  email: z
+  [AuthFormField.EMAIL]: z
     .string()
-    .email({ error: CONTENT.auth.validation.email_invalid })
-    .trim(),
+    .trim()
+    .email({ error: CONTENT.auth.validation.email_invalid }),
 });
 
 export type ForgotPasswordFormState = {
   success?: boolean;
   errors?: {
-    email?: string[];
+    [AuthFormField.EMAIL]?: string[];
     // password?: string[];
   };
   message?: string;

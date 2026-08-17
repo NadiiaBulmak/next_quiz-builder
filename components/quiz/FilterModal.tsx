@@ -3,28 +3,19 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { X } from 'lucide-react';
 import { Button } from '../ui/button';
-import { sortType } from '@/types/props';
+import { sortType, type FilterModalProps } from '@/types/props';
 import { Difficulty } from '@/types/quiz';
 import { cn } from '@/utils/utils';
 import { useFilterModal } from './FilterModalContext';
 
-type CategoryOption = {
-  id: string;
-  name: string;
-  slug: string;
-};
+import { CONTENT } from '@/constants/content';
 
 export const FilterModal = ({
   categories,
   initialCategories = [],
   initialDifficulty = '',
   initialSort = '',
-}: {
-  categories: CategoryOption[];
-  initialCategories?: string[];
-  initialDifficulty?: string;
-  initialSort?: string;
-}) => {
+}: FilterModalProps) => {
   const { isOpen, setIsOpen } = useFilterModal();
   const [selectedCategories, setSelectedCategories] =
     useState<string[]>(initialCategories);
@@ -106,7 +97,9 @@ export const FilterModal = ({
         )}
       >
         <div className="flex items-center justify-between lg:hidden">
-          <h2 className="text-base font-semibold text-gray-900">Filters</h2>
+          <h2 className="text-base font-semibold text-gray-900">
+            {CONTENT.quiz_list.filters.title}
+          </h2>
           <button
             type="button"
             onClick={() => setIsOpen(false)}
@@ -118,14 +111,14 @@ export const FilterModal = ({
 
         <div className="flex flex-col gap-2">
           <label className="text-sm font-medium text-gray-700">
-            Difficulty
+            {CONTENT.quiz_list.filters.difficulty}
           </label>
           <select
             value={difficulty}
             onChange={(e) => setDifficulty(e.target.value)}
             className="h-10 rounded-sm border border-gray-300 bg-gray-100 p-2 text-sm"
           >
-            <option value="">All</option>
+            <option value="">{CONTENT.quiz_list.filters.all}</option>
             {Object.values(Difficulty).map((level) => (
               <option key={level} value={level}>
                 {level}
@@ -135,11 +128,13 @@ export const FilterModal = ({
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-gray-700">Category</label>
+          <label className="text-sm font-medium text-gray-700">
+            {CONTENT.quiz_list.filters.category}
+          </label>
           <div className="flex max-h-40 flex-col gap-2 overflow-y-auto rounded-sm border border-gray-300 bg-gray-100 p-2">
             {categories.length === 0 && (
               <span className="text-sm text-gray-500">
-                No categories available
+                {CONTENT.quiz_list.filters.no_categories}
               </span>
             )}
             {categories.map((category) => (
@@ -160,13 +155,15 @@ export const FilterModal = ({
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-gray-700">Sort by</label>
+          <label className="text-sm font-medium text-gray-700">
+            {CONTENT.quiz_list.filters.sort_by}
+          </label>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
             className="h-10 rounded-sm border border-gray-300 bg-gray-100 p-2 text-sm"
           >
-            <option value="">Default</option>
+            <option value="">{CONTENT.quiz_list.filters.default_sort}</option>
             {Object.values(sortType).map((value) => (
               <option key={value} value={value}>
                 {value}
@@ -182,10 +179,10 @@ export const FilterModal = ({
             className="flex-1"
             onClick={handleClear}
           >
-            Clear
+            {CONTENT.quiz_list.filters.clear}
           </Button>
           <Button type="submit" className="flex-1">
-            Apply
+            {CONTENT.quiz_list.filters.apply}
           </Button>
         </div>
       </form>

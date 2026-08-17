@@ -1,32 +1,30 @@
 import { FileQuestion, Users, ChartNoAxesColumnIncreasing } from 'lucide-react';
 import { StatCard } from './StatCard';
+import { CONTENT } from '@/constants/content';
+import type { ResultStatsListProps } from '@/types/props';
 
 export const ResultStatsList = ({
   totalQuizzes,
   totalParticipants,
   averageScore,
-}: {
-  totalQuizzes: number;
-  totalParticipants: number;
-  averageScore: number;
-}) => {
+}: ResultStatsListProps) => {
   const stats = [
     {
-      label: 'Total quizzes',
+      label: CONTENT.results.stats.total_quizzes,
       value: totalQuizzes,
-      description: 'Created by you',
+      description: CONTENT.results.stats.total_quizzes_description,
       icon: FileQuestion,
     },
     {
-      label: 'Total participants',
+      label: CONTENT.results.stats.total_participants,
       value: totalParticipants,
-      description: 'Across all quizzes',
+      description: CONTENT.results.stats.total_participants_description,
       icon: Users,
     },
     {
-      label: 'Average score',
+      label: CONTENT.results.stats.average_score,
       value: `${averageScore}%`,
-      description: 'Across all responses',
+      description: CONTENT.results.stats.average_score_description,
       icon: ChartNoAxesColumnIncreasing,
     },
   ];

@@ -10,6 +10,12 @@ import { CONTENT } from '@/constants/content';
 import AuthFormDivider from './UI/AuthFormDivider';
 import { login } from '@/app/actions/auth/login';
 import GoogleShubmitButton from './GoogleSubmitButton';
+import {
+  ActionToast,
+  FieldError,
+  QueryErrorToast,
+} from '@/components/shared/FormFeedback';
+import { AuthFormField } from '@/constants/formFields';
 
 export default function LoginForm() {
   const [state, action, isPending] = useActionState(login, loginInitialState);
@@ -23,52 +29,56 @@ export default function LoginForm() {
 
   return (
     <div className="flex w-full max-w-full flex-col gap-2">
+      <QueryErrorToast />
       <form action={action} className="flex w-full max-w-full flex-col gap-8">
+        <ActionToast state={state} />
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
             <label
-              htmlFor="email"
+              htmlFor={AuthFormField.EMAIL}
               className="block text-xs font-medium text-gray-700"
             >
               {CONTENT.auth.form.email.label}
             </label>
             <input
-              id="email"
-              name="email"
+              id={AuthFormField.EMAIL}
+              name={AuthFormField.EMAIL}
               type="email"
               required
+              aria-invalid={Boolean(state?.errors?.[AuthFormField.EMAIL])}
+              aria-describedby="login-email-error"
               autoComplete="true"
               placeholder={CONTENT.auth.form.email.placeholder}
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
           </div>
-          {state?.errors?.email && <p>{state.errors.email}</p>}
+          <FieldError
+            id="login-email-error"
+            errors={state?.errors?.[AuthFormField.EMAIL]}
+          />
           <div className="flex flex-col gap-1">
             <label
-              htmlFor="password"
+              htmlFor={AuthFormField.PASSWORD}
               className="block text-xs font-medium text-gray-700"
             >
               {CONTENT.auth.form.password.label}
             </label>
             <input
-              id="password"
-              name="password"
+              id={AuthFormField.PASSWORD}
+              name={AuthFormField.PASSWORD}
               type="password"
               required
+              minLength={8}
+              aria-invalid={Boolean(state?.errors?.[AuthFormField.PASSWORD])}
+              aria-describedby="login-password-error"
               placeholder={CONTENT.auth.form.password.placeholder}
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
           </div>
-          {state?.errors?.password && (
-            <div>
-              <p>{CONTENT.auth.form.password_must}</p>
-              <ul>
-                {state.errors.password.map((error) => (
-                  <li key={error}>- {error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <FieldError
+            id="login-password-error"
+            errors={state?.errors?.[AuthFormField.PASSWORD]}
+          />
         </div>
 
         <button

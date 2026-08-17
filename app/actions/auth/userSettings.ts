@@ -10,13 +10,15 @@ import {
   UpdateUserNameSchema,
   UpdateUserNameState,
 } from '@/schemas/user-settings.schema';
+import { CONTENT } from '@/constants/content';
+import { AuthFormField } from '@/constants/formFields';
 
 export async function updateUserName(
   _state: UpdateUserNameState,
   formData: FormData,
 ): Promise<UpdateUserNameState> {
   const validatedFields = UpdateUserNameSchema.safeParse({
-    name: formData.get('name'),
+    [AuthFormField.NAME]: formData.get(AuthFormField.NAME),
   });
 
   if (!validatedFields.success) {
@@ -39,12 +41,12 @@ export async function updateUserName(
 
     return {
       success: true,
-      message: 'Name updated successfully.',
+      message: CONTENT.settings.messages.name_updated,
     };
   } catch (error) {
     console.error('Update user name failed:', error);
     return {
-      message: 'Unable to update your name right now. Please try again.',
+      message: CONTENT.settings.messages.unable_update_name,
     };
   }
 }
@@ -55,7 +57,7 @@ export async function requestPasswordReset(
 ): Promise<RequestPasswordResetState> {
   const user = await getCurrentUser();
   const formData = new FormData();
-  formData.set('email', user.email);
+  formData.set(AuthFormField.EMAIL, user.email);
 
   return forgotPassword(state, formData);
 }

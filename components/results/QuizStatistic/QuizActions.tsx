@@ -1,11 +1,11 @@
-import type { QuizResultOverview } from '@/types/props';
+import type { QuizActionsProps } from '@/types/props';
 import Link from 'next/link';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
 import { Button } from '../../ui/button';
 import { CopyPreviewLinkButton } from '../../quiz/CopyPreviewLinkButton';
 
-export const QuizActions = ({ quiz }: { quiz: QuizResultOverview }) => {
+export const QuizActions = ({ quiz }: QuizActionsProps) => {
   return (
     <div className="flex shrink-0 gap-2">
       <Link href={`${NAV_LINKS.quizzes.results}/${quiz.id}`}>

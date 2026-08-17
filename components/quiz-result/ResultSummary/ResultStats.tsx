@@ -1,5 +1,6 @@
 import { ResultStat } from './ResultStat';
 import { CONTENT } from '@/constants/content';
+import type { ResultStatsProps } from '@/types/props';
 
 export const ResultStats = ({
   correctAnswers,
@@ -7,13 +8,7 @@ export const ResultStats = ({
   totalQuestions,
   questions,
   finishedAt,
-}: {
-  correctAnswers: number;
-  incorrectAnswers: number;
-  totalQuestions: number;
-  questions: any[];
-  finishedAt: Date;
-}) => (
+}: ResultStatsProps) => (
   <div className="grid grid-cols-2 gap-3">
     <ResultStat
       label={CONTENT.quiz_result.summary.correct_answers}

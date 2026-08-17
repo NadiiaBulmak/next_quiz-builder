@@ -8,11 +8,13 @@ import AuthRedirectLink from './UI/AuthRedirect';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
 import { resetPassword } from '@/app/actions/auth/resetPassword';
+import { ActionToast, FieldError } from '@/components/shared/FormFeedback';
+import { AuthFormField, PasswordResetFormField } from '@/constants/formFields';
 
 export default function ResetPasswordForm() {
   const searchParams = useSearchParams();
 
-  const token = searchParams.get('token');
+  const token = searchParams.get(PasswordResetFormField.TOKEN);
 
   const [state, action, isPending] = useActionState(
     resetPassword,
@@ -29,21 +31,33 @@ export default function ResetPasswordForm() {
   return (
     <div className="flex w-full max-w-full flex-col gap-2">
       <form action={action} className="flex w-full max-w-full flex-col gap-8">
-        <input type="hidden" name="token" value={token ?? ''} />
+        <ActionToast state={state} />
+        <input
+          type="hidden"
+          name={PasswordResetFormField.TOKEN}
+          value={token ?? ''}
+        />
+        <FieldError
+          id="reset-token-error"
+          errors={state?.errors?.[PasswordResetFormField.TOKEN]}
+        />
 
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
             <label
-              htmlFor="password"
+              htmlFor={AuthFormField.PASSWORD}
               className="block text-xs font-medium text-gray-700"
             >
               {CONTENT.auth.form.password.label}
             </label>
             <input
-              id="password"
-              name="password"
+              id={AuthFormField.PASSWORD}
+              name={AuthFormField.PASSWORD}
               type="password"
               required
+              minLength={8}
+              aria-invalid={Boolean(state?.errors?.[AuthFormField.PASSWORD])}
+              aria-describedby="reset-password-error"
               placeholder={CONTENT.auth.form.password.placeholder}
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
@@ -56,42 +70,26 @@ export default function ResetPasswordForm() {
               {CONTENT.auth.form.confirmPassword.label}
             </label>
             <input
-              id="confirm-password"
-              name="confirmPassword"
+              id={PasswordResetFormField.CONFIRM_PASSWORD}
+              name={PasswordResetFormField.CONFIRM_PASSWORD}
               type="password"
               required
+              aria-invalid={Boolean(
+                state?.errors?.[PasswordResetFormField.CONFIRM_PASSWORD],
+              )}
+              aria-describedby="reset-confirm-password-error"
               placeholder={CONTENT.auth.form.confirmPassword.placeholder}
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
           </div>
-          {state?.errors?.token && (
-            <div>
-              <ul>
-                {state.errors.token.map((error) => (
-                  <li key={error}>- {error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {state?.errors?.password && (
-            <div>
-              <p>{CONTENT.auth.form.password_must}</p>
-              <ul>
-                {state.errors.password.map((error) => (
-                  <li key={error}>- {error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {state?.errors?.confirmPassword && (
-            <div>
-              <ul>
-                {state.errors.confirmPassword.map((error) => (
-                  <li key={error}>- {error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <FieldError
+            id="reset-password-error"
+            errors={state?.errors?.[AuthFormField.PASSWORD]}
+          />
+          <FieldError
+            id="reset-confirm-password-error"
+            errors={state?.errors?.[PasswordResetFormField.CONFIRM_PASSWORD]}
+          />
         </div>
 
         <button

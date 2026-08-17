@@ -11,36 +11,23 @@ import {
   Mail,
   Percent,
   User,
-  Command,
 } from 'lucide-react';
-import type { QuizResultDetail } from '@/types/props';
+import type { ResultDetailsListProps } from '@/types/props';
 import { Pagination } from '@/components/shared/Pagination';
 import { CONTENT } from '@/constants/content';
 import { ROUTES } from '@/constants/routes';
 import { formatDate } from '@/utils/dateFormatter';
 import { ReviewResult } from '@/components/quiz-result/QuestionResult/ReviewResult';
+import { RESULT_DETAILS_COLUMNS } from '@/constants/results';
 
 export const ResultDetailsList = ({
   results,
   currentPage,
   totalPages,
-}: {
-  results: QuizResultDetail[];
-  currentPage: number;
-  totalPages: number;
-}) => {
+}: ResultDetailsListProps) => {
   const { table } = CONTENT.results.details;
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const router = useRouter();
-
-  const columns = [
-    { label: table.name, icon: User },
-    { label: table.email, icon: Mail },
-    { label: table.score, icon: Percent },
-    { label: table.correctAnswers, icon: CheckCircle2 },
-    { label: table.finishedAt, icon: Calendar },
-    { label: table.action, icon: Command },
-  ];
 
   if (results.length === 0) {
     return (
@@ -56,7 +43,7 @@ export const ResultDetailsList = ({
         <table className="w-full min-w-max text-left text-sm">
           <thead>
             <tr className="border-b border-stone-200 text-xs font-medium uppercase text-stone-500">
-              {columns.map(({ label, icon: Icon }) => (
+              {RESULT_DETAILS_COLUMNS.map(({ label, icon: Icon }) => (
                 <th key={label} className="px-5 py-3">
                   <span className="flex items-center gap-1.5">
                     <Icon className="h-3.5 w-3.5" />

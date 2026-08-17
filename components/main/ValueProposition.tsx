@@ -1,23 +1,5 @@
-import { BarChart3, Edit3, Share2 } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
-
-const values = [
-  {
-    icon: Edit3,
-    title: CONTENT.main.value_proposition.items[0].title,
-    description: CONTENT.main.value_proposition.items[0].description,
-  },
-  {
-    icon: Share2,
-    title: CONTENT.main.value_proposition.items[1].title,
-    description: CONTENT.main.value_proposition.items[1].description,
-  },
-  {
-    icon: BarChart3,
-    title: CONTENT.main.value_proposition.items[2].title,
-    description: CONTENT.main.value_proposition.items[2].description,
-  },
-];
+import { LANDING_VALUES } from '@/constants/landing';
 
 export function ValueProposition() {
   return (
@@ -32,7 +14,7 @@ export function ValueProposition() {
         </h2>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {values.map((item) => {
+          {LANDING_VALUES.map((item) => {
             const Icon = item.icon;
 
             return (

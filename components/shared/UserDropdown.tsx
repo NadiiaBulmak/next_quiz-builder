@@ -14,6 +14,7 @@ import { NAV_LINKS } from '@/constants/nav_links';
 import { logout } from '@/app/actions/auth/logout';
 import { useActionState } from 'react';
 import { CONTENT } from '@/constants/content';
+import { ActionToast } from './FormFeedback';
 
 export default function UserDropdown({
   name,
@@ -36,6 +37,7 @@ export default function UserDropdown({
 
   return (
     <div className={`flex items-center gap-2 ${className}`}>
+      <ActionToast state={state} />
       <DropdownMenu>
         <DropdownMenuTrigger
           className="p-1 flex items-center gap-3 cursor-pointer items-center border rounded-md border-lime-500 hover:border-lime-500 hover:shadow-[0_0_0_3px_rgba(132,204,22,0.15)] bg-black text-white"

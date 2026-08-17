@@ -73,9 +73,7 @@ function Feature({
       <div>
         <p className="text-sm font-medium text-white">{title}</p>
 
-        <p className="mt-1 text-xs leading-5 text-slate-500">
-          {description}
-        </p>
+        <p className="mt-1 text-xs leading-5 text-slate-500">{description}</p>
       </div>
     </div>
   );
@@ -103,7 +101,7 @@ function ResultPreview() {
         <div className=" h-[520px] bg-white">
           <iframe
             src={`/quiz_result/${process.env.RESULT_PREVIEW_ID}`}
-            title="Quiz result preview"
+            title={CONTENT.main.preview_titles.quiz_result}
             className="h-full w-full border-0"
           />
         </div>

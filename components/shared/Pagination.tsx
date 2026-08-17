@@ -3,12 +3,8 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-
-type PaginationProps = {
-  currentPage: number;
-  totalPages: number;
-  onPageChange?: (page: number) => void;
-};
+import { CONTENT } from '@/constants/content';
+import type { PaginationProps } from '@/types/props';
 
 export const Pagination = ({
   currentPage,
@@ -34,14 +30,14 @@ export const Pagination = ({
 
   return (
     <nav
-      aria-label="Pagination"
+      aria-label={CONTENT.common.pagination.navigation}
       className="flex items-center justify-center gap-1 border-t border-stone-100 px-4 py-3"
     >
       <Button
         type="button"
         variant="ghost"
         size="icon-sm"
-        aria-label="Previous page"
+        aria-label={CONTENT.common.pagination.previous}
         className="mr-2 cursor-pointer"
         disabled={currentPage === 1}
         onClick={() => changePage(currentPage - 1)}
@@ -57,7 +53,7 @@ export const Pagination = ({
             variant={page === currentPage ? 'secondary' : 'ghost'}
             size="icon-sm"
             className={`cursor-pointer ${page === currentPage ? 'bg-lime-300 text-green-700 hover:bg-lime-700 hover:text-white' : ''}`}
-            aria-label={`Go to page ${page}`}
+            aria-label={CONTENT.common.pagination.go_to(page)}
             aria-current={page === currentPage ? 'page' : undefined}
             onClick={() => changePage(page)}
           >
@@ -70,7 +66,7 @@ export const Pagination = ({
         type="button"
         variant="ghost"
         size="icon-sm"
-        aria-label="Next page"
+        aria-label={CONTENT.common.pagination.next}
         className="ml-2 cursor-pointer"
         disabled={currentPage === totalPages}
         onClick={() => changePage(currentPage + 1)}

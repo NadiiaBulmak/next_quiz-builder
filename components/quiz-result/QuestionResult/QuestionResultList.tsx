@@ -1,8 +1,7 @@
-import { Check, X } from 'lucide-react';
-import { CONTENT } from '@/constants/content';
 import { QuestionResult } from './QuestionResult';
+import type { QuestionResultListProps } from '@/types/props';
 
-export function QuestionResultList({ answers }: { answers: Array<{ id: string; questionText: string; answerText: string; isCorrect: boolean }> }) {
+export function QuestionResultList({ answers }: QuestionResultListProps) {
   return (
     <div className="flex flex-col gap-3">
       {answers.map((answer, index) => (

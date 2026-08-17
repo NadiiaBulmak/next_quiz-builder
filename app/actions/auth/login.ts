@@ -5,14 +5,15 @@ import { createSession } from '@/services/sessions';
 import { LoginFormState, LoginFormSchema } from '@/schemas/login.schema';
 import { comparePassword } from '@/utils/hashPassword.util';
 import { CONTENT } from '@/constants/content';
+import { AuthFormField } from '@/constants/formFields';
 
 export async function login(
   _state: LoginFormState,
   formData: FormData,
 ): Promise<LoginFormState> {
   const validatedFields = LoginFormSchema.safeParse({
-    email: formData.get('email'),
-    password: formData.get('password'),
+    [AuthFormField.EMAIL]: formData.get(AuthFormField.EMAIL),
+    [AuthFormField.PASSWORD]: formData.get(AuthFormField.PASSWORD),
   });
 
   if (!validatedFields.success) {
@@ -37,7 +38,7 @@ export async function login(
     if (!user) {
       return {
         errors: {
-          email: [CONTENT.auth.messages.invalid_credentials],
+          [AuthFormField.EMAIL]: [CONTENT.auth.messages.invalid_credentials],
         },
       };
     }
@@ -45,7 +46,9 @@ export async function login(
     if (!user.passwordHash) {
       return {
         errors: {
-          email: [CONTENT.auth.messages.use_google_or_reset_password],
+          [AuthFormField.EMAIL]: [
+            CONTENT.auth.messages.use_google_or_reset_password,
+          ],
         },
       };
     }
@@ -55,7 +58,7 @@ export async function login(
     if (!isPasswordValid) {
       return {
         errors: {
-          password: [CONTENT.auth.messages.invalid_credentials],
+          [AuthFormField.PASSWORD]: [CONTENT.auth.messages.invalid_credentials],
         },
       };
     }

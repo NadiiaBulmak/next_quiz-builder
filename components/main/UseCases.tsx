@@ -1,28 +1,5 @@
-import { GraduationCap, Megaphone, Users, Sparkles } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
-
-const useCases = [
-  {
-    title: CONTENT.main.use_cases.items[0].title,
-    description: CONTENT.main.use_cases.items[0].description,
-    icon: GraduationCap,
-  },
-  {
-    title: CONTENT.main.use_cases.items[1].title,
-    description: CONTENT.main.use_cases.items[1].description,
-    icon: Sparkles,
-  },
-  {
-    title: CONTENT.main.use_cases.items[2].title,
-    description: CONTENT.main.use_cases.items[2].description,
-    icon: Megaphone,
-  },
-  {
-    title: CONTENT.main.use_cases.items[3].title,
-    description: CONTENT.main.use_cases.items[3].description,
-    icon: Users,
-  },
-];
+import { LANDING_USE_CASES } from '@/constants/landing';
 
 export function UseCases() {
   return (
@@ -41,7 +18,7 @@ export function UseCases() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {useCases.map((item) => {
+          {LANDING_USE_CASES.map((item) => {
             const Icon = item.icon;
 
             return (

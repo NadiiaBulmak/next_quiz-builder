@@ -7,16 +7,18 @@ import {
   QuizResultFormState,
   UserAnswersSchema,
 } from '@/schemas/quiz_result.schema';
+import { CONTENT } from '@/constants/content';
+import { AuthFormField, QuizFormField, QuizQuestionField } from '@/constants/formFields';
 
 export async function quizResult(
   _state: QuizResultFormState,
   formData: FormData,
 ): Promise<QuizResultFormState> {
   const validatedFields = QuizResultFormSchema.safeParse({
-    email: formData.get('email'),
-    name: formData.get('name'),
-    quizId: formData.get('quizId'),
-    answers: formData.get('answers'),
+    [AuthFormField.EMAIL]: formData.get(AuthFormField.EMAIL),
+    [AuthFormField.NAME]: formData.get(AuthFormField.NAME),
+    [QuizFormField.QUIZ_ID]: formData.get(QuizFormField.QUIZ_ID),
+    [QuizQuestionField.ANSWERS]: formData.get(QuizQuestionField.ANSWERS),
   });
 
   if (!validatedFields.success) {
@@ -33,7 +35,7 @@ export async function quizResult(
     parsedAnswers = JSON.parse(answers);
   } catch {
     return {
-      message: 'Invalid answers.',
+      message: CONTENT.quiz_result.messages.invalid_answers,
     };
   }
 
@@ -41,15 +43,12 @@ export async function quizResult(
 
   if (!answersResult.success) {
     return {
-      message: 'Invalid answers.',
+      message: CONTENT.quiz_result.messages.invalid_answers,
     };
   }
 
   try {
-    const calculatedResult = await calculateResult(
-      quizId,
-      answersResult.data,
-    );
+    const calculatedResult = await calculateResult(quizId, answersResult.data);
 
     const result = await createResult({
       name,
@@ -60,7 +59,7 @@ export async function quizResult(
 
     return {
       success: true,
-      message: 'Quiz completed successfully.',
+      message: CONTENT.quiz_result.messages.completed_successfully,
       user: {
         id: result.id,
         email: result.email,
@@ -70,7 +69,7 @@ export async function quizResult(
     console.error('Quiz result failed:', error);
 
     return {
-      message: 'Unable to save quiz result.',
+      message: CONTENT.quiz_result.messages.unable_to_save,
     };
   }
 }

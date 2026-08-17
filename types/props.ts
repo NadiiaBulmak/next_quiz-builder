@@ -1,6 +1,6 @@
 import { LucideIcon } from 'lucide-react';
 import { Dispatch, SetStateAction, DragEvent } from 'react';
-import { AnswerInput, Difficulty, Quiz } from './quiz';
+import { AnswerInput, Quiz } from './quiz';
 
 export type Category = {
   id: string;
@@ -10,6 +10,7 @@ export type Category = {
 export type CategorySelectClientProps = {
   categories: Category[];
   initialSelectedNames?: string[];
+  error?: string[];
 };
 
 export type AuthRedirectLinkType = {
@@ -18,6 +19,115 @@ export type AuthRedirectLinkType = {
   boldText?: string;
 };
 export type SectionTopContentType = { heading: string; subheading: string };
+export type ReassuranceProps = { children: React.ReactNode };
+export type NavbarProps = { userId: string | null };
+export type NavMenuProps = { isMobileNav: boolean };
+export type NavMenuItemProps = {
+  href: string;
+  name: string;
+  isMobileNav: boolean;
+};
+export type TrustItemProps = { icon: React.ReactNode; title: string };
+export type QuizAnswerListProps = {
+  answers: import('@/types/quiz').AnswerInput[];
+};
+export type QuizContentProps = { questions: Question[] };
+export type ResultDetailsProps = { resultId: string; finishedAt: Date };
+export type ResultScoreProps = { score: number };
+export type ResultSummaryWrapperProps = { children: React.ReactNode };
+export type QuizCountBadgeProps = { total: number };
+export type CopyPreviewLinkButtonProps = { id: string };
+export type QuizMetricsProps = {
+  totalParticipants: number;
+  questionsCount: number;
+};
+export type QuizResultOverviewProps = { quiz: QuizResultOverview };
+export type ScoreProps = {
+  score: number;
+  title: string;
+  description: string;
+};
+export type ScoreCircleProps = { score: number };
+export type QuizActionsProps = QuizResultOverviewProps;
+export type QuizStatisticsCardProps = QuizResultOverviewProps;
+export type QuestionAnswerItemProps = {
+  answer: import('@/types/quiz').QuizAnswer;
+  handleAnswerSelect: (answerId: string) => void;
+  isAnswerSelected: boolean;
+};
+export type QuizRecipientInfoProps = {
+  recipient: { email: string; name: string | null } | null;
+  errors?: { email?: string[]; name?: string[] };
+};
+export type DifficultySelectProps = { initialValue?: string; error?: string[] };
+export type RightsReservedProps = { centered?: boolean };
+export type SectionTitleProps = { title: string; subtitle?: string };
+export type FieldErrorProps = { id: string; errors?: string[] };
+export type ActionToastProps = {
+  state?: { success?: boolean; message?: string };
+};
+export type FilterOption = { id: string; name: string; slug: string };
+export type FilterModalProps = {
+  categories: FilterOption[];
+  initialCategories?: string[];
+  initialDifficulty?: string;
+  initialSort?: string;
+};
+export type FilterZoneProps = { initialSearchQuery?: string };
+export type ResultDetailsListProps = {
+  results: QuizResultDetail[];
+  currentPage: number;
+  totalPages: number;
+};
+export type QuizInfoProps = Pick<
+  Quiz,
+  'title' | 'description' | 'difficulty' | 'categories'
+>;
+export type TipSectionProps = { title?: string; content: string };
+export type QuizAnswerItemProps = { text: string; index: number };
+export type MetricProps = {
+  value: number | string;
+  label?: string;
+  icon?: LucideIcon;
+};
+export type StatCardProps = {
+  label: string;
+  value: number | string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+};
+export type PaginationProps = {
+  currentPage: number;
+  totalPages: number;
+  onPageChange?: (page: number) => void;
+};
+export type ResultStatsListProps = {
+  totalQuizzes: number;
+  totalParticipants: number;
+  averageScore: number;
+};
+export type QuestionResultAnswer = QuizResultContentProps['answers'][number];
+export type QuestionResultListProps = {
+  answers: QuestionResultAnswer[];
+};
+export type ResultStatProps = { label: string; value: string };
+export type UserSettingsFormProps = { user: import('@/types/user').User };
+export type ResultSummaryProps = {
+  score: number;
+  correctAnswers: number;
+  incorrectAnswers: number;
+  totalQuestions: number;
+  questions: QuizResultContentProps['questions'];
+  finishedAt: Date;
+};
+export type ResultStatsProps = Pick<
+  ResultSummaryProps,
+  | 'correctAnswers'
+  | 'incorrectAnswers'
+  | 'totalQuestions'
+  | 'questions'
+  | 'finishedAt'
+>;
 export type SecondaryButtonType = {
   href: string;
   text: string;
@@ -162,6 +272,7 @@ export type AnswerOptionItemProps = AnswerType & {
 };
 
 export type AutoResizeTextareaProps = {
+  id?: string;
   name?: string;
   placeholder: string;
   initValue?: string;
@@ -194,6 +305,13 @@ export type QuizBaseInputSectionProps = Partial<QuestionControlSectionType> & {
   initialDifficulty?: string;
   initialSelectedCategories?: string[];
   isEditMode?: boolean;
+  isPending?: boolean;
+  errors?: {
+    title?: string[];
+    description?: string[];
+    categories?: string[];
+    difficulty?: string[];
+  };
 };
 
 export type Question = {

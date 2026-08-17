@@ -1,26 +1,32 @@
 import * as z from 'zod';
 import { CONTENT } from '@/constants/content';
+import {
+  AuthFormField,
+  QuizFormField,
+  QuizQuestionField,
+  QuizResultFormField,
+} from '@/constants/formFields';
 
 export const QuizResultFormSchema = z.object({
-  email: z
+  [AuthFormField.EMAIL]: z
     .string()
     .trim()
     .email({ error: CONTENT.auth.validation.email_invalid }),
 
-  name: z.string().trim(),
+  [AuthFormField.NAME]: z.string().trim(),
 
-  quizId: z.string().min(1),
+  [QuizFormField.QUIZ_ID]: z.string().min(1),
 
-  answers: z.string().min(1),
+  [QuizQuestionField.ANSWERS]: z.string().min(1),
 });
 
 export type QuizResultFormState = {
   success?: boolean;
   errors?: {
-    email?: string[];
-    name?: string[];
-    quizId?: string[];
-    answers?: string[];
+    [AuthFormField.EMAIL]?: string[];
+    [AuthFormField.NAME]?: string[];
+    [QuizFormField.QUIZ_ID]?: string[];
+    [QuizQuestionField.ANSWERS]?: string[];
   };
   message?: string;
   user?: {
@@ -30,8 +36,8 @@ export type QuizResultFormState = {
 };
 
 export const UserAnswerSchema = z.object({
-  questionId: z.string(),
-  answerId: z.string(),
+  [QuizResultFormField.QUESTION_ID]: z.string(),
+  [QuizResultFormField.ANSWER_ID]: z.string(),
 });
 
 export const UserAnswersSchema = z.array(UserAnswerSchema);

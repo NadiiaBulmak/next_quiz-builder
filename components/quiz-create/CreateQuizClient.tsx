@@ -15,6 +15,8 @@ import { postQuiz } from '@/app/actions/quiz/postQuiz';
 import { TipSection } from '../shared/TipSection';
 import { CONTENT } from '@/constants/content';
 import { NAV_LINKS } from '@/constants/nav_links';
+import { ActionToast, FieldError } from '@/components/shared/FormFeedback';
+import { QuizFormField } from '@/constants/formFields';
 
 export const CreateQuizClient = ({
   categories,
@@ -58,7 +60,7 @@ export const CreateQuizClient = ({
       }
     : quizInitialState;
 
-  const [state, action] = useActionState(postQuiz, initialState);
+  const [state, action, isPending] = useActionState(postQuiz, initialState);
   const router = useRouter();
 
   useEffect(() => {
@@ -160,15 +162,20 @@ export const CreateQuizClient = ({
         action={previewMode ? undefined : action}
         className="flex-1 min-h-screen  flex-1 min-h-screen bg-gray-50 px-3 md:px-6 py-3 md:py-6 grid grid-cols-1 md:grid-cols-[4fr_6fr] md:gap-3 w-full mb-20 lg:mb-0"
       >
+        <ActionToast state={state} />
         {previewMode && (
           <div className="mb-3 md:mb-0 order-first md:order-last">
             <TipSection content="Form is not active due to preview mode" />
           </div>
         )}
-        <input type="hidden" name="quizId" value={quiz?.id ?? ''} />
         <input
           type="hidden"
-          name="questions"
+          name={QuizFormField.QUIZ_ID}
+          value={quiz?.id ?? ''}
+        />
+        <input
+          type="hidden"
+          name={QuizFormField.QUESTIONS}
           value={JSON.stringify(questions)}
         />
         <QuizBaseInputSection
@@ -178,11 +185,17 @@ export const CreateQuizClient = ({
           initialDifficulty={initialState.user?.difficulty}
           initialSelectedCategories={editCategories}
           isEditMode={Boolean(quiz)}
+          isPending={isPending}
+          errors={state.errors}
           onAddQuestion={addNewQuestion}
           onDeleteQuestion={deleteQuestion}
           questions={questions}
         />
         <div className="flex flex-col gap-3">
+          <FieldError
+            id="quiz-questions-error"
+            errors={state.errors?.[QuizFormField.QUESTIONS]}
+          />
           <QuestionsSection
             questions={questions}
             onDeleteQuestion={deleteQuestion}

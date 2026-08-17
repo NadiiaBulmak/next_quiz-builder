@@ -1,8 +1,11 @@
 import { Trophy } from 'lucide-react';
 import { ResultScore } from './ResultScore';
 import { CONTENT } from '@/constants/content';
+import type { ResultSummaryWrapperProps } from '@/types/props';
 
-export const ResultSummaryWrapper = ({ children }: { children: React.ReactNode }) => {
+export const ResultSummaryWrapper = ({
+  children,
+}: ResultSummaryWrapperProps) => {
   return (
     <section className="rounded-xl md:border md:border-gray-200 bg-white">
       <div className="border-b border-gray-100 px-6 py-5">
@@ -22,7 +25,7 @@ export const ResultSummaryWrapper = ({ children }: { children: React.ReactNode }
         </div>
       </div>
 
-{children}
+      {children}
     </section>
   );
 };

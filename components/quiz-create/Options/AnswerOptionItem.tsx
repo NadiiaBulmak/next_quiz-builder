@@ -4,6 +4,7 @@ import { AnswerOptionItemProps } from '@/types/props';
 import { CircleCheck, CircleX, GripVertical, X } from 'lucide-react';
 import { Input } from '../../ui/input';
 import { ChangeEvent } from 'react';
+import { CONTENT } from '@/constants/content';
 
 export const AnswerOptionItem = ({
   id,
@@ -35,7 +36,11 @@ export const AnswerOptionItem = ({
           }
         }}
         className="cursor-pointer"
-        aria-label={isCorrect ? 'Correct answer' : 'Mark as correct answer'}
+        aria-label={
+          isCorrect
+            ? CONTENT.create.questions.correct_answer
+            : CONTENT.create.questions.mark_correct_answer
+        }
         aria-pressed={isCorrect}
       >
         {isCorrect ? (

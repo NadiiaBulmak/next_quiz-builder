@@ -1,5 +1,6 @@
 import { ResultScore } from './ResultScore';
 import { ResultStats } from './ResultStats';
+import type { ResultSummaryProps } from '@/types/props';
 
 export const ResultSummary = ({
   score,
@@ -8,14 +9,7 @@ export const ResultSummary = ({
   totalQuestions,
   questions,
   finishedAt,
-}: {
-  score: number;
-  correctAnswers: number;
-  incorrectAnswers: number;
-  totalQuestions: number;
-  questions: any[];
-  finishedAt: Date;
-}) => {
+}: ResultSummaryProps) => {
   return (
     <div className="grid grid-cols-1 py-6 gap-6 md:p-6 lg:grid-cols-[1fr_1fr]">
       <ResultScore score={score} />

@@ -8,6 +8,8 @@ import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
 import GoogleSubmitButton from './GoogleSubmitButton';
 import AuthFormDivider from './UI/AuthFormDivider';
+import { ActionToast, FieldError } from '@/components/shared/FormFeedback';
+import { AuthFormField } from '@/constants/formFields';
 
 export default function SignUp() {
   const [state, action, isPending] = useActionState(signup, initialState);
@@ -22,70 +24,77 @@ export default function SignUp() {
   return (
     <div className="flex w-full max-w-full flex-col gap-2">
       <form action={action}>
+        <ActionToast state={state} />
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
             <label
-              htmlFor="name"
+              htmlFor={AuthFormField.NAME}
               className="block text-xs font-medium text-gray-700"
             >
               {CONTENT.auth.form.name.label}
             </label>
             <input
-              id="name"
-              name="name"
+              id={AuthFormField.NAME}
+              name={AuthFormField.NAME}
               required
+              minLength={2}
+              aria-invalid={Boolean(state?.errors?.[AuthFormField.NAME])}
+              aria-describedby="signup-name-error"
               autoComplete="name"
               placeholder={CONTENT.auth.form.name.placeholder}
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
           </div>
-          {state?.errors?.name?.map((error) => (
-            <p key={error}>{error}</p>
-          ))}
+          <FieldError
+            id="signup-name-error"
+            errors={state?.errors?.[AuthFormField.NAME]}
+          />
           <div className="flex flex-col gap-1">
             <label
-              htmlFor="email"
+              htmlFor={AuthFormField.EMAIL}
               className="block text-xs font-medium text-gray-700"
             >
               {CONTENT.auth.form.email.label}
             </label>
             <input
-              id="email"
-              name="email"
+              id={AuthFormField.EMAIL}
+              name={AuthFormField.EMAIL}
               type="email"
               required
+              aria-invalid={Boolean(state?.errors?.[AuthFormField.EMAIL])}
+              aria-describedby="signup-email-error"
               autoComplete="true"
               placeholder={CONTENT.auth.form.email.placeholder}
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
           </div>
-          {state?.errors?.email && <p>{state.errors.email}</p>}
+          <FieldError
+            id="signup-email-error"
+            errors={state?.errors?.[AuthFormField.EMAIL]}
+          />
           <div className="flex flex-col gap-1">
             <label
-              htmlFor="password"
+              htmlFor={AuthFormField.PASSWORD}
               className="block text-xs font-medium text-gray-700"
             >
               {CONTENT.auth.form.password.label}
             </label>
             <input
-              id="password"
-              name="password"
+              id={AuthFormField.PASSWORD}
+              name={AuthFormField.PASSWORD}
               type="password"
               required
+              minLength={8}
+              aria-invalid={Boolean(state?.errors?.[AuthFormField.PASSWORD])}
+              aria-describedby="signup-password-error"
               placeholder={CONTENT.auth.form.password.placeholder}
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
           </div>
-          {state?.errors?.password && (
-            <div>
-              <p>{CONTENT.auth.form.password_must}</p>
-              <ul>
-                {state.errors.password.map((error) => (
-                  <li key={error}>- {error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <FieldError
+            id="signup-password-error"
+            errors={state?.errors?.[AuthFormField.PASSWORD]}
+          />
         </div>
 
         <div className="flex flex-col gap-2">

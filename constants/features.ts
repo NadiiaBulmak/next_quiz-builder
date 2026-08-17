@@ -1,19 +1,4 @@
-import {
-  ArrowRight,
-  BarChart3,
-  Check,
-  ChevronRight,
-  Edit3,
-  Heart,
-  Lightbulb,
-  Play,
-  Plus,
-  Share2,
-  ShieldCheck,
-  Sparkles,
-  Trophy,
-  Users,
-} from 'lucide-react';
+import { BarChart3, Edit3, Lightbulb, Share2 } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
 
 export const features = [

@@ -1,6 +1,8 @@
 import { ScoreCircle } from './ScoreCircle';
 import { CONTENT } from '@/constants/content';
-export const Score = ({ score, title, description }: { score: number; title: string; description: string }) => {
+import type { ScoreProps } from '@/types/props';
+
+export const Score = ({ score, title, description }: ScoreProps) => {
   return (
     <div className="flex items-center gap-4">
       <ScoreCircle score={score} />

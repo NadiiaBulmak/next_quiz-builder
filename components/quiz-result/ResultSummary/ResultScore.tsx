@@ -1,6 +1,7 @@
-import { CONTENT } from "@/constants/content";
+import { CONTENT } from '@/constants/content';
+import type { ResultScoreProps } from '@/types/props';
 
-export const ResultScore = ({ score }: { score: number }) => (
+export const ResultScore = ({ score }: ResultScoreProps) => (
   <div className="flex flex-col items-center justify-center">
     <div
       className="relative flex h-36 w-36 items-center justify-center rounded-full"

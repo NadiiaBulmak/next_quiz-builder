@@ -7,12 +7,11 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { CONTENT } from '@/constants/content';
 import { useFilterModal } from './FilterModalContext';
+import type { FilterZoneProps } from '@/types/props';
 
 export default function FilterZone({
   initialSearchQuery = '',
-}: {
-  initialSearchQuery?: string;
-}) {
+}: FilterZoneProps) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
   const { setIsOpen, isOpen } = useFilterModal();
@@ -47,7 +46,7 @@ export default function FilterZone({
       />
       <div className="flex gap-2 h-full">
         <Button className="px-6 h-full cursor-pointer" type="submit">
-          Search
+          {CONTENT.quiz_list.filters.search}
         </Button>
 
         <Button
@@ -56,7 +55,7 @@ export default function FilterZone({
           className="w-fit gap-2 px-6 h-full cursor-pointer"
         >
           <SlidersHorizontal size={16} />
-          Filters
+          {CONTENT.quiz_list.filters.open}
         </Button>
       </div>
     </form>

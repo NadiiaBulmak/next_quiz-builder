@@ -8,6 +8,8 @@ import AuthRedirectLink from './UI/AuthRedirect';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
 import { forgotPassword } from '@/app/actions/auth/forgotPassword';
+import { ActionToast, FieldError } from '@/components/shared/FormFeedback';
+import { AuthFormField } from '@/constants/formFields';
 
 export default function ForgotPasswordForm() {
   const [state, action, isPending] = useActionState(
@@ -26,25 +28,31 @@ export default function ForgotPasswordForm() {
   return (
     <div className="flex w-full flex-col gap-2">
       <form action={action} className="flex w-full flex-col gap-8">
+        <ActionToast state={state} />
         <div className="flex flex-col gap-3 w-full">
           <div className="flex flex-col gap-1 w-full">
             <label
-              htmlFor="email"
+              htmlFor={AuthFormField.EMAIL}
               className="block text-xs font-medium text-gray-700"
             >
               {CONTENT.auth.form.email.label}
             </label>
             <input
-              id="email"
-              name="email"
+              id={AuthFormField.EMAIL}
+              name={AuthFormField.EMAIL}
               type="email"
               required
+              aria-invalid={Boolean(state?.errors?.[AuthFormField.EMAIL])}
+              aria-describedby="forgot-email-error"
               autoComplete="true"
               placeholder={CONTENT.auth.form.email.placeholder}
               className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
             />
           </div>
-          {state?.errors?.email && <p>{state.errors.email}</p>}
+          <FieldError
+            id="forgot-email-error"
+            errors={state?.errors?.[AuthFormField.EMAIL]}
+          />
         </div>
 
         <button

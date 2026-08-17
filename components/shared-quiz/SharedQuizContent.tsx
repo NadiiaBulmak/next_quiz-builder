@@ -12,6 +12,12 @@ import { NAV_LINKS } from '@/constants/nav_links';
 import { quizResultInitialState } from '@/constants/initialFormState';
 import { quizResult } from '@/app/actions/quiz-result.ts/quizResult';
 import { useRouter } from 'next/navigation';
+import { ActionToast } from '@/components/shared/FormFeedback';
+import {
+  AuthFormField,
+  QuizFormField,
+  QuizQuestionField,
+} from '@/constants/formFields';
 
 export default function SharedQuizContent({
   id,
@@ -38,7 +44,7 @@ export default function SharedQuizContent({
       console.log('Quiz completed successfully. User ID:', state.user?.id);
       router.push(NAV_LINKS.quiz_result + `/${state.user?.id}`);
     }
-  }, [router, state?.success]);
+  }, [router, state?.success, state?.user?.id]);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswersByQuestion, setSelectedAnswersByQuestion] = useState<
@@ -103,10 +109,10 @@ export default function SharedQuizContent({
         action={action}
         className="flex flex-col gap-4 bg-white shadow-md w-full rounded-md p-4 justify-between  px-6 md:px-8 md:px-8 py-6"
       >
-        <input type="hidden" name="quizId" value={id ?? ''} />
+        <input type="hidden" name={QuizFormField.QUIZ_ID} value={id ?? ''} />
         <input
           type="hidden"
-          name="answers"
+          name={QuizQuestionField.ANSWERS}
           value={JSON.stringify(
             Object.entries(selectedAnswersByQuestion).flatMap(
               ([questionId, answerIds]) =>
@@ -114,17 +120,7 @@ export default function SharedQuizContent({
             ),
           )}
         />
-        {!state.success &&
-          (state.message || state.errors?.email || state.errors?.name) && (
-            <div
-              aria-live="polite"
-              className="rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700"
-            >
-              {state.message ??
-                state.errors?.email?.[0] ??
-                state.errors?.name?.[0]}
-            </div>
-          )}
+        <ActionToast state={state} />
         <div className="flex w-full flex-col gap-4 md:flex-row md:justify-between">
           <div className="grid grid-cols-1 md:grid-cols-[6fr_4fr] gap-4 w-full">
             <QuizInfo
@@ -133,7 +129,13 @@ export default function SharedQuizContent({
               difficulty={difficulty!}
               categories={categories!}
             />
-            <QuizRecipientInfo recipient={recipient} />
+            <QuizRecipientInfo
+              recipient={recipient}
+              errors={{
+                [AuthFormField.EMAIL]: state.errors?.[AuthFormField.EMAIL],
+                [AuthFormField.NAME]: state.errors?.[AuthFormField.NAME],
+              }}
+            />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-[6fr_4fr] gap-4">

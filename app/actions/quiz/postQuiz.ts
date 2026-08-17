@@ -9,25 +9,26 @@ import { QuizFormSchema, type QuizFormState } from '@/schemas/quiz.schema';
 import type { CreateQuizInput, Difficulty } from '@/types/quiz';
 import { parseJsonField } from '@/utils/parseJsonField.util';
 import { CONTENT } from '@/constants/content';
+import { QuizFormField } from '@/constants/formFields';
 
 export async function postQuiz(
   _state: QuizFormState,
   formData: FormData,
 ): Promise<QuizFormState> {
-  const intent = formData.get('intent');
+  const intent = formData.get(QuizFormField.INTENT);
   const submitIntent =
     intent === QUIZ_INTENTS.DRAFT
       ? QUIZ_INTENTS.DRAFT
       : intent === QUIZ_INTENTS.PATCH
         ? QUIZ_INTENTS.PATCH
         : QUIZ_INTENTS.SAVE;
-  const title = formData.get('title');
-  const description = formData.get('description');
-  const difficulty = formData.get('difficulty');
-  const quizId = formData.get('quizId');
-  const categories = parseJsonField<string[]>(formData.get('categories')) ?? [];
+  const title = formData.get(QuizFormField.TITLE);
+  const description = formData.get(QuizFormField.DESCRIPTION);
+  const difficulty = formData.get(QuizFormField.DIFFICULTY);
+  const quizId = formData.get(QuizFormField.QUIZ_ID);
+  const categories = parseJsonField<string[]>(formData.get(QuizFormField.CATEGORIES)) ?? [];
   const questions =
-    parseJsonField<CreateQuizInput['questions']>(formData.get('questions')) ??
+    parseJsonField<CreateQuizInput['questions']>(formData.get(QuizFormField.QUESTIONS)) ??
     [];
 
   const validatedFields = QuizFormSchema.safeParse({

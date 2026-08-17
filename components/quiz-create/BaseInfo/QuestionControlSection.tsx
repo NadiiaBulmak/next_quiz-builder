@@ -1,4 +1,5 @@
 import { CONTENT } from '@/constants/content';
+import { QuizFormField } from '@/constants/formFields';
 import { QUIZ_INTENTS } from '@/constants/quiz';
 import { Button } from '../../ui/button';
 import { QuestionControlSectionType } from '@/types/props';
@@ -7,7 +8,11 @@ import { FolderOpen, Plus, Send } from 'lucide-react';
 export const QuestionControlSection = ({
   onAddQuestion,
   isEditMode = false,
-}: Partial<QuestionControlSectionType> & { isEditMode?: boolean }) => {
+  isPending = false,
+}: Partial<QuestionControlSectionType> & {
+  isEditMode?: boolean;
+  isPending?: boolean;
+}) => {
   return (
     <div className="w-full flex flex-col gap-3">
       <Button
@@ -15,6 +20,7 @@ export const QuestionControlSection = ({
         className="w-full rounded-sm py-4 border-lime-300 flex items-center cursor-pointer"
         variant="outline"
         onClick={onAddQuestion}
+        disabled={isPending}
       >
         <Plus className="w-4 h-4 text-lime-500" />
         {CONTENT.create.buttons.add_question}
@@ -22,32 +28,39 @@ export const QuestionControlSection = ({
       {isEditMode ? (
         <Button
           type="submit"
-          name="intent"
+          name={QuizFormField.INTENT}
           value={QUIZ_INTENTS.PATCH}
+          disabled={isPending}
           className="w-full rounded-sm py-4 cursor-pointer"
         >
           <Send className="w-4 h-4 text-lime-500" />
-          {CONTENT.create.buttons.patch}
+          {isPending ? CONTENT.common.submitting : CONTENT.create.buttons.patch}
         </Button>
       ) : (
         <>
           <Button
             type="submit"
-            name="intent"
+            name={QuizFormField.INTENT}
             value={QUIZ_INTENTS.SAVE}
+            disabled={isPending}
             className="w-full rounded-sm py-4 cursor-pointer"
           >
             <Send className="w-4 h-4 text-lime-500" />
-            {CONTENT.create.buttons.save}
+            {isPending
+              ? CONTENT.common.submitting
+              : CONTENT.create.buttons.save}
           </Button>
           <Button
             type="submit"
-            name="intent"
+            name={QuizFormField.INTENT}
             value={QUIZ_INTENTS.DRAFT}
+            disabled={isPending}
             className="w-full rounded-sm py-4 bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer"
           >
             <FolderOpen className="w-4 h-4" />
-            {CONTENT.create.buttons.draft}
+            {isPending
+              ? CONTENT.common.submitting
+              : CONTENT.create.buttons.draft}
           </Button>
         </>
       )}

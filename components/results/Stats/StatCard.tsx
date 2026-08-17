@@ -1,14 +1,11 @@
+import type { StatCardProps } from '@/types/props';
+
 export const StatCard = ({
   label,
   value,
   description,
   icon: Icon,
-}: {
-  label: string;
-  value: number | string;
-  description: string;
-  icon: React.ComponentType<{ className?: string }>;
-}) => (
+}: StatCardProps) => (
   <div className="rounded-xl border border-stone-200 bg-white p-5 shadow-sm">
     <p className="text-sm font-medium text-stone-500">{label}</p>
 

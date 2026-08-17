@@ -4,6 +4,7 @@ import { Textarea } from '../../ui/textarea';
 import type { AutoResizeTextareaProps } from '@/types/props';
 
 export default function AutoResizeTextarea({
+  id,
   name,
   placeholder,
   initValue = '',
@@ -31,6 +32,7 @@ export default function AutoResizeTextarea({
 
   return (
     <Textarea
+      id={id}
       name={name}
       placeholder={placeholder}
       ref={textareaRef}

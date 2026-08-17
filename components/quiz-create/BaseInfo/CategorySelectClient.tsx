@@ -5,10 +5,13 @@ import { X } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
 import { LabelInputArea } from '../UI/LabelInputArea';
 import type { Category, CategorySelectClientProps } from '@/types/props';
+import { FieldError } from '@/components/shared/FormFeedback';
+import { QuizFormField } from '@/constants/formFields';
 
 export default function CategorySelectClient({
   categories,
   initialSelectedNames = [],
+  error,
 }: CategorySelectClientProps) {
   const [selected, setSelected] = useState<Category[]>(() =>
     initialSelectedNames.map(
@@ -61,7 +64,7 @@ export default function CategorySelectClient({
     <LabelInputArea label={CONTENT.create.base.category.label}>
       <input
         type="hidden"
-        name="categories"
+        name={QuizFormField.CATEGORIES}
         value={JSON.stringify(selected.map((item) => item.name))}
       />
 
@@ -107,6 +110,7 @@ export default function CategorySelectClient({
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={handleKeyDown}
           placeholder={CONTENT.create.base.category.placeholder}
           className="
             flex-1
@@ -114,6 +118,8 @@ export default function CategorySelectClient({
             outline-none
             p-2 text-sm
           "
+          aria-invalid={Boolean(error?.length)}
+          aria-describedby="categories-error"
         />
       </div>
 
@@ -161,6 +167,7 @@ export default function CategorySelectClient({
           )}
         </div>
       )}
+      <FieldError id="categories-error" errors={error} />
     </LabelInputArea>
   );
 }

@@ -7,7 +7,7 @@ import QuizListItem from './QuizListItem';
 import { ListType, QuizListType, sortType } from '@/types/props';
 import { Pagination } from '@/components/shared/Pagination';
 import { CONTENT } from '@/constants/content';
-import { X, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { QuizSort } from '@/types/quiz';
 
 function getOrderBy(sort?: sortType): QuizSort {
@@ -68,12 +68,14 @@ export default async function QuizList({
 
             <div>
               <p className="text-sm font-semibold text-gray-950">
-                Search results for{' '}
-                <span className="text-green-700">"{searchQuery}"</span>
+                {CONTENT.quiz_list.search_results_for}{' '}
+                <span className="text-green-700">
+                  &quot;{searchQuery}&quot;
+                </span>
               </p>
 
               <p className="mt-0.5 text-xs text-gray-500">
-                We found {result.quizzes.length} quizzes matching your search.
+                {CONTENT.quiz_list.search_results_count(result.quizzes.length)}
               </p>
             </div>
           </div>
@@ -89,12 +91,11 @@ export default async function QuizList({
 
             <div>
               <p className="text-sm font-semibold text-gray-950">
-                Available quizzes:{' '}
+                {CONTENT.quiz_list.available_quizzes}{' '}
                 <span className="text-green-700">{result.totalQuizzes}</span>
               </p>
               <p className="mt-0.5 text-xs text-gray-500">
-                Use the search bar above to find quizzes by title or
-                description.
+                {CONTENT.quiz_list.search_hint}
               </p>
             </div>
           </div>

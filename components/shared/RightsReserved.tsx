@@ -1,6 +1,7 @@
 import { CONTENT } from '@/constants/content';
+import type { RightsReservedProps } from '@/types/props';
 
-export default function RightsReserved({ centered }: { centered?: boolean }) {
+export default function RightsReserved({ centered }: RightsReservedProps) {
   return (
     <div
       className={`

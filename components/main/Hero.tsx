@@ -1,13 +1,8 @@
-import {
-  ArrowRight,
-  Check,
-  Play,
-  ShieldCheck,
-  Sparkles,
-} from 'lucide-react';
+import { ArrowRight, Check, Play, ShieldCheck, Sparkles } from 'lucide-react';
 
 import { ROUTES } from '@/constants/routes';
 import { CONTENT } from '@/constants/content';
+import type { ReassuranceProps } from '@/types/props';
 
 import { QuizPreview } from './QuizPreview';
 import Link from 'next/link';
@@ -25,17 +20,16 @@ export function Hero() {
           </div>
 
           <h1 className="max-w-[580px] text-5xl font-black leading-[0.98] tracking-[-0.055em] text-slate-950 sm:text-6xl lg:text-[68px]">
-            Create interactive{' '}
+            {CONTENT.main.hero.title.split(' quizzes')[0]}{' '}
             <span className="relative inline-block text-lime-500">
               quizzes
               <span className="absolute -bottom-1 left-0 h-[5px] w-full -rotate-2 rounded-full bg-lime-400" />
             </span>{' '}
-            that people actually want to take.
+            {CONTENT.main.hero.title.split(' quizzes')[1]}
           </h1>
 
           <p className="mt-7 max-w-[500px] text-base leading-7 text-slate-600 sm:text-lg">
-            Create, share and analyze beautiful quizzes in minutes — no
-            complicated setup required.
+            {CONTENT.main.hero.description_short}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -43,7 +37,7 @@ export function Hero() {
               href={ROUTES.REGISTER}
               className=" hover:animate-bounce group inline-flex items-center gap-3 rounded-lg bg-black px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_0_2px_#c9f13c] transition hover:-translate-y-0.5 hover:bg-slate-900"
             >
-              Create Your First Quiz
+              {CONTENT.main.hero.create_quiz}
               <ArrowRight
                 size={17}
                 className="transition-transform group-hover:translate-x-1"
@@ -54,28 +48,25 @@ export function Hero() {
               href="#demo"
               className="hover:animate-bounce inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:border-slate-500"
             >
-              <Play
-                size={14}
-                className="fill-lime-500 text-lime-500 "
-              />
-              Try a Demo Quiz
+              <Play size={14} className="fill-lime-500 text-lime-500 " />
+              {CONTENT.main.hero.demo_quiz}
             </Link>
           </div>
 
           <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3">
             <Reassurance>
               <ShieldCheck />
-              No signup required to try
+              {CONTENT.main.hero.reassurance_try}
             </Reassurance>
 
             <Reassurance>
               <Check />
-              Free to get started
+              {CONTENT.main.hero.reassurance_start}
             </Reassurance>
 
             <Reassurance>
               <Check />
-              Create your first quiz in minutes
+              {CONTENT.main.hero.reassurance_create}
             </Reassurance>
           </div>
         </div>
@@ -88,16 +79,11 @@ export function Hero() {
   );
 }
 
-function Reassurance({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function Reassurance({ children }: ReassuranceProps) {
   return (
     <div className="flex items-center gap-1.5 text-xs text-slate-500">
-      <span className="[&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:text-lime-500">
-      </span>
-        {children}
+      <span className="[&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:text-lime-500"></span>
+      {children}
     </div>
   );
 }

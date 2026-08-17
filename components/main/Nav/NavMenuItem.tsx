@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import type { NavMenuItemProps } from '@/types/props';
 
-export const NavMenuItem = ({ href, name, isMobileNav }: { href: string; name: string; isMobileNav: boolean }) => {
+export const NavMenuItem = ({ href, name, isMobileNav }: NavMenuItemProps) => {
   return (
     <Link
       key={name}

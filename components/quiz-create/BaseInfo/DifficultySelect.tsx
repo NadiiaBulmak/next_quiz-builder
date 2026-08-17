@@ -12,12 +12,12 @@ import { Difficulty } from '@/types/quiz';
 import { CONTENT } from '@/constants/content';
 import { LabelInputArea } from '../UI/LabelInputArea';
 
-type DifficultySelectProps = {
-  initialValue?: string;
-};
+import type { DifficultySelectProps } from '@/types/props';
+import { QuizFormField } from '@/constants/formFields';
 
 export default function DifficultySelect({
   initialValue = '',
+  error,
 }: DifficultySelectProps) {
   const [difficulty, setDifficulty] = useState(initialValue);
 
@@ -28,7 +28,9 @@ export default function DifficultySelect({
         onValueChange={(value) => setDifficulty(value ?? '')}
       >
         <SelectTrigger
-          id="difficulty"
+          id={QuizFormField.DIFFICULTY}
+          aria-invalid={Boolean(error?.length)}
+          aria-describedby="difficulty-error"
           className="w-full border p-2 text-sm rounded-md border-gray-300 focus:border-lime-500 focus:ring-lime-500 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <SelectValue
@@ -54,7 +56,14 @@ export default function DifficultySelect({
         </SelectContent>
       </Select>
 
-      <input type="hidden" name="difficulty" value={difficulty ?? ''} />
+      <input
+        type="hidden"
+        name={QuizFormField.DIFFICULTY}
+        value={difficulty ?? ''}
+      />
+      <p id="difficulty-error" role="alert" className="text-xs text-red-600">
+        {error?.join(' ')}
+      </p>
     </LabelInputArea>
   );
 }

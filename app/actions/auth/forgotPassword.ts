@@ -8,13 +8,14 @@ import {
 import { createResetToken } from '@/services/forgot_password';
 import { buildEmailContent, sendMail } from '@/services/sendEmail';
 import { CONTENT } from '@/constants/content';
+import { AuthFormField } from '@/constants/formFields';
 
 export async function forgotPassword(
   _state: ForgotPasswordFormState,
   formData: FormData,
 ): Promise<ForgotPasswordFormState> {
   const validatedFields = ForgotPasswordFormSchema.safeParse({
-    email: formData.get('email'),
+    [AuthFormField.EMAIL]: formData.get(AuthFormField.EMAIL),
   });
 
   if (!validatedFields.success) {
@@ -38,7 +39,7 @@ export async function forgotPassword(
     if (!user) {
       return {
         errors: {
-          email: [CONTENT.auth.messages.no_account_for_email],
+          [AuthFormField.EMAIL]: [CONTENT.auth.messages.no_account_for_email],
         },
       };
     }

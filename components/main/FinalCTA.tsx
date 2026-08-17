@@ -2,12 +2,12 @@ import { ArrowRight, Check } from 'lucide-react';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 import { CONTENT } from '@/constants/content';
+import type { ReassuranceProps } from '@/types/props';
 
 export function FinalCTA() {
   return (
     <section className="px-6 pb-20 w-full scroll-mt-24">
       <div className="relative mx-auto max-w-[1120px] overflow-hidden rounded-2xl border border-lime-200 bg-lime-100 px-7 py-14 md:px-12">
-
         <div className="absolute right-0 top-0 h-full w-1/3 rotate-3 opacity-30 [background-image:radial-gradient(#4CAF50_1px,transparent_1px)] [background-size:16px_16px]" />
 
         <div className="relative">
@@ -26,16 +26,16 @@ export function FinalCTA() {
               </p>
             </div>
             <div>
-            <Link
-              href={ROUTES.REGISTER}
-              className=" hover:animate-bounce group inline-flex items-center gap-3 rounded-lg bg-black px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_0_2px_#c9f13c] transition hover:-translate-y-0.5 hover:bg-slate-900"
-            >
-              Create Your First Quiz
-              <ArrowRight
-                size={17}
-                className="transition-transform group-hover:translate-x-1"
-              />
-            </Link>
+              <Link
+                href={ROUTES.REGISTER}
+                className=" hover:animate-bounce group inline-flex items-center gap-3 rounded-lg bg-black px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_0_2px_#c9f13c] transition hover:-translate-y-0.5 hover:bg-slate-900"
+              >
+                {CONTENT.main.final_cta.create_quiz}
+                <ArrowRight
+                  size={17}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </Link>
               <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
                 <Reassurance>
                   <Check />
@@ -55,7 +55,7 @@ export function FinalCTA() {
   );
 }
 
-function Reassurance({ children }: { children: React.ReactNode }) {
+function Reassurance({ children }: ReassuranceProps) {
   return (
     <span className="flex items-center gap-1.5 text-xs text-slate-600 [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:text-lime-700">
       {children}

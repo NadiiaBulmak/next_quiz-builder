@@ -1,11 +1,5 @@
-import {
-  BarChart3,
-  Check,
-  ChevronDown,
-  Plus,
-  Settings2,
-  Share2,
-} from 'lucide-react';
+import { BarChart3, Settings2, Share2 } from 'lucide-react';
+import { CONTENT } from '@/constants/content';
 
 export function QuizPreview() {
   return (
@@ -20,7 +14,7 @@ export function QuizPreview() {
             id="demo"
             className="h-full min-h-120 w-full border-0"
             src="/create-preview"
-            title="Quiz Create"
+            title={CONTENT.main.preview_titles.quiz_create}
           />
         </div>
       </div>
@@ -28,71 +22,22 @@ export function QuizPreview() {
       {/* Floating labels */}
 
       <FloatingLabel className="-right-6 top-10" icon={<Settings2 size={14} />}>
-        Create in minutes
+        {CONTENT.main.preview_titles.create_in_minutes}
       </FloatingLabel>
 
       <FloatingLabel
         className="-right-10 bottom-24"
         icon={<Share2 size={14} />}
       >
-        Share instantly
+        {CONTENT.main.preview_titles.share_instantly}
       </FloatingLabel>
 
       <FloatingLabel
         className="-bottom-5 left-8"
         icon={<BarChart3 size={14} />}
       >
-        See results
+        {CONTENT.main.preview_titles.see_results}
       </FloatingLabel>
-    </div>
-  );
-}
-
-function SidebarItem({
-  children,
-  icon,
-  active = false,
-}: {
-  children: React.ReactNode;
-  icon: string;
-  active?: boolean;
-}) {
-  return (
-    <div
-      className={`flex items-center gap-2 rounded-md px-2 py-2 ${
-        active ? 'bg-black font-semibold text-white' : 'text-slate-500'
-      }`}
-    >
-      <span>{icon}</span>
-      {children}
-    </div>
-  );
-}
-
-function Answer({
-  text,
-  correct = false,
-}: {
-  text: string;
-  correct?: boolean;
-}) {
-  return (
-    <div
-      className={`mb-2 flex items-center gap-2 rounded-lg border px-3 py-2 text-xs ${
-        correct ? 'border-lime-400 bg-lime-50' : 'border-slate-200 bg-white'
-      }`}
-    >
-      <span
-        className={`flex h-4 w-4 items-center justify-center rounded-full border ${
-          correct
-            ? 'border-lime-500 bg-lime-500 text-white'
-            : 'border-slate-300'
-        }`}
-      >
-        {correct && <Check size={9} />}
-      </span>
-
-      {text}
     </div>
   );
 }

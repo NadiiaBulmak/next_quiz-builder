@@ -5,6 +5,18 @@ export const CONTENT = {
     close: 'Close',
     submitting: 'Submitting...',
     quiz_not_found: 'Quiz not found',
+    pagination: {
+      navigation: 'Pagination',
+      previous: 'Previous page',
+      next: 'Next page',
+      go_to: (page: number) => `Go to page ${page}`,
+    },
+    menu: {
+      open: 'Open menu',
+    },
+    feedback: {
+      google_sign_in_failed: 'Google sign-in failed. Please try again.',
+    },
   },
   metadata: {
     root: {
@@ -227,6 +239,14 @@ export const CONTENT = {
       no_signup_required: 'No signup required to take quizzes',
       works_on_any_device: 'Works on any device',
       free_to_start: '100% Free to start',
+      title: 'Create interactive quizzes that people actually want to take.',
+      description_short:
+        'Create, share and analyze beautiful quizzes in minutes — no complicated setup required.',
+      create_quiz: 'Create Your First Quiz',
+      demo_quiz: 'Try a Demo Quiz',
+      reassurance_try: 'No signup required to try',
+      reassurance_start: 'Free to get started',
+      reassurance_create: 'Create your first quiz in minutes',
     },
     features: {
       eyebrow: 'Features',
@@ -274,6 +294,30 @@ export const CONTENT = {
           description: 'People take your quiz and you see the results.',
         },
       ],
+      landing: {
+        eyebrow: 'How it works',
+        title: 'From blank page to published quiz in minutes.',
+        steps: [
+          {
+            number: '01',
+            title: 'Create your quiz',
+            description:
+              'Add questions, answers and customize your quiz in seconds.',
+          },
+          {
+            number: '02',
+            title: 'Share it anywhere',
+            description:
+              'Publish your quiz and send one simple link to your audience.',
+          },
+          {
+            number: '03',
+            title: 'See the results',
+            description:
+              'Track responses, scores and performance from one dashboard.',
+          },
+        ],
+      },
     },
     cta: {
       title: 'Ready to create your first quiz?',
@@ -356,8 +400,16 @@ export const CONTENT = {
       title: 'Ready to create your first quiz?',
       description: 'Start creating in minutes. No complicated setup required.',
       button: 'Get Started Free',
+      create_quiz: 'Create Your First Quiz',
       reassurance_free: 'Free to start',
       reassurance_no_card: 'No credit card required',
+    },
+    preview_titles: {
+      quiz_create: 'Quiz Create',
+      quiz_result: 'Quiz result preview',
+      create_in_minutes: 'Create in minutes',
+      share_instantly: 'Share instantly',
+      see_results: 'See results',
     },
     preview: {
       logo_suffix: 'Flow',
@@ -413,6 +465,8 @@ export const CONTENT = {
       explanation: 'Explanation(optional)',
       explanation_placeholder: 'Enter explanation(optional)',
       options_empty_text: 'Add more than 1 option',
+      correct_answer: 'Correct answer',
+      mark_correct_answer: 'Mark as correct answer',
     },
     buttons: {
       add_question: 'Add Question',
@@ -442,6 +496,25 @@ export const CONTENT = {
   },
   quiz_list: {
     search_placeholder: 'Search quizzes...',
+    search_results_for: 'Search results for',
+    search_results_count: (count: number) =>
+      `We found ${count} quizzes matching your search.`,
+    available_quizzes: 'Available quizzes:',
+    search_hint:
+      'Use the search bar above to find quizzes by title or description.',
+    filters: {
+      title: 'Filters',
+      difficulty: 'Difficulty',
+      category: 'Category',
+      all: 'All',
+      no_categories: 'No categories available',
+      search: 'Search',
+      open: 'Filters',
+      sort_by: 'Sort by',
+      default_sort: 'Default',
+      clear: 'Clear filters',
+      apply: 'Apply filters',
+    },
     menu: {
       make_draft: 'Make it draft',
       make_published: 'Make it published',
@@ -466,6 +539,11 @@ export const CONTENT = {
     question_title: (index: number) => `Question ${index}`,
   },
   quiz_result: {
+    messages: {
+      invalid_answers: 'Invalid answers.',
+      completed_successfully: 'Quiz completed successfully.',
+      unable_to_save: 'Unable to save quiz result.',
+    },
     summary: {
       title: 'Quiz completed',
       description: "Here's how you performed",
@@ -496,6 +574,7 @@ export const CONTENT = {
   },
   shared: {
     logo_alt: 'Quiz Flow logo',
+    tip_title: 'Tips:',
     user_menu: {
       settings: 'Settings',
       log_out: 'Log Out',
@@ -554,8 +633,22 @@ export const CONTENT = {
       next: 'Next Question',
       previous: 'Previous Question',
     },
+    recipient: {
+      email_label: 'Recipient Email',
+      email_placeholder: 'Enter recipient email',
+      name_label: 'Recipient Name',
+      name_placeholder: 'Enter recipient name',
+    },
   },
   results: {
+    stats: {
+      total_quizzes: 'Total quizzes',
+      total_quizzes_description: 'Created by you',
+      total_participants: 'Total participants',
+      total_participants_description: 'Across all quizzes',
+      average_score: 'Average score',
+      average_score_description: 'Across all responses',
+    },
     buttons: {
       view_results: 'View Results',
       back_to_results: 'Back to Results',
@@ -593,6 +686,26 @@ export const CONTENT = {
       anonymous: 'Anonymous',
       view_answers: 'View answers',
       hide_answers: 'Hide answers',
+    },
+  },
+  settings: {
+    account: 'Account',
+    title: 'User settings',
+    profile: 'Profile',
+    profile_description: 'Update the public name shown across your account.',
+    name: 'Name',
+    name_placeholder: 'Enter your name',
+    save_changes: 'Save changes',
+    saving: 'Saving...',
+    security: 'Security',
+    security_description: 'Your password can be reset by email instantly.',
+    email: 'Email:',
+    send_reset_link: 'Send reset link',
+    sending_reset_email: 'Sending reset email...',
+    messages: {
+      name_updated: 'Name updated successfully.',
+      unable_update_name:
+        'Unable to update your name right now. Please try again.',
     },
   },
 };

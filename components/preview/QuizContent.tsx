@@ -1,15 +1,12 @@
 'use client';
 
-import type { Question } from '@/types/props';
+import type { QuizContentProps } from '@/types/props';
 import { useState } from 'react';
-import { Button } from '../ui/button';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { QuizQuestion } from './QuizQuestion';
-import { TipSection } from '../shared/TipSection';
 import { QuizControlSection } from './QuizControlSection';
 import { QuizContentBottom } from './QuizContentBottom';
 
-export const QuizContent = ({ questions }: { questions: Question[] }) => {
+export const QuizContent = ({ questions }: QuizContentProps) => {
   const [question, SetQuestion] = useState(questions[0]);
   const [index, setindex] = useState(0);
   const handlePrevious = () => {
