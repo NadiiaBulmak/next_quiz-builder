@@ -1,8 +1,10 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { forgotPassword } from '@/app/actions/auth/forgotPassword';
 import { prisma } from '@/lib/prisma';
 import { getCurrentUser } from '@/services/auth';
+import { NAV_LINKS } from '@/constants/nav_links';
 import {
   RequestPasswordResetState,
   UpdateUserNameSchema,
@@ -30,6 +32,10 @@ export async function updateUserName(
       where: { id: user.id },
       data: { name: validatedFields.data.name },
     });
+
+    revalidatePath(NAV_LINKS.settings);
+    revalidatePath(NAV_LINKS.quizzes.my);
+    revalidatePath(NAV_LINKS.quizzes.all);
 
     return {
       success: true,

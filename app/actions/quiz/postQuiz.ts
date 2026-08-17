@@ -1,6 +1,8 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { QUIZ_INTENTS } from '@/constants/quiz';
+import { NAV_LINKS } from '@/constants/nav_links';
 import { getCurrentUser } from '@/services/auth';
 import { createQuiz, updateQuiz } from '@/services/quizz.service';
 import { QuizFormSchema, type QuizFormState } from '@/schemas/quiz.schema';
@@ -70,12 +72,19 @@ export async function postQuiz(
       }
 
       await updateQuiz(quizId, quizPayload);
+
+      revalidatePath(`${NAV_LINKS.edit}/${quizId}`);
+      revalidatePath(`${NAV_LINKS.preview}/${quizId}`);
+      revalidatePath(`${NAV_LINKS.quiz}/${quizId}`);
     } else {
       await createQuiz({
         ...quizPayload,
         isPublished: submitIntent === QUIZ_INTENTS.SAVE,
       });
     }
+
+    revalidatePath(NAV_LINKS.quizzes.my);
+    revalidatePath(NAV_LINKS.quizzes.all);
   } catch {
     console.log({
       message:

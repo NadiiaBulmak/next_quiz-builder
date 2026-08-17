@@ -114,16 +114,17 @@ export default function SharedQuizContent({
             ),
           )}
         />
-        {(state.message || state.errors?.email || state.errors?.name) && (
-          <div
-            aria-live="polite"
-            className="rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700"
-          >
-            {state.message ??
-              state.errors?.email?.[0] ??
-              state.errors?.name?.[0]}
-          </div>
-        )}
+        {!state.success &&
+          (state.message || state.errors?.email || state.errors?.name) && (
+            <div
+              aria-live="polite"
+              className="rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700"
+            >
+              {state.message ??
+                state.errors?.email?.[0] ??
+                state.errors?.name?.[0]}
+            </div>
+          )}
         <div className="flex w-full flex-col gap-4 md:flex-row md:justify-between">
           <div className="grid grid-cols-1 md:grid-cols-[6fr_4fr] gap-4 w-full">
             <QuizInfo

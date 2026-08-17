@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 import {
   CopyPlus,
@@ -29,7 +28,6 @@ export const QuizItemMenu = ({
   id?: string;
   isPublished: boolean;
 }) => {
-  const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   const runAction = (action: (quizId: string) => Promise<void>) => {
@@ -37,7 +35,6 @@ export const QuizItemMenu = ({
 
     startTransition(async () => {
       await action(id);
-      router.refresh();
     });
   };
 

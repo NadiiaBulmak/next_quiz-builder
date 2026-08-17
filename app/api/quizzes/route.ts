@@ -2,7 +2,7 @@ import { createQuiz, getAllQuizzes } from '@/services/quizz.service';
 import { CONTENT } from '@/constants/content';
 
 export async function GET() {
-  return Response.json(await getAllQuizzes());
+  return Response.json(await getAllQuizzes(null, { isPublished: true }));
 }
 
 export async function POST(req: Request) {
