@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { CONTENT } from '@/constants/content';
+import { useFilterModal } from './FilterModalContext';
 
 export default function FilterZone({
   initialSearchQuery = '',
@@ -14,6 +15,7 @@ export default function FilterZone({
 }) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
+  const { setIsOpen, isOpen } = useFilterModal();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,7 +34,10 @@ export default function FilterZone({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col md:flex-row w-full gap-3">
+    <form
+      onSubmit={handleSubmit}
+      className="sticky top-20 z-30 flex w-full flex-col gap-3 bg-zinc-50 p-3 md:flex-row"
+    >
       <Input
         type="search"
         placeholder={CONTENT.quiz_list.search_placeholder}
@@ -41,16 +46,17 @@ export default function FilterZone({
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       <div className="flex gap-2 h-full">
-        <Button className="max-h-full" type="submit">
+        <Button className="px-6 h-full cursor-pointer" type="submit">
           Search
         </Button>
 
         <Button
-          // type="button"
-
-          className="p-2 h-full flex bg-gray-100 rounded-sm cursor-pointer border-1 border-gray-300 hover:bg-gray-200"
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-fit gap-2 px-6 h-full cursor-pointer"
         >
-          <SlidersHorizontal className="text-black" width={24} height={24} />
+          <SlidersHorizontal size={16} />
+          Filters
         </Button>
       </div>
     </form>

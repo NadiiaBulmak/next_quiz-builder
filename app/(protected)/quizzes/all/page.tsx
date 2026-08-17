@@ -1,22 +1,43 @@
 import { QuizzesContent } from '@/components/quiz-list/QuizzesContent';
+import { FilterModal } from '@/components/quiz/FilterModal';
 import QuizList from '@/components/quiz/QuizList';
 import { getCurrentUser } from '@/services/auth';
-import { ListType } from '@/types/props';
+import { getCathegories } from '@/services/category.service';
+import { ListType, sortType } from '@/types/props';
 
 export default async function AllQuizzes({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; search?: string }>;
+  searchParams: Promise<{
+    page?: string;
+    search?: string;
+    category?: string;
+    difficulty?: string;
+    sortBy?: string;
+  }>;
 }) {
-  const { page, search } = await searchParams;
+  const { page, search, category, difficulty, sortBy } = await searchParams;
   await getCurrentUser();
+  const categories = await getCathegories();
+  const selectedCategories = category ? category.split(',') : [];
+
   return (
     <QuizzesContent searchQuery={search}>
-      <QuizList
-        listType={ListType.all}
-        page={Number(page) || 1}
-        searchQuery={search}
-      />
+      <div className="group flex w-full gap-0">
+        <QuizList
+          listType={ListType.all}
+          page={Number(page) || 1}
+          searchQuery={search}
+          filter={{ categories: selectedCategories, difficulty }}
+          sort={sortBy as sortType}
+        />
+        <FilterModal
+          categories={categories}
+          initialCategories={selectedCategories}
+          initialDifficulty={difficulty}
+          initialSort={sortBy}
+        />
+      </div>
     </QuizzesContent>
   );
 }

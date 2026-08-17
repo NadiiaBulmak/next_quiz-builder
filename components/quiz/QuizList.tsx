@@ -1,42 +1,94 @@
+import { ClearSearchButton } from './ClearSearchButton';
 import {
   getAllMyQuizzesPaginated,
   getAllQuizzesPaginated,
 } from '@/services/quizz.service';
 import QuizListItem from './QuizListItem';
-import { ListType, QuizListType } from '@/types/props';
+import { ListType, QuizListType, sortType } from '@/types/props';
 import { Pagination } from '@/components/shared/Pagination';
+import { CONTENT } from '@/constants/content';
+import { X, Search } from 'lucide-react';
+import { QuizSort } from '@/types/quiz';
+
+function getOrderBy(sort?: sortType): QuizSort {
+  switch (sort) {
+    case sortType.dateASC:
+      return { createdAt: 'desc' };
+    case sortType.dateDSC:
+      return { createdAt: 'asc' };
+    case sortType.alphASC:
+      return { title: 'asc' };
+    case sortType.alphDSC:
+      return { title: 'desc' };
+    default:
+      return {};
+  }
+}
 
 export default async function QuizList({
   listType,
   page = 1,
   searchQuery = '',
+  filter,
+  sort,
 }: QuizListType & { page?: number; searchQuery?: string }) {
   const result =
     listType === ListType.all
       ? await getAllQuizzesPaginated(
           searchQuery,
-          { isPublished: true },
-          {},
+          {
+            isPublished: true,
+            ...(filter?.categories?.length && {
+              category: filter.categories,
+            }),
+            ...(filter?.difficulty && { difficulty: filter.difficulty }),
+          },
+          getOrderBy(sort),
           page,
         )
       : await getAllMyQuizzesPaginated(searchQuery, {}, page);
 
   return (
-    <>
+    <div className="min-w-0 flex-1">
       {searchQuery ? (
-        <div className="mb-4 flex w-full items-center gap-2 text-sm text-gray-500">
-          <span>Search results for</span>
+        <div className="w-full flex items-center justify-between gap-4 rounded-xl border border-green-500 bg-lime-50/60 px-5 py-4 mb-4">
+          <div className="flex items-center gap-4">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lime-100 text-green-500">
+              <Search size={19} />
+            </div>
 
-          <span className="inline-flex items-center rounded-md bg-gray-100 px-2.5 py-1 font-medium text-gray-700">
-            “{searchQuery}”
-          </span>
+            <div>
+              <p className="text-sm font-semibold text-gray-950">
+                Search results for{' '}
+                <span className="text-green-700">"{searchQuery}"</span>
+              </p>
+
+              <p className="mt-0.5 text-xs text-gray-500">
+                We found {result.quizzes.length} quizzes matching your search.
+              </p>
+            </div>
+          </div>
+
+          <ClearSearchButton />
         </div>
       ) : (
-        <div className="mb-4 flex w-full items-center gap-2 text-sm text-gray-500">
-          <span>Available quizzes:</span>
-          <span className="inline-flex items-center rounded-md bg-gray-100 px-2.5 py-1 font-medium text-gray-700">
-            {result.totalQuizzes} quizzes
-          </span>
+        <div className="w-full flex items-center justify-between gap-4 rounded-xl border border-green-500 bg-lime-50/60 px-5 py-4 mb-4">
+          <div className="flex items-center gap-4">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lime-100 text-green-500">
+              <Search size={19} />
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-gray-950">
+                Available quizzes:{' '}
+                <span className="text-green-700">{result.totalQuizzes}</span>
+              </p>
+              <p className="mt-0.5 text-xs text-gray-500">
+                Use the search bar above to find quizzes by title or
+                description.
+              </p>
+            </div>
+          </div>
         </div>
       )}
       <div className="flex w-full flex-col gap-4">
@@ -50,6 +102,6 @@ export default async function QuizList({
           totalPages={result.totalPages}
         />
       </div>
-    </>
+    </div>
   );
 }

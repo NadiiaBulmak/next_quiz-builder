@@ -126,11 +126,16 @@
   }
   html {
     @apply font-sans;
+    scrollbar-gutter: stable;
   }
 }
 
 html {
   font-family: var(--font-inter);
+}
+
+.scrollbar-stable {
+  scrollbar-gutter: stable;
 }
 
 @utility no-scrollbar {

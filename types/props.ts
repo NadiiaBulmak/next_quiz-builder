@@ -67,8 +67,8 @@ export enum sortType {
 }
 
 export type filterType = {
-  categories: string[];
-  difficulty: Difficulty;
+  categories?: string[];
+  difficulty?: string;
 };
 
 export type QuizListType = {
