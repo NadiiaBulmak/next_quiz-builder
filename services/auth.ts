@@ -13,8 +13,6 @@ export const getCurrentUser = cache(async () => {
     }
 
     const user = await getUserById(userId);
-        console.log('USER ID:', userId);
-    console.log('USER FROM DB:', user);
 
     if (!user) {
         redirect(NAV_LINKS.login)

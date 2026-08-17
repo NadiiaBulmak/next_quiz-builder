@@ -87,13 +87,6 @@ export async function postQuiz(
     revalidatePath(NAV_LINKS.quizzes.my);
     revalidatePath(NAV_LINKS.quizzes.all);
   } catch {
-    console.log({
-      message:
-        submitIntent === QUIZ_INTENTS.PATCH
-          ? CONTENT.create.messages.failed_to_update
-          : CONTENT.create.messages.failed_to_create,
-      user: validatedFields.data,
-    });
     return {
       message:
         submitIntent === QUIZ_INTENTS.PATCH

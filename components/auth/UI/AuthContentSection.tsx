@@ -54,10 +54,6 @@ export default function AuthContentSection() {
       setCurrentItem(
         (prev) => (prev + 1) % CONTENT.auth.contentSectionSlider.length,
       );
-      console.log(
-        'Current item updated to:',
-        (currentItem + 1) % CONTENT.auth.contentSectionSlider.length,
-      );
     }, 5000);
 
     return () => clearInterval(interval);
