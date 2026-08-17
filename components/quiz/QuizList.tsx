@@ -46,7 +46,16 @@ export default async function QuizList({
           getOrderBy(sort),
           page,
         )
-      : await getAllMyQuizzesPaginated(searchQuery, {}, page);
+      : await getAllMyQuizzesPaginated(
+          searchQuery,
+          {
+            ...(filter?.categories?.length && {
+              category: filter.categories,
+            }),
+            ...(filter?.difficulty && { difficulty: filter.difficulty }),
+          },
+          page,
+        );
 
   return (
     <div className="min-w-0 flex-1">

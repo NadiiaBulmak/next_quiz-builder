@@ -25,7 +25,7 @@ export default async function MyQuizzes({
     <QuizzesContent searchQuery={search}>
       <div className="group flex w-full gap-0">
         <QuizList
-          listType={ListType.all}
+          listType={ListType.my}
           page={Number(page) || 1}
           searchQuery={search}
           filter={{ categories: selectedCategories, difficulty }}

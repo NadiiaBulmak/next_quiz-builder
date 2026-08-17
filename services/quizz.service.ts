@@ -139,6 +139,22 @@ export async function getAllMyQuizzes(
           mode: 'insensitive' as const,
         },
       }),
+      ...(filters.category?.length
+        ? {
+            categories: {
+              some: {
+                slug: {
+                  in: filters.category,
+                },
+              },
+            },
+          }
+        : {}),
+      ...(filters.difficulty && {
+        difficulty: {
+          name: filters.difficulty,
+        },
+      }),
       ...(filters.isPublished !== undefined && {
         isPublished: filters.isPublished,
       }),
@@ -221,6 +237,22 @@ export async function getAllMyQuizzesPaginated(
       title: {
         contains: normalizedSearchQuery,
         mode: 'insensitive' as const,
+      },
+    }),
+    ...(filters.category?.length
+      ? {
+          categories: {
+            some: {
+              slug: {
+                in: filters.category,
+              },
+            },
+          },
+        }
+      : {}),
+    ...(filters.difficulty && {
+      difficulty: {
+        name: filters.difficulty,
       },
     }),
     ...(filters.isPublished !== undefined && {
