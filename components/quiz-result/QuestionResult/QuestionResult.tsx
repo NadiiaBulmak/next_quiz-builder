@@ -21,7 +21,6 @@ export const QuestionResult = ({
       }`}
     >
       <div className="flex flex-col md:flex-row gap-4">
-        {/* Number */}
         <div
           className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-semibold ${
             isCorrect ? 'bg-lime-200 text-green-700' : 'bg-red-100 text-red-600'
@@ -31,7 +30,6 @@ export const QuestionResult = ({
         </div>
 
         <div className="min-w-0 flex-1 flex flex-col gap-3">
-          {/* Question */}
           <div className="flex flex-col-reverse md:flex-row items-start justify-between gap-3">
             <p className="font-medium leading-6 text-gray-950">{question}</p>
 
@@ -54,7 +52,6 @@ export const QuestionResult = ({
             </div>
           </div>
 
-          {/* Answer */}
           <div className="mt-3">
             <p className="mb-1 text-xs font-medium uppercase tracking-wide text-gray-400">
               {CONTENT.quiz_result.review.your_answer}

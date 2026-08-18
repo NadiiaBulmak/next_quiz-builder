@@ -1,20 +1,5 @@
 import Link from 'next/link';
-import {
-  ArrowRight,
-  BarChart3,
-  Check,
-  ChevronRight,
-  Edit3,
-  Heart,
-  Lightbulb,
-  Play,
-  Plus,
-  Share2,
-  ShieldCheck,
-  Sparkles,
-  Trophy,
-  Users,
-} from 'lucide-react';
+import { ArrowRight, Trophy } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
 import { CONTENT } from '@/constants/content';
 

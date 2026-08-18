@@ -1,5 +1,4 @@
 import { ScoreCircle } from './ScoreCircle';
-import { CONTENT } from '@/constants/content';
 import type { ScoreProps } from '@/types/props';
 
 export const Score = ({ score, title, description }: ScoreProps) => {

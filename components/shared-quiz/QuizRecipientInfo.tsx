@@ -2,7 +2,6 @@ import { LabelInputArea } from '../quiz-create/UI/LabelInputArea';
 import { Input } from '../ui/input';
 import { FieldError } from '@/components/shared/FormFeedback';
 import { CONTENT } from '@/constants/content';
-
 import type { QuizRecipientInfoProps } from '@/types/props';
 import { AuthFormField } from '@/constants/formFields';
 

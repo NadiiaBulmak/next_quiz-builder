@@ -50,7 +50,6 @@ export const ControlMenu = ({
               )}
             </button>
           </div>
-          {/* <div> */}
           <div className="hidden lg:flex gap-8 w-full items-center justify-center">
             <Link
               href={ROUTES.LOGIN}
@@ -66,7 +65,6 @@ export const ControlMenu = ({
               {CONTENT.main.navbar.to_register}
             </Link>
           </div>
-          {/* </div> */}
         </>
       )}
     </div>

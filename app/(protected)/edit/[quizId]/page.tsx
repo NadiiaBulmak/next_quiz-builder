@@ -21,6 +21,5 @@ export default async function EditPage({
     notFound();
   }
 
-  // const { title } = quiz;
   return <CreateQuizClient quiz={quiz} categories={categories} />;
 }

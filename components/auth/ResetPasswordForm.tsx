@@ -2,14 +2,13 @@
 import { useSearchParams } from 'next/navigation';
 import { resetPasswordInitialState } from '@/constants/initialFormState';
 import { useActionState } from 'react';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { AuthRedirectLink } from './UI/AuthRedirect';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
 import { resetPassword } from '@/app/actions/auth/resetPassword';
 import { ActionToast, FieldError } from '@/components/shared/FormFeedback';
 import { AuthFormField, PasswordResetFormField } from '@/constants/formFields';
+import { useRedirectOnSuccess } from '@/hooks/useRedirectOnSuccess';
 
 export const ResetPasswordForm = () => {
   const searchParams = useSearchParams();
@@ -20,13 +19,7 @@ export const ResetPasswordForm = () => {
     resetPassword,
     resetPasswordInitialState,
   );
-  const router = useRouter();
-
-  useEffect(() => {
-    if (state?.success) {
-      router.push(NAV_LINKS.quizzes.all);
-    }
-  }, [router, state?.success]);
+  useRedirectOnSuccess(state?.success ?? false, NAV_LINKS.quizzes.all);
 
   return (
     <div className="flex w-full max-w-full flex-col gap-2">

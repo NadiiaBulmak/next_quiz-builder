@@ -27,7 +27,6 @@ export const PreviewTopBar = ({
       <div className="text-sm text-muted-foreground">
         {CONTENT.preview.question_count(questionCount)}
       </div>
-      {/* <SidebarBottom name={name} email={email} opened={opened} /> */}
     </div>
   );
 };

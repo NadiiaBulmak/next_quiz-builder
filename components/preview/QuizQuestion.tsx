@@ -23,7 +23,6 @@ export const QuizQuestion = ({
                 <Circle />
                 {answer.text}
               </div>
-              {/* {answer.isCorrect && <Circle />} */}
             </div>
           ))}
         </div>

@@ -2,14 +2,13 @@
 
 import { useActionState } from 'react';
 import { forgotPasswordInitialState } from '@/constants/initialFormState';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { AuthRedirectLink } from './UI/AuthRedirect';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
 import { forgotPassword } from '@/app/actions/auth/forgotPassword';
 import { ActionToast, FieldError } from '@/components/shared/FormFeedback';
 import { AuthFormField } from '@/constants/formFields';
+import { useRedirectOnSuccess } from '@/hooks/useRedirectOnSuccess';
 
 export const ForgotPasswordForm = () => {
   const [state, action, isPending] = useActionState(
@@ -17,13 +16,7 @@ export const ForgotPasswordForm = () => {
     forgotPasswordInitialState,
   );
 
-  const router = useRouter();
-
-  useEffect(() => {
-    if (state?.success) {
-      router.push(NAV_LINKS.forgot_password_sent);
-    }
-  }, [router, state?.success]);
+  useRedirectOnSuccess(state?.success ?? false, NAV_LINKS.forgot_password_sent);
 
   return (
     <div className="flex w-full flex-col gap-2">

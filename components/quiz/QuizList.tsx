@@ -4,26 +4,11 @@ import {
   getAllQuizzesPaginated,
 } from '@/services/quizz.service';
 import { QuizListItem } from './QuizListItem';
-import { ListType, QuizListType, sortType } from '@/types/props';
+import { ListType, QuizListType, } from '@/types/props';
 import { Pagination } from '@/components/shared/Pagination';
 import { CONTENT } from '@/constants/content';
 import { Search } from 'lucide-react';
-import { QuizSort } from '@/types/quiz';
-
-function getOrderBy(sort?: sortType): QuizSort {
-  switch (sort) {
-    case sortType.dateASC:
-      return { updatedAt: 'desc' };
-    case sortType.dateDSC:
-      return { updatedAt: 'asc' };
-    case sortType.alphASC:
-      return { title: 'asc' };
-    case sortType.alphDSC:
-      return { title: 'desc' };
-    default:
-      return {};
-  }
-}
+import { getOrderBy } from '@/utils/getOrderBy';
 
 export const QuizList = async ({
   listType,

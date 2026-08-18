@@ -2,7 +2,6 @@ import { ArrowRight, Check } from 'lucide-react';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 import { CONTENT } from '@/constants/content';
-import type { ReassuranceProps } from '@/types/props';
 import { Reassurance } from "./Reassurance";
 
 export const FinalCTA = () => {

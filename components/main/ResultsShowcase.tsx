@@ -10,7 +10,6 @@ export const ResultsShowcase = () => {
     <section className="scroll-mt-24 px-6" id="results">
       <div className="mx-auto max-w-[1200px] overflow-hidden rounded-[24px] bg-black px-6 py-12 text-white md:px-12 lg:px-16">
         <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          {/* Content */}
           <div>
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-lime-400">
               {results_showcase.eyebrow}
@@ -49,7 +48,6 @@ export const ResultsShowcase = () => {
             </div>
           </div>
 
-          {/* Result preview */}
           <ResultPreview id={results_showcase.id} />
         </div>
       </div>

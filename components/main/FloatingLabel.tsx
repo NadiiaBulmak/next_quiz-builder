@@ -1,9 +1,5 @@
 'use client';
 
-import { BarChart3, Settings2, Share2 } from 'lucide-react';
-import { CONTENT } from '@/constants/content';
-import { useState } from 'react';
-
 export const FloatingLabel = ({
   children,
   icon,

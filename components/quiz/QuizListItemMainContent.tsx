@@ -1,6 +1,4 @@
-import { BadgePropsType, QuizListItemType } from '@/types/quiz';
-import { Badge } from './Badge';
-import { QuizItemMenu } from './QuizItemMenu';
+import { QuizListItemType } from '@/types/quiz';
 import { formatDate } from '@/utils/dateFormatter';
 import { GlobeCheck, SquircleDashed } from 'lucide-react';
 import { CONTENT } from '@/constants/content';

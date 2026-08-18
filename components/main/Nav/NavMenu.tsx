@@ -1,4 +1,3 @@
-import { CONTENT } from '@/constants/content';
 import { TOP_NAV_LINKS } from '@/constants/landing_nav_links';
 import { NavMenuItem } from './NavMenuItem';
 import type { NavMenuProps } from '@/types/props';

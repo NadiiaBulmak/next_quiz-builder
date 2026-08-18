@@ -1,7 +1,3 @@
-import { CheckCircle2, Eye, Sparkles } from 'lucide-react';
-import { CONTENT } from '@/constants/content';
-import { ResultPreview } from './ResultPreview';
-
 export const Feature = ({
   icon,
   title,

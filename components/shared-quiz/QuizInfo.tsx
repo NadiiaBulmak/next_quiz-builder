@@ -1,7 +1,5 @@
 import { Gauge, List, ListTree } from 'lucide-react';
-
 import { Quiz } from '@/types/quiz';
-import { CONTENT } from '@/constants/content';
 
 export const QuizInfo = ({
   title,
@@ -19,16 +17,10 @@ export const QuizInfo = ({
         <p className="text-gray-500 text-sm">{description}</p>
         <div className="flex gap-3 text-sm mt-4 flex-col lg:flex-row">
           <div className="flex items-center gap-3">
-            {/* <span className="text-gray-500">
-              {CONTENT.shared_quiz.labels.difficulty}
-            </span> */}
             <Gauge className="text-gray-500" width={16} height={16} strokeWidth={2} />
             <span className="font-medium">{difficulty.name}</span>
           </div>
           <div className="flex items-center gap-3">
-            {/* <span className="text-gray-500">
-              {CONTENT.shared_quiz.labels.categories}
-            </span> */}
             <ListTree className="text-gray-500" width={16} height={16} strokeWidth={2} />
             <span className="font-medium">
               {categories?.map((category) => category.name).join(', ')}

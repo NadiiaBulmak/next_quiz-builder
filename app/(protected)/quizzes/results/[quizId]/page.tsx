@@ -30,7 +30,6 @@ export default async function ResultPerQuiz({
     <div className="min-h-screen flex-1 bg-zinc-50 px-3 py-4 md:px-6 md:py-6  mb-20 lg:mb-0">
       <div className="flex w-full flex-col gap-6">
         <div className="flex gap-4 items-center w-full">
-          {/* <BackButton /> */}
           <AnalyticsHeader
             title={CONTENT.results.analyticsPerQuiz.title}
             description={CONTENT.results.analyticsPerQuiz.description}

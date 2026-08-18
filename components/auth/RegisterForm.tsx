@@ -2,8 +2,6 @@
 import { signup } from '@/app/actions/auth/signUp';
 import { initialState } from '@/constants/initialFormState';
 import { useActionState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import { AuthRedirectLink } from './UI/AuthRedirect';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { CONTENT } from '@/constants/content';
@@ -11,16 +9,11 @@ import { GoogleSubmitButton } from './GoogleSubmitButton';
 import { AuthFormDivider } from './UI/AuthFormDivider';
 import { ActionToast, FieldError } from '@/components/shared/FormFeedback';
 import { AuthFormField } from '@/constants/formFields';
+import { useRedirectOnSuccess } from '@/hooks/useRedirectOnSuccess';
 
 export const SignUp = () => {
   const [state, action, isPending] = useActionState(signup, initialState);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (state?.success) {
-      router.push(NAV_LINKS.quizzes.all);
-    }
-  }, [router, state?.success]);
+  useRedirectOnSuccess(state?.success ?? false, NAV_LINKS.quizzes.all);
 
   return (
     <div className="flex w-full max-w-full flex-col gap-2">

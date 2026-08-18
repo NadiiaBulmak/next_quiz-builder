@@ -1,11 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import { ShowAllQuizType } from '@/types/props';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import { NAV_LINKS } from '@/constants/nav_links';
-import { CheckCheck, Link as LinkIcon } from 'lucide-react';
 import { CopyPreviewLinkButton } from './CopyPreviewLinkButton';
 import { CONTENT } from '@/constants/content';
 

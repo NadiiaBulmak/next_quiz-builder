@@ -1,4 +1,3 @@
-import { LucideIcon } from 'lucide-react';
 import type { MetricProps } from '@/types/props';
 
 export const Metric = ({ value, label, icon: Icon }: MetricProps) => {

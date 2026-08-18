@@ -10,7 +10,6 @@ export const QuizPreview = () => {
 
   return (
     <div className="relative mx-auto w-full max-w-[650px]" id="demo">
-      {/* Background shape */}
       <div className="absolute -inset-6 rounded-[32px] bg-lime-100/60 blur-2xl" />
 
       <div className="relative rotate-[1deg] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_25px_70px_rgba(0,0,0,0.12)]">
@@ -33,7 +32,6 @@ export const QuizPreview = () => {
         </div>
       </div>
 
-      {/* Floating labels */}
       <FloatingLabel className="-right-6 top-10" icon={<Settings2 size={14} />}>
         {CONTENT.main.preview_titles.create_in_minutes}
       </FloatingLabel>

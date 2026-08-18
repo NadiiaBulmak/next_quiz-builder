@@ -25,7 +25,8 @@ export default function ForgotPasswordSendPage() {
 
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-stone-900">
-                    Check your inbox
+                    
+                    {CONTENT.auth.forgot_password_sent.button}
                   </p>
 
                   <p className="mt-1 text-sm leading-6 text-stone-500">
@@ -35,7 +36,6 @@ export default function ForgotPasswordSendPage() {
               </div>
             </div>
 
-            {/* Login link */}
             <div className="mt-7">
               <AuthRedirectLink
                 link={NAV_LINKS.login}

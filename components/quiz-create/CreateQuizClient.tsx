@@ -1,6 +1,5 @@
 'use client';
 
-// import { login } from '@/app/actions/auth/login';
 import { QuestionsSection } from '@/components/quiz-create/Question/QuestionsSection';
 import { QuizBaseInputSection } from '@/components/quiz-create/BaseInfo/QuizBaseInputSection';
 import {

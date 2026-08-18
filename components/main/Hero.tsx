@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Play, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, ShieldCheck, Sparkles } from 'lucide-react';
 
 import { ROUTES } from '@/constants/routes';
 import { CONTENT } from '@/constants/content';
@@ -60,9 +60,7 @@ export const Hero = () => {
             </Reassurance>
           </div>
         </div>
-
-        {/* Product */}
-
+        
         <QuizPreview />
       </div>
     </section>

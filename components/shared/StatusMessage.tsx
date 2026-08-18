@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import type { LucideIcon } from 'lucide-react';
 import { Button } from '../ui/button';
 import { StatusMessageProps } from '@/types/props';
 
@@ -12,12 +11,10 @@ export const StatusMessage = ({
   return (
     <div className="flex min-h-[50vh] w-full items-center justify-center px-6 py-12">
       <div className="flex w-full max-w-md flex-col items-center rounded-2xl border border-stone-200 bg-white px-8 py-10 text-center shadow-sm">
-        {/* Icon */}
         <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-lime-50 ring-1 ring-lime-100">
           <Icon className="h-7 w-7 text-lime-600" aria-hidden />
         </div>
 
-        {/* Content */}
         <div className="flex flex-col gap-2">
           <h2 className="text-lg font-semibold tracking-tight text-stone-900">
             {title}
@@ -28,7 +25,6 @@ export const StatusMessage = ({
           </p>
         </div>
 
-        {/* Actions */}
         {actions?.length && actions?.length > 0 && (
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             {actions.map((action, index) => {

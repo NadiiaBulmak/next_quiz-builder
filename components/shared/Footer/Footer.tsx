@@ -17,9 +17,6 @@ export const Footer = () => {
 
         <RightsReserved centered={false} />
       </div>
-      {/* <div className="container mx-auto text-center text-sm"> */}
-
-      {/* </div> */}
     </footer>
   );
 };

@@ -2,6 +2,7 @@ import { CheckCircle, ExternalLink } from 'lucide-react';
 
 export const CONTENT = {
   common: {
+    clear_search: 'Clear search',
     close: 'Close',
     submitting: 'Submitting...',
     quiz_not_found: 'Quiz not found',
@@ -10,6 +11,14 @@ export const CONTENT = {
       previous: 'Previous page',
       next: 'Next page',
       go_to: (page: number) => `Go to page ${page}`,
+    },
+    no_results_found: {
+      title: 'No results found',
+      description: 'No results match your search criteria.',
+    },
+    no_quiz_results_found: {
+      title: 'No quiz results yet',
+      description: 'Once someone completes one of your quizzes, performance statistics will appear here.',
     },
     menu: {
       open: 'Open menu',
@@ -160,6 +169,7 @@ export const CONTENT = {
     },
     forgot_password_sent: {
       header: 'Reset email sent',
+      button: 'Check your inbox',
       subheader:
         'We just sent you an email with instructions to reset your password. Please check your inbox and follow the link provided.',
     },
@@ -582,6 +592,7 @@ export const CONTENT = {
       options_empty_text: 'Add more than 1 option',
       correct_answer: 'Correct answer',
       mark_correct_answer: 'Mark as correct answer',
+      delete_answer: 'Delete answer',
     },
     buttons: {
       add_question: 'Add Question',

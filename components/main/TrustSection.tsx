@@ -1,6 +1,5 @@
 import { CheckCircle2, Users, Link2 } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
-import type { TrustItemProps } from '@/types/props';
 import { TrustItem } from "./TrustItem";
 
 export const TrustSection = () => {

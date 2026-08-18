@@ -52,37 +52,8 @@ export const QuizResultContent = ({
 
             </div>
 
-            {/* Right column */}
             <aside className="flex flex-col gap-4">
               <AdsTips />
-
-              {/* <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
-                <div className="mb-4">
-                  <h3 className="font-semibold text-gray-950">
-                    {CONTENT.quiz_result.cta.title}
-                  </h3>
-
-                  <p className="mt-1 text-sm leading-5 text-gray-500">
-                    {CONTENT.quiz_result.cta.description}
-                  </p>
-                </div>
-
-                <button
-                  type="button"
-                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-gray-800"
-                >
-                  {CONTENT.quiz_result.cta.browse_quizzes}
-                  <ExternalLink className="h-4 w-4" />
-                </button>
-              </div> */}
-
-              {/* <button
-                type="button"
-                className="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-gray-800 transition hover:bg-gray-50"
-              >
-                <RotateCcw className="h-4 w-4" />
-                {CONTENT.quiz_result.cta.retake_quiz}
-              </button> */}
             </aside>
           </div>
         </div>

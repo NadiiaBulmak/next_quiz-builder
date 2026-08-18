@@ -14,11 +14,9 @@ export const QuizQuestions = ({
   question,
   disabledPrevious,
   disabledNext,
-  // questions,
   questionsLength,
   handleAnswerSelect,
   selectedAnswerIds,
-  // isQuestionAnswered,
   isQuizCompleted,
 }: {
   isPending: boolean;
@@ -32,7 +30,6 @@ export const QuizQuestions = ({
   handleAnswerSelect: (questionId: string, selectedAnswerIds: string[]) => void;
   selectedAnswerIds: string[];
   isQuizCompleted: boolean;
-  // isQuestionAnswered: (questionId: string) => boolean;
 }) => {
   return (
     <div className="flex flex-col justify-between gap-5 rounded-md border border-gray-300 p-4 sm:p-6 lg:gap-4">
@@ -47,7 +44,6 @@ export const QuizQuestions = ({
           questionId={question?.id || ''}
           selectedAnswerIds={selectedAnswerIds}
           handleAnswerSelect={handleAnswerSelect}
-          // isQuestionAnswered={isQuestionAnswered}
         />
       </div>
 

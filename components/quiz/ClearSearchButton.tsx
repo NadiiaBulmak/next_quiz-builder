@@ -1,6 +1,7 @@
 'use client';
 import { Button } from "../ui/button";
 import { X } from "lucide-react";
+import { CONTENT } from "@/constants/content";
 
 export const ClearSearchButton = () => {
   const handleClearSearch = () => {
@@ -15,7 +16,7 @@ export const ClearSearchButton = () => {
       className="bg-transparent hover:bg-transparent hover:underline hover:underline-offset-2 cursor-pointer hidden items-center gap-1.5 text-xs font-semibold text-green-700 transition hover:text-green-800 sm:flex"
       onClick={handleClearSearch}
     >
-      Clear search
+      {CONTENT.common.clear_search}
       <X size={15} />
     </Button>
   );
