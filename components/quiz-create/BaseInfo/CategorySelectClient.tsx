@@ -11,6 +11,8 @@ import { QuizFormField } from '@/constants/formFields';
 export const CategorySelectClient = ({
   categories,
   initialSelectedNames = [],
+  selectedNames,
+  onSelectedNamesChange,
   error,
 }: CategorySelectClientProps) => {
   const [selected, setSelected] = useState<Category[]>(() =>
@@ -23,6 +25,7 @@ export const CategorySelectClient = ({
     ),
   );
   const [search, setSearch] = useState('');
+  const selectedNamesValue = selectedNames ?? selected.map((item) => item.name);
 
   const filteredCategories = categories.filter(
     (category) =>
@@ -31,13 +34,17 @@ export const CategorySelectClient = ({
   );
 
   const addCategory = (category: Category) => {
-    setSelected((prev) => [...prev, category]);
+    const nextSelected = [...selected, category];
+    setSelected(nextSelected);
+    onSelectedNamesChange?.(nextSelected.map((item) => item.name));
 
     setSearch('');
   };
 
   const removeCategory = (id: string) => {
-    setSelected((prev) => prev.filter((item) => item.id !== id));
+    const nextSelected = selected.filter((item) => item.id !== id);
+    setSelected(nextSelected);
+    onSelectedNamesChange?.(nextSelected.map((item) => item.name));
   };
 
   const createCategory = () => {
@@ -65,7 +72,7 @@ export const CategorySelectClient = ({
       <input
         type="hidden"
         name={QuizFormField.CATEGORIES}
-        value={JSON.stringify(selected.map((item) => item.name))}
+        value={JSON.stringify(selectedNamesValue)}
       />
 
       <div

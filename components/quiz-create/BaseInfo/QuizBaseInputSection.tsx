@@ -17,6 +17,14 @@ export const QuizBaseInputSection = ({
   initialDescription = '',
   initialDifficulty = '',
   initialSelectedCategories = [],
+  title,
+  description,
+  selectedCategories,
+  difficulty,
+  onTitleChange,
+  onDescriptionChange,
+  onCategoriesChange,
+  onDifficultyChange,
   isEditMode = false,
   isPending = false,
   errors,
@@ -30,6 +38,8 @@ export const QuizBaseInputSection = ({
           name={QuizFormField.TITLE}
           placeholder={CONTENT.create.base.title.placeholder}
           initValue={initialTitle}
+          value={title}
+          onValueChange={onTitleChange}
           aria-invalid={Boolean(errors?.[QuizFormField.TITLE])}
           aria-describedby="quiz-title-error"
         />
@@ -44,6 +54,8 @@ export const QuizBaseInputSection = ({
           name={QuizFormField.DESCRIPTION}
           placeholder={CONTENT.create.base.description.placeholder}
           initValue={initialDescription}
+          value={description}
+          onValueChange={onDescriptionChange}
           aria-invalid={Boolean(errors?.[QuizFormField.DESCRIPTION])}
           aria-describedby="quiz-description-error"
         />
@@ -54,11 +66,15 @@ export const QuizBaseInputSection = ({
       </LabelInputArea>
       <DifficultySelect
         initialValue={initialDifficulty}
+        value={difficulty}
+        onValueChange={onDifficultyChange}
         error={errors?.[QuizFormField.DIFFICULTY]}
       />
       <CategorySelectClient
         categories={categories}
         initialSelectedNames={initialSelectedCategories}
+        selectedNames={selectedCategories}
+        onSelectedNamesChange={onCategoriesChange}
         error={errors?.[QuizFormField.CATEGORIES]}
       />
       <QuestionControlSection

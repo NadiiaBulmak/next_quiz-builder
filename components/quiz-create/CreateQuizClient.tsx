@@ -5,11 +5,10 @@ import { QuestionsSection } from '@/components/quiz-create/Question/QuestionsSec
 import { QuizBaseInputSection } from '@/components/quiz-create/BaseInfo/QuizBaseInputSection';
 import {
   defaultQuestion,
-  initialQuestions,
   quizInitialState,
 } from '@/constants/initialFormState';
 import { AnswerType, CreateQuizClientProps, QuestionType } from '@/types/props';
-import { useActionState, useEffect, useState } from 'react';
+import { useActionState, useEffect, useMemo, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { postQuiz } from '@/app/actions/quiz/postQuiz';
 import { TipSection } from '../shared/TipSection';
@@ -17,34 +16,56 @@ import { CONTENT } from '@/constants/content';
 import { NAV_LINKS } from '@/constants/nav_links';
 import { ActionToast, FieldError } from '@/components/shared/FormFeedback';
 import { QuizFormField } from '@/constants/formFields';
+import { useQuizCreate } from '@/providers/QuizCreateProvider';
+
+const normalizeQuestionOrder = (items: QuestionType[]) =>
+  [...items]
+    .sort((left, right) => left.order - right.order)
+    .map((question, index) => ({
+      ...question,
+      order: index + 1,
+    }));
+
+const withAnswerIds = (answers: AnswerType[]) =>
+  answers.map((answer) => ({
+    ...answer,
+    id: answer.id ?? crypto.randomUUID(),
+  }));
+
+const withQuestionIds = (items: QuestionType[]) =>
+  items.map((question) => ({
+    ...question,
+    id: question.id ?? crypto.randomUUID(),
+    answers: withAnswerIds(question.answers),
+  }));
 
 export const CreateQuizClient = ({
   categories,
   quiz,
   previewMode = false,
 }: CreateQuizClientProps) => {
-  const editCategories =
-    quiz?.categories?.map((category) => category.name) ?? [];
+  const { draft, updateDraft, resetDraft } = useQuizCreate();
+  const initializedQuizId = useRef<string | undefined>(undefined);
+  const editCategories = useMemo(
+    () => quiz?.categories?.map((category) => category.name) ?? [],
+    [quiz?.categories],
+  );
 
-  const normalizeQuestionOrder = (items: QuestionType[]) =>
-    [...items]
-      .sort((left, right) => left.order - right.order)
-      .map((question, index) => ({
-        ...question,
-        order: index + 1,
-      }));
-
-  const editQuestions = normalizeQuestionOrder(
-    quiz?.questions?.map((question) => ({
-      ...question,
-      id: question.id ?? crypto.randomUUID(),
-      answers: (question.answers ?? []).map((answer, index) => ({
-        id: answer.id ?? crypto.randomUUID(),
-        text: answer.text,
-        isCorrect: answer.isCorrect,
-        order: answer.order ?? index + 1,
-      })),
-    })) ?? [],
+  const editQuestions = useMemo(
+    () =>
+      normalizeQuestionOrder(
+        quiz?.questions?.map((question) => ({
+          ...question,
+          id: question.id ?? crypto.randomUUID(),
+          answers: (question.answers ?? []).map((answer, index) => ({
+            id: answer.id ?? crypto.randomUUID(),
+            text: answer.text,
+            isCorrect: answer.isCorrect,
+            order: answer.order ?? index + 1,
+          })),
+        })) ?? [],
+      ),
+    [quiz?.questions],
   );
 
   const initialState = quiz
@@ -64,40 +85,39 @@ export const CreateQuizClient = ({
   const router = useRouter();
 
   useEffect(() => {
+    if (!quiz || initializedQuizId.current === quiz.id) return;
+
+    updateDraft({
+      title: quiz.title ?? '',
+      description: quiz.description ?? '',
+      categories: editCategories,
+      difficulty: quiz.difficulty?.name ?? '',
+      questions: withQuestionIds(normalizeQuestionOrder(editQuestions)),
+    });
+    initializedQuizId.current = quiz.id;
+  }, [quiz, editCategories, editQuestions, updateDraft]);
+
+  useEffect(() => {
     if (state?.success) {
+      resetDraft();
       router.push(NAV_LINKS.quizzes.my);
     }
-  }, [router, state?.success]);
+  }, [resetDraft, router, state?.success]);
 
-  const withAnswerIds = (answers: AnswerType[]) =>
-    answers.map((answer) => ({
-      ...answer,
-      id: answer.id ?? crypto.randomUUID(),
-    }));
-
-  const withQuestionIds = (items: QuestionType[]) =>
-    items.map((question) => ({
-      ...question,
-      id: question.id ?? crypto.randomUUID(),
-      answers: withAnswerIds(question.answers),
-    }));
-
-  const [questions, setQuestions] = useState<QuestionType[]>(() =>
-    quiz
-      ? withQuestionIds(normalizeQuestionOrder(editQuestions))
-      : withQuestionIds(normalizeQuestionOrder(initialQuestions)),
-  );
+  const questions = draft.questions;
 
   const addNewQuestion = () =>
-    setQuestions((prev) => [
-      ...prev,
-      {
-        ...defaultQuestion,
-        id: crypto.randomUUID(),
-        order: prev.length + 1,
-        answers: withAnswerIds(defaultQuestion.answers),
-      },
-    ]);
+    updateDraft({
+      questions: [
+        ...questions,
+        {
+          ...defaultQuestion,
+          id: crypto.randomUUID(),
+          order: questions.length + 1,
+          answers: withAnswerIds(defaultQuestion.answers),
+        },
+      ],
+    });
 
   const rewriteOrderIndex = (questions: QuestionType[]) =>
     questions.map((question, index) => ({
@@ -106,21 +126,18 @@ export const CreateQuizClient = ({
     }));
 
   const deleteQuestion = (order: number) => {
-    setQuestions((prev) =>
-      rewriteOrderIndex(prev.filter((p) => p.order !== order)),
-    );
+    updateDraft({
+      questions: rewriteOrderIndex(questions.filter((p) => p.order !== order)),
+    });
   };
 
   const reorderQuestions = (fromIndex: number, toIndex: number) => {
     if (fromIndex === toIndex) return;
 
-    setQuestions((prev) => {
-      const updated = [...prev];
-      const [draggedQuestion] = updated.splice(fromIndex, 1);
-      updated.splice(toIndex, 0, draggedQuestion);
-
-      return rewriteOrderIndex(updated);
-    });
+    const updated = [...questions];
+    const [draggedQuestion] = updated.splice(fromIndex, 1);
+    updated.splice(toIndex, 0, draggedQuestion);
+    updateDraft({ questions: rewriteOrderIndex(updated) });
   };
 
   const updateQuestionText = (
@@ -128,15 +145,15 @@ export const CreateQuizClient = ({
     order: number,
     text: string,
   ) => {
-    setQuestions((prev) =>
-      prev.map((question) => {
+    updateDraft({
+      questions: questions.map((question) => {
         const isTarget = questionId
           ? question.id === questionId
           : question.order === order;
 
         return isTarget ? { ...question, text } : question;
       }),
-    );
+    });
   };
 
   const updateQuestionAnswers = (
@@ -144,15 +161,15 @@ export const CreateQuizClient = ({
     order: number,
     answers: QuestionType['answers'],
   ) => {
-    setQuestions((prev) =>
-      prev.map((question) => {
+    updateDraft({
+      questions: questions.map((question) => {
         const isTarget = questionId
           ? question.id === questionId
           : question.order === order;
 
         return isTarget ? { ...question, answers } : question;
       }),
-    );
+    });
   };
 
   return (
@@ -179,10 +196,14 @@ export const CreateQuizClient = ({
         />
         <QuizBaseInputSection
           categories={categories}
-          initialTitle={initialState.user?.title}
-          initialDescription={initialState.user?.description}
-          initialDifficulty={initialState.user?.difficulty}
-          initialSelectedCategories={editCategories}
+          title={draft.title}
+          description={draft.description}
+          difficulty={draft.difficulty}
+          selectedCategories={draft.categories}
+          onTitleChange={(title) => updateDraft({ title })}
+          onDescriptionChange={(description) => updateDraft({ description })}
+          onCategoriesChange={(categories) => updateDraft({ categories })}
+          onDifficultyChange={(difficulty) => updateDraft({ difficulty })}
           isEditMode={Boolean(quiz)}
           isPending={isPending}
           errors={state.errors}

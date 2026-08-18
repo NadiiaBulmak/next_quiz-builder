@@ -10,6 +10,8 @@ export type Category = {
 export type CategorySelectClientProps = {
   categories: Category[];
   initialSelectedNames?: string[];
+  selectedNames?: string[];
+  onSelectedNamesChange?: (names: string[]) => void;
   error?: string[];
 };
 
@@ -59,7 +61,12 @@ export type QuizRecipientInfoProps = {
   recipient: { email: string; name: string | null } | null;
   errors?: { email?: string[]; name?: string[] };
 };
-export type DifficultySelectProps = { initialValue?: string; error?: string[] };
+export type DifficultySelectProps = {
+  initialValue?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
+  error?: string[];
+};
 export type RightsReservedProps = { centered?: boolean };
 export type SectionTitleProps = { title: string; subtitle?: string };
 export type FieldErrorProps = { id: string; errors?: string[] };
@@ -304,6 +311,14 @@ export type QuizBaseInputSectionProps = Partial<QuestionControlSectionType> & {
   initialDescription?: string;
   initialDifficulty?: string;
   initialSelectedCategories?: string[];
+  title?: string;
+  description?: string;
+  selectedCategories?: string[];
+  difficulty?: string;
+  onTitleChange?: (value: string) => void;
+  onDescriptionChange?: (value: string) => void;
+  onCategoriesChange?: (value: string[]) => void;
+  onDifficultyChange?: (value: string) => void;
   isEditMode?: boolean;
   isPending?: boolean;
   errors?: {
@@ -394,12 +409,11 @@ export type QuizResultDetail = {
   };
 };
 
-
 export type StatusMessageAction =
   | { type: 'link'; href: string; label: string }
   | { type: 'button'; onClick: () => void; label: string };
 
-  export type StatusMessageProps = {
+export type StatusMessageProps = {
   icon: LucideIcon;
   title: string;
   description: string;

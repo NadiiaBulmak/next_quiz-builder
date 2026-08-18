@@ -17,15 +17,23 @@ import { QuizFormField } from '@/constants/formFields';
 
 export const DifficultySelect = ({
   initialValue = '',
+  value,
+  onValueChange,
   error,
 }: DifficultySelectProps) => {
   const [difficulty, setDifficulty] = useState(initialValue);
+  const currentDifficulty = value ?? difficulty;
+
+  const handleValueChange = (nextValue: string) => {
+    setDifficulty(nextValue);
+    onValueChange?.(nextValue);
+  };
 
   return (
     <LabelInputArea label={CONTENT.create.base.difficulty.label}>
       <Select
-        value={difficulty}
-        onValueChange={(value) => setDifficulty(value ?? '')}
+        value={currentDifficulty}
+        onValueChange={(nextValue) => handleValueChange(nextValue ?? '')}
       >
         <SelectTrigger
           id={QuizFormField.DIFFICULTY}
@@ -59,7 +67,7 @@ export const DifficultySelect = ({
       <input
         type="hidden"
         name={QuizFormField.DIFFICULTY}
-        value={difficulty ?? ''}
+        value={currentDifficulty}
       />
       <p id="difficulty-error" role="alert" className="text-xs text-red-600">
         {error?.join(' ')}

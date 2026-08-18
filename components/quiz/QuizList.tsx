@@ -13,9 +13,9 @@ import { QuizSort } from '@/types/quiz';
 function getOrderBy(sort?: sortType): QuizSort {
   switch (sort) {
     case sortType.dateASC:
-      return { createdAt: 'desc' };
+      return { updatedAt: 'desc' };
     case sortType.dateDSC:
-      return { createdAt: 'asc' };
+      return { updatedAt: 'asc' };
     case sortType.alphASC:
       return { title: 'asc' };
     case sortType.alphDSC:
@@ -32,28 +32,32 @@ export const QuizList = async ({
   filter,
   sort,
 }: QuizListType & { page?: number; searchQuery?: string }) => {
+  const filters = {
+    ...(listType === ListType.all && {
+      isPublished: true,
+    }),
+    ...(filter?.categories?.length && {
+      category: filter.categories,
+    }),
+    ...(filter?.difficulty && {
+      difficulty: filter.difficulty,
+    }),
+  };
+
+  const orderBy = getOrderBy(sort);
+
   const result =
     listType === ListType.all
       ? await getAllQuizzesPaginated(
           searchQuery,
-          {
-            isPublished: true,
-            ...(filter?.categories?.length && {
-              category: filter.categories,
-            }),
-            ...(filter?.difficulty && { difficulty: filter.difficulty }),
-          },
-          getOrderBy(sort),
+          filters,
+          orderBy,
           page,
         )
       : await getAllMyQuizzesPaginated(
           searchQuery,
-          {
-            ...(filter?.categories?.length && {
-              category: filter.categories,
-            }),
-            ...(filter?.difficulty && { difficulty: filter.difficulty }),
-          },
+          filters,
+          orderBy,
           page,
         );
 
