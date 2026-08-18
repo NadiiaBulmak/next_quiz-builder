@@ -38,7 +38,7 @@ export const Pagination = ({
         variant="ghost"
         size="icon-sm"
         aria-label={CONTENT.common.pagination.previous}
-        className="mr-2 cursor-pointer"
+        className="mr-2 h-11 w-11 cursor-pointer lg:h-8 lg:w-8"
         disabled={currentPage === 1}
         onClick={() => changePage(currentPage - 1)}
       >
@@ -52,7 +52,7 @@ export const Pagination = ({
             type="button"
             variant={page === currentPage ? 'secondary' : 'ghost'}
             size="icon-sm"
-            className={`cursor-pointer ${page === currentPage ? 'bg-lime-300 text-green-700 hover:bg-lime-700 hover:text-white' : ''}`}
+            className={`h-11 w-11 cursor-pointer lg:h-8 lg:w-8 ${page === currentPage ? 'bg-lime-300 text-green-700 hover:bg-lime-700 hover:text-white' : ''}`}
             aria-label={CONTENT.common.pagination.go_to(page)}
             aria-current={page === currentPage ? 'page' : undefined}
             onClick={() => changePage(page)}
@@ -67,7 +67,7 @@ export const Pagination = ({
         variant="ghost"
         size="icon-sm"
         aria-label={CONTENT.common.pagination.next}
-        className="ml-2 cursor-pointer"
+        className="ml-2 h-11 w-11 cursor-pointer lg:h-8 lg:w-8"
         disabled={currentPage === totalPages}
         onClick={() => changePage(currentPage + 1)}
       >

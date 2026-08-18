@@ -7,7 +7,7 @@ export const GoogleSubmitButton = () => {
     <button
       type="button"
       onClick={() => window.location.assign(API_ROUTES.GOOGLE)}
-      className="flex items-center justify-center gap-3 w-full rounded-md border-1 border-gray-300 px-4 py-2 text-xs font-medium text-black hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+      className="flex h-11 items-center justify-center gap-3 w-full rounded-md border-1 border-gray-300 px-4 py-3 text-xs font-medium text-black hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed lg:h-10 lg:py-2"
     >
       <Image
         src="/images/google_icon.webp"

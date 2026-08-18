@@ -15,27 +15,28 @@ export const MobileMenu = ({
 }) => {
   return (
     <div
-      className={`fixed inset-0 bg-black/50 z-50 flex flex-col items-center h-screen w-screen justify-start transition-all duration-300 md:hidden ${mobileMenuOpened ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}
+      aria-hidden={!mobileMenuOpened}
+      className={`fixed inset-0 z-50 flex h-dvh w-screen flex-col items-center justify-start bg-black/50 transition-all duration-300 lg:hidden ${mobileMenuOpened ? 'translate-x-0 opacity-100' : 'pointer-events-none -translate-x-full opacity-0'}`}
     >
       <MobileTopBar
         toggleMobileMenu={toggleMobileMenu}
         mobileMenuOpened={mobileMenuOpened}
       />
-      <div className="flex flex-col items-center gap-6 w-full px-6 h-full bg-white">
-        <div className="flex-1 w-full" onClick={toggleMobileMenu}>
+      <div className="flex min-h-0 w-full flex-1 flex-col items-center gap-6 overflow-hidden bg-white px-5 pb-5 sm:px-8">
+        <div className="min-h-0 w-full flex-1 overflow-y-auto">
           <NavMenu isMobileNav />
         </div>
-        <div className="flex flex-col gap-4 w-full items-center justify-center pb-12">
+        <div className="flex w-full shrink-0 flex-col items-center justify-center gap-3 pb-[env(safe-area-inset-bottom)]">
           <Link
             href={ROUTES.LOGIN}
-            className="flex justify-center w-full rounded-lg bg-white border border-gray-500 p-5 text-sm text-xl font-bold text-slate-900 shadow-[0_0_0_2px_#c9f13c] transition hover:bg-slate-900"
+            className="flex min-h-12 w-full items-center justify-center rounded-lg border border-gray-500 bg-white px-4 py-3 text-base font-bold text-slate-900 shadow-[0_0_0_2px_#c9f13c] transition hover:bg-slate-900 sm:max-w-md"
           >
             {CONTENT.main.navbar.to_login}
           </Link>
 
           <Link
             href={ROUTES.REGISTER}
-            className="flex justify-center w-full rounded-lg bg-black p-5 text-sm text-xl font-bold text-white shadow-[0_0_0_2px_#c9f13c] transition hover:bg-slate-900"
+            className="flex min-h-12 w-full items-center justify-center rounded-lg bg-black px-4 py-3 text-base font-bold text-white shadow-[0_0_0_2px_#c9f13c] transition hover:bg-slate-900 sm:max-w-md"
           >
             {CONTENT.main.navbar.to_register}
           </Link>

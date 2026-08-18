@@ -17,7 +17,7 @@ export const QuestionControlSection = ({
     <div className="w-full flex flex-col gap-3">
       <Button
         type="button"
-        className="w-full rounded-sm py-4 border-lime-300 flex items-center cursor-pointer"
+        className="h-12 w-full rounded-sm py-4 border-lime-300 flex items-center cursor-pointer lg:h-10"
         variant="outline"
         onClick={onAddQuestion}
         disabled={isPending}
@@ -31,7 +31,7 @@ export const QuestionControlSection = ({
           name={QuizFormField.INTENT}
           value={QUIZ_INTENTS.PATCH}
           disabled={isPending}
-          className="w-full rounded-sm py-4 cursor-pointer"
+          className="h-12 w-full rounded-sm py-4 cursor-pointer lg:h-10"
         >
           <Send className="w-4 h-4 text-lime-500" />
           {isPending ? CONTENT.common.submitting : CONTENT.create.buttons.patch}
@@ -43,7 +43,7 @@ export const QuestionControlSection = ({
             name={QuizFormField.INTENT}
             value={QUIZ_INTENTS.SAVE}
             disabled={isPending}
-            className="w-full rounded-sm py-4 cursor-pointer"
+            className="h-12 w-full rounded-sm py-4 cursor-pointer lg:h-10"
           >
             <Send className="w-4 h-4 text-lime-500" />
             {isPending
@@ -55,7 +55,7 @@ export const QuestionControlSection = ({
             name={QuizFormField.INTENT}
             value={QUIZ_INTENTS.DRAFT}
             disabled={isPending}
-            className="w-full rounded-sm py-4 bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer"
+            className="h-12 w-full rounded-sm py-4 bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer lg:h-10"
           >
             <FolderOpen className="w-4 h-4" />
             {isPending

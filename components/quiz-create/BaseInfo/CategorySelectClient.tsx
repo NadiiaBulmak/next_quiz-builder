@@ -108,7 +108,11 @@ export const CategorySelectClient = ({
           >
             {category.name}
 
-            <button type="button" onClick={() => removeCategory(category.id)}>
+            <button
+              type="button"
+              onClick={() => removeCategory(category.id)}
+              className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-gray-200 lg:h-6 lg:w-6"
+            >
               <X size={14} />
             </button>
           </div>
@@ -123,7 +127,7 @@ export const CategorySelectClient = ({
             flex-1
             min-w-32
             outline-none
-            p-2 text-sm
+            p-3 text-sm lg:p-2
           "
           aria-invalid={Boolean(error?.length)}
           aria-describedby="categories-error"
@@ -149,9 +153,10 @@ export const CategorySelectClient = ({
                 w-full
                 rounded
                 px-3
-                py-2
+                py-3
                 text-left
                 hover:bg-gray-100
+                lg:py-2
               "
             >
               {category.name}
@@ -165,8 +170,9 @@ export const CategorySelectClient = ({
               className="
                 w-full
                 px-3
-                py-2
+                py-3
                 text-left
+                lg:py-2
               "
             >
               {CONTENT.create.base.category.create_new(search)}

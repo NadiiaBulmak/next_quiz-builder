@@ -6,7 +6,7 @@ import type { NavMenuProps } from '@/types/props';
 export const NavMenu = ({ isMobileNav = false }: NavMenuProps) => {
   return (
     <nav
-      className={` ${isMobileNav ? 'flex flex-col justify-center w-full items-center py-20' : 'hidden w-fit items-center lg:flex lg:flex-row lg:gap-20 lg:justify-center'}`}
+      className={` ${isMobileNav ? 'flex w-full flex-col items-center justify-start gap-2 py-8 sm:gap-3 sm:py-10' : 'hidden w-fit items-center lg:flex lg:flex-row lg:gap-20 lg:justify-center'}`}
     >
       {TOP_NAV_LINKS.map((link) => (
         <NavMenuItem

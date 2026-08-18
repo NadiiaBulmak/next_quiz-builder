@@ -22,7 +22,7 @@ export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
   );
 
   return (
-    <div className="max-h-screen flex-1 bg-zinc-50 px-3 py-4 mb-20 lg:mb-0 md:px-6 md:py-6">
+    <div className="max-h-screen flex-1 bg-zinc-50 px-4 py-5 mb-20 md:px-6 md:py-6 lg:mb-0">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
         <header className="flex flex-col gap-2">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
@@ -34,7 +34,7 @@ export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
         </header>
 
         <div className="grid gap-6">
-          <section className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+          <section className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm sm:p-5">
             <form action={nameAction} className="flex flex-col gap-4">
               <div>
                 <h2 className="text-lg font-medium text-zinc-900">
@@ -62,7 +62,7 @@ export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
                   )}
                   aria-describedby="settings-name-error"
                   placeholder={CONTENT.settings.name_placeholder}
-                  className="rounded-xl border border-zinc-300 bg-zinc-50 px-3 py-2.5 text-sm text-zinc-900 outline-none transition focus:border-lime-500 focus:bg-white focus:ring-2 focus:ring-lime-200"
+                  className="h-11 rounded-xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-sm text-zinc-900 outline-none transition focus:border-lime-500 focus:bg-white focus:ring-2 focus:ring-lime-200 lg:h-10 lg:px-3 lg:py-2.5"
                 />
               </div>
 
@@ -75,7 +75,7 @@ export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
               <button
                 type="submit"
                 disabled={isNamePending}
-                className="inline-flex w-fit items-center justify-center rounded-xl bg-lime-300 px-4 py-2.5 text-sm font-medium text-zinc-900 transition hover:bg-lime-400 disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex h-11 w-full items-center justify-center rounded-xl bg-lime-300 px-4 py-3 text-sm font-medium text-zinc-900 transition hover:bg-lime-400 disabled:cursor-not-allowed disabled:opacity-60 sm:w-fit lg:h-10 lg:py-2.5"
               >
                 {isNamePending
                   ? CONTENT.settings.saving
@@ -84,7 +84,7 @@ export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
             </form>
           </section>
 
-          <section className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+          <section className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm sm:p-5">
             <div className="flex flex-col gap-4">
               <div>
                 <h2 className="text-lg font-medium text-zinc-900">
@@ -107,7 +107,7 @@ export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
                 <button
                   type="submit"
                   disabled={isResetPending}
-                  className="inline-flex w-fit items-center justify-center rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm font-medium text-zinc-900 transition hover:border-zinc-400 hover:bg-zinc-50 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex h-11 w-full items-center justify-center rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm font-medium text-zinc-900 transition hover:border-zinc-400 hover:bg-zinc-50 disabled:cursor-not-allowed disabled:opacity-60 sm:w-fit lg:h-10 lg:py-2.5"
                 >
                   {isResetPending
                     ? CONTENT.settings.sending_reset_email

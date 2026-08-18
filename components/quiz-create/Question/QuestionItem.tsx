@@ -27,7 +27,7 @@ export const QuestionItem = ({
   const [extended, setExtended] = useState<boolean>(true);
   return (
     <div
-      className="flex gap-6 flex-col p-4 border-[1.5px] border-lime-300 rounded-md"
+      className="flex flex-col gap-5 rounded-md border-[1.5px] border-lime-300 p-4 lg:gap-6"
       draggable={draggable}
       onDragStart={onDragStart}
       onDragEnter={onDragEnter}
@@ -61,13 +61,6 @@ export const QuestionItem = ({
           </LabelInputArea>
         </>
       )}
-
-      {/* TODO: Explanation input, add to schema */}
-      {/* <LabelInputArea label={CONTENT.create.questions.explanation}>
-      <AutoResizeTextarea
-        placeholder={CONTENT.create.questions.explanation_placeholder}
-      />
-    </LabelInputArea> */}
     </div>
   );
 };

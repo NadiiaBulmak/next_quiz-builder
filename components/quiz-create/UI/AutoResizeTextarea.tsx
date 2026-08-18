@@ -39,7 +39,7 @@ export const AutoResizeTextarea = ({
       rows={1}
       value={currentValue}
       onChange={(e) => handleChange(e.target.value)}
-      className="w-full resize-none overflow-hidden border border-gray-300 rounded-md p-2 text-sm focus-visible:border-lime-500 focus-visible:ring-2 focus-visible:ring-lime-500/30 disabled:cursor-not-allowed disabled:opacity-50"
+      className="min-h-11 w-full resize-none overflow-hidden border border-gray-300 rounded-md p-3 text-sm focus-visible:border-lime-500 focus-visible:ring-2 focus-visible:ring-lime-500/30 disabled:cursor-not-allowed disabled:opacity-50 lg:min-h-10 lg:p-2"
     />
   );
 };

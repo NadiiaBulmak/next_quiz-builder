@@ -97,7 +97,7 @@ export const AnswerOptions = ({
 
       <Button
         type="button"
-        className="cursor-pointer bg-lime-100 w-full flex items-center rounded-sm py-4 border-lime-500 border border-dashed flex gap-1 order-last text-lime-500 justify-center items-center"
+        className="order-last flex h-12 w-full items-center justify-center gap-1 rounded-sm border border-dashed border-lime-500 bg-lime-100 py-4 text-lime-500 cursor-pointer lg:h-auto"
         variant="outline"
         onClick={addNewOption}
       >

@@ -4,7 +4,7 @@ import { Button } from '../ui/button';
 
 export const AdsTips = () => {
   return (
-    <div className="bg-lime-200 p-6 rounded-md border border-gray-300 flex flex-col gap-6 text-green-800">
+    <div className="flex flex-col gap-5 rounded-md border border-gray-300 bg-lime-200 p-4 text-green-800 sm:p-6 lg:gap-6">
       <div className="flex gap-2 items-center">
         <Lightbulb />
         <h4 className="font-semibold">{CONTENT.shared_quiz.tips.about}</h4>
@@ -16,7 +16,7 @@ export const AdsTips = () => {
       </div>
       <Button
         variant="outline"
-        className="font-bold text-gray-700 text-base p-6 flex items-center gap-3 rounded-md cursor-pointer"
+        className="min-h-12 w-full justify-center font-bold text-gray-700 text-base p-4 flex items-center gap-3 rounded-md cursor-pointer lg:p-6"
       >
         {CONTENT.shared_quiz.tips.button.text}
         <SquareArrowOutUpRight

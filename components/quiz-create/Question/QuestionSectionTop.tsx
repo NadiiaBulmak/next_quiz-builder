@@ -31,15 +31,15 @@ export const QuestionSectionTop = ({
         <button
           type="button"
           onClick={() => deleteQuestion(order!)}
-          className="cursor-pointer p-2 rounded-sm border hover:bg-gray-100"
+          className="flex h-11 w-11 items-center justify-center rounded-sm border hover:bg-gray-100 lg:h-9 lg:w-9"
         >
-          <Trash2 width={16} height={16} className='text-red-500' />
+          <Trash2 width={16} height={16} className="text-red-500" />
         </button>
 
         <button
           type="button"
           onClick={switchExtended}
-          className="cursor-pointer"
+          className="flex h-11 w-11 items-center justify-center cursor-pointer lg:h-9 lg:w-9"
         >
           {extended ? (
             <ChevronUp width={20} height={20} />

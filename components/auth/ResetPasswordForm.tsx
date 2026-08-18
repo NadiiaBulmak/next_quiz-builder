@@ -59,7 +59,7 @@ export const ResetPasswordForm = () => {
               aria-invalid={Boolean(state?.errors?.[AuthFormField.PASSWORD])}
               aria-describedby="reset-password-error"
               placeholder={CONTENT.auth.form.password.placeholder}
-              className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
+              className="text-xs block h-11 w-full rounded-md border-1 px-4 py-3 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500 lg:h-10 lg:px-3 lg:py-2"
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -79,7 +79,7 @@ export const ResetPasswordForm = () => {
               )}
               aria-describedby="reset-confirm-password-error"
               placeholder={CONTENT.auth.form.confirmPassword.placeholder}
-              className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
+              className="text-xs block h-11 w-full rounded-md border-1 px-4 py-3 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500 lg:h-10 lg:px-3 lg:py-2"
             />
           </div>
           <FieldError
@@ -95,7 +95,7 @@ export const ResetPasswordForm = () => {
         <button
           type="submit"
           disabled={isPending}
-          className="hover:shadow-md w-full rounded-md border-1 border-gray-300 bg-lime-300 px-4 py-2 text-xs font-medium text-black focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="hover:shadow-md h-11 w-full rounded-md border-1 border-gray-300 bg-lime-300 px-4 py-3 text-xs font-medium text-black focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed lg:h-10 lg:py-2"
         >
           {isPending
             ? CONTENT.common.submitting

@@ -30,7 +30,10 @@ export const LoginForm = () => {
   return (
     <div className="flex w-full max-w-full flex-col gap-2">
       <QueryErrorToast />
-      <form action={action} className="flex w-full max-w-full flex-col gap-8">
+      <form
+        action={action}
+        className="flex w-full max-w-full flex-col gap-8 lg:gap-8"
+      >
         <ActionToast state={state} />
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
@@ -49,7 +52,7 @@ export const LoginForm = () => {
               aria-describedby="login-email-error"
               autoComplete="true"
               placeholder={CONTENT.auth.form.email.placeholder}
-              className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
+              className="text-xs block h-11 w-full rounded-md border-1 px-4 py-3 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500 lg:h-10 lg:px-3 lg:py-2"
             />
           </div>
           <FieldError
@@ -72,7 +75,7 @@ export const LoginForm = () => {
               aria-invalid={Boolean(state?.errors?.[AuthFormField.PASSWORD])}
               aria-describedby="login-password-error"
               placeholder={CONTENT.auth.form.password.placeholder}
-              className="text-xs block w-full rounded-md border-1 px-3 py-2 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500"
+              className="text-xs block h-11 w-full rounded-md border-1 px-4 py-3 border-gray-300 focus:outline-none focus:shadow-outline focus:border-1 focus:border-lime-500 focus:ring-lime-500 lg:h-10 lg:px-3 lg:py-2"
             />
           </div>
           <FieldError
@@ -84,19 +87,19 @@ export const LoginForm = () => {
         <button
           type="submit"
           disabled={isPending}
-          className="hover:shadow-md w-full rounded-md border-1 border-gray-300 bg-lime-300 px-4 py-2 text-xs font-medium text-black focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="hover:shadow-md h-11 w-full rounded-md border-1 border-gray-300 bg-lime-300 px-4 py-3 text-xs font-medium text-black focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed lg:h-10 lg:py-2"
         >
           {isPending
             ? CONTENT.common.submitting
             : CONTENT.auth.form.actions.login}
         </button>
       </form>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3 lg:gap-2">
         <AuthFormDivider />
         <GoogleShubmitButton />
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-2 justify-between items-center mt-4">
+      <div className="mt-4 flex flex-col items-center justify-between gap-3 lg:flex-row lg:gap-2">
         <AuthRedirectLink
           link={NAV_LINKS.sign_in}
           text={CONTENT.auth.to_signUp.text}

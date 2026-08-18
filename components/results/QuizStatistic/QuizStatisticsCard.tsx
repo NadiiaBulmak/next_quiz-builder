@@ -8,7 +8,7 @@ import { Score } from './Score';
 export const QuizStatisticsCard = ({ quiz }: QuizStatisticsCardProps) => {
   return (
     <article className="group overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-all duration-200 hover:border-stone-300 hover:shadow-md">
-      <div className="p-5 md:p-6 h-full flex flex-col justify-between">
+      <div className="h-full flex flex-col justify-between p-4 sm:p-5 md:p-6">
         <div className="flex flex-col flex-wrap gap-5 lg:flex-col lg:items-start lg:justify-between h-full">
           <QuizInfo quiz={quiz} />
           <QuizActions quiz={quiz} />
@@ -17,7 +17,7 @@ export const QuizStatisticsCard = ({ quiz }: QuizStatisticsCardProps) => {
         <div>
           <div className="my-5 h-px bg-stone-100" />
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-[auto_1fr] lg:grid-cols-[1fr_1fr] w-full">
+          <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-[auto_1fr] lg:grid-cols-[1fr_1fr] lg:gap-6">
             <Score
               score={quiz.averageScore}
               title={CONTENT.results.score.title}

@@ -115,7 +115,7 @@ export const ResultDetailsList = ({
           const isExpanded = expandedId === result.id;
 
           return (
-            <div key={result.id} className="flex flex-col gap-3 p-4">
+            <div key={result.id} className="flex flex-col gap-4 p-4 sm:p-5">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="flex items-center gap-1.5 text-xs font-medium uppercase text-stone-500">
@@ -133,7 +133,7 @@ export const ResultDetailsList = ({
                 <button
                   type="button"
                   onClick={() => setExpandedId(isExpanded ? null : result.id)}
-                  className="flex shrink-0 cursor-pointer items-center gap-1 text-xs font-medium text-stone-600 hover:text-stone-900"
+                  className="flex min-h-11 shrink-0 cursor-pointer items-center gap-1 rounded-md px-2 text-xs font-medium text-stone-600 hover:bg-stone-50 hover:text-stone-900"
                 >
                   {isExpanded
                     ? CONTENT.results.details.hide_answers

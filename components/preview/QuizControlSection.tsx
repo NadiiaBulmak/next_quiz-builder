@@ -14,11 +14,11 @@ export const QuizControlSection = ({
   disabledNext: boolean;
 }) => {
   return (
-    <div className="py-4 w-full md:max-w-[75%] lg:max-w-1/2 mx-auto flex justify-between gap-3">
+    <div className="mx-auto flex w-full justify-between gap-4 py-4 sm:gap-3 md:max-w-[75%] lg:max-w-1/2">
       <Button
         disabled={disabledPrevious}
         onClick={handlePrevious}
-        className={`flex items-center gap-2 cursor-pointer ${disabledPrevious ? 'opacity-0 cursor-not-allowed' : ''}`}
+        className={`h-11 flex items-center gap-2 px-4 cursor-pointer lg:h-10 ${disabledPrevious ? 'opacity-0 cursor-not-allowed' : ''}`}
       >
         <ArrowLeft />
         {CONTENT.preview.previous}
@@ -26,7 +26,7 @@ export const QuizControlSection = ({
       <Button
         disabled={disabledNext}
         onClick={handleNext}
-        className={`flex items-center gap-2 cursor-pointer ${disabledNext ? 'opacity-0 cursor-not-allowed' : ''}`}
+        className={`h-11 flex items-center gap-2 px-4 cursor-pointer lg:h-10 ${disabledNext ? 'opacity-0 cursor-not-allowed' : ''}`}
       >
         {CONTENT.preview.next} <ArrowRight />
       </Button>

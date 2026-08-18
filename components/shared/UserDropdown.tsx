@@ -36,11 +36,13 @@ export const UserDropdown = ({
   }, [router, state?.success]);
 
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div
+      className={`flex min-w-0 max-w-[50%] items-center gap-2 ${openedState ? '' : ''} ${className}`}
+    >
       <ActionToast state={state} />
       <DropdownMenu>
         <DropdownMenuTrigger
-          className="p-1 flex items-center gap-3 cursor-pointer items-center border rounded-md border-lime-500 hover:border-lime-500 hover:shadow-[0_0_0_3px_rgba(132,204,22,0.15)] bg-black text-white"
+          className={`flex min-w-0 max-w-full items-center gap-2 rounded-md border border-lime-500 bg-black p-2 text-white hover:border-lime-500 hover:shadow-[0_0_0_3px_rgba(132,204,22,0.15)] lg:gap-3 lg:p-1`}
           onClick={() => setOpenedState(!openedState)}
         >
           <Dot
@@ -49,15 +51,19 @@ export const UserDropdown = ({
             className="flex-shrink-0 text-lime-500 animate-pulse"
           />
           <div
-            className={`overflow-hidden transition-[max-width,opacity] duration-300  relative right-3 ${opened ? 'max-w-full opacity-100' : 'max-w-0 opacity-0'}`}
+            className={` flex-1 overflow-hidden transition-[max-width,opacity] duration-300 relative lg:right-3`}
           >
-            <div className="flex flex-col items-start gap-0 ">
-              <p className="text-sm font-semibold">{name}</p>
-              <p className="text-xs text-gray-300">{email}</p>
+            <div className="flex w-full flex-col items-start gap-0 overflow-hidden">
+              <p className="max-w-full truncate text-sm font-semibold">
+                {name}
+              </p>
+              <p className="max-w-full truncate text-xs text-gray-300">
+                {email}
+              </p>
             </div>
           </div>
           <div
-            className={`flex-shrink-0 transition-[transform] duration-300 mr-2 ${openedState ? 'rotate-0' : 'rotate-180'}`}
+            className={`mr-1 flex-shrink-0 transition-[transform] duration-300 lg:mr-2`}
           >
             {openedState ? (
               <ChevronDown width={16} height={16} />

@@ -12,8 +12,11 @@ export const QuestionsSection = ({
   onUpdateQuestionAnswers,
 }: Omit<QuestionControlSectionType, 'onAddQuestion'>) => {
   return (
-    <div className="w-full flex flex-col gap-4 col-span-full md:col-span-1 md:col-start-2 md:row-start-1 bg-white p-6 rounded-md shadow-sm border border-gray-200 h-fit">
-      <SectionTitle title={CONTENT.create.base.question_section_title} subtitle={`${questions.length} ${CONTENT.create.base.question_section_subtitle}`} />
+    <div className="col-span-full flex h-fit w-full flex-col gap-5 rounded-md border border-gray-200 bg-white p-4 shadow-sm md:col-span-1 md:col-start-2 md:row-start-1 lg:gap-4 lg:p-6">
+      <SectionTitle
+        title={CONTENT.create.base.question_section_title}
+        subtitle={`${questions.length} ${CONTENT.create.base.question_section_subtitle}`}
+      />
       <QuestionList
         questions={questions}
         onDeleteQuestion={onDeleteQuestion}

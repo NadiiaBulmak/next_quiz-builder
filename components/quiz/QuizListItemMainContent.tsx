@@ -21,17 +21,17 @@ export const QuizListItemMainContent = ({
     <>
       <div className="flex flex-col gap-3">
         <div className="text-lg font-bold flex items-center gap-2">
-          {title}{' '}
-          {!showAllQuiz &&
-            (isPublished ? (
-              <GlobeCheck width={24} height={24} className="text-green-500" />
-            ) : (
-              <SquircleDashed
-                width={24}
-                height={24}
-                className="text-gray-500"
-              />
-            ))}
+          {title}
+            {!showAllQuiz &&
+              (isPublished ? (
+                <GlobeCheck width={24} height={24} className="text-green-500 inline" />
+              ) : (
+                <SquircleDashed
+                  width={24}
+                  height={24}
+                  className="text-gray-500 inline"
+                />
+              ))}
         </div>
         <div className="text-[0.75rem] text-gray-500 ">{description}</div>
       </div>

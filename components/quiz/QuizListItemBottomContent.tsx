@@ -14,7 +14,7 @@ export const QuizListItemBottomContent = ({
   id,
 }: ShowAllQuizType & { id: string }) => {
   return (
-    <div className="flex gap-2 w-full">
+    <div className="flex w-full gap-3 lg:gap-2">
       {showAllQuiz ? (
         <Link
           href={`${NAV_LINKS.quiz}/${id}`}
@@ -22,14 +22,14 @@ export const QuizListItemBottomContent = ({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Button className="w-full rounded-md border border-black bg-black px-3 py-2 font-semibold text-white cursor-pointer transition-all duration-150 hover:bg-black hover:border-lime-500 hover:shadow-[0_0_0_2px_rgba(132,204,22,0.25)]">
+          <Button className="h-11 w-full rounded-md border border-black bg-black px-3 py-2 font-semibold text-white cursor-pointer transition-all duration-150 hover:bg-black hover:border-lime-500 hover:shadow-[0_0_0_2px_rgba(132,204,22,0.25)] lg:h-10">
             {CONTENT.quiz_list.item.start_quiz}
           </Button>
         </Link>
       ) : (
         <div className="flex gap-2 w-full">
           <Link href={`${NAV_LINKS.edit}/${id}`} className="max-w-1/2 w-full">
-            <Button className="bg-white border-gray-500 p-2 rounded-md font-semibold text-black px-3 hover:bg-gray-100 cursor-pointer w-full">
+            <Button className="h-11 w-full bg-white border-gray-500 p-2 rounded-md font-semibold text-black px-3 hover:bg-gray-100 cursor-pointer lg:h-10">
               {CONTENT.quiz_list.item.edit}
             </Button>
           </Link>
@@ -37,7 +37,7 @@ export const QuizListItemBottomContent = ({
             href={`${NAV_LINKS.preview}/${id}`}
             className="max-w-1/2 w-full"
           >
-            <Button className="w-full rounded-md border border-black bg-black px-3 py-2 font-semibold text-white cursor-pointer transition-all duration-150 hover:bg-black hover:border-lime-500 hover:shadow-[0_0_0_2px_rgba(132,204,22,0.25)]">
+            <Button className="h-11 w-full rounded-md border border-black bg-black px-3 py-2 font-semibold text-white cursor-pointer transition-all duration-150 hover:bg-black hover:border-lime-500 hover:shadow-[0_0_0_2px_rgba(132,204,22,0.25)] lg:h-10">
               {CONTENT.quiz_list.item.preview}
             </Button>
           </Link>

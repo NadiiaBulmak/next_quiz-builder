@@ -103,10 +103,10 @@ export const SharedQuizContent = ({
   const disabledPrevious = currentQuestionIndex <= 0;
 
   return (
-    <div className="px-6 md:px-8 md:px-8 py-6">
+    <div className="px-4 py-4 sm:px-6 sm:py-6 md:px-8">
       <form
         action={action}
-        className="flex flex-col gap-4 bg-white shadow-md w-full rounded-md p-4 justify-between  px-6 md:px-8 md:px-8 py-6"
+        className="flex w-full flex-col justify-between gap-5 rounded-md bg-white p-4 shadow-md sm:p-6 md:gap-4 md:px-8 md:py-6"
       >
         <input type="hidden" name={QuizFormField.QUIZ_ID} value={id ?? ''} />
         <input
@@ -121,7 +121,7 @@ export const SharedQuizContent = ({
         />
         <ActionToast state={state} />
         <div className="flex w-full flex-col gap-4 md:flex-row md:justify-between">
-          <div className="grid grid-cols-1 md:grid-cols-[6fr_4fr] gap-4 w-full">
+          <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-[6fr_4fr] md:gap-4">
             <QuizInfo
               title={title!}
               description={description!}
@@ -137,7 +137,7 @@ export const SharedQuizContent = ({
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-[6fr_4fr] gap-4">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-[6fr_4fr] md:gap-4">
           <QuizQuestions
             isPending={isPending}
             currentQuestionIndex={currentQuestionIndex}

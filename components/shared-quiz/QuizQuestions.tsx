@@ -35,7 +35,7 @@ export const QuizQuestions = ({
   // isQuestionAnswered: (questionId: string) => boolean;
 }) => {
   return (
-    <div className="flex flex-col gap-4 justify-between p-6 rounded-md border border-gray-300">
+    <div className="flex flex-col justify-between gap-5 rounded-md border border-gray-300 p-4 sm:p-6 lg:gap-4">
       <div>
         <div className="font-semibold text-gray-600 text-sm">
           {CONTENT.shared_quiz.top.Question} {currentQuestionIndex + 1}{' '}
@@ -51,10 +51,10 @@ export const QuizQuestions = ({
         />
       </div>
 
-      <div className="flex justify-between flex-col lg:flex-row gap-4 mt-4">
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-between lg:mt-4 lg:flex-row lg:gap-4">
         <Button
           type="button"
-          className="cursor-pointer self-end w-fit p-3 lg:p-5 text-lime-300 flex items-center gap-2 rounded-md text-xs lg:text-sm w-full md:w-fit"
+          className="h-12 w-full cursor-pointer self-end p-3 text-lime-300 flex items-center justify-center gap-2 rounded-md text-xs sm:w-fit lg:h-10 lg:p-5 lg:text-sm"
           onClick={handlePreviousQuestion}
           disabled={disabledPrevious}
         >
@@ -63,7 +63,7 @@ export const QuizQuestions = ({
         </Button>
         <Button
           type="button"
-          className="cursor-pointer self-end w-fit p-3 lg:p-5 text-lime-300 flex items-center gap-2 rounded-md text-xs lg:text-sm w-full md:w-fit"
+          className="h-12 w-full cursor-pointer self-end p-3 text-lime-300 flex items-center justify-center gap-2 rounded-md text-xs sm:w-fit lg:h-10 lg:p-5 lg:text-sm"
           onClick={handleNextQuestion}
           disabled={disabledNext}
         >
@@ -72,7 +72,7 @@ export const QuizQuestions = ({
         </Button>
         <Button
           type="submit"
-          className={`self-end w-fit p-3 lg:p-5 bg-black hover:bg-lime-900 cursor-pointer border-lime-500 text-white shadow-[0_0_0_3px_rgba(132,204,22,0.15)]  flex items-center gap-2 rounded-md text-xs lg:text-sm w-full md:w-fit ${isQuizCompleted ? 'animate-pulse animate-bounce' : 'opacity-50 cursor-not-allowed'}`}
+          className={`h-12 w-full self-end p-3 bg-black hover:bg-lime-900 cursor-pointer border-lime-500 text-white shadow-[0_0_0_3px_rgba(132,204,22,0.15)] flex items-center justify-center gap-2 rounded-md text-xs sm:w-fit lg:h-10 lg:p-5 lg:text-sm ${isQuizCompleted ? 'animate-pulse animate-bounce' : 'opacity-50 cursor-not-allowed'}`}
           onClick={handleNextQuestion}
           disabled={isPending || !isQuizCompleted}
         >

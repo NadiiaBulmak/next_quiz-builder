@@ -89,7 +89,7 @@ export const FilterModal = ({
         inert={!isOpen}
         data-filter-open={isOpen}
         className={cn(
-          'fixed inset-x-0 bottom-0 z-50 flex max-h-[80vh] flex-col gap-4 overflow-y-auto rounded-t-2xl border border-gray-200 bg-white p-5 shadow-lg scrollbar-stable transition-[width,margin,padding,opacity,transform] duration-300 ease-in-out',
+          'fixed inset-x-0 bottom-0 z-50 flex max-h-[85vh] flex-col gap-5 overflow-y-auto rounded-t-2xl border border-gray-200 bg-white p-5 pb-6 shadow-lg scrollbar-stable transition-[width,margin,padding,opacity,transform] duration-300 ease-in-out lg:gap-4 lg:p-5',
           'lg:static lg:z-auto lg:h-fit lg:max-h-none lg:translate-y-0 lg:shrink-0 lg:overflow-hidden lg:rounded-xl lg:shadow-none',
           isOpen
             ? 'translate-y-0 opacity-100 lg:ml-4 lg:w-1/3'
@@ -103,7 +103,7 @@ export const FilterModal = ({
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="rounded-full p-1 hover:bg-gray-100"
+            className="flex h-11 w-11 items-center justify-center rounded-full hover:bg-gray-100 lg:h-8 lg:w-8 lg:p-1"
           >
             <X size={20} />
           </button>
@@ -116,7 +116,7 @@ export const FilterModal = ({
           <select
             value={difficulty}
             onChange={(e) => setDifficulty(e.target.value)}
-            className="h-10 rounded-sm border border-gray-300 bg-gray-100 p-2 text-sm"
+            className="h-11 rounded-sm border border-gray-300 bg-gray-100 p-3 text-sm lg:h-10 lg:p-2"
           >
             <option value="">{CONTENT.quiz_list.filters.all}</option>
             {Object.values(Difficulty).map((level) => (
@@ -140,13 +140,13 @@ export const FilterModal = ({
             {categories.map((category) => (
               <label
                 key={category.id}
-                className="flex items-center gap-2 text-sm text-gray-700"
+                className="flex min-h-11 items-center gap-3 text-sm text-gray-700 lg:min-h-0 lg:gap-2"
               >
                 <input
                   type="checkbox"
                   checked={selectedCategories.includes(category.slug)}
                   onChange={() => toggleCategory(category.slug)}
-                  className="h-4 w-4"
+                  className="h-5 w-5 lg:h-4 lg:w-4"
                 />
                 {category.name}
               </label>
@@ -161,7 +161,7 @@ export const FilterModal = ({
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="h-10 rounded-sm border border-gray-300 bg-gray-100 p-2 text-sm"
+            className="h-11 rounded-sm border border-gray-300 bg-gray-100 p-3 text-sm lg:h-10 lg:p-2"
           >
             <option value="">{CONTENT.quiz_list.filters.default_sort}</option>
             {Object.values(sortType).map((value) => (
@@ -172,7 +172,7 @@ export const FilterModal = ({
           </select>
         </div>
 
-        <div className="mt-auto flex gap-2 pt-2">
+        <div className="mt-auto flex gap-3 pt-2 lg:gap-2">
           <Button
             type="button"
             variant="outline"

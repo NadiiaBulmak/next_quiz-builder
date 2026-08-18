@@ -22,7 +22,7 @@ export const QuizRecipientInfo = ({
           aria-invalid={Boolean(errors?.[AuthFormField.EMAIL])}
           aria-describedby="recipient-email-error"
           defaultValue={recipient?.email ?? ''}
-          className="w-full px-4 py-2 border rounded-sm focus:outline-none focus:ring-none focus:ring-blue-500"
+          className="h-11 w-full px-4 py-3 border rounded-sm focus:outline-none focus:ring-none focus:ring-blue-500 lg:h-10 lg:py-2"
         />
         <FieldError
           id="recipient-email-error"
@@ -38,7 +38,7 @@ export const QuizRecipientInfo = ({
           placeholder={CONTENT.shared_quiz.recipient.name_placeholder}
           aria-invalid={Boolean(errors?.[AuthFormField.NAME])}
           aria-describedby="recipient-name-error"
-          className="w-full px-4 py-2 border rounded-sm focus:outline-none focus:ring-none focus:ring-blue-500"
+          className="h-11 w-full px-4 py-3 border rounded-sm focus:outline-none focus:ring-none focus:ring-blue-500 lg:h-10 lg:py-2"
         />
         <FieldError
           id="recipient-name-error"

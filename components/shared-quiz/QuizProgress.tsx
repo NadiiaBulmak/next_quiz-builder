@@ -10,15 +10,15 @@ export const QuizProgress = ({
   isCurrentQuestion: (questionId: string) => boolean;
 }) => {
   return (
-    <div className=" p-6 rounded-md border border-gray-300 flex flex-col gap-3">
+    <div className="flex flex-col gap-4 rounded-md border border-gray-300 p-4 sm:p-6 lg:gap-3">
       <div className="font-semibold text-gray-600 text-sm">
         {CONTENT.shared_quiz.top.Quiz_Progress}
       </div>
-      <div className="flex gap-3 flex-wrap">
+      <div className="flex flex-wrap gap-3">
         {questions?.map((question, index) => (
           <div
             key={question.id}
-            className={`w-12 h-12 rounded-md flex items-center justify-center text-base font-bold text-black border border-gray-300 ${
+            className={`h-12 w-12 shrink-0 rounded-md flex items-center justify-center text-base font-bold text-black border border-gray-300 ${
               isQuestionAnswered(question.id)
                 ? 'bg-lime-100 border border-lime-500'
                 : isCurrentQuestion(question.id)

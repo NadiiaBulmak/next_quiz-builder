@@ -39,7 +39,7 @@ export const DifficultySelect = ({
           id={QuizFormField.DIFFICULTY}
           aria-invalid={Boolean(error?.length)}
           aria-describedby="difficulty-error"
-          className="w-full border p-2 text-sm rounded-md border-gray-300 focus:border-lime-500 focus:ring-lime-500 disabled:cursor-not-allowed disabled:opacity-50"
+          className="h-11 w-full border px-3 py-3 text-sm rounded-md border-gray-300 focus:border-lime-500 focus:ring-lime-500 disabled:cursor-not-allowed disabled:opacity-50 lg:h-10 lg:p-2"
         >
           <SelectValue
             placeholder={CONTENT.create.base.difficulty.placeholder}
@@ -56,7 +56,7 @@ export const DifficultySelect = ({
             <SelectItem
               key={d}
               value={d}
-              className="pl-2 p-2 text-sm rounded-md"
+              className="h-11 pl-3 p-3 text-sm rounded-md lg:h-10 lg:p-2 lg:pl-2"
             >
               {d}
             </SelectItem>

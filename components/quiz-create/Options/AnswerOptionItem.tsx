@@ -35,7 +35,7 @@ export const AnswerOptionItem = ({
             onChange?.({ id, order, text, isCorrect: true });
           }
         }}
-        className="cursor-pointer"
+        className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center lg:h-8 lg:w-8"
         aria-label={
           isCorrect
             ? CONTENT.create.questions.correct_answer
@@ -51,19 +51,21 @@ export const AnswerOptionItem = ({
       </button>
       <div className="relative w-full flex items-center gap-3">
         <Input
-          className="rounded-sm"
+          className="h-11 rounded-sm lg:h-10"
           value={text}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange?.({ id, order, text: e.target.value, isCorrect })
           }
         />
-        <X
-          className="mt-auto mb-auto cursor-pointer p-2 rounded-sm border hover:bg-gray-100 h-full"
-          width={36}
-          height={36}
+        <button
+          type="button"
+          aria-label={CONTENT.create.questions.delete_answer}
           onClick={() => onDelete?.(order)}
-        />
-        <GripVertical className="cursor-pointer hover:text-lime-500" />
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border hover:bg-gray-100 lg:h-10 lg:w-10"
+        >
+          <X className="cursor-pointer" width={20} height={20} />
+        </button>
+        <GripVertical className="h-5 w-5 shrink-0 cursor-pointer hover:text-lime-500" />
       </div>
     </div>
   );
