@@ -1,10 +1,7 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
 generator client {
-  provider = "prisma-client"
-  output   = "../lib/generated/prisma"
+  provider        = "prisma-client"
+  output          = "../lib/generated/prisma"
+  previewFeatures = ["partialIndexes"]
 }
 
 datasource db {
@@ -12,42 +9,35 @@ datasource db {
 }
 
 model User {
-  id           String  @id @default(cuid())
+  id           String      @id @default(cuid())
   name         String?
-  email        String  @unique
+  email        String      @unique
   passwordHash String?
-  googleId     String? @unique
   image        String?
-
-  quizzes Quiz[]
-
-  resetToken ResetToken?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  googleId     String?     @unique
+  quizzes      Quiz[]
+  resetToken   ResetToken?
 }
 
 model Quiz {
-  id          String  @id @default(cuid())
-  title       String
-  description String?
-
+  id            String     @id @default(cuid())
+  title         String
+  description   String?
   imageUrl      String?
-  isPublished   Boolean  @default(false)
-  isPublic      Boolean? @default(false)
+  isPublished   Boolean    @default(false)
+  isPublic      Boolean?   @default(false)
   estimatedTime Int?
-
-  authorId     String
-  author       User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  categories   Category[]
-  difficultyId String
-  difficulty   Difficulty @relation(fields: [difficultyId], references: [id], onDelete: Restrict)
-
-  questions Question[]
-  results   Result[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  authorId      String
+  difficultyId  String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  questions     Question[]
+  author        User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  difficulty    Difficulty @relation(fields: [difficultyId], references: [id])
+  results       Result[]
+  categories    Category[] @relation("CategoryToQuiz")
 
   @@index([authorId, isPublished])
   @@index([difficultyId])
@@ -55,95 +45,75 @@ model Quiz {
 }
 
 model Category {
-  id   String @id @default(cuid())
-  name String @unique
-  slug String @unique
-
-  quizzes Quiz[]
+  id      String @id @default(cuid())
+  name    String @unique
+  slug    String @unique
+  quizzes Quiz[] @relation("CategoryToQuiz")
 }
 
 model Difficulty {
-  id   String @id @default(cuid())
-  name String @unique
-  slug String @unique
-
-  quizzes Quiz[]
-
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  quizzes   Quiz[]
 }
 
 model Question {
-  id    String @id @default(cuid())
-  text  String
-  order Int
-
-  quizId String
-  quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
-
-  answers       Answer[]
+  id            String         @id @default(cuid())
+  text          String
+  order         Int
+  quizId        String
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  answers       Answer?
   resultAnswers AnswerResult[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  quiz          Quiz           @relation(fields: [quizId], references: [id], onDelete: Cascade)
 
   @@index([quizId, order])
 }
 
 model Answer {
-  id        String  @id @default(cuid())
-  text      String
-  // A partial unique index in the corresponding migration permits one true value per question.
-  isCorrect Boolean
-  order     Int
-
-  questionId String
-  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
-
+  id            String         @id @default(cuid())
+  text          String
+  isCorrect     Boolean
+  order         Int
+  questionId    String         @unique(map: "Answer_questionId_one_correct_answer_key", where: raw("(\"isCorrect\" = true)"))
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  question      Question       @relation(fields: [questionId], references: [id], onDelete: Cascade)
   resultAnswers AnswerResult[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
   @@index([questionId])
 }
 
 model Result {
-  id String @id @default(cuid())
-
-  name  String?
-  email String
-
+  id             String         @id @default(cuid())
+  name           String?
+  email          String
   score          Int
   correctAnswers Int
   totalQuestions Int
-
-  quizId String
-  quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
-
-  answers AnswerResult[]
-
-  finishedAt DateTime @default(now())
+  quizId         String
+  finishedAt     DateTime       @default(now())
+  answers        AnswerResult[]
+  quiz           Quiz           @relation(fields: [quizId], references: [id], onDelete: Cascade)
 
   @@index([quizId, finishedAt])
 }
 
 model AnswerResult {
-  id String @id @default(cuid())
-
-  resultId String
-  result   Result @relation(fields: [resultId], references: [id], onDelete: Cascade)
-
-  questionId String?
-  question   Question? @relation(fields: [questionId], references: [id], onDelete: SetNull)
-
-  answerId String?
-  answer   Answer? @relation(fields: [answerId], references: [id], onDelete: SetNull)
-
+  id           String    @id @default(cuid())
+  resultId     String
+  questionId   String?
+  answerId     String?
   questionText String
   answerText   String
-
-  isCorrect Boolean
+  isCorrect    Boolean
+  answer       Answer?   @relation(fields: [answerId], references: [id])
+  question     Question? @relation(fields: [questionId], references: [id])
+  result       Result    @relation(fields: [resultId], references: [id], onDelete: Cascade)
 
   @@index([resultId])
   @@index([questionId])
@@ -153,9 +123,9 @@ model AnswerResult {
 model ResetToken {
   id        String    @id @default(cuid())
   userId    String    @unique
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tokenHash String    @unique
-  expiresAt DateTime
   createdAt DateTime  @default(now())
+  expiresAt DateTime
+  tokenHash String    @unique
   usedAt    DateTime?
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
