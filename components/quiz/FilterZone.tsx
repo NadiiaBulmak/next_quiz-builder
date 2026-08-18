@@ -33,7 +33,7 @@ export const FilterZone = ({ initialSearchQuery = '' }: FilterZoneProps) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full flex-col gap-4 bg-zinc-50 p-3 md:flex-row md:gap-3"
+      className="flex w-full flex-col gap-4 bg-zinc-50 py-3 md:flex-row md:gap-3"
     >
       <Input
         type="search"
