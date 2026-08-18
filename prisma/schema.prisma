@@ -67,7 +67,7 @@ model Question {
   quizId        String
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
-  answers       Answer?
+  answers       Answer[]
   resultAnswers AnswerResult[]
   quiz          Quiz           @relation(fields: [quizId], references: [id], onDelete: Cascade)
 
@@ -79,7 +79,7 @@ model Answer {
   text          String
   isCorrect     Boolean
   order         Int
-  questionId    String         @unique(map: "Answer_questionId_one_correct_answer_key", where: raw("(\"isCorrect\" = true)"))
+  questionId    String
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   question      Question       @relation(fields: [questionId], references: [id], onDelete: Cascade)
