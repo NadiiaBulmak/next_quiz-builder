@@ -542,17 +542,21 @@ export async function createQuiz(data: CreateQuizInput) {
     throw new Error('A quiz must contain at least one question.');
   }
 
-  const difficultyName = data.difficulty;
-  const difficulty = await prisma.difficulty.upsert({
-    where: { name: difficultyName },
-    update: {},
-    create: {
-      name: difficultyName,
-      slug: difficultyName.toLowerCase(),
+  const difficulty = await prisma.difficulty.findUnique({
+    where: {
+      name: data.difficulty,
     },
   });
 
-  const categories = await getOrCreateCategories(data.categories ?? []);
+  if (!difficulty) {
+    throw new Error(
+      `Difficulty "${data.difficulty}" does not exist.`,
+    );
+  }
+
+  const categories = await getOrCreateCategories(
+    data.categories ?? [],
+  );
 
   const quiz = await prisma.quiz.create({
     data: {
@@ -564,13 +568,18 @@ export async function createQuiz(data: CreateQuizInput) {
       estimatedTime: data.estimatedTime,
       authorId: data.authorId,
       difficultyId: difficulty.id,
+
       categories: {
-        connect: categories.map((category) => ({ id: category.id })),
+        connect: categories.map((category) => ({
+          id: category.id,
+        })),
       },
+
       questions: {
         create: data.questions.map((question) => ({
           text: question.text,
           order: question.order,
+
           answers: {
             create: question.answers.map((answer) => ({
               text: answer.text,
