@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { X } from 'lucide-react';
 import { Button } from '../ui/button';
@@ -21,6 +21,7 @@ export const FilterModal = ({
     useState<string[]>(initialCategories);
   const [difficulty, setDifficulty] = useState(initialDifficulty);
   const [sortBy, setSortBy] = useState(initialSort);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
   const toggleCategory = (slug: string) => {
@@ -55,7 +56,10 @@ export const FilterModal = ({
     }
 
     params.set('page', '1');
-    router.push(`?${params.toString()}`);
+
+    startTransition(() => {
+      router.push(`?${params.toString()}`, { scroll: false });
+    });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -87,6 +91,7 @@ export const FilterModal = ({
         onSubmit={handleSubmit}
         aria-hidden={!isOpen}
         inert={!isOpen}
+        aria-busy={isPending}
         data-filter-open={isOpen}
         className={cn(
           'fixed inset-x-0 bottom-0 z-50 flex max-h-[85vh] flex-col gap-5 overflow-hidden rounded-t-2xl border border-gray-200 bg-white p-5 pb-6 shadow-lg scrollbar-stable transition-[width,margin,padding,opacity,transform] duration-300 ease-in-out lg:gap-4 lg:p-5',
@@ -94,6 +99,7 @@ export const FilterModal = ({
           isOpen
             ? 'translate-y-0 opacity-100 lg:ml-4 lg:w-1/3'
             : 'pointer-events-none translate-y-full border-0 p-0 opacity-0 lg:ml-0 lg:w-0 lg:p-0',
+          isPending && 'opacity-70',
         )}
       >
         <div className="flex items-center justify-between lg:hidden">
@@ -104,6 +110,7 @@ export const FilterModal = ({
             type="button"
             onClick={() => setIsOpen(false)}
             className="flex h-11 w-11 items-center justify-center rounded-full hover:bg-gray-100 lg:h-8 lg:w-8 lg:p-1"
+            disabled={isPending}
           >
             <X size={20} />
           </button>
@@ -117,6 +124,7 @@ export const FilterModal = ({
             value={difficulty}
             onChange={(e) => setDifficulty(e.target.value)}
             className="h-11 rounded-sm border border-gray-300 bg-gray-100 p-3 text-sm lg:h-10 lg:p-2"
+            disabled={isPending}
           >
             <option value="">{CONTENT.quiz_list.filters.all}</option>
             {Object.values(Difficulty).map((level) => (
@@ -148,6 +156,7 @@ export const FilterModal = ({
                   checked={selectedCategories.includes(category.slug)}
                   onChange={() => toggleCategory(category.slug)}
                   className="h-5 w-5 lg:h-4 lg:w-4"
+                  disabled={isPending}
                 />
                 {category.name}
               </label>
@@ -163,6 +172,7 @@ export const FilterModal = ({
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
             className="h-11 shrink-0 rounded-sm border border-gray-300 bg-gray-100 p-3 text-sm lg:h-10 lg:p-2"
+            disabled={isPending}
           >
             <option value="">{CONTENT.quiz_list.filters.default_sort}</option>
             {Object.values(sortType).map((value) => (
@@ -177,13 +187,22 @@ export const FilterModal = ({
           <Button
             type="button"
             variant="outline"
-            className="flex-1 min-h-11 lg:min-h-10"
+            className="flex-1 min-h-11 transition-opacity duration-200 lg:min-h-10"
             onClick={handleClear}
+            disabled={isPending}
           >
-            {CONTENT.quiz_list.filters.clear}
+            {isPending
+              ? CONTENT.quiz_list.filters.clearing
+              : CONTENT.quiz_list.filters.clear}
           </Button>
-          <Button type="submit" className="flex-1 min-h-11 lg:min-h-10">
-            {CONTENT.quiz_list.filters.apply}
+          <Button
+            type="submit"
+            className="flex-1 min-h-11 transition-opacity duration-200 lg:min-h-10"
+            disabled={isPending}
+          >
+            {isPending
+              ? CONTENT.quiz_list.filters.applying
+              : CONTENT.quiz_list.filters.apply}
           </Button>
         </div>
       </form>

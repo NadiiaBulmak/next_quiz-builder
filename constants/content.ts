@@ -18,7 +18,8 @@ export const CONTENT = {
     },
     no_quiz_results_found: {
       title: 'No quiz results yet',
-      description: 'Once someone completes one of your quizzes, performance statistics will appear here.',
+      description:
+        'Once someone completes one of your quizzes, performance statistics will appear here.',
     },
     menu: {
       open: 'Open menu',
@@ -635,11 +636,14 @@ export const CONTENT = {
       all: 'All',
       no_categories: 'No categories available',
       search: 'Search',
+      searching: 'Searching...',
       open: 'Filters',
       sort_by: 'Sort by',
       default_sort: 'Default',
       clear: 'Clear filters',
+      clearing: 'Clearing...',
       apply: 'Apply filters',
+      applying: 'Applying...',
     },
     menu: {
       make_draft: 'Make it draft',
