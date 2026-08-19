@@ -39,7 +39,7 @@ export const QuizList = async ({
   return (
     <div className="min-w-0 flex-1">
       {searchQuery ? (
-        <div className="mb-4 flex w-full items-start justify-between gap-3 rounded-xl border border-green-500 bg-lime-50/60 px-4 py-4 sm:items-center sm:gap-4 sm:px-5">
+        <div className="mb-4 flex flex-col md:flex-row w-full items-start justify-between gap-3 rounded-xl border border-green-500 bg-lime-50/60 px-4 py-4 sm:items-center sm:gap-4 sm:px-5">
           <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lime-100 text-green-500">
               <Search size={19} />

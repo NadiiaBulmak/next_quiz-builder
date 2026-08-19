@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import { CONTENT } from '@/constants/content';
 import { LabelInputArea } from '../UI/LabelInputArea';
@@ -15,8 +15,11 @@ export const CategorySelectClient = ({
   onSelectedNamesChange,
   error,
 }: CategorySelectClientProps) => {
+  const activeSelectedNames =
+    selectedNames !== undefined ? selectedNames : initialSelectedNames;
+
   const [selected, setSelected] = useState<Category[]>(() =>
-    initialSelectedNames.map(
+    activeSelectedNames.map(
       (name) =>
         categories.find((category) => category.name === name) ?? {
           id: crypto.randomUUID(),
@@ -24,6 +27,19 @@ export const CategorySelectClient = ({
         },
     ),
   );
+
+  useEffect(() => {
+    setSelected(
+      activeSelectedNames.map(
+        (name) =>
+          categories.find((category) => category.name === name) ?? {
+            id: crypto.randomUUID(),
+            name,
+          },
+      ),
+    );
+  }, [activeSelectedNames, categories]);
+
   const [search, setSearch] = useState('');
   const selectedNamesValue = selectedNames ?? selected.map((item) => item.name);
 

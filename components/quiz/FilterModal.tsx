@@ -177,12 +177,12 @@ export const FilterModal = ({
           <Button
             type="button"
             variant="outline"
-            className="flex-1"
+            className="flex-1 min-h-11 lg:min-h-10"
             onClick={handleClear}
           >
             {CONTENT.quiz_list.filters.clear}
           </Button>
-          <Button type="submit" className="flex-1">
+          <Button type="submit" className="flex-1 min-h-11 lg:min-h-10">
             {CONTENT.quiz_list.filters.apply}
           </Button>
         </div>

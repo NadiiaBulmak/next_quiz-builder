@@ -1,4 +1,6 @@
+'use client';
 import { LANDING_NAV_LINKS } from "@/constants/landing_nav_links"
+import { rejectIframeNavigation } from "@/utils/rejectIframeNavigation"
 import Link from "next/link"
 
 export const FooterNav = () => {
@@ -10,7 +12,7 @@ export const FooterNav = () => {
               <div className="flex flex-col gap-1">
 
               {nav_column.links.map((link) => (
-                <Link key={link.name} href={link.href} className="text-sm text-gray-500">
+                <Link key={link.name} href={link.href} className="text-sm text-gray-500" onClick={rejectIframeNavigation}>
                   {link.name}
                 </Link>
               ))}

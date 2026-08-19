@@ -28,6 +28,7 @@ export const QuizPreview = () => {
             src="/create-preview"
             title={CONTENT.main.preview_titles.quiz_create}
             onLoad={() => setIsLoading(false)}
+            sandbox="allow-scripts allow-same-origin"
           />
         </div>
       </div>

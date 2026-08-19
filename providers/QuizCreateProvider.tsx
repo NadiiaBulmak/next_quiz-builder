@@ -1,6 +1,12 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 import { initialQuestions } from '@/constants/initialFormState';
 import type {
   QuizCreateContextValue,
@@ -21,14 +27,21 @@ const QuizCreateContext = createContext<QuizCreateContextValue | null>(null);
 export const QuizCreateProvider = ({ children }: QuizCreateProviderProps) => {
   const [draft, setDraft] = useState<QuizDraft>(createInitialDraft);
 
-  const updateDraft = (changes: Partial<QuizDraft>) => {
+  const updateDraft = useCallback((changes: Partial<QuizDraft>) => {
     setDraft((currentDraft) => ({ ...currentDraft, ...changes }));
-  };
+  }, []);
 
-  const resetDraft = () => setDraft(createInitialDraft());
+  const resetDraft = useCallback(() => {
+    setDraft(createInitialDraft());
+  }, []);
+
+  const value = useMemo(
+    () => ({ draft, updateDraft, resetDraft }),
+    [draft, updateDraft, resetDraft],
+  );
 
   return (
-    <QuizCreateContext.Provider value={{ draft, updateDraft, resetDraft }}>
+    <QuizCreateContext.Provider value={value}>
       {children}
     </QuizCreateContext.Provider>
   );

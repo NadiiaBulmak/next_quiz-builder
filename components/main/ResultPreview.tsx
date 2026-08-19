@@ -33,6 +33,7 @@ export const ResultPreview = ({id}: ResultPreviewProps) => {
             title={CONTENT.main.preview_titles.quiz_result}
             className="h-full w-full border-0"
             onLoad={() => setIsLoading(false)}
+            sandbox="allow-scripts allow-same-origin"
           />
         </div>
       </div>

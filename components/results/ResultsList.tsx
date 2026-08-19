@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { QuizResultOverview } from '@/types/props';
 import { Pagination } from '@/components/shared/Pagination';
 import { QuizStatisticsCard } from './QuizStatistic/QuizStatisticsCard';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 export const ResultsList = ({
   quizzes,
@@ -15,6 +16,7 @@ export const ResultsList = ({
   totalPages: number;
 }) => {
   const router = useRouter();
+  useScrollToTop();
 
   return (
     <div className="flex flex-col gap-4">

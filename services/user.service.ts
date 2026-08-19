@@ -12,7 +12,5 @@ export async function getUserById(id: string) {
     },
   });
 
-  console.log(user);
-
   return user;
 }

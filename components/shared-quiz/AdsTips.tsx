@@ -1,6 +1,8 @@
+import Link from 'next/link';
 import { CONTENT } from '@/constants/content';
-import { Lightbulb, Link, SquareArrowOutUpRight } from 'lucide-react';
+import { Lightbulb, SquareArrowOutUpRight } from 'lucide-react';
 import { Button } from '../ui/button';
+import { NAV_LINKS } from '@/constants/nav_links';
 
 export const AdsTips = () => {
   return (
@@ -14,16 +16,18 @@ export const AdsTips = () => {
           <p key={index}>{tip}</p>
         ))}
       </div>
-      <Button
-        variant="outline"
-        className="min-h-12 w-full justify-center font-bold text-gray-700 text-base p-4 flex items-center gap-3 rounded-md cursor-pointer lg:p-6"
-      >
-        {CONTENT.shared_quiz.tips.button.text}
-        <SquareArrowOutUpRight
-          strokeWidth={3}
-          className="text-bold text-gray-700"
-        />
-      </Button>
+      <Link href={NAV_LINKS.sign_in} target="_blank" className="w-full">
+        <Button
+          variant="outline"
+          className="min-h-12 w-full justify-center font-bold text-gray-700 text-base p-4 flex items-center gap-3 rounded-md cursor-pointer lg:p-6"
+        >
+          {CONTENT.shared_quiz.tips.button.text}
+          <SquareArrowOutUpRight
+            strokeWidth={3}
+            className="text-bold text-gray-700"
+          />
+        </Button>
+      </Link>
     </div>
   );
 };

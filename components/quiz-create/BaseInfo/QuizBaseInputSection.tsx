@@ -72,7 +72,7 @@ export const QuizBaseInputSection = ({
       />
       <CategorySelectClient
         categories={categories}
-        initialSelectedNames={initialSelectedCategories}
+        initialSelectedNames={selectedCategories}
         selectedNames={selectedCategories}
         onSelectedNamesChange={onCategoriesChange}
         error={errors?.[QuizFormField.CATEGORIES]}

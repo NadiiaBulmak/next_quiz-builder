@@ -8,6 +8,7 @@ import {
 } from '@/constants/initialFormState';
 import { AnswerType, CreateQuizClientProps, QuestionType } from '@/types/props';
 import { useActionState, useEffect, useMemo, useRef } from 'react';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 import { useRouter } from 'next/navigation';
 import { postQuiz } from '@/app/actions/quiz/postQuiz';
 import { TipSection } from '../shared/TipSection';
@@ -43,6 +44,7 @@ export const CreateQuizClient = ({
   quiz,
   previewMode = false,
 }: CreateQuizClientProps) => {
+  useScrollToTop();
   const { draft, updateDraft, resetDraft } = useQuizCreate();
   const initializedQuizId = useRef<string | undefined>(undefined);
   const editCategories = useMemo(
