@@ -175,7 +175,7 @@ export const CreateQuizClient = ({
     <>
       <form
         action={previewMode ? undefined : action}
-        className="flex-1 min-h-screen  flex-1 min-h-screen bg-gray-50 px-3 md:px-6 py-3 md:py-6 grid grid-cols-1 md:grid-cols-[4fr_6fr] md:gap-3 w-full mb-20 lg:mb-0"
+        className={`flex-1 min-h-screen  flex-1 min-h-screen bg-gray-50 px-3 md:px-6 py-3 md:py-6 grid grid-cols-1 md:grid-cols-[4fr_6fr] md:gap-3 w-full lg:mb-0 ${previewMode ? 'mb-0' : 'mb-20'}`}
       >
         <ActionToast state={state} />
         {previewMode && (

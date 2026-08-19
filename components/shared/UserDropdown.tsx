@@ -21,7 +21,12 @@ export const UserDropdown = ({
   email,
   opened = false,
   className = '',
-}: SidebarBottomType & { email?: string; className?: string }) => {
+  previewMode = false,
+}: SidebarBottomType & {
+  email?: string;
+  className?: string;
+  previewMode?: boolean;
+}) => {
   const [openedState, setOpenedState] = useState(opened);
   const router = useRouter();
   const [state, action, isPending] = useActionState(logout, {
@@ -75,28 +80,46 @@ export const UserDropdown = ({
 
         <DropdownMenuContent>
           <DropdownMenuItem className="cursor-pointer text-base p-2">
-            <Link
-              href={NAV_LINKS.settings}
-              className="w-full h-full flex items-center gap-1"
-            >
-              <Settings className="mr-2" width={24} height={24} />
-              {CONTENT.shared.user_menu.settings}
-            </Link>
+            {previewMode ? (
+              <div className="w-full h-full flex items-center gap-1">
+                <Settings className="mr-2" width={24} height={24} />
+                {CONTENT.shared.user_menu.settings}
+              </div>
+            ) : (
+              <Link
+                href={NAV_LINKS.settings}
+                className="w-full h-full flex items-center gap-1"
+              >
+                <Settings className="mr-2" width={24} height={24} />
+                {CONTENT.shared.user_menu.settings}
+              </Link>
+            )}
           </DropdownMenuItem>
           <DropdownMenuItem className="text-base p-2 cursor-pointer">
-            <form action={action} className="w-full">
-              <button
-                type="submit"
-                disabled={isPending}
-                className="w-full flex items-center disabled:opacity-50"
-              >
-                <LogOut
-                  className="mr-2 text-red-700 hover:text-red-500"
-                  width={24}
-                  height={24}
-                />
-                {CONTENT.shared.user_menu.log_out}
-              </button>
+            <form action={previewMode ? undefined : action} className="w-full">
+              {previewMode ? (
+                <div className="w-full flex items-center disabled:opacity-50">
+                  <LogOut
+                    className="mr-2 text-red-700 hover:text-red-500"
+                    width={24}
+                    height={24}
+                  />
+                  {CONTENT.shared.user_menu.log_out}
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={isPending}
+                  className="w-full flex items-center disabled:opacity-50"
+                >
+                  <LogOut
+                    className="mr-2 text-red-700 hover:text-red-500"
+                    width={24}
+                    height={24}
+                  />
+                  {CONTENT.shared.user_menu.log_out}
+                </button>
+              )}
             </form>
           </DropdownMenuItem>
         </DropdownMenuContent>

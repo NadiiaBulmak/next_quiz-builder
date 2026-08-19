@@ -27,6 +27,7 @@ export const MobileTopBar = ({
           email="example@example.com"
           opened={opened}
           className={className}
+          previewMode={previewMode}
         />
       )}
     </div>
