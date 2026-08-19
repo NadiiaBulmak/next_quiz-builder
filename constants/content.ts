@@ -328,8 +328,8 @@ export const CONTENT = {
   footer: {
     subtitle: 'The easiest way to create interactive quizzes and surveys.',
     rightsReserved: 'Quiz Flow. All rights reserved.',
-    email: 'quizflow@email.com',
-    mailto: 'mailto:quizflow@email.com',
+    email: 'nbulmak@gmail.com',
+    mailto: 'mailto:nbulmak@gmail.com',
     // subtitle: 'Create, share and take quizzes in a modern and simple way.',
     // rightsReserved: '© Quiz Flow. All rights reserved.',
     withLove: 'Made with ❤️ by QuizFlow ',
