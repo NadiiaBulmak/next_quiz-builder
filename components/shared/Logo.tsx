@@ -1,7 +1,5 @@
 'use client';
 
-import { LogoType } from '@/types/props';
-import { ChevronsRight, ChevronsLeft } from 'lucide-react';
 import Image from 'next/image';
 import { CONTENT } from '@/constants/content';
 import Link from 'next/link';

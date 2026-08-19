@@ -24,7 +24,7 @@ export const MobileMenu = ({
       />
       <div className="flex min-h-0 w-full flex-1 flex-col items-center gap-6 overflow-hidden bg-white px-5 pb-5 sm:px-8">
         <div className="min-h-0 w-full flex-1 overflow-y-auto">
-          <NavMenu isMobileNav />
+          <NavMenu isMobileNav toggleMobileMenu={toggleMobileMenu} />
         </div>
         <div className="flex w-full shrink-0 flex-col items-center justify-center gap-3 pb-[env(safe-area-inset-bottom)]">
           <Link

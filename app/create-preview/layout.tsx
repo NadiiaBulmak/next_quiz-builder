@@ -25,7 +25,6 @@ export default async function CreatePreviewLayout({
             className="hidden lg:flex"
           />
           {children}
-          <MobileMenu />
         </main>
       </div>
     </QuizCreateProvider>

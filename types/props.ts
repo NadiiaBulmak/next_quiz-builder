@@ -23,11 +23,12 @@ export type AuthRedirectLinkType = {
 export type SectionTopContentType = { heading: string; subheading: string };
 export type ReassuranceProps = { children: React.ReactNode };
 export type NavbarProps = { userId: string | null };
-export type NavMenuProps = { isMobileNav: boolean };
+export type NavMenuProps = { isMobileNav: boolean; toggleMobileMenu?: () => void };
 export type NavMenuItemProps = {
   href: string;
   name: string;
   isMobileNav: boolean;
+  toggleMobileMenu?: () => void;
 };
 export type TrustItemProps = { icon: React.ReactNode; title: string };
 export type QuizAnswerListProps = {
